@@ -33,9 +33,31 @@
     background-color: var(--cor01);
 }
 
+.title-text ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
+    gap: 4rem;
+    cursor: pointer;
+}
+
+.title-text ul li{
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+#nav-select{
+    color: var(--cor02);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
 .container-title h1 {
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.5em;
 }
 
 .color-logo {
@@ -92,7 +114,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 95%;
+    width: 98%;
 }
 
 .content-title-info i{
@@ -212,4 +234,25 @@ button {
 
 .perda {
     color: red;
+}
+
+/*pop-up*/
+
+.info-simulador {
+  display: none;
+  position: absolute;
+  top: 22%;
+  left: 2.6%;
+  background-color: #ffff
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  width: 32.2%;
+  height: 14%;
+  z-index: 1000;
+  border: 1px solid rgba(0, 0, 0, 0.200);
+}
+
+.content-title-info:has(i:hover) .info-simulador {
+  display: block;
 }
