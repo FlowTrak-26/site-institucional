@@ -197,8 +197,7 @@ header p{
 .objetivoInside{
 	display: flex;
 	width: 90%;
-
-
+	gap: 100px;
 }
 
 .objetivo{
@@ -218,6 +217,10 @@ header p{
 
 .imgObjetivo{
 	width: 50%;
-
+	justify-content: center;
+	align-items: center;
 }
 
+.imgObjetivo img{
+	width: 80%;
+}
