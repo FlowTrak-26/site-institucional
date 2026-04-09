@@ -401,5 +401,27 @@
 .content-contato {
   display: flex;
   align-items: center;
-  background-image: url(../midia/img-fundo.png);
+  background-image:
+    linear-gradient(rgba(194, 128, 5, 0.5),rgba(194, 128, 5, 0.5)),
+    url(../midia/img-fundo.png);
+  min-height: 80vh;
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
+
+.content-contato h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 0.5vw;
+  color: white;
+}
+
+.content-contato h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
