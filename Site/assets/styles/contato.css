@@ -194,7 +194,7 @@ Formulario de contato
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 72.2%;
   height: 40%;
 }
 
@@ -211,21 +211,21 @@ Formulario de contato
 
 #linhas_inputs i.fa-envelope{
   position: absolute;
-  left: 5.8%;
-  top: 44.2%;
+  left: 18%;
+  top: 44.3%;
   color: #8C3503;
 }
 
 #linhas_inputs i.fa-briefcase{
   position: absolute;
-  left: 5.8%;
-  top: 35.79%;
+  left: 18%;
+  top: 35.8%;
   color: #8C3503;
 }
 
 #assunto textarea {
   padding: 1rem;
-  width: 97.8%;
+  width: 70%;
   height: 100%;
   border: 2px solid #8c3503c4;
   border-radius: 10px;
@@ -234,7 +234,7 @@ Formulario de contato
 
 #assunto button{
   position: absolute;
-  right: 6.3%;
+  right: 19.5%;
   top: 83%;
   height: 5%;
   width: 7%;

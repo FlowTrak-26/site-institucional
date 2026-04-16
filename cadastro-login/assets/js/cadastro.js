@@ -50,7 +50,7 @@ function cadastro_verificacao() {
         erro_cadastro = true;
     } else {
         content_sucesso.style.display = 'flex';
-        sucesso.innerHTML = `Seu login foi um sucesso!<br> Estamos te redirecionando.`;
+        sucesso.innerHTML = `Seu cadastro foi um sucesso!<br> Estamos te redirecionando.`;
         sucesso_cadastro = true;
     }
 };

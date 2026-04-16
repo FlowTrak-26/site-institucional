@@ -1,9 +1,9 @@
 function redirecionamento_login() {
-    window.location.href = "../Cadastro_Login/login.html";
+    window.location.href = "../cadastro-Login/login.html";
 }
 
 function redirecionamento_simulador() {
-    window.location.href = '../Simulador_financeiro/Simulador.html'
+    window.location.href = '../simulador-financeiro/Simulador.html'
 }
 
 function redirecionamento_contato() {
