@@ -110,4 +110,5 @@ btn_fechar_aviso.addEventListener('click', () => {
 
 btn_fechar_sucesso.addEventListener('click', () => {
     content_sucesso.style.display = 'none';
+    location.reload();
 })
