@@ -32,5 +32,15 @@ site-institucional/
 └── README.md
 ```
 
+## ️Funcionalidades
+
+| Módulo | Descrição |
+|---|---|
+| **Site Institucional** | Apresentação da solução FlowTrak ao mercado |
+| **Dashboard** | Exibição de KPIs de fluxo em tempo real (entradas, saídas, pico) |
+| **Simulador Financeiro** | Estimativa de retorno financeiro para o supermercado |
+| **Cadastro / Login** | Autenticação de usuários |
+
 ---
+
 
