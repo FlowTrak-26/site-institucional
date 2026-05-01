@@ -43,4 +43,14 @@ site-institucional/
 
 ---
 
+## Contexto e Problema Resolvido
+
+Cerca de **60% das compras** são influenciadas pela experiência dentro da loja. Filas longas reduzem em até **30% as compras por impulso**, e horários de pico aumentam o tempo de atendimento em até **40%**.
+
+O site do FlowTrak é a interface central que permite aos gestores acompanharem em tempo real:
+
+- Volume de clientes por área (entrada, corredores, caixas)
+- Alertas de congestionamento
+- Indicadores operacionais (KPIs) e padrões de comportamento do consumidor
+- Estimativas financeiras baseadas nos dados coletados
 
