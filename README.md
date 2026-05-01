@@ -54,3 +54,17 @@ O site do FlowTrak é a interface central que permite aos gestores acompanharem 
 - Indicadores operacionais (KPIs) e padrões de comportamento do consumidor
 - Estimativas financeiras baseadas nos dados coletados
 
+## Público-Alvo da Plataforma
+
+- Donos de supermercados locais
+
+---
+
+## Como Executar Localmente
+
+1. Clone o repositório:
+```terminal
+git clone https://github.com/FlowTrak-26/site-institucional.git
+```
+
+
