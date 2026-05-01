@@ -19,4 +19,18 @@ Este repositório contém toda a camada de front-end da solução: o site instit
 
 O setor supermercadista brasileiro faturou **R$ 1,067 trilhão em 2024** (9,12% do PIB), mas muitos estabelecimentos ainda operam com baixa maturidade analítica. O FlowTrak transforma dados brutos de sensores IoT em insights estratégicos e acionáveis.
 
+## Estrutura do Repositório
+
+```
+site-institucional/
+├── Site/                    # Páginas do site institucional
+├── Dashboard/               # Páginas da dashboard
+├── cadastro-login/          # Páginas de cadastro(cadastro e login)
+├── simulador-financeiro/    # Simulador financeiro da FlowTrak
+├── index.html               # Página principal
+├── .gitignore
+└── README.md
+```
+
+---
 
