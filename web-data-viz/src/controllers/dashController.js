@@ -85,6 +85,6 @@ function atualizarDadosMapaCalor(req, res) {
 
 module.exports = {
     buscarDadosGraficoLinha,
-    buscarMedidasEmTempoReal
+    // buscarMedidasEmTempoReal
 
 }
