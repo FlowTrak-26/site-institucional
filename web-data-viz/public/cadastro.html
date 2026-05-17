@@ -21,6 +21,11 @@
           <i class="fa-solid fa-angle-left"></i> Home
         </a>
       </div>
+				<div class="alerta_erro">
+					<div class="card_erro" id="cardErro">
+						<span id="mensagem_erro"></span>
+					</div>
+				</div>
       <div class="content-cadastro">
         <div class="cadastro">
           <div class="cadastro-title">
@@ -37,10 +42,10 @@
                 <p>E-mail:</p>
                 <input class="ipt-infosL" placeholder="Digite seu E-mail" id="ipt_email" />
               </div>
-              <!-- <div class="info-row">
+              <div class="info-row">
                 <p>Telefone:</p>
                 <input class="ipt-infosL" placeholder="Digite seu Telefone" id="ipt_telefone" />
-              </div> -->
+              </div> 
             </div>
             <div class="cadastro-divisao">
               <div class="barra"></div>
@@ -73,7 +78,7 @@
           </div>
           <div class="botao-entrar">
             <div class="entrar">
-              <button onclick="cadastrar()">Entrar</button>
+              <button onclick="cadastrar()">Cadastre-se</button>
               <p>© 2026 FlowTrak</p>
             </div>
             <div id="div_aguardar" class="loading-div">
@@ -138,17 +143,16 @@
     var nomeVar = ipt_nome.value;
     var emailVar = ipt_email.value;
     var senhaVar = ipt_senha.value;
+		var telefoneVar = ipt_telefone.value;
     var confirmacaoSenhaVar = ipt_senha_confirmacao.value;
-    // var codigoVar = codigo_input.value;
-    // var idEmpresaVincular
 
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
-      confirmacaoSenhaVar == ""
-      // codigoVar == ""
+      confirmacaoSenhaVar == "" ||
+			telefone == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
@@ -160,19 +164,6 @@
       setInterval(sumirMensagem, 5000);
     }
 
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-
-    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-    //   if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-    //     idEmpresaVincular = listaEmpresasCadastradas[i].id
-    //     console.log("Código de ativação válido.");
-    //     break;
-    //   } else {
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-    finalizarAguardar();
-    //   }
-    // }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -186,6 +177,7 @@
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
+				telefoneServer: telefoneVar
         // idEmpresaVincularServer: idEmpresaVincular
       }),
     })
@@ -216,25 +208,25 @@
     return false;
   }
 
-  // // Listando empresas cadastradas 
-  // function listar() {
-  //   fetch("/empresas/listar", {
-  //     method: "GET",
-  //   })
-  //     .then(function (resposta) {
-  //       resposta.json().then((empresas) => {
-  //         empresas.forEach((empresa) => {
-  //           listaEmpresasCadastradas.push(empresa);
+  // Listando empresas cadastradas 
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresasCadastradas.push(empresa);
 
-  //           console.log("listaEmpresasCadastradas")
-  //           console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-  //         });
-  //       });
-  //     })
-  //     .catch(function (resposta) {
-  //       console.log(`#ERRO: ${resposta}`);
-  //     });
-  // }
+            console.log("listaEmpresasCadastradas")
+            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
 
   function sumirMensagem() {
     cardErro.style.display = "none";
