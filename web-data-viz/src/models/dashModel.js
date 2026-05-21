@@ -27,8 +27,8 @@ function buscarDadosGraficoLinha(limite_linhas, id_grafico) {
                 ON sn.fk_ponto = pt.id_ponto
             JOIN dado_captado AS d_cpt
                 ON d_cpt.fk_sensor = sn.id_sensor
-        WHERE id_empresa = ${}
-        ORDER BY momento_grafico DESC LIMIT = ${limite_linhas};
+        WHERE id_empresa = 6
+        ORDER BY momento_grafico DESC LIMIT 7;
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
