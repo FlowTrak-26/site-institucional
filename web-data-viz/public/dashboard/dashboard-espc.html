@@ -8,8 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlowTrak</title>
 
-
-    <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/dashboard-espc.css" />
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
@@ -26,38 +24,53 @@
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 </head>
 
-<!-- <body onload=" atualizarFeed()"> -->
+<body onload="exibirGraficoLinha(), exibirGraficoCalor();">
+    <div class="main-container">
+        <header>
+            <div class="navbar">
+                <div class="nav-logo">
+                    <h1>Flow <span>Trak</span></h1>
+                    <img src="./assets/midia/logo.png" alt="" />
+                </div>
+                <div class="nav-links">
+                    <ul class="main-menu">
+                        <li>
+                            <a href="../index.html"><i class="fa-solid fa-house"></i>Home</a>
+                        </li>
+                        <li>
+                            <a href="./dash_estatica_geral.html"><i class="fa-solid fa-chart-column"></i>Gráfico
+                                Geral</a>
+                        </li>
+                        <li class="select">
+                            <a href="./dash_estatica_espec.html"><i class="fa-solid fa-crosshairs"></i>Gráfico
+                                Específico</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-login">
 
-    <header>
-        <div class="navbar">
-            <div class="nav-logo">
-                <h1>Flow <span>Trak</span></h1>
-                <img src="./assets/midia/logo.png" alt="" />
+                    <button onclick="redirecionamento_login()">Entrar</button>
+                </div>
             </div>
-            <div class="nav-links">
-                <ul class="main-menu">
-                    <li>
-                        <a href="../index.html"><i class="fa-solid fa-house"></i>Home</a>
-                    </li>
-                    <li>
-                        <a href="./dash_estatica_geral.html"><i class="fa-solid fa-chart-column"></i>Gráfico Geral</a>
-                    </li>
-                    <li class="select">
-                        <a href="./dash_estatica_espec.html"><i class="fa-solid fa-crosshairs"></i>Gráfico Específico</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="nav-login">
+        </header>
+
+        <div class="content-dash">
+            <div class="infos">
+                <div class="icon-texto">
+                <i class="fa-solid fa-arrow-left"></i><p>Voltar para filiais</p>
+                </div>
+                <h1>Dashboard - OXXO Minas Gerais (MG)</h1>
+                <div class="icon-texto">
+                <i class="fa-solid fa-location-dot"></i> <p>Av. Carapicuíba, 187 - CEP: 00000-000</p>
+                </div>
                 
-                <button onclick="redirecionamento_login()">Entrar</button>
             </div>
         </div>
-    </header>
 
-    <div class="voltar">
-        <p>Voltar para filiais</p>
-    </div>
-<!-- <div class="btn-nav">
+
+
+        
+        <!-- <div class="btn-nav">
 
     <h3>Gráficos</h3>
 
@@ -66,7 +79,7 @@
     <h3>Sair</h3>
 </div> -->
 
-
+    </div>
 </body>
 
 </html>

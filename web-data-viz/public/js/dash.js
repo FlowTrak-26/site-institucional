@@ -1,5 +1,3 @@
- b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
     let proximaAtualizacao;
 
     window.onload = exibirGraficoLinha(), exibirGraficoCalor();
@@ -107,8 +105,6 @@
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
     function obterDadosGrafico(id_grafico) {
-
-        alterarTitulo(id_grafico)
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
