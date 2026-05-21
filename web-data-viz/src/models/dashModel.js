@@ -8,7 +8,7 @@ function buscarDadosGraficoLinha(limite_linhas, id_grafico) {
             emp.id_empresa_parceira AS id_empresa,
             emp.franqueadora AS is_franquiadora,
             pt.id_ponto_monitoramento AS id_ponto,
-            pt.nome AS nome_ponto
+            pt.nome AS nome_ponto,
             pt.fk_empresa,
             an.id_sensor,
             sn.nome AS nome_sensor,
