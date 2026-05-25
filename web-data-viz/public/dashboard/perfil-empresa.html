@@ -1,26 +1,100 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link href="../css/perfil/nav-bar.css" rel="stylesheet">
+        <link href="../css/perfil/perfil-empresa.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="main-container">
+			<div class="nav-container">
+				<div class="nav-logo">
+					<h1>Flow <span>Trak</span></h1>
+					<img src="../assets/imgs/logo.png" alt="" />
+				</div>
+				<div class="nav-buttons">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/cadastro.css" />
-    <link rel="stylesheet" href="../css/perfil-empresa.css"/>
-    <link rel="icon" type="png" href="../assets/midia/logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title> ©2026 FlowTrak - Perfil Empresa</title>
-</head>
+						<div class="nav-link">
+							<div class="nav-link-img">
+								<img src="../assets/icon/nav-icon-home.png" alt="">
+							</div>
+							<div class="nav-link-txt">
+								<a href="../index.html">Home</a>
+							</div>
+						</div>
 
-<body>
-    <section class="conteudo_site">
-        <div class="cadastro_empresa">
-            <label></label>
-        </div>
-    </section>
-</body>
+						<div class="nav-link pg-atual" >
+							<div class="nav-link-img">
+								<img src="../assets/icon/nav-icon-geral.png" alt="">
+							</div>
+							<div class="nav-link-txt">
+								<a href="#">Geral</a>
+							</div>
+						</div>
 
+						<div class="nav-link">
+							<div class="nav-link-img">
+								<img src="../assets/icon/nav-icon-especifico.png" alt="">
+							</div>
+							<div class="nav-link-txt">
+								<a href="./dashboard-espc.html">Específica</a>
+							</div>
+						</div>
+
+				</div>
+				<div class="perfil-area">
+					<div class="perfil-img">
+						<img src="../assets/icon/nav-icon-perfil.png" alt="">
+					</div>
+					<div class="text-perfil-area">
+						<div class="top-perfil">
+							<p>OXXO LTDA</p>
+						</div>
+						<div class="bottom-perfil">
+							<p>Admin</p>
+							<img src="../assets/icon/nav-seta-baixo.png">
+						</div>
+					</div>
+				</div>
+			</div>
+
+            <div class="banner">
+                <div class="cadastro_empresa">
+                    <div class="infos-left">
+                        <div class="info-row">
+                            <p>Nome da empresa:</p>
+                            <input type="text" class="ipt-info-left" id="ipt_nome_empresa" placeholder="Nome da empresa">
+                        </div>
+                        <div class="info-row">
+                            <p>E-mail:</p>
+                            <input type="text" class="ipt-info-left" id="ipt_email" placeholder="E-mail para contato">
+                        </div>
+                        <div class="info-row">
+                            <p>Telefone:</p>
+                            <input type="text" class="ipt-info-left" id="ipt_telefone" placeholder="Telefone para contato">
+                        </div>
+                        <div class="info-row">
+                            <p>CNPJ:</p>
+                            <input type="text" class="ipt-info-left" id="ipt_cnpj" placeholder="CNPJ">
+                        </div>
+                    </div>
+
+                    <div class="cadastro-divisao"></div>
+                    
+                    <div class="infos-right">
+                        <div class="info-row-senha"></div>
+                        <div class="info-row-senha"></div>
+                    </div>
+                    <div class="btn-salvar">
+
+                    </div>
+
+                </div>
+            </div>
+		</div>
+	</body>
 </html>
 
 <script>
