@@ -127,30 +127,26 @@ WHERE dc.data_hora
 
 CREATE VIEW dashGraficosLinha AS 
 SELECT 
-            emp.id_empresa_parceira AS id_empresa,
-            emp.franqueadora AS is_franquiadora,
-            pt.id_ponto_monitoramento AS id_ponto,
+            emp.id_empresa AS id_empresa,
+            emp.franqueadora AS id_franquiadora,
+            pt.id_ponto AS id_ponto,
             pt.nome AS nome_ponto,
             pt.fk_empresa,
-            an.id_sensor,
-            sn.nome AS nome_sensor,
+            sn.id_sensor,
             sn.status AS status_sensor,
             sn.fk_ponto,
-            d_cpt.id_dado_captado AS id_dado_cpt,
+            d_cpt.id_dado AS id_dado_cpt,
             d_cpt.data_hora AS momento_grafico,
             d_cpt.fluxo,
             d_cpt.fk_sensor
         FROM empresa_parceira AS emp
-            JOIN empresa_parceira AS franq
+            LEFT JOIN empresa_parceira AS franq
                 ON emp.franqueadora = franq.id_empresa
-            JOIN ponto_monitoramento AS pt
+            LEFT JOIN ponto_monitoramento AS pt
                 ON pt.fk_empresa = emp.id_empresa
-            JOIN sensor AS sn
+            LEFT JOIN sensor AS sn
                 ON sn.fk_ponto = pt.id_ponto
-            JOIN dado_captado AS d_cpt
-                ON d_cpt.fk_sensor = sn.id_sensor
-        WHERE id_empresa = 6
-        ORDER BY momento_grafico DESC 
-        LIMIT 7;
+            LEFT JOIN dado_captado AS d_cpt
+                ON d_cpt.fk_sensor = sn.id_sensor;
 
 
