@@ -9,6 +9,7 @@
     <title>FlowTrak</title>
 
     <link rel="stylesheet" href="./../css/dashboard-espc.css" />
+    <link rel="stylesheet" href="../css/perfil/nav-bar.css">
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
 
@@ -22,36 +23,62 @@
 
     <!--FONT AWESOME-->
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body onload="exibirGraficoLinha(), exibirGraficoCalor();">
 
     <header>
-        <div class="navbar">
-            <div class="nav-logo">
-                <h1>Flow <span>Trak</span></h1>
-                <img src="./assets/midia/logo.png" alt="" />
-            </div>
-            <div class="nav-links">
-                <ul class="main-menu">
-                    <li>
-                        <a href="../index.html"><i class="fa-solid fa-house"></i>Home</a>
-                    </li>
-                    <li>
-                        <a href="./dash_estatica_geral.html"><i class="fa-solid fa-chart-column"></i>Gráfico
-                            Geral</a>
-                    </li>
-                    <li class="select">
-                        <a href="./dash_estatica_espec.html"><i class="fa-solid fa-crosshairs"></i>Gráfico
-                            Específico</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="nav-login">
+        <div class="nav-container">
+				<div class="nav-logo">
+					<h1>Flow <span>Trak</span></h1>
+					<img src="../assets/imgs/logo.png" alt="" />
+				</div>
+				<div class="nav-buttons">
 
-                <button onclick="redirecionamento_login()">Entrar</button>
-            </div>
-        </div>
+						<div class="nav-link">
+							<div class="nav-link-img">
+								<img src="../assets/icon/nav-icon-home.png" alt="">
+							</div>
+							<div class="nav-link-txt">
+								<a href="../index.html">Home</a>
+							</div>
+						</div>
+
+						<div class="nav-link pg-atual" >
+							<div class="nav-link-img">
+								<img src="../assets/icon/nav-icon-geral.png" alt="">
+							</div>
+							<div class="nav-link-txt">
+								<a href="#">Geral</a>
+							</div>
+						</div>
+
+						<div class="nav-link">
+							<div class="nav-link-img">
+								<img src="../assets/icon/nav-icon-especifico.png" alt="">
+							</div>
+							<div class="nav-link-txt">
+								<a href="./dashboard-espc.html">Específica</a>
+							</div>
+						</div>
+
+				</div>
+				<div class="perfil-area">
+					<div class="perfil-img">
+						<img src="../assets/icon/nav-icon-perfil.png" alt="">
+					</div>
+					<div class="text-perfil-area">
+						<div class="top-perfil">
+							<p>OXXO LTDA</p>
+						</div>
+						<div class="bottom-perfil">
+							<p>Admin</p>
+							<img src="../assets/icon/nav-seta-baixo.png">
+						</div>
+					</div>
+				</div>
+			</div>
     </header>
 
     <div class="main-container">
@@ -239,3 +266,4 @@
 </html>
 
 <script src="../js/dash.js"></script>
+
