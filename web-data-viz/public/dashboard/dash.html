@@ -2,54 +2,83 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon"> -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlowTrak</title>
 
-    <link rel="stylesheet" href="./../css/dashboard-espc.css" />
+    <link rel="stylesheet" href="./../css/dashboards.css" />
+    <link rel="stylesheet" href="../css/perfil/nav-bar.css">
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
     <!-- scripts do Chart.js - 2022-1 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 
     <!--FONT AWESOME-->
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="exibirGraficoLinha(), exibirGraficoCalor();">
+<body> <!-- onload="exibirGraficoLinha(), exibirGraficoCalor();" -->
 
     <header>
-        <div class="navbar">
+        <div class="nav-container">
             <div class="nav-logo">
                 <h1>Flow <span>Trak</span></h1>
-                <img src="./assets/midia/logo.png" alt="" />
+                <img src="../assets/imgs/logo.png" alt="" />
             </div>
-            <div class="nav-links">
-                <ul class="main-menu">
-                    <li>
-                        <a href="../index.html"><i class="fa-solid fa-house"></i>Home</a>
-                    </li>
-                    <li>
-                        <a href="./dash_estatica_geral.html"><i class="fa-solid fa-chart-column"></i>Gráfico
-                            Geral</a>
-                    </li>
-                    <li class="select">
-                        <a href="./dash_estatica_espec.html"><i class="fa-solid fa-crosshairs"></i>Gráfico
-                            Específico</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="nav-login">
+            <div class="nav-buttons">
 
-                <button onclick="redirecionamento_login()">Entrar</button>
+                <div class="nav-link">
+                    <div class="nav-link-img">
+                        <img src="../assets/icon/nav-icon-home.png" alt="">
+                    </div>
+                    <div class="nav-link-txt">
+                        <a href="../index.html">Home</a>
+                    </div>
+                </div>
+
+                <div class="nav-link pg-atual">
+                    <div class="nav-link-img">
+                        <img src="../assets/icon/nav-icon-geral.png" alt="">
+                    </div>
+                    <div class="nav-link-txt">
+                        <a href="#">Geral</a>
+                    </div>
+                </div>
+
+                <div class="nav-link">
+                    <div class="nav-link-img">
+                        <img src="../assets/icon/nav-icon-especifico.png" alt="">
+                    </div>
+                    <div class="nav-link-txt">
+                        <a href="./dashboard-espc.html">Específica</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="perfil-area">
+                <div class="perfil-img">
+                    <img src="../assets/icon/nav-icon-perfil.png" alt="">
+                </div>
+                <div class="text-perfil-area">
+                    <div class="top-perfil">
+                        <p>OXXO LTDA</p>
+                    </div>
+                    <div class="bottom-perfil">
+                        <p>Admin</p>
+                        <img src="../assets/icon/nav-seta-baixo.png">
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -57,20 +86,19 @@
     <div class="main-container">
         <div class="content-dash">
             <div class="infos-text">
-                <div id="icon-texto">
+                <div class="icon-texto">
                     <i class="fa-solid fa-arrow-left"></i>
-                        <p>Voltar para filiais</p>
+                    <p>Voltar para filiais</p>
                 </div>
-                <div id="text-button">
+                <div class="text-botao">
                     <h1>Dashboard - OXXO Minas Gerais (MG)</h1>
                     <div class="ativar">
                         <button onclick="ativar()" class="ativar">ATIVA</button>
                     </div>
                 </div>
                 <div class="icon-texto">
-                    <i class="fa-solid fa-location-dot">
-                        <p>Av. Carapicuíba, 187 - CEP : 00000-000</p>
-                    </i>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>Av. Carapicuíba, 187 - CEP : 00000-000</p>
                 </div>
             </div>
             <div class="infos-box">
@@ -80,19 +108,16 @@
                     </div>
                     <div class="ident-cores">
                         <div class="perigo">
-                            <i class="fa-solid fa-circle">
-                                <p>Perigo</p>
-                            </i>
+                            <i class="fa-solid fa-circle"></i>
+                            <p>Perigo</p>
                         </div>
                         <div class="alerta">
-                            <i class="fa-solid fa-circle">
-                                <p>Alerta</p>
-                            </i>
+                            <i class="fa-solid fa-circle"></i>
+                            <p>Alerta</p>
                         </div>
                         <div class="ideal">
-                            <i class="fa-solid fa-circle">
-                                <p>Ideal</p>
-                            </i>
+                            <i class="fa-solid fa-circle"></i>
+                            <p>Ideal</p>
                         </div>
                     </div>
                 </div>
@@ -101,19 +126,20 @@
                 <div class="data">
                     <div class="content-data">
                         <i class="fa-regular fa-calendar"></i>
-                    </div>
                     <p>Hoje, 24 de Março</p>
-                </div>
-                <div class="seletor-data">
-                    <select name="Locais" id="select-local">
-                        <option value="" selected>Selecione</option>
-                        <option value="11/02/2026">11/02/2026</option>
-                        <option value="12/02/2026">12/02/2026</option>
-                        <option value="13/02/2026">13/02/2026</option>
-                        <option value="14/02/2026">14/02/2026</option>
-                        <option value="15/02/2026">15/02/2026</option>
-                        <option value="16/02/2026">16/02/2026</option>
-                    </select>
+                    </div>
+
+                    <div class="seletor-data">
+                        <select name="Locais" id="select-local">
+                            <option value="" selected>Selecione</option>
+                            <option value="11/02/2026">11/02/2026</option>
+                            <option value="12/02/2026">12/02/2026</option>
+                            <option value="13/02/2026">13/02/2026</option>
+                            <option value="14/02/2026">14/02/2026</option>
+                            <option value="15/02/2026">15/02/2026</option>
+                            <option value="16/02/2026">16/02/2026</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -123,4 +149,4 @@
 
 </html>
 
-<script src="../js/dash.js"></script>
+<!-- <script src="../js/dash.js"></script> -->
