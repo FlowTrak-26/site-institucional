@@ -4,40 +4,201 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-    --cor01: #8C3503;
-    --cor02: #d98927;
-    --cor03: #bf6a02;
-    --cor04: #26471b;
-    --cor05: #fff;
+	--cor01: #8C3503;
+	--cor02: #d98927;
+	--cor03: #bf6a02;
+	--cor04: #26471b;
+	--cor05: #fff;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Inter", sans-serif;
+	margin: 0;
+	padding: 0;
+	font-family: "Inter", sans-serif;
 }
 
-/*Banner*/
-
-.banner {
-    width: 100%;
-    height: 100%;
-    font-size: 1rem;
-    padding: 0 0.8rem;
+.main-content{
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
-.cadastro-divisao {
-    background-color: #8c350385;
-    width: 1px;
-    height: 80%;
+.banner-content{
+	position: relative;
+	height: 32%;
+	display: flex;
+	align-items: flex-end;
+	width: 100%;
 }
 
-input {
-    border: 1.4px solid #8c350393;
-    border-radius: 10px;
-    width: 90%;
-    height: 100%;
-    font-size: 1rem;
-    padding: 0 0.8rem;
-    margin-bottom: 10px;
+.container-icon-perfil{
+	display: flex;
+	align-items: center;
+	position: absolute;
+	/* z-index: 999; */
+	gap: 30px;
+	bottom: 50%;
+	left: 5%;
+}
+
+.container-icon-perfil img{
+	width: 200px;
+}
+
+.container-inputs{
+	width: 90%;
+	display: flex;
+	margin: auto;
+	height: 68%;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.inputs-area{
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	height: 70%;
+	border: solid 2px green;
+}
+
+.input-perfil{
+	width: 100%;
+}
+
+.input-perfil input{
+	height: 60px;
+	width: 95%;
+	padding-left: 20px;
+	border-radius: 10px;
+	border-color: #8C3503;
+	font-size: 20px;
+}
+
+.input-perfil p{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.btn-salvar-alteracoes{
+	align-self: center;
+	width: 300px;
+	height: 70px;
+	background-color: #D98927;
+	border: none;
+	border-bottom: solid 3px #9E5700;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	margin-top: 8%;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.btns-icons-perfil {
+	width: 350px;
+	height: 165px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	gap: 20px;
+}
+
+.btns-icons-perfil button{
+	height: 50px;
+	width: 100%;
+	border-radius: 50px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.btn-inf-sensivel{
+	background-color: white;
+	border: solid 1px var(--cor01);
+	color: #8C3503;
+}
+
+.btn-add-func{
+	background-color: var(--cor01);
+	color: white;
+	border: none;
+}
+
+.container-cadastro{
+	display: flex;
+	width: 90%;
+	height: 70%;
+	margin: auto;
+}
+
+.container-cadastrados{
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 40px;
+	font-size: 30px;
+	margin-top: 50px;
+}
+
+.content-inputs{
+	width: 50%;
+	display: flex;
+	margin-top: 20px;
+	flex-direction: column;
+	align-items: center;
+	font-size: 30px;
+	color: var(--cor01);
+	font-weight: bold;
+	gap: 20px;
+}
+
+.btns-emails{
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.emails-cadastrados{
+	display: flex;
+	height: 60px;
+	background-color: var(--cor01);
+	align-items: center;
+	padding: 10px;
+	color: white;
+	font-size: 18px;
+	border-radius: 50px;
+}
+
+.ipts-container-cadastro{
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.ipt-cadastro{
+	font-size: 18px;
+}
+
+.ipt-cadastro input{
+	height: 50px;
+	width: 100%;
+	font-size: 16px;
+	border-radius: 10px;
+	border: solid 2px var(--cor01);
+}
+
+.btn-ipts-cadastro{
+	width: 250px;
+	height: 50px;
+	border-radius: 50px;
+	background-color: var(--cor01);
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	border: none;
 }

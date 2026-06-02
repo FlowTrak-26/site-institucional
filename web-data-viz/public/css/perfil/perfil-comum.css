@@ -34,15 +34,20 @@
 }
 
 .inputs-area{
+	width: 40%;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 	height: 70%;
 }
 
+.input-perfil{
+	width: 100%;
+}
+
 .input-perfil input{
-	width: 700px;
 	height: 60px;
+	width: 95%;
 	padding-left: 20px;
 	border-radius: 10px;
 	border-color: #8C3503;
