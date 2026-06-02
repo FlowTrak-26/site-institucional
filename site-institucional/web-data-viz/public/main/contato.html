@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+			integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+			crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="icon" href="../assets/imgs/logo.png">
+		<link rel="stylesheet" href="./css/contato.css">
+		<title> ©2026 FlowTrak - Contato</title>
+	</head>
+
+	<body>
+		<div class="navbar">
+			<div class="nav-logo">
+				<h1>Flow <span>Trak</span></h1>
+				<img src="../assets/imgs/logo.png" alt="" />
+			</div>
+			<div class="nav-links">
+				<ul>
+					<li >
+						<a href="./index.html">Home</a>
+					</li>
+					<li>
+						<a href="./sobre-nos.html">Sobre Nós</a>
+					</li>
+					<li class="select">
+						<a href="./contato.html">Contato</a>
+					</li>
+
+				</ul>
+			</div>
+			<div class="nav-login">
+				<button onclick="redirecionamento_login()">Entrar</button>
+				<button onclick="redirecionamento_cadastro()">Cadastre-se</button>
+			</div>
+		</div>
+
+		<div id="container_contato">
+			<div id="titulo">
+				<h1>Entre em contato conosco!</h1>
+				<p>Tire suas dúvidas e feche contrato por aqui</p>
+			</div>
+			<div id="form">
+				<form id="formContato">
+					<div id="inputs">
+						<div id="linhas_inputs">
+							<i class="fa-regular fa-envelope"></i>
+							<input type="text" id="ipt_email" placeholder="Email">
+						</div>
+						<div id="linhas_inputs">
+							<i class="fa-solid fa-briefcase"></i>
+							<input type="text" id="ipt_empresa" placeholder="Empresa">
+						</div>
+					</div>
+					<div id="assunto">
+						<textarea name="" id="txt_mensagem">    Assunto:
+							________________________________________________________________________________________________________________________________________________________________________________________________________________
+						</textarea>
+						<button onclick="verificacao()">Enviar</button>
+					</div>
+
+
+
+
+				</form>
+			</div>
+		</div>
+
+	</body>
+
+</html>
+
+<script src="./js/script.js"></script>
+
+<script>
+function verificacao(){
+	let email = ipt_email.value;
+	let empresa = ipt_empresa.value;
+	let mensagem = txt_mensagem.value;
+
+	if(email == "" || empresa == ""){
+		alert("Preencha os campos corretamente!");
+	}else{
+		if(!email.includes("@") || !email.includes(".")){
+			alert("Seu email deve conter '@' e '.'! ");
+		}else if(empresa.length < 3){
+			alert("O nome da sua empresa deve conter 3 caracteres no mínimo.")
+		}else if(mensagem == ""){
+			alert("Digite sua mensagem!")
+		}else{
+			alert("Sua mensagem foi enviada!")
+		}
+	}
+}
+</script>
+
+<script>
+function redirecionamento_login() {
+	window.location.href = './login.html';
+}
+
+function redirecionamento_simulador() {
+	window.location.href = './simulador.html'
+}
+
+function redirecionamento_contato() {
+	window.location.href = './contato.html'
+}
+</script>

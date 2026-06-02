@@ -1,0 +1,196 @@
+:root {
+    --primary-brown: #8B3E16;
+    --bg-light: #F4F7F9;
+    --white: #FFFFFF;
+    --text-dark: #333333;
+    --text-muted: #666666;
+    --border-color: #E0E0E0;
+    --accent-orange: #C05A28;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header & Navbar */
+.navbar {
+    background-color: var(--primary-brown);
+    color: white;
+    padding: 15px 0;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+}
+
+.logo-text .bold { font-weight: bold; }
+.logo-icon { margin-left: 8px; font-size: 18px; color: #D4A373; }
+
+.main-menu {
+    display: flex;
+    gap: 30px;
+}
+
+.main-menu a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 5px;
+}
+
+.main-menu a.active {
+    color: white;
+    border-bottom: 3px solid #D4A373;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-info {
+    text-align: right;
+    font-size: 13px;
+}
+
+.user-name { font-weight: bold; display: block; }
+.user-avatar i { font-size: 35px; }
+
+
+main { margin-top: 30px; }
+
+.welcome-banner {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.welcome-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-box {
+    background-color: #E8DCD5;
+    color: #A67C6A;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.highlight { color: var(--accent-orange); font-weight: bold; }
+
+.stats-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-left: 1px solid var(--border-color);
+    padding-left: 30px;
+}
+
+.stats-text p { font-size: 10px; font-weight: bold; color: #999; }
+.stats-text .count { font-size: 28px; font-weight: bold; color: var(--accent-orange); }
+
+/* Filiais Section */
+.filiais-section {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    min-height: 400px;
+}
+
+.section-header h3 { font-size: 20px; margin-bottom: 5px; }
+.section-header p { color: var(--text-muted); font-size: 14px; margin-bottom: 25px; }
+
+.filiais-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.filial-card {
+    background: #F8F9FA;
+    border-radius: 10px;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filial-card.empty { height: 50px; background: #F1F1F1; opacity: 0.5; }
+
+.filial-title { color: var(--accent-orange); font-weight: bold; }
+.filial-desc { font-size: 15px; color: #444; }
+
+.filial-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.status-badge {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background: white;
+}
+
+.status-badge.ativa { color: var(--accent-orange); }
+.status-badge.inativa { color: #8B3E16; }
+
+.btn-enter {
+    background: transparent;
+    border: none;
+    color: var(--accent-orange);
+    font-size: 22px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-enter:hover { transform: translateX(3px); }
+
+
+.filiais-list::-webkit-scrollbar { width: 6px; }
+.filiais-list::-webkit-scrollbar-track { background: transparent; }
+.filiais-list::-webkit-scrollbar-thumb { background: #DDD; border-radius: 10px; }
