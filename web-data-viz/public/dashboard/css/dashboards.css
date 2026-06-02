@@ -369,7 +369,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 20%;
+    height: 15%;
     width: 93%;
     margin-left: 20px;
 }
@@ -379,7 +379,6 @@
     justify-content: center;
     align-items: center;
     background-color: #fff;
-    height: 100%;
     width: 16%;
     border-radius: 15px;
     flex-direction: row;
@@ -400,6 +399,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
     
+    
 }
 
 .numero-dado{
@@ -414,12 +414,13 @@
     font-size: 100px;
     color: #8c350361;
     
+    
 }
 
 .esquerda-kpi{
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -449,14 +450,23 @@
 }
 
 .graficos-box {
-    margin-top: 40px;
-    width: 90%;
+    height: 100vh;
+    margin-top: 10px;
+    width: 89%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-left: 1%;
+
 }
 
 .grafico {
-    width: 45%;
+    width: 47.5%;
     border-radius: 15px;
+    background-color: #fff;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 80%;
 }
+

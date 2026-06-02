@@ -392,6 +392,7 @@
 .texto-kpi{
     display: flex;
     justify-content: center;
+    align-items: center;
     color: rgba(0, 0, 0, 0.601);
     font-weight: bold;
     font-size: 17px;
