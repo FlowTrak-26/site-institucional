@@ -287,7 +287,6 @@
 .ideal i{
     color: #10f105;
     font-size: 40px;
-    border: solid 2px rgba(0, 0, 0, 0.437);
     border-radius: 50%;
 }
 
@@ -447,4 +446,17 @@
 
 .content-grafico{
     height: 100%;
+}
+
+.graficos-box {
+    margin-top: 40px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.grafico {
+    width: 45%;
+    border-radius: 15px;
 }
