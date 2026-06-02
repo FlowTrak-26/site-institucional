@@ -182,13 +182,15 @@
 
 .ipt-cadastro{
 	font-size: 18px;
+	width: 100%;
 }
 
 .ipt-cadastro input{
 	height: 50px;
-	width: 100%;
+	width: 95%;
 	font-size: 16px;
 	border-radius: 10px;
+	padding-left: 5%;
 	border: solid 2px var(--cor01);
 }
 
@@ -201,4 +203,5 @@
 	font-weight: bold;
 	font-size: 18px;
 	border: none;
+	cursor: pointer;
 }
