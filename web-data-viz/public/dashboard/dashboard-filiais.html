@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="exibirGraficoLinha(), exibirGraficoCalor();">
+<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina;">
 
     <header>
         <div class="nav-container">
@@ -83,7 +83,7 @@
 							<p>OXXO LTDA</p>
 						</div>
 						<div class="bottom-perfil">
-							<p>Admin</p>
+							<p id="nomeUsuario"></p>
 							<img src="../assets/icon/nav-seta-baixo.png">
 						</div>
 					</div>
@@ -164,3 +164,23 @@
 
 </body>
 </html>
+<script>
+
+let emailUsuario = sessionStorage.NOME_USUARIO;
+console.log(emailUsuario);
+
+function iniciarpagina() {
+    let nomeUsuario = document.getElementById('nomeUsuario');
+    let nome = sessionStorage.NOME_USUARIO;
+    // aqui o conteudo vira texto
+    nomeUsuario.textContent = nome;
+}
+
+
+    iniciarpagina();
+
+
+    	// sessionStorage.EMAIL_USUARIO = json.email;
+		// 			sessionStorage.NOME_USUARIO = json.nome;
+		// 			sessionStorage.ID_USUARIO = json.id;
+</script>
