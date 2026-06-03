@@ -1,10 +1,10 @@
-CREATE DATABASE flowtrak;
+CREATE DATABASE flowtrak;
 USE flowtrak;
 
 CREATE TABLE empresa_parceira(
 	id_empresa INT PRIMARY KEY AUTO_INCREMENT, 
 	nome VARCHAR(45),
-  cnpj CHAR(14),
+	cnpj CHAR(14),
 	endereco_sede VARCHAR(45), 
 	franqueadora INT,
 	CONSTRAINT ctFkFranqueadora FOREIGN KEY(franqueadora) REFERENCES empresa_parceira(id_empresa)
@@ -45,40 +45,40 @@ CREATE TABLE dado_captado(
 );
 
 INSERT INTO empresa_parceira (nome, cnpj, endereco_sede, franqueadora) VALUES 
-('Carrefour', '45543915000181', 'Av. das Nações Unidas, 15187', NULL),
-('Extra', '06402330000129', 'Av. Brigadeiro Luís Antônio, 3172', NULL),
-('Supermercados BH', '04641376000136', 'Rod. MG-010, KM 18', NULL),
-('Assaí Atacadista', '06057223000171', 'Av. Aricanduva, 5555', NULL),
-('Muffato', '01648512000108', 'Rod. Celso Garcia Cid, 1100', NULL);
+	('Carrefour', '45543915000181', 'Av. das Nações Unidas, 15187', NULL),
+	('Extra', '06402330000129', 'Av. Brigadeiro Luís Antônio, 3172', NULL),
+	('Supermercados BH', '04641376000136', 'Rod. MG-010, KM 18', NULL),
+	('Assaí Atacadista', '06057223000171', 'Av. Aricanduva, 5555', NULL),
+	('Muffato', '01648512000108', 'Rod. Celso Garcia Cid, 1100', NULL);
 
 INSERT INTO usuario (nome, email, senha, fk_empresa_parceira, nivel_acesso) VALUES 
-('Vitor', 'vitor@carrefour.com', '123', 1, 'ADMIN'),
-('Victor', 'victor@carrefour.com', '123', 1, 'OPERADOR'),
-('Isaac', 'isaac@extra.com', '123', 2, 'ADMIN'),
-('Karina', 'karina@bh.com', '123', 3, 'OPERADOR'),
-('Caio', 'caio@assai.com', '123', 4, 'ADMIN'),
-('Emanuelly', 'emanuelly@muffato.com', '123', 5, 'OPERADOR');
+	('Vitor', 'vitor@carrefour.com', '123', 1, 'ADMIN'),
+	('Victor', 'victor@carrefour.com', '123', 1, 'OPERADOR'),
+	('Isaac', 'isaac@extra.com', '123', 2, 'ADMIN'),
+	('Karina', 'karina@bh.com', '123', 3, 'OPERADOR'),
+	('Caio', 'caio@assai.com', '123', 4, 'ADMIN'),
+	('Emanuelly', 'emanuelly@muffato.com', '123', 5, 'OPERADOR');
 
 INSERT INTO ponto_monitoramento (nome, fk_empresa) VALUES 
-('Entrada Principal', 1),
-('Setor Hortifruti', 1),
-('Caixas Rápidos', 2),
-('Corredor Central', 3),
-('Área de Carga', 4);
+	('Entrada Principal', 1),
+	('Setor Hortifruti', 1),
+	('Caixas Rápidos', 2),
+	('Corredor Central', 3),
+	('Área de Carga', 4);
 
 INSERT INTO sensor (fk_ponto, status) VALUES 
-(1, 'ATIVO'),
-(2, 'ATIVO'),
-(3, 'ATIVO'),
-(4, 'DESATIVADO'),
-(5, 'ATIVO');
+	(1, 'ATIVO'),
+	(2, 'ATIVO'),
+	(3, 'ATIVO'),
+	(4, 'DESATIVADO'),
+	(5, 'ATIVO');
 
 INSERT INTO dado_captado (data_hora, fluxo, fk_sensor) VALUES 
-('2023-10-27 08:00:00', 1, 1),
-('2023-10-27 08:05:00', 1, 1),
-('2023-10-27 08:10:00', 1, 2),
-('2023-10-27 09:00:00', 1, 3),
-('2023-10-27 09:30:00', 1, 5);
+	('2023-10-27 08:00:00', 1, 1),
+	('2023-10-27 08:05:00', 1, 1),
+	('2023-10-27 08:10:00', 1, 2),
+	('2023-10-27 09:00:00', 1, 3),
+	('2023-10-27 09:30:00', 1, 5);
 
 SELECT * FROM sensor;
 SELECT * FROM ponto_monitoramento;
@@ -89,17 +89,17 @@ SELECT * FROM franquia;
 
 SELECT
 	s.status, 
-    p.nome, 
-    e.nome 
+	p.nome, 
+	e.nome 
 FROM sensor AS s
 JOIN ponto_monitoramento AS p ON s.fk_ponto = id_ponto_monitoramento
 JOIN empresa_parceira AS e ON e.id_empresa = fk_empresa;
 
 SELECT 
 	s.nome,
-  s.id_sensor
+	s.id_sensor
 FROM sensor AS s
-	JOIN dado_captado AS dc ON dc.fk_sensor = id_sensor;
+JOIN dado_captado AS dc ON dc.fk_sensor = id_sensor;
 
 ALTER TABLE sensor ADD COLUMN nome VARCHAR(45);
 
@@ -118,35 +118,35 @@ SELECT
 	dc.fluxo,
 	dc.data_hora
 FROM ponto_monitoramento AS pm 
-	JOIN sensor AS s ON fk_ponto = id_ponto_monitoramento
-  JOIN dado_captado AS dc ON fk_sensor = id_sensor
+JOIN sensor AS s ON fk_ponto = id_ponto_monitoramento
+JOIN dado_captado AS dc ON fk_sensor = id_sensor
 WHERE dc.data_hora 
-	BETWEEN '2023-10-27 08:00:00' AND '2023-10-27 09:30:00';
-    
+BETWEEN '2023-10-27 08:00:00' AND '2023-10-27 09:30:00';
+
 -- Views para Dashboard
 
 CREATE VIEW dashGraficosLinha AS 
 SELECT 
-            emp.id_empresa AS id_empresa,
-            emp.franqueadora AS id_franquiadora,
-            pt.id_ponto AS id_ponto,
-            pt.nome AS nome_ponto,
-            pt.fk_empresa,
-            sn.id_sensor,
-            sn.status AS status_sensor,
-            sn.fk_ponto,
-            d_cpt.id_dado AS id_dado_cpt,
-            d_cpt.data_hora AS momento_grafico,
-            d_cpt.fluxo,
-            d_cpt.fk_sensor
-        FROM empresa_parceira AS emp
-            LEFT JOIN empresa_parceira AS franq
-                ON emp.franqueadora = franq.id_empresa
-            LEFT JOIN ponto_monitoramento AS pt
-                ON pt.fk_empresa = emp.id_empresa
-            LEFT JOIN sensor AS sn
-                ON sn.fk_ponto = pt.id_ponto
-            LEFT JOIN dado_captado AS d_cpt
-                ON d_cpt.fk_sensor = sn.id_sensor;
+	emp.id_empresa AS id_empresa,
+	emp.franqueadora AS id_franquiadora,
+	pt.id_ponto_monitoramento AS id_ponto,
+	pt.nome AS nome_ponto,
+	pt.fk_empresa,
+	sn.id_sensor,
+	sn.status AS status_sensor,
+	sn.fk_ponto,
+	d_cpt.id_dado_captado AS id_dado_cpt,
+	d_cpt.data_hora AS momento_grafico,
+	d_cpt.fluxo,
+	d_cpt.fk_sensor
+FROM empresa_parceira AS emp
+LEFT JOIN empresa_parceira AS franq
+ON emp.franqueadora = franq.id_empresa
+LEFT JOIN ponto_monitoramento AS pt
+ON pt.fk_empresa = emp.id_empresa
+LEFT JOIN sensor AS sn
+ON sn.fk_ponto = pt.id_ponto_monitoramento
+LEFT JOIN dado_captado AS d_cpt
+ON d_cpt.fk_sensor = sn.id_sensor;
 
 
