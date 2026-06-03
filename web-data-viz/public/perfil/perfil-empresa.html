@@ -16,32 +16,32 @@
 				</div>
 				<div class="nav-buttons">
 
-						<div class="nav-link">
-							<div class="nav-link-img">
-								<img src="../assets/icon/nav-icon-home.png" alt="">
-							</div>
-							<div class="nav-link-txt">
-								<a href="../index.html">Home</a>
-							</div>
+					<div class="nav-link">
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-home.png" alt="">
 						</div>
+						<div class="nav-link-txt">
+							<a href="../index.html">Home</a>
+						</div>
+					</div>
 
-						<div class="nav-link pg-atual" >
-							<div class="nav-link-img">
-								<img src="../assets/icon/nav-icon-geral.png" alt="">
-							</div>
-							<div class="nav-link-txt">
-								<a href="#">Geral</a>
-							</div>
+					<div class="nav-link" >
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-geral.png" alt="">
 						</div>
+						<div class="nav-link-txt">
+							<a href="#">Geral</a>
+						</div>
+					</div>
 
-						<div class="nav-link">
-							<div class="nav-link-img">
-								<img src="../assets/icon/nav-icon-especifico.png" alt="">
-							</div>
-							<div class="nav-link-txt">
-								<a href="./dashboard-espc.html">Específica</a>
-							</div>
+					<div class="nav-link">
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-especifico.png" alt="">
 						</div>
+						<div class="nav-link-txt">
+							<a href="./dashboard-espc.html">Específica</a>
+						</div>
+					</div>
 
 				</div>
 				<div class="perfil-area">
@@ -66,60 +66,57 @@
 				</div>
 				<div class="container-icon-perfil">
 					<div class="btns-icons-perfil">
-						<button class="btn-inf-sensivel">Informações Sensiveis</button>
-						<button class="btn-add-func">Adicionar Funcionarios</button>
+						<button class="btn-ativo" >informações sensiveis</button>
+						<button class="btn-inativo" onclick="pagina_admin()">adicionar funcionarios</button>
 					</div>
 					<img src="../assets/icon/icon-perfil-main.png" alt="">
 				</div>
-				<div class="container-cadastro">
-					<div class="container-cadastrados">
-						<p>Funcionarios Cadastrados</p>
-						<div class="btns-emails">
-							<div class="emails-cadastrados">
-								<img src="../assets/icon/nav-icon-perfil.png" alt="">
-								<p>funcionarioA@empresaA.com.br</p>
-							</div>
-							<div class="emails-cadastrados">
-								<img src="../assets/icon/nav-icon-perfil.png" alt="">
-								<p>funcionarioA@empresaA.com.br</p>
-							</div>
-							<div class="emails-cadastrados">
-								<img src="../assets/icon/nav-icon-perfil.png" alt="">
-								<p>funcionarioA@empresaA.com.br</p>
-							</div>
 
-						</div>
-					</div>
-					<div class="content-inputs">
-						<p>Cadastrar</p>
-						<div class="ipts-container-cadastro">
-							<div class="ipt-cadastro">
-								<p>Nome Completo:</p>
+				<!-- fazer o bagulho aq -->
+				<div class="container-ipts-dados">
+					<div class="container-ipts-left">
+						<div class="content-ipts">
+							<div class="ipt-alteracao">
+								<p>Nome da empresa:</p>
 								<input placeholder="Nome">
 							</div>
-							<div class="ipt-cadastro">
+							<div class="ipt-alteracao">
 								<p>Email:</p>
-								<input placeholder="E-mail">
+								<input placeholder="Email">
 							</div>
-							<div class="ipt-cadastro">
+							<div class="ipt-alteracao">
 								<p>Telefone:</p>
 								<input placeholder="Telefone">
 							</div>
-							<div class="ipt-cadastro">
-								<p>Cnpj:</p>
+							<div class="ipt-alteracao">
+								<p>CNPJ:</p>
 								<input placeholder="Cnpj">
 							</div>
-							<div class="ipt-cadastro">
+						</div>
+							
+					</div>
+					<div class="container-ipts-right left-line">
+						<div class="content-ipts direita">
+							<div class="ipt-alteracao">
 								<p>Senha:</p>
 								<input placeholder="Senha">
 							</div>
+							<div class="ipt-alteracao">
+								<p>Confirmar senha:</p>
+								<input placeholder="Confirmar senha">
+							</div>
+						<button class="btn-salvar-empresa" onclick="">Salvar alterações</button>
 						</div>
-						<button class="btn-ipts-cadastro">Cadastrar</button>
-						
 					</div>
+					
 				</div>
 			</div>
 		</div>
 	</body>
+	<script>
+	function pagina_admin(){
+		window.location.href = './perfil-admin.html';
+	}
+	</script>
 </html>
 

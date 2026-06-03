@@ -114,94 +114,78 @@
 	font-weight: bold;
 }
 
-.btn-inf-sensivel{
+.btn-inativo{
 	background-color: white;
 	border: solid 1px var(--cor01);
 	color: #8C3503;
 }
 
-.btn-add-func{
+.btn-ativo{
 	background-color: var(--cor01);
 	color: white;
 	border: none;
 }
 
-.container-cadastro{
-	display: flex;
+.container-ipts-dados{
 	width: 90%;
-	height: 70%;
 	margin: auto;
+	height: 70%;
+	display: flex;
 }
 
-.container-cadastrados{
-	width: 50%;
+.container-ipts-left{
 	display: flex;
-	flex-direction: column;
+	/* flex-direction: column; */
 	justify-content: center;
-	gap: 40px;
-	font-size: 30px;
-	margin-top: 50px;
+	align-items: flex-end;
+	width: 50%;
+
 }
 
-.content-inputs{
+.container-ipts-right{
 	width: 50%;
 	display: flex;
-	margin-top: 20px;
-	flex-direction: column;
-	align-items: center;
-	font-size: 30px;
-	color: var(--cor01);
-	font-weight: bold;
-	gap: 20px;
+	align-items: flex-end;
+
 }
 
-.btns-emails{
-	width: 80%;
+.content-ipts{
 	display: flex;
 	flex-direction: column;
-	gap: 40px;
+	width: 100%;
+	height: 80%;
+	gap: 30px;
+	font-size: 22px;
+	justify-content: flex-start;
+	/* font-weight: bold; */
 }
 
-.emails-cadastrados{
-	display: flex;
-	height: 60px;
-	background-color: var(--cor01);
-	align-items: center;
-	padding: 10px;
-	color: white;
-	font-size: 18px;
-	border-radius: 50px;
-}
-
-.ipts-container-cadastro{
-	width: 80%;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-
-.ipt-cadastro{
-	font-size: 18px;
+.ipt-alteracao{
 	width: 100%;
 }
 
-.ipt-cadastro input{
+.ipt-alteracao input{
 	height: 50px;
-	width: 95%;
-	font-size: 16px;
+	width: 88%;
 	border-radius: 10px;
-	padding-left: 5%;
+	padding-left: 2%;
 	border: solid 2px var(--cor01);
+	font-size: 16px;
 }
 
-.btn-ipts-cadastro{
-	width: 250px;
-	height: 50px;
-	border-radius: 50px;
-	background-color: var(--cor01);
+.btn-salvar-empresa{
+	width: 320px;
+	height: 80px;
 	color: white;
 	font-weight: bold;
-	font-size: 18px;
-	border: none;
-	cursor: pointer;
+	background-color: var(--cor02);
+	border: solid 2px var(--cor03);
+	border-bottom: solid 4px var(--cor03);
+	border-radius: 5px;
+	align-self: center;
+	font-size: 20px;
 }
+
+/* .left-line{ */
+/* 	border-left: solid 2px var(--cor01); */
+/* } */
