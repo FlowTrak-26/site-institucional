@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="../perfil/css/nav-bar.css">
     <script src="../main/js/sessao.js"></script>
 
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
     <!-- scripts do Chart.js - 2022-1 -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!--FONT AWESOME-->
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
@@ -103,7 +103,7 @@
             <div class="infos-box">
                 <div class="box-legenda">
                     <div class="legenda-kpi">
-                        <h4>Legenda kpi:</h4>
+                        <h4>Legenda KPI:</h4>
                     </div>
                     <div class="ident-cores">
                         <div class="perigo">
@@ -220,10 +220,11 @@
                         <i class="fa-solid fa-circle"></i>
                     </div>
                     <div class="direita-kpi">
-                        <div class="texto-diretita-kpi">
+                        <div class="texto-esquerda-kpi">
                             <p class="texto-kpi">Nome KPI</p>
                             <p class="numero-dado">0000</p>
                         </div>
+
                         <div class="texto-direita-kpi">
                             <p class="texto-kpi">Ideal</p>
                             <p class="texto-kpi">Máximo</p>
@@ -234,17 +235,170 @@
         </div>
         <div class="graficos-box">
             <div class="grafico">
+                <!-- <h2>Fluxo de pessoas ao longo do dia</h2> -->
                 <canvas id="linha"></canvas>
             </div>
             <div class="grafico">
+                <h2>Mapa de calor - Fluxo por local</h2>
                 <canvas id="calor"></canvas>
+                <div class="mapa">
+                    <div class="entrada">ENTRADA</div>
+                    <div class="saida">SAÍDA</div>
+
+                    <div class="caixas">CAIXAS
+                        <div class="caixa1">CAIXA 01</div>
+                        <div class="caixa2">CAIXA 02</div>
+                        <div class="caixa3">CAIXA 03</div>
+                        <div class="caixa4">CAIXA 04</div>
+                    </div>
+
+                    <div class="corredor1">CORREDOR 01</div>
+                    <div class="corredor2">CORREDOR 02</div>
+                    <div class="corredor3">CORREDOR 03</div>
+
+                </div>
             </div>
         </div>
     </div>
     </div>
 
+
+
+    <script src="../js/dash.js"></script>
+
+    <script>
+        const Linha = document.getElementById('linha')
+
+        new Chart(Linha, {
+            type: 'line',
+            data: {
+                labels: ['8h', '10h', '12h', '14h', '16h', '18h', '20h'],
+                datasets: [
+                    {
+                        label: 'Hoje',
+                        data: [100, 650, 800, 2000, 3700, 4200, 5100],
+                        borderColor: '#A14A00',
+                        backgroundColor: '#A14A00',
+                        tension: 0.5
+                    },
+                    {
+                        label: 'Média',
+                        data: [50, 200, 850, 2000, 3800, 4200, 5000],
+                        borderColor: '#BDBDBD',
+                        backgroundColor: '#BDBDBD',
+                        tension: 0.5
+                    }
+                ]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Fluxo de pessoas ao longo do dia',
+                        align: 'start',
+                        color: '#000',
+                        font: {
+                            size: 28,
+                            weight: 'bold'
+                        }
+                    },
+                    legend: {
+                        position: 'top',
+                        align: 'end',
+                        labels: {
+                            padding: 15
+                        }
+                    }
+                }
+            }
+        })
+
+        const fluxo_mapa_calor = document.getElementById('calor');
+
+        // função de intensidade da cor
+        function pegarCorPorIntensidade(r) {
+            if (r <= 0) return 'rgba(255, 0, 0, 0.2)';
+            if (r <= 5) return 'rgba(255, 0, 0, 0.4)';
+            if (r <= 10) return 'rgba(255, 0, 0, 0.6)';
+            if (r <= 15) return 'rgba(255, 0, 0, 0.8)';
+            if (r <= 20) return 'rgba(255, 0, 0, 1)';
+        }
+
+        // dados do gráfico
+        const dados = [
+            { x: 6, y: 6, r: 0 },
+            { x: 3, y: 3, r: 25 },
+        ];
+
+        // gera as cores com base na intensidade
+        const cores = dados.map(ponto => pegarCorPorIntensidade(ponto.r));
+
+        // criação do gráfico
+        new Chart(fluxo_mapa_calor, {
+            type: 'bubble',
+            data: {
+                datasets: [
+                    {
+                        label: 'Fluxo baixo',
+                        data: dados.filter(p => p.r <= 5),
+                        backgroundColor: 'rgba(255, 0, 0, 0.2)'
+                    },
+                    {
+                        label: 'Fluxo médio',
+                        data: dados.filter(p => p.r > 5 && p.r <= 15),
+                        backgroundColor: 'rgba(255, 0, 0, 0.4)'
+                    },
+                    {
+                        label: 'Fluxo alto',
+                        data: dados.filter(p => p.r > 15),
+                        backgroundColor: 'rgba(255, 0, 0, 0.7)'
+                    }
+                ]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        font: {
+                            size: 20
+                        },
+                    },
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+
+                            color: '#000',
+                            font: {
+                                size: 14,
+                                family: 'Arial',
+                                weight: 'bold'
+                            },
+
+                            boxWidth: 20,
+                            padding: 20
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
 </body>
 
 </html>
-
-<!-- <script src="../js/dash.js"></script> -->
