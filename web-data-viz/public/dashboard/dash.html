@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlowTrak</title>
 
+
+    <link rel="stylesheet" href="./css/dashboard-espc.css">
     <link rel="stylesheet" href="./css/dashboards.css" />
     <link rel="stylesheet" href="../perfil/css/nav-bar.css">
     <script src="../main/js/sessao.js"></script>
@@ -51,7 +53,7 @@
                         <img src="../assets/icon/nav-icon-geral.png" alt="">
                     </div>
                     <div class="nav-link-txt">
-                        <a href="#">Geral</a>
+                        <a href="./dash.html">Geral</a>
                     </div>
                 </div>
 
@@ -64,14 +66,14 @@
                     </div>
 
                 </div>
-                 <div class="nav-link ">
-                            <div class="nav-link-img">
-                                <img src="../assets/icon/nav-icon-especifico.png" alt="">
-                            </div>
-                            <div class="nav-link-txt">
-                                <a href="./dashboard-filiais.html">Filiais</a>
-                            </div>
-                        </div>  
+                <div class="nav-link ">
+                    <div class="nav-link-img">
+                        <img src="../assets/icon/nav-icon-especifico.png" alt="">
+                    </div>
+                    <div class="nav-link-txt">
+                        <a href="./dashboard-filiais.html">Filiais</a>
+                    </div>
+                </div>
 
             </div>
             <div class="perfil-area">
@@ -244,28 +246,27 @@
         </div>
         <div class="graficos-box">
             <div class="grafico">
-                <!-- <h2>Fluxo de pessoas ao longo do dia</h2> -->
+                <div class="titulo-graf">
+                    <p>Fluxo de pessoas ao longo do dia</p>
+                </div>
                 <canvas id="linha"></canvas>
             </div>
             <div class="grafico">
-                <h2>Mapa de calor - Fluxo por local</h2>
-                <canvas id="calor"></canvas>
-                <div class="mapa">
-                    <div class="entrada">ENTRADA</div>
-                    <div class="saida">SAÍDA</div>
+                <div class="titulo-graf-m">
+                    <p>Mapa de calor - Fluxo por local</p>
+                </div>
+                <div class="graf-mapa">
+                    <div class="tela-grafico">
 
-                    <div class="caixas">CAIXAS
-                        <div class="caixa1">CAIXA 01</div>
-                        <div class="caixa2">CAIXA 02</div>
-                        <div class="caixa3">CAIXA 03</div>
-                        <div class="caixa4">CAIXA 04</div>
                     </div>
-
-                    <div class="corredor1">CORREDOR 01</div>
-                    <div class="corredor2">CORREDOR 02</div>
-                    <div class="corredor3">CORREDOR 03</div>
+                </div>
+            </div>
+            <div class="intensidade">
+                <p>Fluxo Alto</p>
+                <div class="bloco">
 
                 </div>
+                <p>Fluxo Baixo</p>
             </div>
         </div>
     </div>
@@ -276,18 +277,18 @@
     <script src="../js/dash.js"></script>
 
     <script>
-     let emailUsuario = sessionStorage.NOME_USUARIO;
-console.log(emailUsuario);
+        let emailUsuario = sessionStorage.NOME_USUARIO;
+        console.log(emailUsuario);
 
-function iniciarpagina() {
-    let nomeUsuario = document.getElementById('nomeUsuario');
-    let nome = sessionStorage.NOME_USUARIO;
-    // aqui o conteudo vira texto
-    nomeUsuario.textContent = nome;
-}
+        function iniciarpagina() {
+            let nomeUsuario = document.getElementById('nomeUsuario');
+            let nome = sessionStorage.NOME_USUARIO;
+            // aqui o conteudo vira texto
+            nomeUsuario.textContent = nome;
+        }
 
 
-    iniciarpagina();
+        iniciarpagina();
 
         const Linha = document.getElementById('linha')
 
@@ -335,92 +336,8 @@ function iniciarpagina() {
             }
         })
 
-        const fluxo_mapa_calor = document.getElementById('calor');
 
-        // função de intensidade da cor
-        function pegarCorPorIntensidade(r) {
-            if (r <= 0) return 'rgba(255, 0, 0, 0.2)';
-            if (r <= 5) return 'rgba(255, 0, 0, 0.4)';
-            if (r <= 10) return 'rgba(255, 0, 0, 0.6)';
-            if (r <= 15) return 'rgba(255, 0, 0, 0.8)';
-            if (r <= 20) return 'rgba(255, 0, 0, 1)';
-        }
 
-        // dados do gráfico
-        const dados = [
-            { x: 6, y: 6, r: 0 },
-            { x: 3, y: 3, r: 25 },
-        ];
-
-        // gera as cores com base na intensidade
-        const cores = dados.map(ponto => pegarCorPorIntensidade(ponto.r));
-
-        // criação do gráfico
-        new Chart(fluxo_mapa_calor, {
-            type: 'bubble',
-            data: {
-                datasets: [
-                    {
-                        label: 'Fluxo baixo',
-                        data: dados.filter(p => p.r <= 5),
-                        backgroundColor: 'rgba(255, 0, 0, 0.2)'
-                    },
-                    {
-                        label: 'Fluxo médio',
-                        data: dados.filter(p => p.r > 5 && p.r <= 15),
-                        backgroundColor: 'rgba(255, 0, 0, 0.4)'
-                    },
-                    {
-                        label: 'Fluxo alto',
-                        data: dados.filter(p => p.r > 15),
-                        backgroundColor: 'rgba(255, 0, 0, 0.7)'
-                    }
-                ]
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        font: {
-                            size: 20
-                        },
-                    },
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            usePointStyle: true,
-                            pointStyle: 'circle',
-
-                            color: '#000',
-                            font: {
-                                size: 14,
-                                family: 'Arial',
-                                weight: 'bold'
-                            },
-
-                            boxWidth: 20,
-                            padding: 20
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        ticks: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            display: false
-                        }
-                    }
-                }
-            }
-        });
-
-   
     </script>
 
 </body>
