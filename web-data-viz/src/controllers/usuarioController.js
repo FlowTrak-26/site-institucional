@@ -70,7 +70,6 @@ function cadastrar(req, res) {
 		usuarioModel.cadastrar(nome,
 			email,
 			senha,
-			//    telefone,
 			fk_empresa_parceira)
 			.then(
 				function (resultado) {
