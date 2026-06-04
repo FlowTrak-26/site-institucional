@@ -5,6 +5,7 @@ CREATE TABLE empresa_parceira(
 	id_empresa INT PRIMARY KEY AUTO_INCREMENT, 
 	nome VARCHAR(45),
 	cnpj CHAR(14),
+	telefone CHAR(9),
 	endereco_sede VARCHAR(45), 
 	franqueadora INT,
 	CONSTRAINT ctFkFranqueadora FOREIGN KEY(franqueadora) REFERENCES empresa_parceira(id_empresa)
