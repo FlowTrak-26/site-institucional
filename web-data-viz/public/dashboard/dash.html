@@ -257,89 +257,116 @@
                 </div>
                 <div class="graf-mapa">
                     <div class="tela-grafico">
+                        <div class="portas">
+                            <div class="entrada">
+                                <p class="titulo-portas">ENTRADA</p>
+                            </div>
+                            <div class="saida">
+                                <p class="titulo-portas">SAÍDA</p>
+                            </div>
+                        </div>
+                        <div class="caixas">
+                            <p class="titulo-caixa">CAIXAS</p>
+                            <div class="caixa">CAIXA 01</div>
+                            <div class="caixa">CAIXA 02</div>
+                            <div class="caixa">CAIXA 03</div>
+                            <div class="caixa">CAIXA 04</div>
+                            <div class="caixa">CAIXA 05</div>
+                        </div>
+                        <div class="corredores">
+                            <div class="corredor1">
+                                <p class="titulo-corredor">CORREDOR 01</p>
+                            </div>
+                            <div class="corredor2">
+                                <p class="titulo-corredor">CORREDOR 02</p>
+                            </div>
+                            <div class="corredor3">
+                                <p class="titulo-corredor">CORREDOR 03</p>
+                            </div>
+                        </div>
+                    </div>
 
+
+                    <div class="intensidade">
+                        <p>Fluxo Alto</p>
+                        <div class="bloco">
+
+                        </div>
+                        <p>Fluxo Baixo</p>
                     </div>
                 </div>
-            </div>
-            <div class="intensidade">
-                <p>Fluxo Alto</p>
-                <div class="bloco">
-
-                </div>
-                <p>Fluxo Baixo</p>
             </div>
         </div>
     </div>
     </div>
-
-
-
-    <script src="../js/dash.js"></script>
-
-    <script>
-        let emailUsuario = sessionStorage.NOME_USUARIO;
-        console.log(emailUsuario);
-
-        function iniciarpagina() {
-            let nomeUsuario = document.getElementById('nomeUsuario');
-            let nome = sessionStorage.NOME_USUARIO;
-            // aqui o conteudo vira texto
-            nomeUsuario.textContent = nome;
-        }
-
-
-        iniciarpagina();
-
-        const Linha = document.getElementById('linha')
-
-        new Chart(Linha, {
-            type: 'line',
-            data: {
-                labels: ['8h', '10h', '12h', '14h', '16h', '18h', '20h'],
-                datasets: [
-                    {
-                        label: 'Hoje',
-                        data: [100, 650, 800, 2000, 3700, 4200, 5100],
-                        borderColor: '#A14A00',
-                        backgroundColor: '#A14A00',
-                        tension: 0.5
-                    },
-                    {
-                        label: 'Média',
-                        data: [50, 200, 850, 2000, 3800, 4200, 5000],
-                        borderColor: '#BDBDBD',
-                        backgroundColor: '#BDBDBD',
-                        tension: 0.5
-                    }
-                ]
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Fluxo de pessoas ao longo do dia',
-                        align: 'start',
-                        color: '#000',
-                        font: {
-                            size: 28,
-                            weight: 'bold'
-                        }
-                    },
-                    legend: {
-                        position: 'top',
-                        align: 'end',
-                        labels: {
-                            padding: 15
-                        }
-                    }
-                }
-            }
-        })
-
-
-
-    </script>
-
+    </div>
 </body>
 
 </html>
+
+
+
+<script src="../js/dash.js"></script>
+
+<script>
+    let emailUsuario = sessionStorage.NOME_USUARIO;
+    console.log(emailUsuario);
+
+    function iniciarpagina() {
+        let nomeUsuario = document.getElementById('nomeUsuario');
+        let nome = sessionStorage.NOME_USUARIO;
+        // aqui o conteudo vira texto
+        nomeUsuario.textContent = nome;
+    }
+
+
+    iniciarpagina();
+
+    const Linha = document.getElementById('linha')
+
+    new Chart(Linha, {
+        type: 'line',
+        data: {
+            labels: ['8h', '10h', '12h', '14h', '16h', '18h', '20h'],
+            datasets: [
+                {
+                    label: 'Hoje',
+                    data: [100, 650, 800, 2000, 3700, 4200, 5100],
+                    borderColor: '#A14A00',
+                    backgroundColor: '#A14A00',
+                    tension: 0.5
+                },
+                {
+                    label: 'Média',
+                    data: [50, 200, 850, 2000, 3800, 4200, 5000],
+                    borderColor: '#BDBDBD',
+                    backgroundColor: '#BDBDBD',
+                    tension: 0.5
+                }
+            ]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    align: 'start',
+                    color: '#000',
+                    font: {
+                        size: 28,
+                        weight: 'bold'
+                    }
+                },
+                legend: {
+                    position: 'top',
+                    align: 'end',
+                    labels: {
+                        padding: 15
+                    }
+                }
+            }
+        }
+    })
+
+
+
+</script>
