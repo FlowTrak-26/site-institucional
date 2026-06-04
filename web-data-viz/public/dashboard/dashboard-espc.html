@@ -21,74 +21,75 @@
 
     <!--FONT AWESOME-->
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina() ;">
+<body onload="exibirGraficoLinha(), exibirGraficoCalor();">
 
     <header>
         <div class="nav-container">
-                <div class="nav-logo">
-                    <h1>Flow <span>Trak</span></h1>
-                    <img src="../assets/imgs/logo.png" alt="" />
-                </div>
-                <div class="nav-buttons">
+            <div class="nav-logo">
+                <h1>Flow <span>Trak</span></h1>
+                <img src="../assets/imgs/logo.png" alt="" />
+            </div>
+            <div class="nav-buttons">
 
-                        <div class="nav-link">
-                            <div class="nav-link-img">
-                                <img src="../assets/icon/nav-icon-home.png" alt="">
-                            </div>
-                            <div class="nav-link-txt">
-                                <a href="../index.html">Home</a>
-                            </div>
-                        </div>
-
-                        <div class="nav-link " >
-                            <div class="nav-link-img">
-                                <img src="../assets/icon/nav-icon-geral.png" alt="">
-                            </div>
-                            <div class="nav-link-txt">
-                                <a href="./dash.html">Geral</a>
-                            </div>
-                        </div>
-
-
-
-                        <div class="nav-link pg-atual">
-                            <div class="nav-link-img">
-                                <img src="../assets/icon/nav-icon-especifico.png" alt="">
-                            </div>
-                            <div class="nav-link-txt ">
-                                <a href="./dashboard-espc.html">Específica</a>
-                            </div>
-                        </div>
-
-                        <div class="nav-link">
-                            <div class="nav-link-img">
-                                <img src="../assets/icon/nav-icon-especifico.png" alt="">
-                            </div>
-                            <div class="nav-link-txt">
-                                <a href="./dashboard-filiais.html">Filiais</a>
-                            </div>
-                        </div>
-                       
-                </div>
-                <div class="perfil-area">
-                    <div class="perfil-img">
-                        <img src="../assets/icon/nav-icon-perfil.png" alt="">
+                <div class="nav-link">
+                    <div class="nav-link-img">
+                        <img src="../assets/icon/nav-icon-home.png" alt="">
                     </div>
-                    <div class="text-perfil-area">
-                        <div class="top-perfil">
-                            <p>OXXO LTDA</p>
-                        </div>
-                        <!-- aqui aoarecera o nome de acordo com seu login  -->
-                        <div class="bottom-perfil">
-                         <p id="nomeUsuario"></p>
-                            <img src="../assets/icon/nav-seta-baixo.png">
-                        </div>
+                    <div class="nav-link-txt">
+                        <a href="../index.html">Home</a>
+                    </div>
+                </div>
+
+                <div class="nav-link pg-atual">
+                    <div class="nav-link-img">
+                        <img src="../assets/icon/nav-icon-geral.png" alt="">
+                    </div>
+                    <div class="nav-link-txt">
+                        <a href="#">Geral</a>
+                    </div>
+                </div>
+
+
+
+                <div class="nav-link">
+                    <div class="nav-link-img">
+                        <img src="../assets/icon/nav-icon-especifico.png" alt="">
+                    </div>
+                    <div class="nav-link-txt">
+                        <a href="./dashboard-espc.html">Específica</a>
+                    </div>
+                </div>
+
+                <div class="nav-link">
+                    <div class="nav-link-img">
+                        <img src="../assets/icon/nav-icon-especifico.png" alt="">
+                    </div>
+                    <div class="nav-link-txt">
+                        <a href="./dashboard-filiais.html">Filiais</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="perfil-area">
+                <div class="perfil-img">
+                    <img src="../assets/icon/nav-icon-perfil.png" alt="">
+                </div>
+                <div class="text-perfil-area">
+                    <div class="top-perfil">
+                        <p>OXXO LTDA</p>
+                    </div>
+                    <div class="bottom-perfil">
+                        <p>Admin</p>
+                        <img src="../assets/icon/nav-seta-baixo.png">
                     </div>
                 </div>
             </div>
+        </div>
     </header>
 
     <div class="main-container">
@@ -255,42 +256,194 @@
                 </div>
             </div>
         </div>
-        <div class="content-grafico"></div>
+        <div class="graficos-box">
+            <div class="grafico">
+                <div class="titulo-graf">
+                    <p>Fluxo de pessoas ao longo do dia</p>
+                </div>
+                <canvas id="linha"></canvas>
+            </div>
+            <div class="grafico">
+                <div class="titulo-graf-m">
+                    <p>Mapa Calor</p>
+                </div>
+                <div class="graf-mapa">
+                    <div class="tela-grafico">
+                        <div class="abs-grafico">
+                            <canvas id="calor"></canvas>
+                        </div>
+                        <div class="horarios">
+                            <ul>
+                                <li class="selecionado">8h</li>
+                                <li>10h</li>
+                                <li>12h</li>
+                                <li>14h</li>
+                                <li>16h</li>
+                                <li>18h</li>
+                                <li>20h</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="intensidade">
+                        <p>Fluxo Alto</p>
+                        <div class="bloco">
+
+                        </div>
+                        <p>Fluxo Baixo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-
-
-    <!-- <div class="btn-nav">
-
-    <h3>Gráficos</h3>
-
-</div>
-<div class="btn-logout" onclick="limparSessao()">
-    <h3>Sair</h3>
-</div> -->
-
     </div>
 </body>
 
 </html>
 
-<script src="../js/dash.js">
-</script>
+<script src="../js/dash.js"></script>
 
 <script>
-     let emailUsuario = sessionStorage.NOME_USUARIO;
-console.log(emailUsuario);
+    const Linha = document.getElementById('linha')
 
-function iniciarpagina() {
-    let nomeUsuario = document.getElementById('nomeUsuario');
-    let nome = sessionStorage.NOME_USUARIO;
-    // aqui o conteudo vira texto
-    nomeUsuario.textContent = nome;
-}
+    new Chart(Linha, {
+        type: 'line',
+        data: {
+            labels: ['8h', '10h', '12h', '14h', '16h', '18h', '20h'],
+            datasets: [
+                {
+                    label: 'Hoje',
+                    data: [100, 650, 800, 2000, 3700, 4200, 5100],
+                    borderColor: '#A14A00',
+                    backgroundColor: '#A14A00',
+                    tension: 0.5
+                },
+                {
+                    label: 'Média',
+                    data: [50, 200, 850, 2000, 3800, 4200, 5000],
+                    borderColor: '#BDBDBD',
+                    backgroundColor: '#BDBDBD',
+                    tension: 0.5
+                }
+            ]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    align: 'start',
+                    color: '#000',
+                    font: {
+                        size: 28,
+                        weight: 'bold'
+                    }
+                },
+                legend: {
+                    position: 'top',
+                    align: 'end',
+                    labels: {
+                        padding: 15
+                    }
+                }
+            }
+        }
+    })
+
+    const fluxo_mapa_calor = document.getElementById('calor');
+
+    // função de intensidade da cor
+    function pegarCorPorIntensidade(r) {
+        if (r <= 0) return 'rgba(255, 0, 0, 0.2)';
+        if (r <= 5) return 'rgba(255, 0, 0, 0.4)';
+        if (r <= 10) return 'rgba(255, 0, 0, 0.6)';
+        if (r <= 15) return 'rgba(255, 0, 0, 0.8)';
+        if (r <= 20) return 'rgba(255, 0, 0, 1)';
+    }
+
+    // dados do gráfico
+    const dados = [
+        { x: 15, y: 50, r: 55 },
+        { x: 35, y: 65, r: 28 },
+        { x: 35, y: 65, r: 28 },
+
+    ];
+
+    // gera as cores com base na intensidade
+    const cores = dados.map(ponto => pegarCorPorIntensidade(ponto.r));
+
+    // criação do gráfico
+    new Chart(fluxo_mapa_calor, {
+        type: 'bubble',
+        data: {
+            datasets: [
+                {
+                    data: dados.filter(p => p.r <= 5),
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)'
+                },
+                {
+                    data: dados.filter(p => p.r > 5 && p.r <= 15),
+                    backgroundColor: 'rgba(255, 0, 0, 0.4)'
+                },
+                {
+                    data: dados.filter(p => p.r > 15),
+                    backgroundColor: 'rgba(255, 0, 0, 0.7)'
+                }
+            ]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    font: {
+                        size: 50
+                    },
+                },
+                legend: {
+                    position: 'top',
+                    labels: {
+                        usePointStyle: true,
+                        pointStyle: 'circle',
+
+                        color: '#000',
+                        font: {
+                            size: 14,
+                            family: 'Arial',
+                            weight: 'bold'
+                        },
+
+                        boxWidth: 0,
+                        padding: 20
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        display: false
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+
+    let emailUsuario = sessionStorage.NOME_USUARIO;
+    console.log(emailUsuario);
+
+    function iniciarpagina() {
+        let nomeUsuario = document.getElementById('nomeUsuario');
+        let nome = sessionStorage.NOME_USUARIO;
+        // aqui o conteudo vira texto
+        nomeUsuario.textContent = nome;
+    }
 
 
     iniciarpagina();
-
 </script>
 
+<script src="../js/dash.js"></script>
