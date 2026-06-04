@@ -8,11 +8,23 @@ function buscarPorCnpj(req, res) {
   });
 }
 
+
 function listar(req, res) {
-  empresaModel.listar().then((resultado) => {
-    res.status(200).json(resultado);
-  });
+    empresaModel.listar()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado); //envia a lista real para o front
+            } else {
+                res.status(204).send("Nenhuma filial encontrada.");
+            }
+        })
+        .catch(function (erro) {
+            console.log("Erro ao listar:", erro);
+            res.status(500).json(erro);
+        });
 }
+
+
 
 function buscarPorId(req, res) {
   var id = req.params.id;

@@ -27,7 +27,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body> <!-- onload="exibirGraficoLinha(), exibirGraficoCalor();" -->
+<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina() ;">
 
     <header>
         <div class="nav-container">
@@ -62,7 +62,16 @@
                     <div class="nav-link-txt">
                         <a href="./dashboard-espc.html">Específica</a>
                     </div>
+
                 </div>
+                 <div class="nav-link ">
+                            <div class="nav-link-img">
+                                <img src="../assets/icon/nav-icon-especifico.png" alt="">
+                            </div>
+                            <div class="nav-link-txt">
+                                <a href="./dashboard-filiais.html">Filiais</a>
+                            </div>
+                        </div>  
 
             </div>
             <div class="perfil-area">
@@ -74,7 +83,7 @@
                         <p>OXXO LTDA</p>
                     </div>
                     <div class="bottom-perfil">
-                        <p>Admin</p>
+                        <p id="nomeUsuario"></p>
                         <img src="../assets/icon/nav-seta-baixo.png">
                     </div>
                 </div>
@@ -267,6 +276,19 @@
     <script src="../js/dash.js"></script>
 
     <script>
+     let emailUsuario = sessionStorage.NOME_USUARIO;
+console.log(emailUsuario);
+
+function iniciarpagina() {
+    let nomeUsuario = document.getElementById('nomeUsuario');
+    let nome = sessionStorage.NOME_USUARIO;
+    // aqui o conteudo vira texto
+    nomeUsuario.textContent = nome;
+}
+
+
+    iniciarpagina();
+
         const Linha = document.getElementById('linha')
 
         new Chart(Linha, {
@@ -397,6 +419,8 @@
                 }
             }
         });
+
+   
     </script>
 
 </body>
