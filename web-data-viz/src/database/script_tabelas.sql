@@ -6,7 +6,7 @@ CREATE TABLE empresa_parceira(
 	nome VARCHAR(45),
 	cnpj CHAR(14),
 	telefone CHAR(9),
-	endereco VARCHAR(45), 
+	endereco_sede VARCHAR(45), 
 	franqueadora INT,
 	CONSTRAINT ctFkFranqueadora FOREIGN KEY(franqueadora) REFERENCES empresa_parceira(id_empresa)
 );
@@ -16,10 +16,10 @@ CREATE TABLE usuario(
 	nome VARCHAR(45),
 	email VARCHAR(45),
 	senha VARCHAR(45),
-	nivel_acesso VARCHAR(45),
+	nivel_acesso VARCHAR(45) DEFAULT 'COMUM',
 	fk_empresa_parceira INT,
 	CONSTRAINT ctFkEmpresaParceira FOREIGN KEY(fk_empresa_parceira) REFERENCES empresa_parceira(id_empresa),
-	CONSTRAINT ctNivelAcesso CHECK (nivel_acesso IN ('ADMIN','OPERADOR'))
+	CONSTRAINT ctNivelAcesso CHECK (nivel_acesso IN ('ADMIN','COMUM'))
 );
 
 CREATE TABLE ponto_monitoramento (

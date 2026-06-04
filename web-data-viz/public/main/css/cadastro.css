@@ -333,3 +333,30 @@
   align-items: flex-start;
   height: 70%;
 }
+
+.card_erro{
+	width: 500px;
+	height: 200px;
+	background-color: white;
+	position: absolute;
+	display: none;
+	top: 10%;
+	right: 10%;
+	color: red;
+	border-radius: 30px;
+	border-top-right-radius: 0;
+	border: solid 1px black;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.75);
+}
+
+#mensagem_erro{
+	width: 80%;
+	height: 80%;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	font-weight: bold;
+	font-size: 20px;
+}

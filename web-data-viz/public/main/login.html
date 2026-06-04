@@ -113,7 +113,6 @@
 		<!-- 		</div> -->
 		<!-- 	</div> -->
 		<!-- </div> -->
-	
 
 		<div id="div_erros_login"></div>
 	</body>
@@ -164,8 +163,13 @@ function entrar() {
 					// sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
 					setTimeout(function () {
-						window.location = "../dashboard/dash.html";
+						window.location = "../index.html";
 					}, 1000); // apenas para exibir o loading
+				
+	
+					let loading = document.getElementById('div_loading')
+					
+					loading.classList.add('active');
 
 				});
 
@@ -177,6 +181,10 @@ function entrar() {
 					console.error(texto);
 					finalizarAguardar(texto);
 				});
+
+				let loading = document.getElementById('div_loading')
+				loading.classList.remove('active');
+				
 			}
 
 		}).catch(function (erro) {

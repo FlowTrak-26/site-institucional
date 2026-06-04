@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./css/cadastro.css" />
-  <link rel="stylesheet" href="./css/estilo.css" />
   <link rel="icon" type="png" href="./assets/midia/logo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
@@ -23,7 +22,8 @@
       </div>
 				<div class="alerta_erro">
 					<div class="card_erro" id="cardErro">
-						<span id="mensagem_erro"></span>
+						<p id="mensagem_erro"></p>
+						 <!-- <span id="mensagem_erro"></span> -->
 					</div>
 				</div>
       <div class="content-cadastro">
@@ -156,8 +156,7 @@
 			// telefone == ""
     ) {
       cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+      mensagem_erro.innerHTML = "Você deve preenchar todos os campos antes de enviar";
 
       finalizarAguardar();
       return false;
