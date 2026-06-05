@@ -127,7 +127,20 @@ a{
 	height: 50%;
 }
 
+.btn-sair{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: 50%;
+	color: white;
+	background-color:#8C3503; 
+	border: none;
+	cursor: pointer;
+}
+
 .bottom-perfil img{
 	width: 25px;
 	height: 25px;
 }
+
+

@@ -83,8 +83,10 @@
 							<p id="user_name">Usuario</p>
 						</div>
 						<div class="bottom-perfil">
-							<p id="user_permissao">comum</p>
-							<img src="../assets/icon/nav-seta-baixo.png">
+							<button class="btn-sair" onclick="limparSessao()">
+								<p id="user_permissao">comum</p>
+								<img src="../assets/icon/nav-seta-baixo.png">
+							</button>
 						</div>
 					</div>
 				</div>
@@ -387,18 +389,23 @@
 
 
 <script src="./js/simulador.js"></script>
-<!-- <script src="./sessao.js"></script> -->
+<script src="./sessao.js"></script>
 
 <script>
-
-let autenticado = true;
-
 const navAutenticada = document.getElementById('navAutenticada');
 const navPadrao = document.getElementById('navPadrao');
 
-if(autenticado){
-navAutenticada.style.display = "flex";
-navPadrao.style.display = "none";
+var nome = sessionStorage.NOME_USUARIO;
+var permissao = sessionStorage.PERMISSAO;
+
+console.log(nome);
+console.log(permissao);
+
+if(nome != null && permissao != null){
+	user_permissao.innerHTML = permissao;
+	user_name.innerHTML = nome;
+	navAutenticada.style.display = "flex";
+	navPadrao.style.display = "none";
 }
 else{
 	navPadrao.style.display = "flex";
