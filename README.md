@@ -1,4 +1,4 @@
-<img style="width:100%;" src="./Site/assets/midia/backReadme.png">
+<img style="width:100%;" src="./web-data-viz/public/assets/imgs/backReadme.png">
 
 
 <div align="center">
