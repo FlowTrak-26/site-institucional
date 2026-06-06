@@ -15,22 +15,21 @@
 					<img src="../assets/imgs/logo.png" alt="" />
 				</div>
 				<div class="nav-buttons">
-
-						<div class="nav-link">
-							<div class="nav-link-img">
-								<img src="../assets/icon/nav-icon-home.png" alt="">
-							</div>
-							<div class="nav-link-txt">
-								<a href="../index.html">Home</a>
-							</div>
+					<div class="nav-link">
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-home.png" alt="">
 						</div>
+						<div class="nav-link-txt">
+							<a href="../index.html">Home</a>
+						</div>
+					</div>
 
-						<div class="nav-link" >
+						<div class="nav-link " >
 							<div class="nav-link-img">
 								<img src="../assets/icon/nav-icon-geral.png" alt="">
 							</div>
 							<div class="nav-link-txt">
-								<a href="#">Geral</a>
+								<a href="../dashboard/dash.html">Geral</a>
 							</div>
 						</div>
 
@@ -39,22 +38,26 @@
 								<img src="../assets/icon/nav-icon-especifico.png" alt="">
 							</div>
 							<div class="nav-link-txt">
-								<a href="./dashboard-espc.html">Específica</a>
+								<a href="../dashboard/dashboard-espc.html">Específica</a>
 							</div>
 						</div>
 
 				</div>
 				<div class="perfil-area">
 					<div class="perfil-img">
-						<img src="../assets/icon/nav-icon-perfil.png" alt="">
+						<button class="btn-pag-login" onclick="redirecionamento_perfil()">
+							<img src="../assets/icon/nav-icon-perfil.png" alt="">
+						</button>
 					</div>
 					<div class="text-perfil-area">
 						<div class="top-perfil">
-							<p>OXXO LTDA</p>
+							<p id="user_name">Usuario</p>
 						</div>
 						<div class="bottom-perfil">
-							<p>Admin</p>
-							<img src="../assets/icon/nav-seta-baixo.png">
+							<button class="btn-sair" onclick="limparSessao()">
+								<p id="user_permissao">comum</p>
+								<img src="../assets/icon/nav-seta-baixo.png">
+							</button>
 						</div>
 					</div>
 				</div>

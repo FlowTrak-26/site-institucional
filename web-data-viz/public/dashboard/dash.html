@@ -1,306 +1,301 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <!-- <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon"> -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlowTrak</title>
+	<head>
+		<!-- <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon"> -->
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>FlowTrak</title>
 
 
-    <link rel="stylesheet" href="./css/dashboard-espc.css">
-    <link rel="stylesheet" href="./css/dashboards.css" />
-    <link rel="stylesheet" href="../perfil/css/nav-bar.css">
-    <script src="../main/js/sessao.js"></script>
+		<link rel="stylesheet" href="./css/dashboard-espc.css">
+		<link rel="stylesheet" href="./css/dashboards.css" />
+		<link rel="stylesheet" href="../perfil/css/nav-bar.css">
+		<script src="../main/js/sessao.js"></script>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link
+			href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet">
 
-    <!-- scripts do Chart.js - 2022-1 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<!-- scripts do Chart.js - 2022-1 -->
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!--FONT AWESOME-->
-    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+		<!--FONT AWESOME-->
+		<script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+			integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+			crossorigin="anonymous" referrerpolicy="no-referrer" />
+	</head>
 
-<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina() ;">
+	<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina() ;">
 
-    <header>
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h1>Flow <span>Trak</span></h1>
-                <img src="../assets/imgs/logo.png" alt="" />
-            </div>
-            <div class="nav-buttons">
-
-                <div class="nav-link">
-                    <div class="nav-link-img">
-                        <img src="../assets/icon/nav-icon-home.png" alt="">
-                    </div>
-                    <div class="nav-link-txt">
-                        <a href="../index.html">Home</a>
-                    </div>
-                </div>
-
-                <div class="nav-link pg-atual">
-                    <div class="nav-link-img">
-                        <img src="../assets/icon/nav-icon-geral.png" alt="">
-                    </div>
-                    <div class="nav-link-txt">
-                        <a href="./dash.html">Geral</a>
-                    </div>
-                </div>
-
-                <div class="nav-link">
-                    <div class="nav-link-img">
-                        <img src="../assets/icon/nav-icon-especifico.png" alt="">
-                    </div>
-                    <div class="nav-link-txt">
-                        <a href="./dashboard-espc.html">Específica</a>
-                    </div>
-
-                </div>
-                <div class="nav-link ">
-                    <div class="nav-link-img">
-                        <img src="../assets/icon/nav-icon-especifico.png" alt="">
-                    </div>
-                    <div class="nav-link-txt">
-                        <a href="./dashboard-filiais.html">Filiais</a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="perfil-area">
-                <div class="perfil-img">
-                    <img src="../assets/icon/nav-icon-perfil.png" alt="">
-                </div>
-                <div class="text-perfil-area">
-                    <div class="top-perfil">
-                        <p>OXXO LTDA</p>
-                    </div>
-                    <div class="bottom-perfil">
-                        <p id="nomeUsuario"></p>
-                        <img src="../assets/icon/nav-seta-baixo.png">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="main-container">
-        <div class="content-dash">
-            <div class="infos-text">
-                <div class="icon-texto">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <p>Voltar para filiais</p>
-                </div>
-                <div class="text-botao">
-                    <h1>Dashboard - OXXO Minas Gerais (MG)</h1>
-                    <div class="ativar">
-                        <button onclick="ativar()" class="ativar">ATIVA</button>
-                    </div>
-                </div>
-                <div class="icon-texto">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <p>Av. Carapicuíba, 187 - CEP : 00000-000</p>
-                </div>
-            </div>
-            <div class="infos-box">
-                <div class="box-legenda">
-                    <div class="legenda-kpi">
-                        <h4>Legenda KPI:</h4>
-                    </div>
-                    <div class="ident-cores">
-                        <div class="perigo">
-                            <i class="fa-solid fa-circle"></i>
-                            <p>Perigo</p>
-                        </div>
-                        <div class="alerta">
-                            <i class="fa-solid fa-circle"></i>
-                            <p>Alerta</p>
-                        </div>
-                        <div class="ideal">
-                            <i class="fa-solid fa-circle"></i>
-                            <p>Ideal</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="opcoes-box">
-                <div class="data">
-                    <div class="content-data">
-                        <i class="fa-regular fa-calendar"></i>
-                        <p>Hoje, 24 de Março</p>
-                    </div>
-
-                    <div class="seletor-data">
-                        <select name="Locais" id="select-local">
-                            <option value="" selected>Selecione</option>
-                            <option value="11/02/2026">11/02/2026</option>
-                            <option value="12/02/2026">12/02/2026</option>
-                            <option value="13/02/2026">13/02/2026</option>
-                            <option value="14/02/2026">14/02/2026</option>
-                            <option value="15/02/2026">15/02/2026</option>
-                            <option value="16/02/2026">16/02/2026</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="kpis-totais">
-            <div class="box-kpi">
-                <div class="kpi">
-                    <div class="esquerda-kpi">
-                        <i class="fa-solid fa-circle"></i>
-                    </div>
-                    <div class="direita-kpi">
-                        <div class="texto-esquerda-kpi">
-                            <p class="texto-kpi">Nome KPI</p>
-                            <p class="numero-dado">0000</p>
-                        </div>
-
-                        <div class="texto-direita-kpi">
-                            <p class="texto-kpi">Ideal</p>
-                            <p class="texto-kpi">Máximo</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-kpi">
-                <div class="kpi">
-                    <div class="esquerda-kpi">
-                        <i class="fa-solid fa-circle"></i>
-                    </div>
-                    <div class="direita-kpi">
-                        <div class="texto-esquerda-kpi">
-                            <p class="texto-kpi">Nome KPI</p>
-                            <p class="numero-dado">0000</p>
-                        </div>
-                        <div class="texto-direita-kpi">
-                            <p class="texto-kpi">Ideal</p>
-                            <p class="texto-kpi">Máximo</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-kpi">
-                <div class="kpi">
-                    <div class="esquerda-kpi">
-                        <i class="fa-solid fa-circle"></i>
-                    </div>
-                    <div class="direita-kpi">
-                        <div class="texto-esquerda-kpi">
-                            <p class="texto-kpi">Nome KPI</p>
-                            <p class="numero-dado">0000</p>
-                        </div>
-
-                        <div class="texto-direita-kpi">
-                            <p class="texto-kpi">Ideal</p>
-                            <p class="texto-kpi">Máximo</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-kpi">
-                <div class="kpi">
-                    <div class="esquerda-kpi">
-                        <i class="fa-solid fa-circle"></i>
-                    </div>
-                    <div class="direita-kpi">
-                        <div class="texto-esquerda-kpi">
-                            <p class="texto-kpi">Nome KPI</p>
-                            <p class="numero-dado">0000</p>
-                        </div>
-
-                        <div class="texto-direita-kpi">
-                            <p class="texto-kpi">Ideal</p>
-                            <p class="texto-kpi">Máximo</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-kpi">
-                <div class="kpi">
-                    <div class="esquerda-kpi">
-                        <i class="fa-solid fa-circle"></i>
-                    </div>
-                    <div class="direita-kpi">
-                        <div class="texto-esquerda-kpi">
-                            <p class="texto-kpi">Nome KPI</p>
-                            <p class="numero-dado">0000</p>
-                        </div>
-
-                        <div class="texto-direita-kpi">
-                            <p class="texto-kpi">Ideal</p>
-                            <p class="texto-kpi">Máximo</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="graficos-box">
-            <div class="grafico">
-                <div class="titulo-graf">
-                    <p>Fluxo de pessoas ao longo do dia</p>
-                </div>
-                <canvas id="linha"></canvas>
-            </div>
-            <div class="grafico">
-                <div class="titulo-graf-m">
-                    <p>Mapa de calor - Fluxo por local</p>
-                </div>
-                <div class="graf-mapa">
-                    <div class="tela-grafico">
-                        <div class="portas">
-                            <div class="entrada">
-                                <p class="titulo-portas">ENTRADA</p>
-                            </div>
-                            <div class="saida">
-                                <p class="titulo-portas">SAÍDA</p>
-                            </div>
-                        </div>
-                        <div class="caixas">
-                            <p class="titulo-caixa">CAIXAS</p>
-                            <div class="caixa">CAIXA 01</div>
-                            <div class="caixa">CAIXA 02</div>
-                            <div class="caixa">CAIXA 03</div>
-                            <div class="caixa">CAIXA 04</div>
-                            <div class="caixa">CAIXA 05</div>
-                        </div>
-                        <div class="corredores">
-                            <div class="corredor1">
-                                <p class="titulo-corredor">CORREDOR 01</p>
-                            </div>
-                            <div class="corredor2">
-                                <p class="titulo-corredor">CORREDOR 02</p>
-                            </div>
-                            <div class="corredor3">
-                                <p class="titulo-corredor">CORREDOR 03</p>
-                            </div>
-                        </div>
-                    </div>
+		<header>
+			<div class="nav-container">
+				<div class="nav-logo">
+					<h1>Flow <span>Trak</span></h1>
+					<img src="../assets/imgs/logo.png" alt="" />
+				</div>
+				<div class="nav-buttons">
+					<div class="nav-link">
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-home.png" alt="">
+						</div>
+						<div class="nav-link-txt">
+							<a href="../index.html">Home</a>
+						</div>
+					</div>
 
 
-                    <div class="intensidade">
-                        <p>Fluxo Alto</p>
-                        <div class="bloco">
+					<div class="nav-link pg-atual" >
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-geral.png" alt="">
+						</div>
+						<div class="nav-link-txt">
+							<a href="../dashboard/dash.html">Geral</a>
+						</div>
+					</div>
 
-                        </div>
-                        <p>Fluxo Baixo</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-</body>
+					<div class="nav-link">
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-especifico.png" alt="">
+						</div>
+						<div class="nav-link-txt">
+							<a href="../dashboard/dashboard-espc.html">Específica</a>
+						</div>
+					</div>
+
+				</div>
+				<div class="perfil-area">
+					<div class="perfil-img">
+						<button class="btn-pag-login" onclick="redirecionamento_perfil()">
+							<img src="../assets/icon/nav-icon-perfil.png" alt="">
+						</button>
+					</div>
+					<div class="text-perfil-area">
+						<div class="top-perfil">
+							<p id="user_name">Usuario</p>
+						</div>
+						<div class="bottom-perfil">
+							<button class="btn-sair" onclick="limparSessao()">
+								<p id="user_permissao">comum</p>
+								<img src="../assets/icon/nav-seta-baixo.png">
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<div class="main-container">
+			<div class="content-dash">
+				<div class="infos-text">
+					<div class="icon-texto">
+						<i class="fa-solid fa-arrow-left"></i>
+						<p>Voltar para filiais</p>
+					</div>
+					<div class="text-botao">
+						<h1>Dashboard - OXXO Minas Gerais (MG)</h1>
+						<div class="ativar">
+							<button onclick="ativar()" class="ativar">ATIVA</button>
+						</div>
+					</div>
+					<div class="icon-texto">
+						<i class="fa-solid fa-location-dot"></i>
+						<p>Av. Carapicuíba, 187 - CEP : 00000-000</p>
+					</div>
+				</div>
+				<div class="infos-box">
+					<div class="box-legenda">
+						<div class="legenda-kpi">
+							<h4>Legenda KPI:</h4>
+						</div>
+						<div class="ident-cores">
+							<div class="perigo">
+								<i class="fa-solid fa-circle"></i>
+								<p>Perigo</p>
+							</div>
+							<div class="alerta">
+								<i class="fa-solid fa-circle"></i>
+								<p>Alerta</p>
+							</div>
+							<div class="ideal">
+								<i class="fa-solid fa-circle"></i>
+								<p>Ideal</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="opcoes-box">
+					<div class="data">
+						<div class="content-data">
+							<i class="fa-regular fa-calendar"></i>
+							<p>Hoje, 24 de Março</p>
+						</div>
+
+						<div class="seletor-data">
+							<select name="Locais" id="select-local">
+								<option value="" selected>Selecione</option>
+								<option value="11/02/2026">11/02/2026</option>
+								<option value="12/02/2026">12/02/2026</option>
+								<option value="13/02/2026">13/02/2026</option>
+								<option value="14/02/2026">14/02/2026</option>
+								<option value="15/02/2026">15/02/2026</option>
+								<option value="16/02/2026">16/02/2026</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="kpis-totais">
+				<div class="box-kpi">
+					<div class="kpi">
+						<div class="esquerda-kpi">
+							<i class="fa-solid fa-circle"></i>
+						</div>
+						<div class="direita-kpi">
+							<div class="texto-esquerda-kpi">
+								<p class="texto-kpi">Nome KPI</p>
+								<p class="numero-dado">0000</p>
+							</div>
+
+							<div class="texto-direita-kpi">
+								<p class="texto-kpi">Ideal</p>
+								<p class="texto-kpi">Máximo</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-kpi">
+					<div class="kpi">
+						<div class="esquerda-kpi">
+							<i class="fa-solid fa-circle"></i>
+						</div>
+						<div class="direita-kpi">
+							<div class="texto-esquerda-kpi">
+								<p class="texto-kpi">Nome KPI</p>
+								<p class="numero-dado">0000</p>
+							</div>
+							<div class="texto-direita-kpi">
+								<p class="texto-kpi">Ideal</p>
+								<p class="texto-kpi">Máximo</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-kpi">
+					<div class="kpi">
+						<div class="esquerda-kpi">
+							<i class="fa-solid fa-circle"></i>
+						</div>
+						<div class="direita-kpi">
+							<div class="texto-esquerda-kpi">
+								<p class="texto-kpi">Nome KPI</p>
+								<p class="numero-dado">0000</p>
+							</div>
+
+							<div class="texto-direita-kpi">
+								<p class="texto-kpi">Ideal</p>
+								<p class="texto-kpi">Máximo</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-kpi">
+					<div class="kpi">
+						<div class="esquerda-kpi">
+							<i class="fa-solid fa-circle"></i>
+						</div>
+						<div class="direita-kpi">
+							<div class="texto-esquerda-kpi">
+								<p class="texto-kpi">Nome KPI</p>
+								<p class="numero-dado">0000</p>
+							</div>
+
+							<div class="texto-direita-kpi">
+								<p class="texto-kpi">Ideal</p>
+								<p class="texto-kpi">Máximo</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-kpi">
+					<div class="kpi">
+						<div class="esquerda-kpi">
+							<i class="fa-solid fa-circle"></i>
+						</div>
+						<div class="direita-kpi">
+							<div class="texto-esquerda-kpi">
+								<p class="texto-kpi">Nome KPI</p>
+								<p class="numero-dado">0000</p>
+							</div>
+
+							<div class="texto-direita-kpi">
+								<p class="texto-kpi">Ideal</p>
+								<p class="texto-kpi">Máximo</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="graficos-box">
+				<div class="grafico">
+					<div class="titulo-graf">
+						<p>Fluxo de pessoas ao longo do dia</p>
+					</div>
+					<canvas id="linha"></canvas>
+				</div>
+				<div class="grafico">
+					<div class="titulo-graf-m">
+						<p>Mapa de calor - Fluxo por local</p>
+					</div>
+					<div class="graf-mapa">
+						<div class="tela-grafico">
+							<div class="portas">
+								<div class="entrada">
+									<p class="titulo-portas">ENTRADA</p>
+								</div>
+								<div class="saida">
+									<p class="titulo-portas">SAÍDA</p>
+								</div>
+							</div>
+							<div class="caixas">
+								<p class="titulo-caixa">CAIXAS</p>
+								<div class="caixa">CAIXA 01</div>
+								<div class="caixa">CAIXA 02</div>
+								<div class="caixa">CAIXA 03</div>
+								<div class="caixa">CAIXA 04</div>
+								<div class="caixa">CAIXA 05</div>
+							</div>
+							<div class="corredores">
+								<div class="corredor1">
+									<p class="titulo-corredor">CORREDOR 01</p>
+								</div>
+								<div class="corredor2">
+									<p class="titulo-corredor">CORREDOR 02</p>
+								</div>
+								<div class="corredor3">
+									<p class="titulo-corredor">CORREDOR 03</p>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="intensidade">
+							<p>Fluxo Alto</p>
+							<div class="bloco">
+
+							</div>
+							<p>Fluxo Baixo</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+	</body>
 
 </html>
 
@@ -309,63 +304,63 @@
 <script src="../js/dash.js"></script>
 
 <script>
-    let emailUsuario = sessionStorage.NOME_USUARIO;
-    console.log(emailUsuario);
+let emailUsuario = sessionStorage.NOME_USUARIO;
+console.log(emailUsuario);
 
-    function iniciarpagina() {
-        let nomeUsuario = document.getElementById('nomeUsuario');
-        let nome = sessionStorage.NOME_USUARIO;
-        // aqui o conteudo vira texto
-        nomeUsuario.textContent = nome;
-    }
+function iniciarpagina() {
+	let nomeUsuario = document.getElementById('nomeUsuario');
+	let nome = sessionStorage.NOME_USUARIO;
+	// aqui o conteudo vira texto
+	nomeUsuario.textContent = nome;
+}
 
 
-    iniciarpagina();
+iniciarpagina();
 
-    const Linha = document.getElementById('linha')
+const Linha = document.getElementById('linha')
 
-    new Chart(Linha, {
-        type: 'line',
-        data: {
-            labels: ['8h', '10h', '12h', '14h', '16h', '18h', '20h'],
-            datasets: [
-                {
-                    label: 'Hoje',
-                    data: [100, 650, 800, 2000, 3700, 4200, 5100],
-                    borderColor: '#A14A00',
-                    backgroundColor: '#A14A00',
-                    tension: 0.5
-                },
-                {
-                    label: 'Média',
-                    data: [50, 200, 850, 2000, 3800, 4200, 5000],
-                    borderColor: '#BDBDBD',
-                    backgroundColor: '#BDBDBD',
-                    tension: 0.5
-                }
-            ]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    align: 'start',
-                    color: '#000',
-                    font: {
-                        size: 28,
-                        weight: 'bold'
-                    }
-                },
-                legend: {
-                    position: 'top',
-                    align: 'end',
-                    labels: {
-                        padding: 15
-                    }
-                }
-            }
-        }
-    })
+new Chart(Linha, {
+	type: 'line',
+	data: {
+		labels: ['8h', '10h', '12h', '14h', '16h', '18h', '20h'],
+		datasets: [
+			{
+				label: 'Hoje',
+				data: [100, 650, 800, 2000, 3700, 4200, 5100],
+				borderColor: '#A14A00',
+				backgroundColor: '#A14A00',
+				tension: 0.5
+			},
+			{
+				label: 'Média',
+				data: [50, 200, 850, 2000, 3800, 4200, 5000],
+				borderColor: '#BDBDBD',
+				backgroundColor: '#BDBDBD',
+				tension: 0.5
+			}
+		]
+	},
+	options: {
+		plugins: {
+			title: {
+				display: true,
+				align: 'start',
+				color: '#000',
+				font: {
+					size: 28,
+					weight: 'bold'
+				}
+			},
+			legend: {
+				position: 'top',
+				align: 'end',
+				labels: {
+					padding: 15
+				}
+			}
+		}
+	}
+})
 
 
 
