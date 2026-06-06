@@ -38,6 +38,7 @@ function cadastrar(req, res) {
   var telefone = req.body.telefoneServer;
   var cnpj = req.body.cnpjServer;
   var nome = req.body.nomeServer;
+  var email = req.body.emailServer;
 
   if (nome == undefined) {
     res.status(400).send("Seu nome está undefined!");

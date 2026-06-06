@@ -126,7 +126,6 @@
   let listaEmpresasCadastradas = [];
 
   function cadastrar() {
-    aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -134,21 +133,21 @@
     var nomeVar = ipt_nome.value;
     var cnpjVar = ipt_cnpj.value;
 	var telefoneVar = ipt_telefone.value;
+	var emailVar = ipt_email.value;
 
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
 	  cnpjVar == "" ||
-	  telefoneVar == "" 
+	  telefoneVar == "" ||
+	  emailVar == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      finalizarAguardar();
+		
+      console.log("(Mensagem de erro para todos os campos em branco)");
+        
       return false;
     } else {
-      setInterval(sumirMensagem, 5000);
+    //   setInterval(sumirMensagem, 5000);
     }
 
 
@@ -163,7 +162,8 @@
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         telefoneServer: telefoneVar,
-		cpnjServer: cnpjVar
+		cpnjServer: cnpjVar,
+		emailServer: emailVar
       
       }),
     })
@@ -171,24 +171,23 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
+        //   cardErro.style.display = "block";
 
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso!...";
+          console.log("Cadastro realizado com sucesso!...");		  
+            
 
           setTimeout(() => {
             window.location = "login.html";
           }, "2000");
 
-          limparFormulario();
-          finalizarAguardar();
+        //   limparFormulario();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
+        // finalizarAguardar();
       });
 
     return false;
@@ -214,9 +213,9 @@
       });
   }
 
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
+//   function sumirMensagem() {
+//     cardErro.style.display = "none";
+//   }
 	</script>
 </html>
 

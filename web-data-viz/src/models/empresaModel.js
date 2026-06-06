@@ -21,8 +21,8 @@ function buscarPorCnpj(cnpj) {
   return database.executar(instrucaoSql);
 }
 
-function cadastrar(nome, cnpj, telefone) {
-  var instrucaoSql = `INSERT INTO empresa_parceira (nome, cnpj, telefone) VALUES ('${nome}', '${cnpj}', '${telefone}')`;
+function cadastrar(nome, cnpj, telefone, email) {
+  var instrucaoSql = `INSERT INTO empresa_parceira (nome, cnpj, telefone, email) VALUES ('${nome}', '${cnpj}', '${telefone}', '${email}')`;
 
   return database.executar(instrucaoSql);
 }
