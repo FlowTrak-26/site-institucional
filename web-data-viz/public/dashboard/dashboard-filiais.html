@@ -125,3 +125,16 @@
 
 	</body>
 </html>
+<script>
+var user_name = sessionStorage.NOME_USUARIO;
+var permissao = sessionStorage.PERMISSAO;
+
+function redirecionamento_perfil() {
+	if(permissao == "ADMIN"){
+		window.location.href = '../perfil/perfil-admin.html'
+	}
+	else{
+		window.location.href = '../perfil/perfil-u-comum.html'
+	}
+}
+</script>

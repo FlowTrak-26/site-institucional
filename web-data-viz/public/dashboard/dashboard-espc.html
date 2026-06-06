@@ -303,6 +303,18 @@
 <script src="../js/dash.js"></script>
 
 <script>
+var user_name = sessionStorage.NOME_USUARIO;
+var permissao = sessionStorage.PERMISSAO;
+
+function redirecionamento_perfil() {
+	if(permissao == "ADMIN"){
+		window.location.href = '../perfil/perfil-admin.html'
+	}
+	else{
+		window.location.href = '../perfil/perfil-u-comum.html'
+	}
+}
+
 const Linha = document.getElementById('linha')
 
 new Chart(Linha, {

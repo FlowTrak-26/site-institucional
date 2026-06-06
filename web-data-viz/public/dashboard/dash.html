@@ -293,8 +293,6 @@
 				</div>
 			</div>
 		</div>
-		</div>
-		</div>
 	</body>
 
 </html>
@@ -305,13 +303,30 @@
 
 <script>
 let emailUsuario = sessionStorage.NOME_USUARIO;
-console.log(emailUsuario);
+// console.log(emailUsuario);
+
+var user_name = sessionStorage.NOME_USUARIO;
+var permissao = sessionStorage.PERMISSAO;
+
+function redirecionamento_perfil() {
+	if(permissao == "ADMIN"){
+		window.location.href = '../perfil/perfil-admin.html'
+	}
+	else{
+		window.location.href = '../perfil/perfil-u-comum.html'
+	}
+}
+
+console.log(user_name)
+console.log(permissao)
 
 function iniciarpagina() {
 	let nomeUsuario = document.getElementById('nomeUsuario');
 	let nome = sessionStorage.NOME_USUARIO;
 	// aqui o conteudo vira texto
 	nomeUsuario.textContent = nome;
+
+
 }
 
 
@@ -363,5 +378,5 @@ new Chart(Linha, {
 })
 
 
-
 </script>
+

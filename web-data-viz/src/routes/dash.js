@@ -23,12 +23,3 @@ router.get("/tempo-real/grafico-calor", function (req, res) {
 
 module.exports = router;
 
-
-function redirecionamento_perfil() {
-	if(permissao == "ADMIN"){
-		window.location.href = './perfil/perfil-admin.html'
-	}
-	else{
-		window.location.href = './perfil/perfil-u-comum.html'
-	}
-}

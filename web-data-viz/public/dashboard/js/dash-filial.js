@@ -54,11 +54,3 @@ Endereço Sede: ${empresaAtual.endereco_sede}
 		});
 }
 
-function redirecionamento_perfil() {
-	if(permissao == "ADMIN"){
-		window.location.href = '../perfil/perfil-admin.html'
-	}
-	else{
-		window.location.href = '../perfil/perfil-u-comum.html'
-	}
-}
