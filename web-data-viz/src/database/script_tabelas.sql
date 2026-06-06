@@ -8,8 +8,8 @@ CREATE TABLE empresa_parceira(
 	nome VARCHAR(45),
 	cnpj CHAR(14),
 	endereco_sede VARCHAR(45),
-    email VARCHAR(45),
-    telefone CHAR(9),
+	email VARCHAR(45),
+	telefone CHAR(9),
 	franqueadora INT,
 	CONSTRAINT ctFkFranqueadora FOREIGN KEY(franqueadora) REFERENCES empresa_parceira(id_empresa)
 );
@@ -19,10 +19,10 @@ CREATE TABLE usuario(
 	nome VARCHAR(45),
 	email VARCHAR(45),
 	senha VARCHAR(45),
-	nivel_acesso VARCHAR(45),
+	nivel_acesso VARCHAR(45) DEFAULT 'COMUM',
 	fk_empresa_parceira INT,
 	CONSTRAINT ctFkEmpresaParceira FOREIGN KEY(fk_empresa_parceira) REFERENCES empresa_parceira(id_empresa),
-	CONSTRAINT ctNivelAcesso CHECK (nivel_acesso IN ('ADMIN','OPERADOR'))
+	CONSTRAINT ctNivelAcesso CHECK (nivel_acesso IN ('ADMIN','COMUM'))
 );
 
 CREATE TABLE ponto_monitoramento (
@@ -152,15 +152,3 @@ LEFT JOIN sensor AS sn
 ON sn.fk_ponto = pt.id_ponto_monitoramento
 LEFT JOIN dado_captado AS d_cpt
 ON d_cpt.fk_sensor = sn.id_sensor;
-
-DROP USER 'user_admin'@'localhost';
-
-CREATE USER 'user_admin'@'localhost' IDENTIFIED BY 'SPTech#2024';
-GRANT INSERT ON flowtrak.* TO 'user_admin'@'localhost';
-
-GRANT SELECT ON flowtrak.* TO 'user_admin'@'localhost';
-FLUSH PRIVILEGES;
-
-
-
-
