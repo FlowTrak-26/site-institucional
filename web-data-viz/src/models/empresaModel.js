@@ -16,7 +16,7 @@ SELECT id_empresa, nome, endereco_sede FROM empresa_parceira;
 }
 
 function buscarPorCnpj(cnpj) {
-	var instrucaoSql = `SELECT * FROM empresa WHERE cnpj = '${cnpj}'`;
+	var instrucaoSql = `SELECT * FROM empresa_parceira WHERE cnpj = '${cnpj}'`;
 
 	return database.executar(instrucaoSql);
 }
