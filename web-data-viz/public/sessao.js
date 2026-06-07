@@ -23,7 +23,7 @@ function validarSessao() {
 
 function limparSessao() {
 	sessionStorage.clear();
-	window.location = "./main/login.html";
+	// window.location = "./main/login.html";
 }
 
 // carregamento (loading)

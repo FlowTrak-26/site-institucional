@@ -9,20 +9,20 @@
 	</head>
 	<body>
 		<div class="main-container">
-			<div class="nav-container">
+			<div class="nav-container" id="navAutenticada">
 				<div class="nav-logo">
 					<h1>Flow <span>Trak</span></h1>
 					<img src="../assets/imgs/logo.png" alt="" />
 				</div>
 				<div class="nav-buttons">
-					<div class="nav-link">
-						<div class="nav-link-img">
-							<img src="../assets/icon/nav-icon-home.png" alt="">
+						<div class="nav-link">
+							<div class="nav-link-img">
+								<img src="../assets/icon/nav-icon-home.png" alt="">
+							</div>
+							<div class="nav-link-txt">
+								<a href="../index.html">Home</a>
+							</div>
 						</div>
-						<div class="nav-link-txt">
-							<a href="../index.html">Home</a>
-						</div>
-					</div>
 
 						<div class="nav-link " >
 							<div class="nav-link-img">
@@ -54,7 +54,7 @@
 							<p id="user_name">Usuario</p>
 						</div>
 						<div class="bottom-perfil">
-							<button class="btn-sair" onclick="limparSessao()">
+							<button class="btn-sair" onclick="novaSessao()">
 								<p id="user_permissao">comum</p>
 								<img src="../assets/icon/nav-seta-baixo.png">
 							</button>
@@ -105,4 +105,19 @@
 		</div>
 	</body>
 </html>
+<script src="../sessao.js"></script>
+<script>
+var nome = sessionStorage.NOME_USUARIO;
+var permissao = sessionStorage.PERMISSAO;
 
+user_permissao.innerHTML = permissao;
+user_name.innerHTML = nome;
+console.log(nome);
+console.log(permissao);
+
+function novaSessao(){
+	limparSessao();
+	window.location = "../main/login.html";
+}
+	
+</script>
