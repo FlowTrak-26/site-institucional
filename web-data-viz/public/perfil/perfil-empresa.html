@@ -54,7 +54,7 @@
 							<p id="user_name">Usuario</p>
 						</div>
 						<div class="bottom-perfil">
-							<button class="btn-sair" onclick="limparSessao()">
+							<button class="btn-sair" onclick="novaSessao()">
 								<p id="user_permissao">comum</p>
 								<img src="../assets/icon/nav-seta-baixo.png">
 							</button>
@@ -120,6 +120,7 @@
 			</div>
 		</div>
 	</body>
+	<script src="../sessao.js"></script>
 	<script>
 	function pagina_admin(){
 		window.location.href = './perfil-admin.html';
@@ -222,7 +223,20 @@
 	//   function sumirMensagem() {
 	//     cardErro.style.display = "none";
 	//   }
-	</script>
+
+var nome = sessionStorage.NOME_USUARIO;
+var permissao = sessionStorage.PERMISSAO;
+
+user_permissao.innerHTML = permissao;
+user_name.innerHTML = nome;
+console.log(nome);
+console.log(permissao);
+
+function novaSessao(){
+	limparSessao();
+	window.location = "../main/login.html";
+}
+</script>
 </html>
 
 

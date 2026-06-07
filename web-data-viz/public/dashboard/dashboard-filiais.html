@@ -99,7 +99,7 @@
 					<div class="icon-box">
 						<i class="fa-solid fa-building"></i>
 					</div>
-					<h2>Bem vindo, <span class="highlight">OXXO Brasil!</span></h2>
+					<h2>Bem vindo, <span class="highlight"><span id="usuario">--</span> OXXO Brasil!</span></h2>
 				</div>
 				<div class="stats-box">
 					<div class="icon-box-small">
@@ -126,8 +126,15 @@
 	</body>
 </html>
 <script>
-var user_name = sessionStorage.NOME_USUARIO;
+var nome = sessionStorage.NOME_USUARIO;
 var permissao = sessionStorage.PERMISSAO;
+
+user_name.innerHTML = nome;
+user_permissao.innerHTML = permissao;
+usuario.innerHTML = nome;
+
+console.log(nome)
+console.log(permissao)
 
 function redirecionamento_perfil() {
 	if(permissao == "ADMIN"){
