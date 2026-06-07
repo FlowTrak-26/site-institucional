@@ -35,9 +35,16 @@ Endereço Sede: ${empresaAtual.endereco_sede}
 </p>
 <div class="filial-actions">
 <span class="status-badge ativa">ATIVA</span>
-<button class="btn-enter" onclick="sessionStorage.ID_EMPRESA_ATUAL = ${empresaAtual.id_empresa}; window.location='./dashboard-espc.html'">
-<i class="fa-solid fa-right-to-bracket"></i>
+
+<button class="btn-enter" onclick="sessionStorage.ID_EMPRESA_ATUAL = ${empresaAtual.id_empresa};
+ sessionStorage.NOME_EMPRESA_ATUAL = '${empresaAtual.nome}';
+  sessionStorage.ENDERECO_EMPRESA_ATUAL = '${empresaAtual.endereco_sede}';
+   window.location='./dashboard-espc.html'">
+    <i class="fa-solid fa-right-to-bracket"></i>
 </button>
+
+
+
 </div>
 </div>
 `;

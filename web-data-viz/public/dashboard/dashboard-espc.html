@@ -114,14 +114,14 @@
 					<p>Voltar para filiais</p>
 				</div>
 				<div class="text-botao">
-					<h1>Dashboard - OXXO Minas Gerais (MG)</h1>
+					<h1 id="titulo_filial">Dashboard - OXXO Minas Gerais (MG)</h1>
 					<div class="ativar">
 						<button onclick="ativar()" class="ativar">ATIVA</button>
 					</div>
 				</div>
 				<div class="icon-texto">
 					<i class="fa-solid fa-location-dot"></i>
-					<p>Av. Carapicuíba, 187 - CEP: 00000-000</p>
+					<p id="endereco_filial">Av. Carapicuíba, 187 - CEP: 00000-000</p>
 				</div>
 			</div>
 			<div class="infos-box">
@@ -476,7 +476,21 @@
 	}
 
 
-	
+	// CÓDIGO NO FINAL DO dashboard-espc.html
+
+var permissao = sessionStorage.PERMISSAO;
+var nomeDaFilial = sessionStorage.NOME_EMPRESA_ATUAL;
+var enderecoDaFilial = sessionStorage.ENDERECO_EMPRESA_ATUAL;
+
+//  tiver um nome salvo, ele troca o texto do <h1>
+if (nomeDaFilial != undefined) {
+    document.getElementById('titulo_filial').innerHTML = `Dashboard - ${nomeDaFilial}`;
+}
+
+//  tivee um endereço guardado, altera o texto do <p>
+if (enderecoDaFilial != undefined) {
+    document.getElementById('endereco_filial').innerHTML = enderecoDaFilial;
+}
 </script>
 
 <script src="../js/dash.js"></script>
