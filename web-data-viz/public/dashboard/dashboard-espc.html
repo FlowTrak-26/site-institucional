@@ -26,7 +26,7 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="exibirGraficoLinha(), exibirGraficoCalor();">
+<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina();">
 
 	<header>
 		<div class="nav-container">
@@ -311,8 +311,16 @@
 <script src="../js/dash.js"></script>
 
 <script>
+	var emailUsuario = sessionStorage.NOME_USUARIO;
 	var user_name = sessionStorage.NOME_USUARIO;
 	var permissao = sessionStorage.PERMISSAO;
+
+	function iniciarpagina() {
+		let nomeUsuario = document.getElementById('user_name');
+		let nome = sessionStorage.NOME_USUARIO;
+		// aqui o conteudo vira texto
+		nomeUsuario.textContent = nome;
+	}
 
 	function local_mercado(){
 		if(k){
@@ -442,18 +450,8 @@
 		}
 	});
 
-	let emailUsuario = sessionStorage.NOME_USUARIO;
-	console.log(emailUsuario);
 
-	function iniciarpagina() {
-		let nomeUsuario = document.getElementById('nomeUsuario');
-		let nome = sessionStorage.NOME_USUARIO;
-		// aqui o conteudo vira texto
-		nomeUsuario.textContent = nome;
-	}
-
-
-	iniciarpagina();
+	
 </script>
 
 <script src="../js/dash.js"></script>
