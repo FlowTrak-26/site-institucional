@@ -22,9 +22,9 @@ function autenticar(req, res) {
 						console.log(resultadoAutenticar);
 						res.json({
 							id: resultadoAutenticar[0].id,
-							email: resultadoAutenticar[0].email,
 							nome: resultadoAutenticar[0].nome,
-							senha: resultadoAutenticar[0].senha,
+							email: resultadoAutenticar[0].email,
+							idEmpresa: resultadoAutenticar[0].empresaId,
 							nivel_acesso: resultadoAutenticar[0].nivel_acesso
 						});
 
