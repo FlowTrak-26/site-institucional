@@ -96,10 +96,14 @@
 								<input id="ipt_cnpj" placeholder="Cnpj">
 							</div>
 						</div>
-							
+
 					</div>
 					<div class="container-ipts-right left-line">
 						<div class="content-ipts direita">
+							<div class="ipt-alteracao">
+								<p>Endereço:</p>
+								<input id="ipt_endereco" placeholder="Endereço">
+							</div>
 							<div class="ipt-alteracao">
 								<p>Senha:</p>
 								<input id="ipt_senha" placeholder="Senha">
@@ -108,10 +112,10 @@
 								<p>Confirmar senha:</p>
 								<input id="ipt_senha_confirmacao" placeholder="Confirmar senha">
 							</div>
-						<button class="btn-salvar-empresa" onclick="cadastrar()">Salvar alterações</button>
+							<button class="btn-salvar-empresa" onclick="cadastrar()">Salvar alterações</button>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
@@ -121,101 +125,103 @@
 		window.location.href = './perfil-admin.html';
 	}
 
-	
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
 
-  function cadastrar() {
+	// Array para armazenar empresas cadastradas para validação de código de ativação 
+	let listaEmpresasCadastradas = [];
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
+	function cadastrar() {
 
-    var nomeVar = ipt_nome.value;
-    var cnpjVar = ipt_cnpj.value;
-	var telefoneVar = ipt_telefone.value;
-	var emailVar = ipt_email.value;
+		//Recupere o valor da nova input pelo nome do id
+		// Agora vá para o método fetch logo abaixo
 
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-	  cnpjVar == "" ||
-	  telefoneVar == "" ||
-	  emailVar == ""
-    ) {
-		
-      console.log("(Mensagem de erro para todos os campos em branco)");
-        
-      return false;
-    } else {
-    //   setInterval(sumirMensagem, 5000);
-    }
+		var nomeVar = ipt_nome.value;
+		var cnpjVar = ipt_cnpj.value;
+		var telefoneVar = ipt_telefone.value;
+		var emailVar = ipt_email.value;
+		var enderecoVar = ipt_endereco.value;
+
+		// Verificando se há algum campo em branco
+		if (
+			nomeVar == "" ||
+			cnpjVar == "" ||
+			telefoneVar == "" ||
+			emailVar == "" ||
+			enderecoVar ==""
+		) {
+
+			console.log("Algum campo não foi preenchido");
+
+			return false;
+		} else {
+			//   setInterval(sumirMensagem, 5000);
+		}
 
 
-    // Enviando o valor da nova input
-    fetch("/empresas/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        telefoneServer: telefoneVar,
-		cpnjServer: cnpjVar,
-		emailServer: emailVar
-      
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+		// Enviando o valor da nova input
+		fetch("/empresas/cadastrar", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				// crie um atributo que recebe o valor recuperado aqui
+				// Agora vá para o arquivo routes/usuario.js
+				nomeServer: nomeVar,
+				cpnjServer: cnpjVar,
+				enderecoServer: enderecoVar,
+				telefoneServer: telefoneVar,
+				emailServer: emailVar
+			}),
+		})
+			.then(function (resposta) {
+				console.log("resposta: ", resposta);
 
-        if (resposta.ok) {
-        //   cardErro.style.display = "block";
+				if (resposta.ok) {
+					//   cardErro.style.display = "block";
 
-          console.log("Cadastro realizado com sucesso!...");		  
-            
+					console.log("Cadastro realizado com sucesso!...");		  
 
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
 
-        //   limparFormulario();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        // finalizarAguardar();
-      });
+					// setTimeout(() => {
+					// 	window.location = "../index.html";
+					// }, "2000");
 
-    return false;
-  }
+					//   limparFormulario();
+				} else {
+					throw "Houve um erro ao tentar realizar o cadastro!";
+				}
+			})
+			.catch(function (resposta) {
+				console.log(`#ERRO: ${resposta}`);
+				// finalizarAguardar();
+			});
 
-  // Listando empresas cadastradas 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
+		return false;
+	}
 
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
+	// Listando empresas cadastradas 
+	function listar() {
+		fetch("/empresas/listar", {
+			method: "GET",
+		})
+			.then(function (resposta) {
+				resposta.json().then((empresas) => {
+					empresas.forEach((empresa) => {
+						listaEmpresasCadastradas.push(empresa);
 
-//   function sumirMensagem() {
-//     cardErro.style.display = "none";
-//   }
+						console.log("listaEmpresasCadastradas")
+						console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+					});
+				});
+			})
+			.catch(function (resposta) {
+				console.log(`#ERRO: ${resposta}`);
+			});
+	}
+
+	//   function sumirMensagem() {
+	//     cardErro.style.display = "none";
+	//   }
 	</script>
 </html>
 
