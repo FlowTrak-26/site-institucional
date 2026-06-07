@@ -55,6 +55,9 @@ INSERT INTO empresa_parceira (nome, cnpj, endereco_sede, franqueadora) VALUES
 	('Muffato', '01648512000108', 'Rod. Celso Garcia Cid, 1100', NULL);
 
 INSERT INTO usuario (nome, email, senha, fk_empresa_parceira, nivel_acesso) VALUES 
+	('N3','suporte@flowtrak.com', 'senha123', 1, 'COMUM');
+
+INSERT INTO usuario (nome, email, senha, fk_empresa_parceira, nivel_acesso) VALUES 
 	('Vitor', 'vitor@carrefour.com', '123', 1, 'ADMIN'),
 	('Victor', 'victor@carrefour.com', '123', 1, 'COMUM'),
 	('Isaac', 'isaac@extra.com', '123', 2, 'ADMIN'),
