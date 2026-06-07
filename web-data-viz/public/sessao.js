@@ -40,6 +40,6 @@ function finalizarAguardar(texto) {
     if (texto) {
         divErrosLogin.style.display = "flex";
         // divErrosLogin.style.position = "absolute";
-        divErrosLogin.innerHTML = <p id="mensagem_erro_login">${texto}</p>;
+        divErrosLogin.innerHTML = `<p id="mensagem_erro_login">${texto}</p>`;
     }
 }
