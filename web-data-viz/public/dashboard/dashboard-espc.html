@@ -93,10 +93,10 @@
 				</div>
 				<div class="text-perfil-area">
 					<div class="top-perfil">
-						<p id="user_name">Usuario</p>
+						<p id="user_nome">Usuario</p>
 					</div>
 					<div class="bottom-perfil">
-						<button class="btn-sair" onclick="limparSessao()">
+						<button class="btn-sair" onclick="novaSessao()">
 							<p id="user_permissao">comum</p>
 							<img src="../assets/icon/nav-seta-baixo.png">
 						</button>
@@ -323,6 +323,7 @@
 </html>
 
 <script src="../js/dash.js"></script>
+<script src="../sessao.js"></script>
 
 <script>
 	var emailUsuario = sessionStorage.NOME_USUARIO;
@@ -474,7 +475,13 @@
 					</div>`
 		}
 	}
+var nome = sessionStorage.NOME_USUARIO;
+var permissao = sessionStorage.PERMISSAO;
 
+user_permissao.innerHTML = permissao;
+user_nome.innerHTML = nome;
+console.log(nome);
+console.log(permissao);
 
 	// CÓDIGO NO FINAL DO dashboard-espc.html
 
@@ -491,6 +498,11 @@ if (nomeDaFilial != undefined) {
 if (enderecoDaFilial != undefined) {
     document.getElementById('endereco_filial').innerHTML = enderecoDaFilial;
 }
+function novaSessao(){
+	limparSessao();
+	window.location = "../main/login.html";
+}
+
 </script>
 
 <script src="../js/dash.js"></script>
