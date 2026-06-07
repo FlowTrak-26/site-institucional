@@ -26,7 +26,7 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina();">
+<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina(),  autenticarN3();">
 
 	<header>
 		<div class="nav-container">
@@ -69,6 +69,20 @@
 					<div class="nav-link-txt">
 						<a href="./dashboard-filiais.html">Filiais</a>
 					</div>
+				</div>
+				<div class="nav-link">
+					<div class="nav-link-img">
+						<img src="../assets/icon/circle-question-regular.png" alt="">
+					</div>
+					<div class="nav-link-txt">
+						<a href="https://flowtrak.atlassian.net/servicedesk/customer/portal/1">Suporte</a>
+					</div>
+				</div>
+
+				<!-- Abaixo vai ter a div do BobIa que só aparece para o N3 -->
+
+				<div class="nav-link" id="suporte">
+					
 				</div>
 			</div>
 			<div class="perfil-area">
@@ -449,6 +463,17 @@
 			}
 		}
 	});
+
+	function autenticarN3(){
+		if (emailUsuario == 'suporte@flowtrak.com') {
+			suporte.innerHTML = `<div class="nav-link-img">
+						<img src="../assets/icon/robot-solid.png" alt="">
+					</div>
+					<div class="nav-link-txt">
+						<a href="http://localhost:3000/">BoB Ai</a>
+					</div>`
+		}
+	}
 
 
 	
