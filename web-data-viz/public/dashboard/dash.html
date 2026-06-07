@@ -339,7 +339,7 @@
 
 	async function exibirGraficoLinha() {
 
-		let idEmpresa = sessionStorage.ID_EMPRESA;
+		let idEmpresa = sessionStorage.ID_EMPRESA_ATUAL || sessionStorage.ID_EMPRESA;
 
 		const resposta = await fetch(
 			`/dash/ultimas/grafico-linha/${idEmpresa}`
@@ -739,6 +739,7 @@
 	// })
 
 	function autenticarN3(){
+		let emailUsuario = sessionStorage.NOME_USUARIO || '';
 		if (emailUsuario == 'suporte@flowtrak.com') {
 			suporte.innerHTML = `<div class="nav-link-img">
 						<img src="../assets/icon/robot-solid.png" alt="">
