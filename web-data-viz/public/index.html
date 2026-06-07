@@ -84,7 +84,7 @@
 							<p id="user_name">Usuario</p>
 						</div>
 						<div class="bottom-perfil">
-							<button class="btn-sair" onclick="limparSessao()">
+							<button class="btn-sair" onclick="novaSessao()">
 								<p id="user_permissao">comum</p>
 								<img src="../assets/icon/nav-seta-baixo.png">
 							</button>
@@ -422,7 +422,6 @@ function redirecionamento_login() {
 function redirecionamento_cadastro() {
 	window.location.href = './main/cadastro.html';
 }
-
 function redirecionamento_simulador() {
 	window.location.href = './main/simulador.html'
 }
@@ -438,5 +437,10 @@ function redirecionamento_perfil() {
 	else{
 		window.location.href = './perfil/perfil-u-comum.html'
 	}
+}
+
+function novaSessao(){
+	limparSessao();
+	window.location = "./main/login.html";
 }
 </script>
