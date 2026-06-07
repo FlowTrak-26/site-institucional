@@ -1,6 +1,6 @@
-    let proximaAtualizacao;
+let proximaAtualizacao;
 
-    window.onload = exibirGraficoLinha(), exibirGraficoCalor();
+window.onload = exibirGraficoLinha(), exibirGraficoCalor();
 
     function exibirGraficoLinha() {
         var idEmpresa = 'linha';
@@ -62,27 +62,27 @@
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico(resposta, id_grafico);
+				plotarGrafico(resposta, id_grafico);
 
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
+			});
+		} else {
+			console.error('Nenhum dado encontrado ou erro na API');
+		}
+	})
+		.catch(function (error) {
+			console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+		});
+}
 
-    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, id_grafico) {
+// Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+// Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+// A função *plotarGrafico* também invoca a função *atualizarGrafico*
+function plotarGrafico(resposta, id_grafico) {
 
-        console.log('iniciando plotagem do gráfico...');
+	console.log('iniciando plotagem do gráfico...');
 
-        // Criando estrutura para plotar gráfico - labels
-        let labels = [];
+	// Criando estrutura para plotar gráfico - labels
+	let labels = [];
 
         // Criando estrutura para plotar gráfico - dados
         let dados = {
@@ -96,96 +96,169 @@
             }]
         };
 
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
+	console.log('----------------------------------------------')
+	console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+	console.log(resposta)
 
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.data_hora);
-            dados.datasets[0].data.push(registro.fluxo);
+            labels.push(registro.momento_grafico);
+            dados.datasets[0].data.push(registro.umidade);
         }
 
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
+	console.log('----------------------------------------------')
+	console.log('O gráfico será plotado com os respectivos valores:')
+	console.log('Labels:')
+	console.log(labels)
+	console.log('Dados:')
+	console.log(dados.datasets)
+	console.log('----------------------------------------------')
 
-        // Criando estrutura para plotar gráfico - config
-        const config = {
-            type: 'line',
-            data: dados,
-        };
+	// Criando estrutura para plotar gráfico - config
+	const config = {
+		type: 'line',
+		data: dados,
+	};
 
-        // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
-            document.getElementById(`myChartCanvas-${id_grafico}`),
-            config
-        );
+	// Adicionando gráfico criado em div na tela
+	let myChart = new Chart(
+		document.getElementById(`myChartCanvas-${id_grafico}`),
+		config
+	);
 
-        setTimeout(() => atualizarGrafico(id_grafico, dados, myChart), 2000);
+        setTimeout(() => atualizarGrafico(id_, dados, myChart), 2000);
     }
 
 
-    // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
+// Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+// buscando a última medida inserida em tabela contendo as capturas, 
 
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(id_grafico, dados, myChart) {
+//     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+//     Para ajustar o "select", ajuste o comando sql em src/models
+function atualizarGrafico(id_grafico, dados, myChart) {
 
         var idEmpresa = sessionStorage.ID_EMPRESA;
 
-        fetch(`/dash/ultimas/grafico-${id_grafico}/${idEmpresa}`, { cache: 'no-store' }).then(function (response) {
+
+        fetch(`/dash/tempo-real/grafico-${id_grafico}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
-                    obterdados(id_grafico);
-                    // alertar(novoRegistro, id);
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
+				obterdados(id_grafico);
+				// alertar(novoRegistro, id);
+				console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+				console.log(`Dados atuais do gráfico:`);
+				console.log(dados);
 
-                    let avisoCaptura = document.getElementById(`avisoCaptura${id}`)
-                    avisoCaptura.innerHTML = ""
+				let avisoCaptura = document.getElementById(`avisoCaptura${id}`)
+				avisoCaptura.innerHTML = ""
 
 
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].momento_grafico)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+				if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+					console.log("---------------------------------------------------------------")
+					console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+					avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+					console.log("Horário do novo dado capturado:")
+					console.log(novoRegistro[0].momento_grafico)
+					console.log("Horário do último dado capturado:")
+					console.log(dados.labels[dados.labels.length - 1])
+					console.log("---------------------------------------------------------------")
+				} else {
+					// tirando e colocando valores no gráfico
+					dados.labels.shift(); // apagar o primeiro
+					dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
 
-                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+					dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+					dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
 
-                        myChart.update();
-                    }
+					myChart.update();
+				}
 
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(id_grafico, dados, myChart), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(id_grafico, dados, myChart), 2000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
+				// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+				proximaAtualizacao = setTimeout(() => atualizarGrafico(id_grafico, dados, myChart), 2000);
+			});
+		} else {
+			console.error('Nenhum dado encontrado ou erro na API');
+			// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+			proximaAtualizacao = setTimeout(() => atualizarGrafico(id_grafico, dados, myChart), 2000);
+		}
+	})
+		.catch(function (error) {
+			console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+		});
 
     }
 
+// FILIAL 
+let emailUsuario = sessionStorage.NOME_USUARIO;
+console.log(emailUsuario);
+
+function iniciarpagina() {
+    let nomeUsuario = document.getElementById('nomeUsuario');
+    let nome = sessionStorage.NOME_USUARIO;
+    // aqui o conteudo vira texto
+    nomeUsuario.textContent = nome;
+}
+
+
+    iniciarpagina();
+
+
+        // sessionStorage.EMAIL_USUARIO = json.email;
+        //          sessionStorage.NOME_USUARIO = json.nome;
+        //          sessionStorage.ID_USUARIO = json.id;
+// function plotarfilial()
+// {
+// let user = sessionStorage.idUsuario
+//     nomeUsuario.textContent = nome;
+
+// };
+
+function carregarFiliaisNaTela() {
+    fetch("/empresas/listar", { cache: 'no-store' })
+    .then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log("dados dos supermercados recebidos !", resposta);
+                
+                var listaContainer = document.getElementById("filiais_list");
+                listaContainer.innerHTML = ""; // Limpa os dados estáticos
+
+                // uptada o contador de filiais do banner la em cima com o número real do banco
+                if (resposta.length > 0) {
+                    document.querySelector(".stats-box .count").innerHTML = resposta.length;
+                }
+
+                // procura a resposta mapeando as colunas bd
+                for (let i = 0; i < resposta.length; i++) {
+                    var empresaAtual = resposta[i];
+
+                    listaContainer.innerHTML += `
+                        <div class="filial-card">
+                            <p class="filial-desc">
+                                <span class="filial-title">${empresaAtual.nome}</span>,
+                                Endereço Sede: ${empresaAtual.endereco_sede}
+                            </p>
+                            <div class="filial-actions">
+                                <span class="status-badge ativa">ATIVA</span>
+                                <button class="btn-enter" onclick="sessionStorage.ID_EMPRESA_ATUAL = ${empresaAtual.id_empresa}; window.location='./dashboard-espc.html'">
+                                    <i class="fa-solid fa-right-to-bracket"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Mantém a div vazia estilizar 
+                listaContainer.innerHTML += `<div class="filial-card empty"></div>`;
+            });
+        } else {
+            console.error("Erro na resposta da API.");
+        }
+    }).catch(function (erro) {
+        console.error("Erro ao fazer o fetch das empresas:", erro);
+    });
+}
+
+       

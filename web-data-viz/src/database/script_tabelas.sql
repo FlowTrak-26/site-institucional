@@ -1,3 +1,5 @@
+DROP DATABASE flowtrak;
+
 CREATE DATABASE flowtrak;
 USE flowtrak;
 
@@ -5,8 +7,9 @@ CREATE TABLE empresa_parceira(
 	id_empresa INT PRIMARY KEY AUTO_INCREMENT, 
 	nome VARCHAR(45),
 	cnpj CHAR(14),
+	endereco_sede VARCHAR(45),
+	email VARCHAR(45),
 	telefone CHAR(9),
-	endereco_sede VARCHAR(45), 
 	franqueadora INT,
 	CONSTRAINT ctFkFranqueadora FOREIGN KEY(franqueadora) REFERENCES empresa_parceira(id_empresa)
 );
@@ -149,5 +152,3 @@ LEFT JOIN sensor AS sn
 ON sn.fk_ponto = pt.id_ponto_monitoramento
 LEFT JOIN dado_captado AS d_cpt
 ON d_cpt.fk_sensor = sn.id_sensor;
-
-

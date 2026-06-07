@@ -22,3 +22,4 @@ router.get("/tempo-real/grafico-calor/:idEmpresa", function (req, res) {
 })
 
 module.exports = router;
+

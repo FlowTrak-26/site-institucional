@@ -1,128 +1,140 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlowTrak</title>
+	<head>
+		<link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>FlowTrak</title>
 
-    <link rel="stylesheet" href="./css/dashboard-filiais.css" />
-    <link rel="stylesheet" href="../perfil/css/nav-bar.css">
-   
-<script src="./js/dash-filial.js"></script>
+		<link rel="stylesheet" href="./css/dashboard-filiais.css" />
+		<link rel="stylesheet" href="../perfil/css/nav-bar.css">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+		<script src="./js/dash-filial.js"></script>
 
-    <!-- scripts do Chart.js - 2022-1 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet">
 
-    <!--FONT AWESOME-->
-    <!-- <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+		<!-- scripts do Chart.js - 2022-1 -->
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<body onload="iniciarpagina(), carregarFiliaisNaTela();">
+		<!--FONT AWESOME-->
+		<!-- <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	</head>
 
-    <header>
-        <div class="nav-container">
-                <div class="nav-logo">
-                    <h1>Flow <span>Trak</span></h1>
-                    <img src="../assets/imgs/logo.png" alt="" />
-                </div>
-                <div class="nav-buttons">
+	<body onload="iniciarpagina(), carregarFiliaisNaTela();">
 
-                        <div class="nav-link">
-                            <div class="nav-link-img">
-                                <img src="../assets/icon/nav-icon-home.png" alt="">
-                            </div>
-                            <div class="nav-link-txt">
-                                <a href="../index.html">Home</a>
-                            </div>
-                        </div>
+		<header>
+			<div class="nav-container">
+				<div class="nav-logo">
+					<h1>Flow <span>Trak</span></h1>
+					<img src="../assets/imgs/logo.png" alt="" />
+				</div>
+				<div class="nav-buttons">
+					<div class="nav-link">
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-home.png" alt="">
+						</div>
+						<div class="nav-link-txt">
+							<a href="../index.html">Home</a>
+						</div>
+					</div>
 
-                        <div class="nav-link" >
-                            <div class="nav-link-img">
-                                <img src="../assets/icon/nav-icon-geral.png" alt="">
-                            </div>
-                            <div class="nav-link-txt">
-                                <a href="./dashboard-espc.html">Geral</a>
-                            </div>
-                        </div>
+					<div class="nav-link " >
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-geral.png" alt="">
+						</div>
+						<div class="nav-link-txt">
+							<a href="../dashboard/dash.html">Geral</a>
+						</div>
+					</div>
+
+					<div class="nav-link">
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-especifico.png" alt="">
+						</div>
+						<div class="nav-link-txt">
+							<a href="../dashboard/dashboard-espc.html">Específica</a>
+						</div>
+					</div>
+
+					<div class="nav-link pg-atual">
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-especifico.png" alt="">
+						</div>
+						<div class="nav-link-txt">
+							<a href="./dashboard-filiais.html">Filiais</a>
+						</div>
+					</div>
+				</div>
+				<div class="perfil-area">
+					<div class="perfil-img">
+						<button class="btn-pag-login" onclick="redirecionamento_perfil()">
+							<img src="../assets/icon/nav-icon-perfil.png" alt="">
+						</button>
+					</div>
+					<div class="text-perfil-area">
+						<div class="top-perfil">
+							<p id="user_name">Usuario</p>
+						</div>
+						<div class="bottom-perfil">
+							<button class="btn-sair" onclick="limparSessao()">
+								<p id="user_permissao">comum</p>
+								<img src="../assets/icon/nav-seta-baixo.png">
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
 
 
+		<main class="container">
 
-                        <div class="nav-link">
-                            <div class="nav-link-img">
-                                <img src="../assets/icon/nav-icon-especifico.png" alt="">
-                            </div>
-                            <div class="nav-link-txt">
-                                <a href="./dashboard-espc.html">Específica</a>
-                            </div>
-                        </div>
+			<section class="welcome-banner">
+				<div class="welcome-info">
+					<div class="icon-box">
+						<i class="fa-solid fa-building"></i>
+					</div>
+					<h2>Bem vindo, <span class="highlight">OXXO Brasil!</span></h2>
+				</div>
+				<div class="stats-box">
+					<div class="icon-box-small">
+						<i class="fa-solid fa-store"></i>
+					</div>
+					<div class="stats-text">
+						<p>FILIAIS ENCONTRADAS</p>
+						<span class="count">12</span>
+					</div>
+				</div>
+			</section>
 
-                        <div class="nav-link pg-atual">
-                            <div class="nav-link-img">
-                                <img src="../assets/icon/nav-icon-especifico.png" alt="">
-                            </div>
-                            <div class="nav-link-txt">
-                                <a href="./dashboard-filiais.html">Filiais</a>
-                            </div>
-                        </div>
-                       
-                </div>
-                <div class="perfil-area">
-                    <div class="perfil-img">
-                        <img src="../assets/icon/nav-icon-perfil.png" alt="">
-                    </div>
-                    <div class="text-perfil-area">
-                        <div class="top-perfil">
-                            <p>OXXO LTDA</p>
-                        </div>
-                        <!-- aqui aparece o nome de acordo com seu login -->
-                        <div class="bottom-perfil">
-                            <p id="nomeUsuario"></p>
-                            <img src="../assets/icon/nav-seta-baixo.png">
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </header>
 
-   
-    <main class="container">
-   
-        <section class="welcome-banner">
-            <div class="welcome-info">
-                <div class="icon-box">
-                    <i class="fa-solid fa-building"></i>
-                </div>
-                <h2>Bem vindo, <span class="highlight">OXXO Brasil!</span></h2>
-            </div>
-            <div class="stats-box">
-                <div class="icon-box-small">
-                    <i class="fa-solid fa-store"></i>
-                </div>
-                <div class="stats-text">
-                    <p>FILIAIS ENCONTRADAS</p>
-                    <span class="count">12</span>
-                </div>
-            </div>
-        </section>
+			<section class="filiais-section">
+				<div class="section-header">
+					<h3>Suas Filiais</h3>
+					<p>Selecione uma filial para acessar o dashboard.</p>
+				</div>
 
-       
-        <section class="filiais-section">
-            <div class="section-header">
-                <h3>Suas Filiais</h3>
-                <p>Selecione uma filial para acessar o dashboard.</p>
-            </div>
+				<div class="filiais-list" id="filiais_list"></div>
+			</section>
+		</main>
 
-            <div class="filiais-list" id="filiais_list"></div>
-        </section>
-    </main>
-
-</body>
+	</body>
 </html>
+<script>
+var user_name = sessionStorage.NOME_USUARIO;
+var permissao = sessionStorage.PERMISSAO;
+
+function redirecionamento_perfil() {
+	if(permissao == "ADMIN"){
+		window.location.href = '../perfil/perfil-admin.html'
+	}
+	else{
+		window.location.href = '../perfil/perfil-u-comum.html'
+	}
+}
+</script>
