@@ -1,51 +1,141 @@
+*{
+	box-sizing: border-box;
+}
+
+button{
+	cursor: pointer;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #63B1BC;
-    margin: 0;
-    padding: 0;
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
 }
 
-#container {
-    width: 80%;
-    margin: 50px auto;
-    text-align: center;
+.container{
+	width: 100%;
+	height: 100vh;
+
+	display: flex;
+	flex-direction: column;
 }
 
-h1 {
-    color: #1F2A44;
+.nav-container{
+	width: 100%;
+	height: 10%;
+
+	background-color: #8C3503;
 }
 
-textarea[type="text"] {
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 5px;
-    width: 400px;
+.nav-content{
+	width: 90%;
+	margin: auto;
+	height: 100%;
+	display: flex;
+	/* justify-content: center; */
+	align-items: center;
 }
 
-select,
-button {
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
+.btn-nav{
+	width: 140px;
+	height: 45px;
+
+	background-color: white;
+	border:solid 1px #525252;
+	border-bottom:solid 3px #525252 ;
+	font-size: 22px;
+	font-weight: bold;
+	color: #525252;
 }
 
-button {
-    background-color: #ED145B;
-    color: #FFFFFF;
-    border: none;
+.titulo-nav{
+	width: 85%;
+	text-align: center;
+	color: #D98927;
+	font-size: 38px;
+	font-weight: bold;
 }
 
-button:hover {
-    background-color: #EFB661;
+.main-container{
+	width: 100%;
+	height: 90%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-#resposta {
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #D0D3D4;
-    border: 1px solid #63666A;
-    text-align: left;
-    display: none;
+.main-content{
+	width: 80%;
+	background-color: #EEEEEE;
+	padding: 20px;
+	height: 80%;
+}
+
+h1{
+	font-size: 30px;
+	font-weight: bold;
+	height: 5%;
+	display: flex;
+	width: 100%;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.card{
+	width: 100%;
+	height: 95%;
+	display: flex;
+	flex-direction: column;
+}
+
+.card-input{
+	display: flex;
+	height: 10%;
+}
+
+#pergunta{
+	width: 90%;
+	height: 100%;
+	font-size: 24px;
+
+	resize: none;
+  border: none;
+  outline: none;
+  background: none;
+	/* padding: 0; */
+  box-shadow: none;
+
+	border: solid 2px #9C9C9C;
+	border-bottom: solid 4px #9C9C9C;
+  margin: 0;   
+	align-items: center;
+}
+
+
+.btn-response{
+	width: 10%;
+	height: 100%;
+	background-color: #5FBF62;
+	border-right: solid 2px #357C38;
+	border-bottom: solid 4px #357C38;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.btn-response:hover{
+	background-color: #3867FF;
+	border: none;
+}
+
+.card-response{
+	width: 100%;
+	margin: auto;
+	height: 80%;
+	padding: 50px;
+	background-color: #D9D9D9;
+	border: solid 2px #8E8E8E;
+	font-size: 20px;
 }
