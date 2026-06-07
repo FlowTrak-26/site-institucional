@@ -3,114 +3,60 @@
     window.onload = exibirGraficoLinha(), exibirGraficoCalor();
 
     function exibirGraficoLinha() {
-        var id_grafico = 'linha';
+        var idEmpresa = 'linha';
         // dados.forEach(item => {
         //     document.getElementById("btnDados").innerHTML += `
         //     <button class="btn-chart" onclick="exibirDados(${item.id})" id="btnDados${item.id}">${item.descricao}</button>
             document.getElementById("graficos").innerHTML += `
-                <div id="grafico-${id_grafico}" class="display-none">
+                <div id="grafico-${idEmpresa}" class="display-none">
                     <h3 class="tituloGraficos">
                         <span id="tituloGrafico-Linha">Fluxo de pessoas ao longo do dia</span>
                     </h3>
                     <div class="graph">
-                        <canvas id="myChartCanvas-${id_grafico}"></canvas>
+                        <canvas id="myChartCanvas-${idEmpresa}"></canvas>
                     </div>
                     <div class="label-captura">
-                        <p id="avisoCaptura${id_grafico}" style="color: white"></p>
+                        <p id="avisoCaptura${idEmpresa}" style="color: white"></p>
                     </div>
                 </div>
             `
 
-            obterDadosGrafico(id_grafico)
+            obterDadosGrafico(idEmpresa)
         ;
-
-        // if (dados.length > 0) {
-        //     exibirDados(dados[0].id)
-        // }
     }
 
         function exibirGraficoCalor() {
-        var id_grafico = 'calor';
+        var idEmpresa = 'calor';
         // dados.forEach(item => {
         //     document.getElementById("btnDados").innerHTML += `
         //     <button class="btn-chart" onclick="exibirDados(${item.id})" id="btnDados${item.id}">${item.descricao}</button>
             document.getElementById("graficos").innerHTML += `
-                <div id="grafico${id_grafico}" class="display-none">
+                <div id="grafico${idEmpresa}" class="display-none">
                     <h3 class="tituloGraficos">
                         <span id="tituloGrafico-Calor">Mapa de Calor - Fluxo por local</span>
                     </h3>
                     <div class="graph">
-                        <canvas id="myChartCanvas-${id_grafico}"></canvas>
+                        <canvas id="myChartCanvas-${idEmpresa}"></canvas>
                     </div>
                     <div class="label-captura">
-                        <p id="avisoCaptura${id_grafico}" style="color: white"></p>
+                        <p id="avisoCaptura${idEmpresa}" style="color: white"></p>
                     </div>
                 </div>
             `
 
-            obterDadosGrafico(id_grafico)
+            obterDadosGrafico(idEmpresa)
         ;
-
-        // if (dados.length > 0) {
-        //     exibirDados(dados[0].id)
-        // }
     }
-    // function alterarTitulo(id) {
-    //     var tituloAquario = document.getElementById(`tituloAquario${id}`)
-    //     var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == id).descricao;
-    //     tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
-    // }
-
-    // function exibirDados(id) {
-    //     let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
-
-    //     for (i = 0; i < todosOsGraficos.length; i++) {
-    //         // exibindo - ou não - o gráfico
-    //         if (todosOsGraficos[i].id != id) {
-    //             let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-    //             if (elementoAtual.classList.contains("display-block")) {
-    //                 elementoAtual.classList.remove("display-block")
-    //             }
-    //             elementoAtual.classList.add("display-none")
-
-    //             // alterando estilo do botão
-    //             let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
-    //             if (btnAtual.classList.contains("btn-pink")) {
-    //                 btnAtual.classList.remove("btn-pink")
-    //             }
-    //             btnAtual.classList.add("btn-white")
-    //         }
-    //     }
-
-    //     // exibindo - ou não - o gráfico
-    //     let graficoExibir = document.getElementById(`grafico${id}`)
-    //     graficoExibir.classList.remove("display-none")
-    //     graficoExibir.classList.add("display-block")
-
-    //     // alterando estilo do botão
-    //     let btnExibir = document.getElementById(`btnAquario${id}`)
-    //     btnExibir.classList.remove("btn-white")
-    //     btnExibir.classList.add("btn-pink")
-    // }
-
-    // O gráfico é construído com três funções:
-    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
-
-    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
+   
     function obterDadosGrafico(id_grafico) {
 
         if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
+        clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/dash/ultimas/grafico-${id_grafico}`, { cache: 'no-store' }).then(function (response) {
+        var idEmpresa = sessionStorage.ID_EMPRESA;
+
+        fetch(`/dash/ultimas/grafico-${id_grafico}/${idEmpresa}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -142,7 +88,7 @@
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'Umidade',
+                label: 'FLuxo de pessoas',
                 data: [],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
@@ -157,8 +103,8 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
+            labels.push(registro.data_hora);
+            dados.datasets[0].data.push(registro.fluxo);
         }
 
         console.log('----------------------------------------------')
@@ -181,7 +127,7 @@
             config
         );
 
-        setTimeout(() => atualizarGrafico(id_, dados, myChart), 2000);
+        setTimeout(() => atualizarGrafico(id_grafico, dados, myChart), 2000);
     }
 
 
@@ -192,9 +138,9 @@
     //     Para ajustar o "select", ajuste o comando sql em src/models
     function atualizarGrafico(id_grafico, dados, myChart) {
 
+        var idEmpresa = sessionStorage.ID_EMPRESA;
 
-
-        fetch(`/dash/tempo-real/grafico-${id_grafico}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/dash/ultimas/grafico-${id_grafico}/${idEmpresa}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
@@ -243,75 +189,3 @@
 
     }
 
-// FILIAL PORRA 
-let emailUsuario = sessionStorage.NOME_USUARIO;
-console.log(emailUsuario);
-
-function iniciarpagina() {
-    let nomeUsuario = document.getElementById('nomeUsuario');
-    let nome = sessionStorage.NOME_USUARIO;
-    // aqui o conteudo vira texto
-    nomeUsuario.textContent = nome;
-}
-
-
-    iniciarpagina();
-
-
-        // sessionStorage.EMAIL_USUARIO = json.email;
-        //          sessionStorage.NOME_USUARIO = json.nome;
-        //          sessionStorage.ID_USUARIO = json.id;
-// function plotarfilial()
-// {
-// let user = sessionStorage.idUsuario
-//     nomeUsuario.textContent = nome;
-
-// };
-
-function carregarFiliaisNaTela() {
-    fetch("/empresas/listar", { cache: 'no-store' })
-    .then(function (response) {
-        if (response.ok) {
-            response.json().then(function (resposta) {
-                console.log("dados dos supermercados recebidos !", resposta);
-                
-                var listaContainer = document.getElementById("filiais_list");
-                listaContainer.innerHTML = ""; // Limpa os dados estáticos
-
-                // uptada o contador de filiais do banner la em cima com o número real do banco
-                if (resposta.length > 0) {
-                    document.querySelector(".stats-box .count").innerHTML = resposta.length;
-                }
-
-                // procura a resposta mapeando as colunas bd
-                for (let i = 0; i < resposta.length; i++) {
-                    var empresaAtual = resposta[i];
-
-                    listaContainer.innerHTML += `
-                        <div class="filial-card">
-                            <p class="filial-desc">
-                                <span class="filial-title">${empresaAtual.nome}</span>,
-                                Endereço Sede: ${empresaAtual.endereco_sede}
-                            </p>
-                            <div class="filial-actions">
-                                <span class="status-badge ativa">ATIVA</span>
-                                <button class="btn-enter" onclick="sessionStorage.ID_EMPRESA_ATUAL = ${empresaAtual.id_empresa}; window.location='./dashboard-espc.html'">
-                                    <i class="fa-solid fa-right-to-bracket"></i>
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                }
-
-                // Mantém a div vazia estilizar 
-                listaContainer.innerHTML += `<div class="filial-card empty"></div>`;
-            });
-        } else {
-            console.error("Erro na resposta da API.");
-        }
-    }).catch(function (erro) {
-        console.error("Erro ao fazer o fetch das empresas:", erro);
-    });
-}
-
-       

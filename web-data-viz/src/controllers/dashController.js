@@ -4,11 +4,11 @@ function buscarDadosGraficoLinha(req, res) {
 
     const limite_linhas = 7;
 
-    var id_grafico = req.params.id_grafico;
+    var idEmpresa = req.params.idEmpresa;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    dashModel.buscarDadosGraficoLinha(id_grafico, limite_linhas).then(function (resultado) {
+    dashModel.buscarDadosGraficoLinha(idEmpresa, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -24,11 +24,11 @@ function buscarDadosGraficoLinha(req, res) {
 
 function atualizarDadosGraficoLinha(req, res) {
 
-    var id_grafico = req.params.id_grafico;
+    var idEmpresa = req.params.idEmpresa;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    dashModel.atualizarDadosGraficoLinha(id_grafico).then(function (resultado) {
+    dashModel.atualizarDadosGraficoLinha(idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -47,11 +47,11 @@ function buscarDadosMapaCalor(req, res) {
 
     const limite_linhas = 7;
 
-    var id_grafico = req.params.id_grafico;
+    var idEmpresa = req.params.idEmpresa;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    dashModel.buscarDadosMapaCalor(id_grafico, limite_linhas).then(function (resultado) {
+    dashModel.buscarDadosMapaCalor(idEmpresa, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -66,11 +66,11 @@ function buscarDadosMapaCalor(req, res) {
 
 function atualizarDadosMapaCalor(req, res) {
 
-    var id_grafico = req.params.id_grafico;
+    var idEmpresa = req.params.idEmpresa;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    dashModel.atualizarDadosMapaCalor(id_grafico).then(function (resultado) {
+    dashModel.atualizarDadosMapaCalor(idEmpresa ).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -83,8 +83,10 @@ function atualizarDadosMapaCalor(req, res) {
     });
 }
 
-module.exports = {
+    module.exports = {
     buscarDadosGraficoLinha,
+    atualizarDadosGraficoLinha,
+    buscarDadosMapaCalor,
     atualizarDadosMapaCalor
-
 }
+

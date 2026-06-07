@@ -305,19 +305,11 @@
 </html>
 
 
-
 <script src="../js/dash.js"></script>
 
 <script>
-    let emailUsuario = sessionStorage.NOME_USUARIO;
-    console.log(emailUsuario);
-
-    function iniciarpagina() {
-        let nomeUsuario = document.getElementById('nomeUsuario');
-        let nome = sessionStorage.NOME_USUARIO;
-        // aqui o conteudo vira texto
-        nomeUsuario.textContent = nome;
-    }
+    var idEmpresa = sessionStorage.ID_EMPRESA;
+    console.log(idEmpresa);
 
 
     iniciarpagina();
