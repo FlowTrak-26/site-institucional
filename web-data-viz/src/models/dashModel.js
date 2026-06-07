@@ -6,19 +6,20 @@ function buscarDadosGraficoLinha(idEmpresa, limite_linhas) {
     `
         SELECT
             emp.id_empresa,
-            pt.nome AS nome_ponto,
-            sn.id_sensor AS nome_sensor,
-            data_hora, dc.fluxo
-            FROM empresa_parceira emp
-            JOIN ponto_monitoramento pt
+            DATE_FORMAT(dc.data_hora, '%H') AS momento_grafico,
+            COUNT(dc.fluxo) AS fluxo
+        FROM empresa_parceira emp
+        JOIN ponto_monitoramento pt
             ON pt.fk_empresa = emp.id_empresa
-            JOIN sensor sn
-            ON sn.fk_ponto = pt.id_ponto
-            JOIN dado_captado dc
+        JOIN sensor sn
+            ON sn.fk_ponto = pt.id_ponto_monitoramento
+        JOIN dado_captado dc
             ON dc.fk_sensor = sn.id_sensor
-            WHERE emp.id_empresa = ${idEmpresa}
-            ORDER BY dc.data_hora DESC
-            LIMIT ${limite_linhas};
+        WHERE emp.id_empresa = ${idEmpresa}
+        GROUP BY
+            emp.id_empresa,
+            DATE_FORMAT(dc.data_hora, '%H')
+        ORDER BY momento_grafico;
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -28,21 +29,24 @@ function buscarDadosGraficoLinha(idEmpresa, limite_linhas) {
 function atualizarDadosGraficoLinha(idEmpresa) {
 
      var instrucaoSql = 
-     `SELECT
+     `    
+        SELECT
             emp.id_empresa,
-            pt.nome AS nome_ponto,
-            sn.id_sensor AS nome_sensor,
-            data_hora, dc.fluxo
-            FROM empresa_parceira emp
-            JOIN ponto_monitoramento pt
+            DATE_FORMAT(dc.data_hora, '%H') AS momento_grafico,
+            COUNT(dc.fluxo) AS fluxo
+        FROM empresa_parceira emp
+        JOIN ponto_monitoramento pt
             ON pt.fk_empresa = emp.id_empresa
-            JOIN sensor sn
-            ON sn.fk_ponto = pt.id_ponto
-            JOIN dado_captado dc
+        JOIN sensor sn
+            ON sn.fk_ponto = pt.id_ponto_monitoramento
+        JOIN dado_captado dc
             ON dc.fk_sensor = sn.id_sensor
-            WHERE emp.id_empresa = ${idEmpresa}
-            ORDER BY dc.data_hora DESC
-            LIMIT 1;`;
+        WHERE emp.id_empresa = 1
+        GROUP BY
+            emp.id_empresa,
+            DATE_FORMAT(dc.data_hora, '%H'
+        ORDER BY momento_grafico LIMIT 1;
+        `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
