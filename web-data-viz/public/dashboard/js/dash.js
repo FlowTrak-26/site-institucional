@@ -1,5 +1,7 @@
 let proximaAtualizacao;
+let proximaAtualizacao;
 
+window.onload = exibirGraficoLinha(), exibirGraficoCalor();
 window.onload = exibirGraficoLinha(), exibirGraficoCalor();
 
     function exibirGraficoLinha() {
@@ -54,9 +56,7 @@ window.onload = exibirGraficoLinha(), exibirGraficoCalor();
         clearTimeout(proximaAtualizacao);
         }
 
-        var idEmpresa = sessionStorage.ID_EMPRESA;
-
-        fetch(`/dash/ultimas/grafico-${id_grafico}/${idEmpresa}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/dash/ultimas/grafico-${id_grafico}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -88,7 +88,7 @@ function plotarGrafico(resposta, id_grafico) {
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'FLuxo de pessoas',
+                label: 'Umidade',
                 data: [],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
@@ -100,12 +100,12 @@ function plotarGrafico(resposta, id_grafico) {
 	console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
 	console.log(resposta)
 
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-        }
+	// Inserindo valores recebidos em estrutura para plotar o gráfico
+	for (i = 0; i < resposta.length; i++) {
+		var registro = resposta[i];
+		labels.push(registro.momento_grafico);
+		dados.datasets[0].data.push(registro.umidade);
+	}
 
 	console.log('----------------------------------------------')
 	console.log('O gráfico será plotado com os respectivos valores:')
@@ -127,8 +127,8 @@ function plotarGrafico(resposta, id_grafico) {
 		config
 	);
 
-        setTimeout(() => atualizarGrafico(id_, dados, myChart), 2000);
-    }
+	setTimeout(() => atualizarGrafico(id_, dados, myChart), 2000);
+}
 
 
 // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
@@ -141,9 +141,9 @@ function atualizarGrafico(id_grafico, dados, myChart) {
         var idEmpresa = sessionStorage.ID_EMPRESA;
 
 
-        fetch(`/dash/tempo-real/grafico-${id_grafico}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
+	fetch(`/dash/tempo-real/grafico-${id_grafico}`, { cache: 'no-store' }).then(function (response) {
+		if (response.ok) {
+			response.json().then(function (novoRegistro) {
 
 				obterdados(id_grafico);
 				// alertar(novoRegistro, id);
@@ -188,26 +188,26 @@ function atualizarGrafico(id_grafico, dados, myChart) {
 			console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
 		});
 
-    }
+}
 
 // FILIAL 
 let emailUsuario = sessionStorage.NOME_USUARIO;
 console.log(emailUsuario);
 
 function iniciarpagina() {
-    let nomeUsuario = document.getElementById('nomeUsuario');
-    let nome = sessionStorage.NOME_USUARIO;
-    // aqui o conteudo vira texto
-    nomeUsuario.textContent = nome;
+	let nomeUsuario = document.getElementById('nomeUsuario');
+	let nome = sessionStorage.NOME_USUARIO;
+	// aqui o conteudo vira texto
+	nomeUsuario.textContent = nome;
 }
 
 
-    iniciarpagina();
+iniciarpagina();
 
 
-        // sessionStorage.EMAIL_USUARIO = json.email;
-        //          sessionStorage.NOME_USUARIO = json.nome;
-        //          sessionStorage.ID_USUARIO = json.id;
+// sessionStorage.EMAIL_USUARIO = json.email;
+//          sessionStorage.NOME_USUARIO = json.nome;
+//          sessionStorage.ID_USUARIO = json.id;
 // function plotarfilial()
 // {
 // let user = sessionStorage.idUsuario
@@ -216,49 +216,57 @@ function iniciarpagina() {
 // };
 
 function carregarFiliaisNaTela() {
-    fetch("/empresas/listar", { cache: 'no-store' })
-    .then(function (response) {
-        if (response.ok) {
-            response.json().then(function (resposta) {
-                console.log("dados dos supermercados recebidos !", resposta);
-                
-                var listaContainer = document.getElementById("filiais_list");
-                listaContainer.innerHTML = ""; // Limpa os dados estáticos
+	fetch("/empresas/listar", { cache: 'no-store' })
+		.then(function (response) {
+			if (response.ok) {
+				response.json().then(function (resposta) {
+					console.log("dados dos supermercados recebidos !", resposta);
 
-                // uptada o contador de filiais do banner la em cima com o número real do banco
-                if (resposta.length > 0) {
-                    document.querySelector(".stats-box .count").innerHTML = resposta.length;
-                }
+					var listaContainer = document.getElementById("filiais_list");
+					listaContainer.innerHTML = ""; // Limpa os dados estáticos
 
-                // procura a resposta mapeando as colunas bd
-                for (let i = 0; i < resposta.length; i++) {
-                    var empresaAtual = resposta[i];
+					// uptada o contador de filiais do banner la em cima com o número real do banco
+					if (resposta.length > 0) {
+						document.querySelector(".stats-box .count").innerHTML = resposta.length;
+					}
 
-                    listaContainer.innerHTML += `
-                        <div class="filial-card">
-                            <p class="filial-desc">
-                                <span class="filial-title">${empresaAtual.nome}</span>,
-                                Endereço Sede: ${empresaAtual.endereco_sede}
-                            </p>
-                            <div class="filial-actions">
-                                <span class="status-badge ativa">ATIVA</span>
-                                <button class="btn-enter" onclick="sessionStorage.ID_EMPRESA_ATUAL = ${empresaAtual.id_empresa}; window.location='./dashboard-espc.html'">
-                                    <i class="fa-solid fa-right-to-bracket"></i>
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                }
+					// procura a resposta mapeando as colunas bd
+					for (let i = 0; i < resposta.length; i++) {
+						var empresaAtual = resposta[i];
 
-                // Mantém a div vazia estilizar 
-                listaContainer.innerHTML += `<div class="filial-card empty"></div>`;
-            });
-        } else {
-            console.error("Erro na resposta da API.");
-        }
-    }).catch(function (erro) {
-        console.error("Erro ao fazer o fetch das empresas:", erro);
-    });
+						listaContainer.innerHTML += `
+<div class="filial-card">
+<p class="filial-desc">
+<span class="filial-title">${empresaAtual.nome}</span>,
+Endereço Sede: ${empresaAtual.endereco_sede}
+</p>
+<div class="filial-actions">
+<span class="status-badge ativa">ATIVA</span>
+<button class="btn-enter" onclick="sessionStorage.ID_EMPRESA_ATUAL = ${empresaAtual.id_empresa}; window.location='./dashboard-espc.html'">
+<i class="fa-solid fa-right-to-bracket"></i>
+</button>
+</div>
+</div>
+`;
+					}
+
+					// Mantém a div vazia estilizar 
+					listaContainer.innerHTML += `<div class="filial-card empty"></div>`;
+				});
+			} else {
+				console.error("Erro na resposta da API.");
+			}
+		}).catch(function (erro) {
+			console.error("Erro ao fazer o fetch das empresas:", erro);
+		});
 }
 
-       
+
+function redirecionamento_perfil() {
+	if(permissao == "ADMIN"){
+		window.location.href = './perfil/perfil-admin.html'
+	}
+	else{
+		window.location.href = './perfil/perfil-u-comum.html'
+	}
+}
