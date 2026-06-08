@@ -26,7 +26,7 @@ router.get("/ultimas/grafico-linha/:idEmpresa/:idpontoMonitoramento", function (
 });
 
 router.get("/tempo-real/grafico-linha/:idEmpresa/:idpontoMonitoramento", function (req, res) {
-    dashController.atualizarDadosGrafico(req, res);
+    dashController.atualizarDadosGraficoEsp(req, res);
 })
 
 

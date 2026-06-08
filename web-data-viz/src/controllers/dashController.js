@@ -107,7 +107,7 @@ function buscarDadosGraficoLinhaEsp(req, res) {
 
     console.log(`Recuperando medidas em tempo real`);
 
-    dashModel.atualizarDadosMapaCalor(idpontoMonitoramento, idEmpresa).then(function (resultado) {
+    dashModel.atualizarDadosMapaCalorEsp(idpontoMonitoramento, idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -129,7 +129,7 @@ function atualizarDadosGraficoLinhaEsp(req, res) {
 
     console.log(`Recuperando medidas em tempo real`);
 
-    dashModel.atualizarDadosGraficoLinha(idpontoMonitoramento, idEmpresa).then(function (resultado) {
+    dashModel.atualizarDadosGraficoLinhaEsp(idpontoMonitoramento, idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
