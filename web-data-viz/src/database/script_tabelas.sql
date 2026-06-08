@@ -1,12 +1,14 @@
+DROP DATABASE flowtrak;
+
 CREATE DATABASE flowtrak;
 USE flowtrak;
 
 CREATE TABLE empresa_parceira(
 	id_empresa INT PRIMARY KEY AUTO_INCREMENT, 
-	nome VARCHAR(45),
-	cnpj CHAR(14),
-	endereco_sede VARCHAR(45),
-	email VARCHAR(45),
+	nome VARCHAR(45) NOT NULL,
+	cnpj CHAR(14) NOT NULL UNIQUE,
+	endereco_sede VARCHAR(45) NOT NULL,
+	email VARCHAR(45) NOT NULL UNIQUE,
 	telefone CHAR(9),
 	franqueadora INT,
 	CONSTRAINT ctFkFranqueadora FOREIGN KEY(franqueadora) REFERENCES empresa_parceira(id_empresa)
@@ -14,9 +16,10 @@ CREATE TABLE empresa_parceira(
 
 CREATE TABLE usuario(
 	id_usuario INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(45),
-	email VARCHAR(45),
-	senha VARCHAR(45),
+	nome VARCHAR(45)NOT NULL,
+	cpf VARCHAR(45) NOT NULL UNIQUE,
+	email VARCHAR(45) NOT NULL UNIQUE,
+	senha VARCHAR(45) NOT NULL,
 	nivel_acesso VARCHAR(45) DEFAULT 'COMUM',
 	fk_empresa_parceira INT,
 	CONSTRAINT ctFkEmpresaParceira FOREIGN KEY(fk_empresa_parceira) REFERENCES empresa_parceira(id_empresa),
@@ -54,16 +57,16 @@ INSERT INTO empresa_parceira (nome, cnpj, endereco_sede, franqueadora) VALUES
 	('Assaí Atacadista', '06057223000171', 'Av. Aricanduva, 5555', NULL),
 	('Muffato', '01648512000108', 'Rod. Celso Garcia Cid, 1100', NULL);
 
-INSERT INTO usuario (nome, email, senha, fk_empresa_parceira, nivel_acesso) VALUES 
-	('N3','suporte@flowtrak.com', 'senha123', 1, 'COMUM');
+INSERT INTO usuario (nome, email, cpf, senha, fk_empresa_parceira, nivel_acesso) VALUES 
+	('N3','suporte@flowtrak.com','11111111111' 'senha123', 1, 'COMUM');
 
-INSERT INTO usuario (nome, email, senha, fk_empresa_parceira, nivel_acesso) VALUES 
-	('Vitor', 'vitor@carrefour.com', '123', 1, 'ADMIN'),
-	('Victor', 'victor@carrefour.com', '123', 1, 'COMUM'),
-	('Isaac', 'isaac@extra.com', '123', 2, 'ADMIN'),
-	('Karina', 'karina@bh.com', '123', 3, 'COMUM'),
-	('Caio', 'caio@assai.com', '123', 4, 'ADMIN'),
-	('Emanuelly', 'emanuelly@muffato.com', '123', 5, 'COMUM');
+INSERT INTO usuario (nome, email, cpf, senha, fk_empresa_parceira, nivel_acesso) VALUES 
+	('Vitor', 'vitor@carrefour.com', '40206555881',  '123', 1, 'ADMIN'),
+	('Victor', 'victor@carrefour.com', '23145657687', '123', 1, 'COMUM'),
+	('Isaac', 'isaac@extra.com', '83749291759', '123', 2, 'ADMIN'),
+	('Karina', 'karina@bh.com', '12304950289', '123', 3, 'COMUM'),
+	('Caio', 'caio@assai.com', '12405820233', '123', 4, 'ADMIN'),
+	('Emanuelly', 'emanuelly@muffato.com','23456789012',  '123', 5, 'COMUM');
 
 INSERT INTO ponto_monitoramento (nome, fk_empresa) VALUES 
 	('Entrada Principal', 1),
