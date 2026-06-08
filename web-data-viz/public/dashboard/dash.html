@@ -23,14 +23,9 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<<<<<<< HEAD
 <body
-	onload="iniciarpagina(), autenticarN3(), exibirGraficoLinha(), exibirGraficoCalor(), exibirKpiTotal(), exibirKpiHorarioPico(), exibirKpiLocalMaisAcessado(), exibirKpiFluxoIntenso(), exibirKpiFluxoBaixo();">
+	onload="iniciarpagina(), exibirGraficoLinha(), exibirKpiTotal(), exibirKpiHorarioPico(), exibirKpiLocalMaisAcessado(), exibirKpiFluxoIntenso(), exibirKpiFluxoBaixo();">
 
-=======
-<body onload="iniciarpagina(), exibirGraficoLinha(), exibirKpiTotal(), exibirKpiHorarioPico(), exibirKpiLocalMaisAcessado(), exibirKpiFluxoIntenso(), exibirKpiFluxoBaixo();">
-	
->>>>>>> 69050ccf378bcb82bb05288e85ce5685c70ea0f1
 	<header>
 		<div class="nav-container">
 			<div class="nav-logo">
@@ -83,26 +78,7 @@
 						<a href="https://flowtrak.atlassian.net/servicedesk/customer/portal/1">Suporte</a>
 					</div>
 				</div>
-<<<<<<< HEAD
-
-				<!-- Abaixo vai ter a div do BobIa que só aparece para o N3 -->
-
-
-				<div class="nav-link" id="suporte">
-
-
-					<div class="nav-link" id="suporte_especifico">
-
-
-					</div>
-
-				</div>
-				<div class="perfil-area">
-					<div class="perfil-img">
-						<button class="btn-pag-login" onclick="redirecionamento_perfil()">
-							<img src="../assets/icon/nav-icon-perfil.png" alt="">
-=======
-		</div>
+			</div>
 			<div class="perfil-area">
 				<div class="perfil-img">
 					<button class="btn-pag-login" onclick="redirecionamento_perfil()">
@@ -117,7 +93,6 @@
 						<button class="btn-sair" onclick="novaSessao()">
 							<p id="user_permissao">comum</p>
 							<img src="../assets/icon/nav-seta-baixo.png">
->>>>>>> 69050ccf378bcb82bb05288e85ce5685c70ea0f1
 						</button>
 					</div>
 					<div class="text-perfil-area">
@@ -198,22 +173,22 @@
 		</div>
 		<div class="kpis-totais">
 			<div class="box-kpi">
-    <div class="kpi">
-        <div class="esquerda-kpi">
-            <i class="fa-solid fa-users" id="icone_kpi_total"></i> 
-        </div>
-        <div class="direita-kpi">
-            <div class="texto-esquerda-kpi">
-                <p class="texto-kpi">Passagens</p>
-                <p class="numero-dado" id="kpi_total_passagens">0</p>
-            </div>
-            <div class="texto-direita-kpi">
-                <p class="texto-kpi">Status</p>
-                <p class="texto-kpi" id="status_kpi_total" style="font-weight: bold;">Calculando...</p>
-            </div>
-        </div>
-    </div>
-</div>
+				<div class="kpi">
+					<div class="esquerda-kpi">
+						<i class="fa-solid fa-users" id="icone_kpi_total"></i>
+					</div>
+					<div class="direita-kpi">
+						<div class="texto-esquerda-kpi">
+							<p class="texto-kpi">Passagens</p>
+							<p class="numero-dado" id="kpi_total_passagens">0</p>
+						</div>
+						<div class="texto-direita-kpi">
+							<p class="texto-kpi">Status</p>
+							<p class="texto-kpi" id="status_kpi_total" style="font-weight: bold;">Calculando...</p>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="box-kpi">
 				<div class="box-kpi">
 					<div class="kpi">
@@ -235,7 +210,6 @@
 				</div>
 			</div>
 			<div class="box-kpi"> <!-- exibirKpiLocalMaisAcessado -->
-<<<<<<< HEAD
 				<div class="kpi">
 					<div class="esquerda-kpi">
 						<i class="fa-solid fa-map-location-dot" id="icone_kpi_local"></i>
@@ -254,23 +228,22 @@
 					</div>
 				</div>
 			</div>
-			<div class="box-kpi">
-				<div class="kpi">
-					<div class="esquerda-kpi">
-						<i class="fa-solid fa-triangle-exclamation" style="color: #A14A00;"></i>
-					</div>
-					<div class="direita-kpi">
-						<div class="texto-esquerda-kpi">
-							<p class="texto-kpi" id="kpi_intenso_setor">Fluxo Intenso</p>
-							<p class="numero-dado" id="kpi_intenso_hora">--h</p>
-						</div>
-						<div class="texto-direita-kpi">
-							<p class="texto-kpi">Fluxo</p>
-							<p class="texto-kpi">Intenso</p>
-						</div>
-					</div>
-				</div>
-			</div>
+			<!-- <div class="box-kpi">
+    <div class="kpi">
+        <div class="esquerda-kpi">
+            <i class="fa-solid fa-triangle-exclamation" style="color: #A14A00;"></i> </div>
+        <div class="direita-kpi">
+            <div class="texto-esquerda-kpi">
+                <p class="texto-kpi" id="kpi_intenso_setor">Fluxo Intenso</p>
+                <p class="numero-dado" id="kpi_intenso_hora">--h</p>
+            </div>
+            <div class="texto-direita-kpi">
+                <p class="texto-kpi">Fluxo</p>
+                <p class="texto-kpi">Intenso</p>
+            </div>
+        </div>
+    </div>
+</div> -->
 			<div class="box-kpi">
 				<div class="kpi">
 					<div class="esquerda-kpi">
@@ -288,58 +261,6 @@
 					</div>
 				</div>
 			</div>
-=======
-    <div class="kpi">
-        <div class="esquerda-kpi">
-            <i class="fa-solid fa-map-location-dot" id="icone_kpi_local"></i> 
-        </div>
-        <div class="direita-kpi">
-            <div class="texto-esquerda-kpi">
-                <p class="texto-kpi" >Local mais Acessado</p>
-		
-                <p class="numero-dado" id="kpi_porcentagem_local">0%</p>
-            </div>
-            <div class="texto-direita-kpi">
-				<p class="texto-kpi">Status:</p>
-                <p class="texto-kpi" id="status_kpi_local"   style="font-weight: bold;">Status</p>
-                <p class="texto-kpi" id="kpi_nome_local">Acessado</p>
-            </div>
-        </div>
-    </div>
-</div>
-		<!-- <div class="box-kpi">
-    <div class="kpi">
-        <div class="esquerda-kpi">
-            <i class="fa-solid fa-triangle-exclamation" style="color: #A14A00;"></i> </div>
-        <div class="direita-kpi">
-            <div class="texto-esquerda-kpi">
-                <p class="texto-kpi" id="kpi_intenso_setor">Fluxo Intenso</p>
-                <p class="numero-dado" id="kpi_intenso_hora">--h</p>
-            </div>
-            <div class="texto-direita-kpi">
-                <p class="texto-kpi">Fluxo</p>
-                <p class="texto-kpi">Intenso</p>
-            </div>
-        </div>
-    </div>
-</div> -->
-	<div class="box-kpi">
-    <div class="kpi">
-        <div class="esquerda-kpi">
-            <i class="fa-solid fa-temperature-empty" style="color: #BDBDBD;"></i> </div>
-        <div class="direita-kpi">
-            <div class="texto-esquerda-kpi">
-                <p class="texto-kpi" id="kpi_baixo_setor">Setor</p>
-                <p class="numero-dado" id="kpi_baixo_qtd">0</p>
-            </div>
-            <div class="texto-direita-kpi">
-                <p class="texto-kpi">Fluxo</p>
-                <p class="texto-kpi">Muito Baixo</p>
-            </div>
-        </div>
-    </div>
-</div>
->>>>>>> 69050ccf378bcb82bb05288e85ce5685c70ea0f1
 		</div>
 		<div class="graficos-box">
 			<div class="grafico">
@@ -366,7 +287,7 @@
 							</div>
 						</div>
 						<div class="caixas" id="mp-caixas">
-							<p class="titulo-caixa">CAIXAS</p>	
+							<p class="titulo-caixa">CAIXAS</p>
 						</div>
 						<div class="corredores" id="mp-corredores">
 							<div class="corredor1">
@@ -744,14 +665,6 @@
 
 	}
 
-<<<<<<< HEAD
-	async function exibirKpiTotal() { //kpi 1
-
-		if (!idEmpresa) {
-			console.warn('Nenhum idEmpresa definido para KPI total.');
-			return;
-		}
-=======
 	// const Linha = document.getElementById('linha')
 
 	// new Chart(Linha, {
@@ -798,63 +711,57 @@
 	// })
 
 
-	
+
 	async function exibirKpiTotal() {
-    if (!idEmpresa) return;
->>>>>>> 69050ccf378bcb82bb05288e85ce5685c70ea0f1
+		if (!idEmpresa) return;
 
-    const resposta = await fetch(`/dash/kpi/total/${idEmpresa}`);
+		const resposta = await fetch(`/dash/kpi/total/${idEmpresa}`);
 
-    if (resposta.ok) {
-        const dados = await resposta.json();
+		if (resposta.ok) {
+			const dados = await resposta.json();
 
-        let kpiElement = document.getElementById('kpi_total_passagens');
-        
-        let iconeKpi = document.getElementById('icone_kpi_total');
-        let statusKpi = document.getElementById('status_kpi_total');
-        
-        if (kpiElement && iconeKpi && statusKpi) {
-     
-            let totalPessoas = parseInt(dados.total_passagens) || 0;
-            kpiElement.innerHTML = totalPessoas;
+			let kpiElement = document.getElementById('kpi_total_passagens');
 
-<<<<<<< HEAD
+			let iconeKpi = document.getElementById('icone_kpi_total');
+			let statusKpi = document.getElementById('status_kpi_total');
+
+			if (kpiElement && iconeKpi && statusKpi) {
+
+				let totalPessoas = parseInt(dados.total_passagens) || 0;
+				kpiElement.innerHTML = totalPessoas;
+
+
+				// capacidade máxima esperada para a loja inteira EXEMPLO
+				const capacidadeMaximaLoja = 500;
+
+				//  porcentagem atingida em relação à capacidade
+				let porcentagemLotacao = (totalPessoas / capacidadeMaximaLoja) * 100;
+
+				if (porcentagemLotacao <= 60) { // PERIGO (Vermelho) - Acima de 85% 	
+					iconeKpi.style.color = "#FF0000";
+					statusKpi.innerHTML = "Perigo";
+					statusKpi.style.color = "#FF0000";
+
+
+				} else if (porcentagemLotacao > 60 && porcentagemLotacao <= 85) {
+					// ALERTA (Amarelo) - 61% a 85% da capacidade total
+					iconeKpi.style.color = "#FFD700";
+					statusKpi.innerHTML = "Alerta";
+					statusKpi.style.color = "#FFD700";
+
+				} else if (porcentagemLotacao > 85) {
+					// IDEAL (Verde) - 60% da capacidade total
+					iconeKpi.style.color = "#00FF00";
+					statusKpi.innerHTML = "Ideal";
+					statusKpi.style.color = "#00FF00";
+				}
+			}
+		} else {
+			console.error("Erro ao buscar dados do KPI Total.");
+		}
+	}
 	async function exibirKpiHorarioPico() {
 		if (!idEmpresa) return;
-=======
-        
-            // capacidade máxima esperada para a loja inteira EXEMPLO
-            const capacidadeMaximaLoja = 500; 
-            
-            //  porcentagem atingida em relação à capacidade
-            let porcentagemLotacao = (totalPessoas / capacidadeMaximaLoja) * 100;
-
-            if (porcentagemLotacao <= 60) { // PERIGO (Vermelho) - Acima de 85% 	
-                iconeKpi.style.color = "#FF0000"; 
-                statusKpi.innerHTML = "Perigo";
-                statusKpi.style.color = "#FF0000";
-                
-                
-            } else if (porcentagemLotacao > 60 && porcentagemLotacao <= 85) {
-                // ALERTA (Amarelo) - 61% a 85% da capacidade total
-                iconeKpi.style.color = "#FFD700"; 
-                statusKpi.innerHTML = "Alerta";
-                statusKpi.style.color = "#FFD700";
-                
-            } else if (porcentagemLotacao > 85){
-               // IDEAL (Verde) - 60% da capacidade total
-                iconeKpi.style.color = "#00FF00"; 
-                statusKpi.innerHTML = "Ideal";
-                statusKpi.style.color = "#00FF00";
-            }
-        }
-    } else {
-        console.error("Erro ao buscar dados do KPI Total.");
-    }
-}
-async function exibirKpiHorarioPico() {
-    if (!idEmpresa) return;
->>>>>>> 69050ccf378bcb82bb05288e85ce5685c70ea0f1
 
 		const resposta = await fetch(`/dash/kpi/horario-pico/${idEmpresa}`);
 
@@ -862,135 +769,128 @@ async function exibirKpiHorarioPico() {
 			const dados = await resposta.json();
 
 
-<<<<<<< HEAD
-			let txtHora = document.getElementById('kpi_hora_pico');
-			let txtQtd = document.getElementById('kpi_qtd_pico');
-=======
-        let txtLocal = document.getElementById('kpi_nome_local');
-        let txtPorcentagem = document.getElementById('kpi_porcentagem_local');
-        
-    
-        let iconeKpi = document.getElementById('icone_kpi_local');
-        let statusKpi = document.getElementById('status_kpi_local');
-        
-        if (txtLocal && txtPorcentagem && iconeKpi && statusKpi) {
-            
-     
-            txtLocal.innerHTML = dados.setor || "Nenhum";
-            let valorPorcentagem = parseFloat(dados.porcentagem); // vira  número decimal
-            txtPorcentagem.innerHTML = `${valorPorcentagem}%`; 
-
-          
-            if (valorPorcentagem <= 40) {
-                // IDEAL (Verde)
-                iconeKpi.style.color = "#00FF00"; // ícone
-                statusKpi.innerHTML = "Ideal";    // texto
-                statusKpi.style.color = "#00FF00"; // ta dando certo assim n vou mudar
-                
-            } else if (valorPorcentagem > 40 && valorPorcentagem <= 75) {
-                // ALERTA (Amarelo)
-                iconeKpi.style.color = "#FFD700"; 
-                statusKpi.innerHTML = "Alerta";
-                statusKpi.style.color = "#FFD700";
-                
-            } else {
-                // PERIGO (Vermelho)
-                iconeKpi.style.color = "#FF0000"; 
-                statusKpi.innerHTML = "Perigo";
-                statusKpi.style.color = "#FF0000";
-
-				
-            }
-        }
-    } else {
-        console.error("Erro ao buscar dados do KPI Local Mais Acessado.");
-    }
-}
-
-async function exibirKpiFluxoIntenso() {
-    if (!idEmpresa) return;
-
-    const resposta = await fetch(`/dash/kpi/fluxo-intenso/${idEmpresa}`);
-
-    if (resposta.ok) {
-        const dados = await resposta.json();
-        console.log("KPI Fluxo Intenso (Alerta):", dados);
-
-        let txtSetor = document.getElementById('kpi_intenso_setor');
-        let txtHora = document.getElementById('kpi_intenso_hora');
-        
-        if (txtSetor && txtHora) {
-            txtSetor.innerHTML = dados.setor || "Nenhum";
-            txtHora.innerHTML = `às ${dados.hora_pico}h`; // Exibe algo como "às 9h"
-        }
-    } else {
-        console.error("Erro ao buscar dados do KPI Fluxo Intenso.");
-    }
-}
-
-async function exibirKpiFluxoBaixo() {
-    if (!idEmpresa) return;
-
-    const resposta = await fetch(`/dash/kpi/fluxo-baixo/${idEmpresa}`);
-
-    if (resposta.ok) {
-        const dados = await resposta.json();
-        console.log("KPI Fluxo Baixo (Alerta):", dados);
-
-        let txtSetor = document.getElementById('kpi_baixo_setor');
-        let txtQtd = document.getElementById('kpi_baixo_qtd');
-        
-        if (txtSetor && txtQtd) {
-            txtSetor.innerHTML = dados.setor || "Nenhum";
-            txtQtd.innerHTML = dados.min_fluxo || 0;
-        }
-    } else {
-        console.error("Erro ao buscar dados do KPI Fluxo Baixo.");
-    }
-}
->>>>>>> 69050ccf378bcb82bb05288e85ce5685c70ea0f1
+			let txtLocal = document.getElementById('kpi_nome_local');
+			let txtPorcentagem = document.getElementById('kpi_porcentagem_local');
 
 
-			let iconeKpi = document.getElementById('icone_kpi_pico');
-			let statusKpi = document.getElementById('status_kpi_pico');
+			let iconeKpi = document.getElementById('icone_kpi_local');
+			let statusKpi = document.getElementById('status_kpi_local');
 
-			if (txtHora && txtQtd && statusKpi) {
-
-
-				txtHora.innerHTML = `${dados.hora_pico}h`;
-				let totalPessoas = parseInt(dados.total_passagens);
-				txtQtd.innerHTML = `Passagens no Horario: ${totalPessoas}`;
+			if (txtLocal && txtPorcentagem && iconeKpi && statusKpi) {
 
 
-				// capacidade máxima que a loja suporta em 1 hora
-				//isso pode vir do BD (ex: dados.capacidade_maxima) sla
-				const capacidadeMaximaHora = 100; // CAPACIDADE MAXIMA DE EXEMPLO
+				txtLocal.innerHTML = dados.setor || "Nenhum";
+				let valorPorcentagem = parseFloat(dados.porcentagem); // vira  número decimal
+				txtPorcentagem.innerHTML = `${valorPorcentagem}%`;
 
-				// calcula qual a porcentagem de lotação no horário
-				let porcentagemLotacao = (totalPessoas / capacidadeMaximaHora) * 100;
 
-				if (porcentagemLotacao <= 60) {
-					// IDEAL (Verde) -  60% 
-					iconeKpi.style.color = "#00FF00";
-					statusKpi.innerHTML = "Ideal";
-					statusKpi.style.color = "#00FF00";
+				if (valorPorcentagem <= 40) {
+					// IDEAL (Verde)
+					iconeKpi.style.color = "#00FF00"; // ícone
+					statusKpi.innerHTML = "Ideal";    // texto
+					statusKpi.style.color = "#00FF00"; // ta dando certo assim n vou mudar
 
-				} else if (porcentagemLotacao > 60 && porcentagemLotacao <= 85) {
-					// ALERTA (Amarelo) -  61% - 85%
+				} else if (valorPorcentagem > 40 && valorPorcentagem <= 75) {
+					// ALERTA (Amarelo)
 					iconeKpi.style.color = "#FFD700";
 					statusKpi.innerHTML = "Alerta";
 					statusKpi.style.color = "#FFD700";
 
 				} else {
-					// PERIGO (Vermelho) > 85% 
+					// PERIGO (Vermelho)
 					iconeKpi.style.color = "#FF0000";
 					statusKpi.innerHTML = "Perigo";
 					statusKpi.style.color = "#FF0000";
+
+
 				}
 			}
 		} else {
-			console.error("Erro ao buscar dados do KPI Horário Pico.");
+			console.error("Erro ao buscar dados do KPI Local Mais Acessado.");
 		}
+	}
+
+	async function exibirKpiFluxoIntenso() {
+		if (!idEmpresa) return;
+
+		const resposta = await fetch(`/dash/kpi/fluxo-intenso/${idEmpresa}`);
+
+		if (resposta.ok) {
+			const dados = await resposta.json();
+			console.log("KPI Fluxo Intenso (Alerta):", dados);
+
+			let txtSetor = document.getElementById('kpi_intenso_setor');
+			let txtHora = document.getElementById('kpi_intenso_hora');
+
+			if (txtSetor && txtHora) {
+				txtSetor.innerHTML = dados.setor || "Nenhum";
+				txtHora.innerHTML = `às ${dados.hora_pico}h`; // Exibe algo como "às 9h"
+			}
+		} else {
+			console.error("Erro ao buscar dados do KPI Fluxo Intenso.");
+		}
+	}
+
+	async function exibirKpiFluxoBaixo() {
+		if (!idEmpresa) return;
+
+		const resposta = await fetch(`/dash/kpi/fluxo-baixo/${idEmpresa}`);
+
+		if (resposta.ok) {
+			const dados = await resposta.json();
+			console.log("KPI Fluxo Baixo (Alerta):", dados);
+
+			let txtSetor = document.getElementById('kpi_baixo_setor');
+			let txtQtd = document.getElementById('kpi_baixo_qtd');
+
+			if (txtSetor && txtQtd) {
+				txtSetor.innerHTML = dados.setor || "Nenhum";
+				txtQtd.innerHTML = dados.min_fluxo || 0;
+			}
+		} else {
+			console.error("Erro ao buscar dados do KPI Fluxo Baixo.");
+		}
+	}
+
+
+	let iconeKpi = document.getElementById('icone_kpi_pico');
+	let statusKpi = document.getElementById('status_kpi_pico');
+
+	if (txtHora && txtQtd && statusKpi) {
+
+
+		txtHora.innerHTML = `${dados.hora_pico}h`;
+		let totalPessoas = parseInt(dados.total_passagens);
+		txtQtd.innerHTML = `Passagens no Horario: ${totalPessoas}`;
+
+
+		// capacidade máxima que a loja suporta em 1 hora
+		//isso pode vir do BD (ex: dados.capacidade_maxima) sla
+		const capacidadeMaximaHora = 100; // CAPACIDADE MAXIMA DE EXEMPLO
+
+		// calcula qual a porcentagem de lotação no horário
+		let porcentagemLotacao = (totalPessoas / capacidadeMaximaHora) * 100;
+
+		if (porcentagemLotacao <= 60) {
+			// IDEAL (Verde) -  60% 
+			iconeKpi.style.color = "#00FF00";
+			statusKpi.innerHTML = "Ideal";
+			statusKpi.style.color = "#00FF00";
+
+		} else if (porcentagemLotacao > 60 && porcentagemLotacao <= 85) {
+			// ALERTA (Amarelo) -  61% - 85%
+			iconeKpi.style.color = "#FFD700";
+			statusKpi.innerHTML = "Alerta";
+			statusKpi.style.color = "#FFD700";
+
+		} else {
+			// PERIGO (Vermelho) > 85% 
+			iconeKpi.style.color = "#FF0000";
+			statusKpi.innerHTML = "Perigo";
+			statusKpi.style.color = "#FF0000";
+		}
+	} else {
+		console.error("Erro ao buscar dados do KPI Horário Pico.");
 	}
 
 	async function exibirKpiLocalMaisAcessado() {
@@ -1114,7 +1014,7 @@ async function exibirKpiFluxoBaixo() {
 		document.getElementById('endereco_filial').innerHTML = enderecoDaFilial;
 	}
 
-	function autenticarN3(){
+	function autenticarN3() {
 		let emailUsuario = sessionStorage.EMAIL_USUARIO;
 
 		console.log(emailUsuario)
@@ -1128,15 +1028,15 @@ async function exibirKpiFluxoBaixo() {
 		}
 	}
 
-function novaSessao(){
-	limparSessao();
-	window.location = "../main/login.html";
-}
+	function novaSessao() {
+		limparSessao();
+		window.location = "../main/login.html";
+	}
 
-function redirecionamento_bobIA(){
-	window.location = "http://localhost:3000";
-}
-autenticarN3();
+	function redirecionamento_bobIA() {
+		window.location = "http://localhost:3000";
+	}
+	autenticarN3();
 </script>
 
 </html>
