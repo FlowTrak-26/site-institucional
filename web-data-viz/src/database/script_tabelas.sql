@@ -215,3 +215,5 @@ emp.id_empresa,
 DATE_FORMAT(dc.data_hora, '%H')
 ORDER BY
 DATE_FORMAT(dc.data_hora, '%H');
+
+
