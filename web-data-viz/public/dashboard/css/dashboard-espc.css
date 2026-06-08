@@ -642,3 +642,7 @@
     height: 100%;
     z-index: 2;
 }
+
+#linha canvas{
+    min-height: 38vh;
+}
