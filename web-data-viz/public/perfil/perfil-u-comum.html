@@ -1,193 +1,205 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Flowtrak</title>
-		<link href="./css/nav-bar.css" rel="stylesheet">
-		<link href="./css/perfil-comum.css" rel="stylesheet">
-	</head>
-	<body>
-		<div class="main-container">
-			<div class="nav-container" id="navAutenticada">
-				<div class="nav-logo">
-					<h1>Flow <span>Trak</span></h1>
-					<img src="../assets/imgs/logo.png" alt="" />
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Flowtrak</title>
+	<link href="./css/nav-bar.css" rel="stylesheet">
+	<link href="./css/perfil-comum.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="main-container">
+		<div class="nav-container" id="navAutenticada">
+			<div class="nav-logo">
+				<h1>Flow <span>Trak</span></h1>
+				<img src="../assets/imgs/logo.png" alt="" />
+			</div>
+			<div class="nav-buttons">
+				<div class="nav-link">
+					<div class="nav-link-img">
+						<img src="../assets/icon/nav-icon-home.png" alt="">
+					</div>
+					<div class="nav-link-txt">
+						<a href="../index.html">Home</a>
+					</div>
 				</div>
-				<div class="nav-buttons">
-						<div class="nav-link">
-							<div class="nav-link-img">
-								<img src="../assets/icon/nav-icon-home.png" alt="">
-							</div>
-							<div class="nav-link-txt">
-								<a href="../index.html">Home</a>
-							</div>
-						</div>
 
-						<div class="nav-link " >
-							<div class="nav-link-img">
-								<img src="../assets/icon/nav-icon-geral.png" alt="">
-							</div>
-							<div class="nav-link-txt">
-								<a href="../dashboard/dash.html">Geral</a>
-							</div>
-						</div>
-
-						<div class="nav-link">
-							<div class="nav-link-img">
-								<img src="../assets/icon/nav-icon-especifico.png" alt="">
-							</div>
-							<div class="nav-link-txt">
-								<a href="../dashboard/dashboard-espc.html">Específica</a>
-							</div>
-						</div>
-
+				<div class="nav-link ">
+					<div class="nav-link-img">
+						<img src="../assets/icon/nav-icon-geral.png" alt="">
+					</div>
+					<div class="nav-link-txt">
+						<a href="../dashboard/dash.html">Geral</a>
+					</div>
 				</div>
-				<div class="perfil-area">
-					<div class="perfil-img">
-						<button class="btn-pag-login" onclick="redirecionamento_perfil()">
-							<img src="../assets/icon/nav-icon-perfil.png" alt="">
+
+				<div class="nav-link">
+					<div class="nav-link-img">
+						<img src="../assets/icon/nav-icon-especifico.png" alt="">
+					</div>
+					<div class="nav-link-txt">
+						<a href="../dashboard/dashboard-espc.html">Específica</a>
+					</div>
+				</div>
+
+				<div class="nav-link">
+					<div class="nav-link-img">
+						<img src="../assets/icon/circle-question-regular.png" alt="">
+					</div>
+					<div class="nav-link-txt">
+						<a href="https://flowtrak.atlassian.net/servicedesk/customer/portal/1">Suporte</a>
+					</div>
+				</div>
+
+			</div>
+			<div class="perfil-area">
+				<div class="perfil-img">
+					<button class="btn-pag-login" onclick="redirecionamento_perfil()">
+						<img src="../assets/icon/nav-icon-perfil.png" alt="">
+					</button>
+				</div>
+				<div class="text-perfil-area">
+					<div class="top-perfil">
+						<p id="user_name">Usuario</p>
+					</div>
+					<div class="bottom-perfil">
+						<button class="btn-sair" onclick="novaSessao()">
+							<p id="user_permissao">comum</p>
+							<img src="../assets/icon/nav-seta-baixo.png">
 						</button>
 					</div>
-					<div class="text-perfil-area">
-						<div class="top-perfil">
-							<p id="user_name">Usuario</p>
-						</div>
-						<div class="bottom-perfil">
-							<button class="btn-sair" onclick="novaSessao()">
-								<p id="user_permissao">comum</p>
-								<img src="../assets/icon/nav-seta-baixo.png">
-							</button>
-						</div>
-					</div>
 				</div>
 			</div>
-
-			<div class="main-content">
-				<div class="banner-content">
-					<img src="../assets/imgs/banner-perfil.png" alt="">
-				</div>
-				<div class="container-icon-perfil">
-					<img src="../assets/icon/icon-perfil-main.png" alt="">
-				</div>
-
-				<div class="container-inputs">
-					<div class="inputs-area">
-						<div class="input-perfil">
-							<p>Nome Completo:</p>
-							<input placeholder="Nome" id="ipt_nome">
-						</div>
-						<div class="input-perfil">
-							<p>Email:</p>
-							<input placeholder="Email" id="ipt_email">
-						</div>
-					</div>
-
-					<div class="inputs-area area-border-left">
-						<div class="input-perfil">
-							<p>Senha:</p>
-							<input placeholder="senha" id="ipt_senha">
-						</div>
-						<div class="input-perfil">
-							<p>Confirmar senha:</p>
-							<input placeholder="confirme senha">
-						</div>
-						<button class="btn-salvar-alteracoes" onclick="atualizarDados()">Salvar Alterações</button>
-					</div>
-				</div>
-			</div>
-
-
 		</div>
-	</body>
+
+		<div class="main-content">
+			<div class="banner-content">
+				<img src="../assets/imgs/banner-perfil.png" alt="">
+			</div>
+			<div class="container-icon-perfil">
+				<img src="../assets/icon/icon-perfil-main.png" alt="">
+			</div>
+
+			<div class="container-inputs">
+				<div class="inputs-area">
+					<div class="input-perfil">
+						<p>Nome Completo:</p>
+						<input placeholder="Nome" id="ipt_nome">
+					</div>
+					<div class="input-perfil">
+						<p>Email:</p>
+						<input placeholder="Email" id="ipt_email">
+					</div>
+				</div>
+
+				<div class="inputs-area area-border-left">
+					<div class="input-perfil">
+						<p>Senha:</p>
+						<input placeholder="senha" id="ipt_senha">
+					</div>
+					<div class="input-perfil">
+						<p>Confirmar senha:</p>
+						<input placeholder="confirme senha">
+					</div>
+					<button class="btn-salvar-alteracoes" onclick="atualizarDados()">Salvar Alterações</button>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</body>
+
 </html>
 <script src="../sessao.js"></script>
 <script>
-var nome = sessionStorage.NOME_USUARIO;
-var permissao = sessionStorage.PERMISSAO;
+	var nome = sessionStorage.NOME_USUARIO;
+	var permissao = sessionStorage.PERMISSAO;
 
 
-function atualizarDados() {
+	function atualizarDados() {
 
-	//Recupere o valor da nova input pelo nome do id
-	// Agora vá para o método fetch logo abaixo
+		//Recupere o valor da nova input pelo nome do id
+		// Agora vá para o método fetch logo abaixo
 
 
-	var idVar = sessionStorage.ID_USUARIO;
-	console.log(idVar)
-	var nomeVar = ipt_nome.value;
-	var senhaVar = ipt_senha.value;
-	var emailVar = ipt_email.value;
+		var idVar = sessionStorage.ID_USUARIO;
+		console.log(idVar)
+		var nomeVar = ipt_nome.value;
+		var senhaVar = ipt_senha.value;
+		var emailVar = ipt_email.value;
 
-	// Verificando se há algum campo em branco
-	if (
-		idVar == "" ||
-		nomeVar == "" ||
-		senhaVar == "" ||
-		emailVar == "" 
-	) {
+		// Verificando se há algum campo em branco
+		if (
+			idVar == "" ||
+			nomeVar == "" ||
+			senhaVar == "" ||
+			emailVar == ""
+		) {
 
-		console.log("Algum campo não foi preenchido");
-		console.log("Ou deu pau no id")
+			console.log("Algum campo não foi preenchido");
+			console.log("Ou deu pau no id")
+
+			return false;
+		} else {
+			//   setInterval(sumirMensagem, 5000);
+		}
+
+
+		// Enviando o valor da nova input
+		fetch("/usuarios/atualizar", {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				// crie um atributo que recebe o valor recuperado aqui
+				// Agora vá para o arquivo routes/usuario.js
+				idServer: idVar,
+				nomeServer: nomeVar,
+				emailServer: emailVar,
+				senhaServer: senhaVar
+			}),
+		})
+			.then(function (resposta) {
+				console.log("resposta: ", resposta);
+
+				if (resposta.ok) {
+					//   cardErro.style.display = "block";
+					sessionStorage.NOME_USUARIO = nomeVar;
+					sessionStorage.EMAIL_USUARIO = emailVar;
+					sessionStorage.SENHA_USUARIO = senhaVar;
+					window.location = "./perfil-u-comum.html";
+
+					console.log("Cadastro realizado com sucesso!...");
+
+					// setTimeout(() => {
+					// 	window.location = "../index.html";
+					// }, "2000");
+
+					//   limparFormulario();
+				} else {
+					throw "Houve um erro ao tentar realizar o cadastro!";
+				}
+			})
+			.catch(function (resposta) {
+				console.log(`#ERRO: ${resposta}`);
+				// finalizarAguardar();
+			});
 
 		return false;
-	} else {
-		//   setInterval(sumirMensagem, 5000);
 	}
 
+	user_permissao.innerHTML = permissao;
+	user_name.innerHTML = nome;
+	console.log(nome);
+	console.log(permissao);
 
-	// Enviando o valor da nova input
-	fetch("/usuarios/atualizar", {
-		method: "PUT",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			// crie um atributo que recebe o valor recuperado aqui
-			// Agora vá para o arquivo routes/usuario.js
-			idServer: idVar,
-			nomeServer: nomeVar,
-			emailServer: emailVar,
-			senhaServer: senhaVar
-		}),
-	})
-		.then(function (resposta) {
-			console.log("resposta: ", resposta);
-
-			if (resposta.ok) {
-				//   cardErro.style.display = "block";
-				sessionStorage.NOME_USUARIO = nomeVar;
-				sessionStorage.EMAIL_USUARIO = emailVar;
-				sessionStorage.SENHA_USUARIO = senhaVar;
-				window.location = "./perfil-u-comum.html";
-
-				console.log("Cadastro realizado com sucesso!...");		  
-
-				// setTimeout(() => {
-				// 	window.location = "../index.html";
-				// }, "2000");
-
-				//   limparFormulario();
-			} else {
-				throw "Houve um erro ao tentar realizar o cadastro!";
-			}
-		})
-		.catch(function (resposta) {
-			console.log(`#ERRO: ${resposta}`);
-			// finalizarAguardar();
-		});
-
-	return false;
-}
-
-user_permissao.innerHTML = permissao;
-user_name.innerHTML = nome;
-console.log(nome);
-console.log(permissao);
-
-function novaSessao(){
-	limparSessao();
-	window.location = "../main/login.html";
-}
+	function novaSessao() {
+		limparSessao();
+		window.location = "../main/login.html";
+	}
 
 </script>

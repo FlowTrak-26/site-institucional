@@ -645,3 +645,17 @@
 #linha canvas{
     min-height: 38vh;
 }
+
+#btn-bobIA{
+	background: none;
+	border: none;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	cursor: pointer;
+}
+
+#btn-bobIA img{
+	width: 150px;
+	height: 150px;
+}

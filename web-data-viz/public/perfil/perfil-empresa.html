@@ -1,174 +1,177 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Flowtrak</title>
-		<link href="./css/nav-bar.css" rel="stylesheet">
-		<link href="./css/perfil-empresa.css" rel="stylesheet">
-	</head>
-	<body>
-		<div class="main-container">
-			<div class="nav-container">
-				<div class="nav-logo">
-					<h1>Flow <span>Trak</span></h1>
-					<img src="../assets/imgs/logo.png" alt="" />
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Flowtrak</title>
+	<link href="./css/nav-bar.css" rel="stylesheet">
+	<link href="./css/perfil-empresa.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="main-container">
+		<div class="nav-container">
+			<div class="nav-logo">
+				<h1>Flow <span>Trak</span></h1>
+				<img src="../assets/imgs/logo.png" alt="" />
+			</div>
+			<div class="nav-buttons">
+				<div class="nav-link">
+					<div class="nav-link-img">
+						<img src="../assets/icon/nav-icon-home.png" alt="">
+					</div>
+					<div class="nav-link-txt">
+						<a href="../index.html">Home</a>
+					</div>
 				</div>
-				<div class="nav-buttons">
-					<div class="nav-link">
-						<div class="nav-link-img">
-							<img src="../assets/icon/nav-icon-home.png" alt="">
-						</div>
-						<div class="nav-link-txt">
-							<a href="../index.html">Home</a>
-						</div>
-					</div>
 
-					<div class="nav-link " >
-						<div class="nav-link-img">
-							<img src="../assets/icon/nav-icon-geral.png" alt="">
-						</div>
-						<div class="nav-link-txt">
-							<a href="../dashboard/dash.html">Geral</a>
-						</div>
+				<div class="nav-link ">
+					<div class="nav-link-img">
+						<img src="../assets/icon/nav-icon-geral.png" alt="">
 					</div>
-
-					<div class="nav-link">
-						<div class="nav-link-img">
-							<img src="../assets/icon/nav-icon-especifico.png" alt="">
-						</div>
-						<div class="nav-link-txt">
-							<a href="../dashboard/dashboard-espc.html">Específica</a>
-						</div>
+					<div class="nav-link-txt">
+						<a href="../dashboard/dash.html">Geral</a>
 					</div>
-
 				</div>
-				<div class="perfil-area">
-					<div class="perfil-img">
-						<button class="btn-pag-login" onclick="redirecionamento_perfil()">
-							<img src="../assets/icon/nav-icon-perfil.png" alt="">
+
+				<div class="nav-link">
+					<div class="nav-link-img">
+						<img src="../assets/icon/nav-icon-especifico.png" alt="">
+					</div>
+					<div class="nav-link-txt">
+						<a href="../dashboard/dashboard-espc.html">Específica</a>
+					</div>
+				</div>
+
+				<div class="nav-link">
+					<div class="nav-link-img">
+						<img src="../assets/icon/circle-question-regular.png" alt="">
+					</div>
+					<div class="nav-link-txt">
+						<a href="https://flowtrak.atlassian.net/servicedesk/customer/portal/1">Suporte</a>
+					</div>
+				</div>
+
+			</div>
+			<div class="perfil-area">
+				<div class="perfil-img">
+					<button class="btn-pag-login" onclick="redirecionamento_perfil()">
+						<img src="../assets/icon/nav-icon-perfil.png" alt="">
+					</button>
+				</div>
+				<div class="text-perfil-area">
+					<div class="top-perfil">
+						<p id="user_name">Usuario</p>
+					</div>
+					<div class="bottom-perfil">
+						<button class="btn-sair" onclick="novaSessao()">
+							<p id="user_permissao">comum</p>
+							<img src="../assets/icon/nav-seta-baixo.png">
 						</button>
 					</div>
-					<div class="text-perfil-area">
-						<div class="top-perfil">
-							<p id="user_name">Usuario</p>
-						</div>
-						<div class="bottom-perfil">
-							<button class="btn-sair" onclick="novaSessao()">
-								<p id="user_permissao">comum</p>
-								<img src="../assets/icon/nav-seta-baixo.png">
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="main-content">
-				<div class="banner-content">
-					<img src="../assets/imgs/banner-perfil.png" alt="">
-				</div>
-				<div class="container-icon-perfil">
-					<div class="btns-icons-perfil">
-						<button class="btn-ativo" >informações sensiveis</button>
-						<button class="btn-inativo" onclick="pagina_admin()">adicionar funcionarios</button>
-					</div>
-					<img src="../assets/icon/icon-perfil-main.png" alt="">
-				</div>
-
-				<!-- fazer o bagulho aq -->
-				<div class="container-ipts-dados">
-					<div class="container-ipts-left">
-						<div class="content-ipts">
-							<div class="ipt-alteracao">
-								<p>Nome da empresa:</p>
-								<input id="ipt_nome" placeholder="Nome">
-							</div>
-							<div class="ipt-alteracao">
-								<p>Email:</p>
-								<input id="ipt_email" placeholder="Email">
-							</div>
-							<div class="ipt-alteracao">
-								<p>Telefone:</p>
-								<input id="ipt_telefone" placeholder="Telefone">
-							</div>
-							<div class="ipt-alteracao">
-								<p>CNPJ:</p>
-								<input id="ipt_cnpj" placeholder="Cnpj">
-							</div>
-						</div>
-
-					</div>
-					<div class="container-ipts-right left-line">
-						<div class="content-ipts direita">
-							<div class="ipt-alteracao">
-								<p>Endereço:</p>
-								<input id="ipt_endereco" placeholder="Endereço">
-							</div>
-							<div class="ipt-alteracao">
-								<p>Senha:</p>
-								<input id="ipt_senha" placeholder="Senha">
-							</div>
-							<div class="ipt-alteracao">
-								<p>Confirmar senha:</p>
-								<input id="ipt_senha_confirmacao" placeholder="Confirmar senha">
-							</div>
-							<button class="btn-salvar-empresa" onclick="cadastrar()">Salvar alterações</button>
-						</div>
-					</div>
-
 				</div>
 			</div>
 		</div>
-	</body>
-	<script src="../sessao.js"></script>
-	<script>
-	function pagina_admin(){
+
+		<div class="main-content">
+			<div class="banner-content">
+				<img src="../assets/imgs/banner-perfil.png" alt="">
+			</div>
+			<div class="container-icon-perfil">
+				<div class="btns-icons-perfil">
+					<button class="btn-ativo">informações sensiveis</button>
+					<button class="btn-inativo" onclick="pagina_admin()">adicionar funcionarios</button>
+				</div>
+				<img src="../assets/icon/icon-perfil-main.png" alt="">
+			</div>
+
+			<!-- fazer o bagulho aq -->
+			<div class="container-ipts-dados">
+				<div class="container-ipts-left">
+					<div class="content-ipts">
+						<div class="ipt-alteracao">
+							<p>Nome da empresa:</p>
+							<input id="ipt_nome" placeholder="Nome">
+						</div>
+						<div class="ipt-alteracao">
+							<p>Email:</p>
+							<input id="ipt_email" placeholder="Email">
+						</div>
+						<div class="ipt-alteracao">
+							<p>Telefone:</p>
+							<input id="ipt_telefone" placeholder="Telefone">
+						</div>
+						<div class="ipt-alteracao">
+							<p>CNPJ:</p>
+							<input id="ipt_cnpj" placeholder="Cnpj">
+						</div>
+					</div>
+
+				</div>
+				<div class="container-ipts-right left-line">
+					<div class="content-ipts direita">
+						<div class="ipt-alteracao">
+							<p>Endereço:</p>
+							<input id="ipt_endereco" placeholder="Endereço">
+						</div>
+						<div class="ipt-alteracao">
+							<p>Senha:</p>
+							<input id="ipt_senha" placeholder="Senha">
+						</div>
+						<div class="ipt-alteracao">
+							<p>Confirmar senha:</p>
+							<input id="ipt_senha_confirmacao" placeholder="Confirmar senha">
+						</div>
+						<button class="btn-salvar-empresa" onclick="atualizar()">Salvar alterações</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../sessao.js"></script>
+<script>
+	function pagina_admin() {
 		window.location.href = './perfil-admin.html';
 	}
-
 
 	// Array para armazenar empresas cadastradas para validação de código de ativação 
 	let listaEmpresasCadastradas = [];
 
-	function cadastrar() {
-
-		//Recupere o valor da nova input pelo nome do id
-		// Agora vá para o método fetch logo abaixo
-
+	function atualizar() {
 		var nomeVar = ipt_nome.value;
 		var cnpjVar = ipt_cnpj.value;
 		var telefoneVar = ipt_telefone.value;
 		var emailVar = ipt_email.value;
 		var enderecoVar = ipt_endereco.value;
+		var idEmpresaVar = sessionStorage.ID_EMPRESA;
 
-		// Verificando se há algum campo em branco
+		console.log(idEmpresaVar)
 		if (
 			nomeVar == "" ||
 			cnpjVar == "" ||
 			telefoneVar == "" ||
 			emailVar == "" ||
-			enderecoVar ==""
+			enderecoVar == ""
 		) {
 
 			console.log("Algum campo não foi preenchido");
 
 			return false;
 		} else {
-			console.log("Valores colocados pelo usuário", nomeVar,cnpjVar,telefoneVar,emailVar,enderecoVar)
-			//   setInterval(sumirMensagem, 5000);
+			console.log("Valores colocados pelo usuário", nomeVar, cnpjVar, telefoneVar, emailVar, enderecoVar)
 		}
 
-
-
 		// Enviando o valor da nova input
-		fetch("/empresas/cadastrar", {
-			method: "POST",
+		fetch("/empresas/atualizar", {
+			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				// crie um atributo que recebe o valor recuperado aqui
-				// Agora vá para o arquivo routes/usuario.js
+				idEmpresaServer: idEmpresaVar,
 				nomeServer: nomeVar,
 				cnpjServer: cnpjVar,
 				enderecoServer: enderecoVar,
@@ -178,20 +181,11 @@
 		})
 			.then(function (resposta) {
 				console.log("resposta: ", resposta);
-
 				if (resposta.ok) {
-					//   cardErro.style.display = "block";
-
-					console.log("Cadastro realizado com sucesso!...");		  
-
-
-					// setTimeout(() => {
-					// 	window.location = "../index.html";
-					// }, "2000");
-
-					//   limparFormulario();
+					console.log("Informações atualizadas com sucesso!...");
+					// window.location = "./perfil-empresa.html";
 				} else {
-					throw "Houve um erro ao tentar realizar o cadastro!";
+					throw "Houve um erro ao atualizar as informações!";
 				}
 			})
 			.catch(function (resposta) {
@@ -226,20 +220,18 @@
 	//     cardErro.style.display = "none";
 	//   }
 
-var nome = sessionStorage.NOME_USUARIO;
-var permissao = sessionStorage.PERMISSAO;
+	var nome = sessionStorage.NOME_USUARIO;
+	var permissao = sessionStorage.PERMISSAO;
 
-user_permissao.innerHTML = permissao;
-user_name.innerHTML = nome;
-console.log(nome);
-console.log(permissao);
+	user_permissao.innerHTML = permissao;
+	user_name.innerHTML = nome;
+	console.log(nome);
+	console.log(permissao);
 
-function novaSessao(){
-	limparSessao();
-	window.location = "../main/login.html";
-}
+	function novaSessao() {
+		limparSessao();
+		window.location = "../main/login.html";
+	}
 </script>
+
 </html>
-
-
-

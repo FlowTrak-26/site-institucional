@@ -1,12 +1,42 @@
 var usuarioModel = require("../models/usuarioModel");
 // var aquarioModel = require("../models/aquarioModel");
 
+function atribuirEmpresaPorCpf(req, res) {
+	var cpf = req.body.cpfServer;
+	var id_admin = req.body.idEmpresaServer
+
+	if (cpf.length != 11) {
+		res.status(403).send("CPF inválido");
+	}
+
+	usuarioModel.atribuirEmpresaPorCpf(
+		cpf,
+		id_admin
+	).then(
+		function (resultado) {
+			res.json(resultado);
+		}
+	).catch(
+		function (erro) {
+			console.log(erro);
+			console.log(
+				"\nHouve um erro ao atribuír empresa! Erro: ",
+				erro.sqlMessage
+			);
+			res.status(500).json(erro.sqlMessage);
+		}
+	);
+
+
+}
+
 function autenticar(req, res) {
+	// var cpf = req.body.cpfServer;
 	var email = req.body.emailServer;
 	var senha = req.body.senhaServer;
 
 	if (email == undefined) {
-		res.status(400).send("Seu email está undefined!");
+		res.status(400).send("Seu email está indefinido!");
 	} else if (senha == undefined) {
 		res.status(400).send("Sua senha está indefinida!");
 	} else {
@@ -24,6 +54,7 @@ function autenticar(req, res) {
 							id: resultadoAutenticar[0].id_usuario,
 							nome: resultadoAutenticar[0].nome,
 							email: resultadoAutenticar[0].email,
+							cpf: resultadoAutenticar[0].cpf,
 							idEmpresa: resultadoAutenticar[0].empresaId,
 							nivel_acesso: resultadoAutenticar[0].nivel_acesso
 						});
@@ -51,6 +82,7 @@ function cadastrar(req, res) {
 	var nome = req.body.nomeServer;
 	var email = req.body.emailServer;
 	var senha = req.body.senhaServer;
+	var cpf = req.body.cpfServer;
 	// var telefone = req.body.telefoneServer;
 	var fk_empresa_parceira = req.body.empresaServer;
 
@@ -61,6 +93,8 @@ function cadastrar(req, res) {
 		res.status(400).send("Seu email está undefined!");
 	} else if (senha == undefined) {
 		res.status(400).send("Sua senha está undefined!");
+	} else if (cpf == undefined){
+		res.status(400).send("Seu CPF está undefined!");
 	} else if (fk_empresa_parceira == undefined) {
 		res.status(400).send("Sua empresa a vincular está undefined!");
 		// } else if (telefone == undefined) {
@@ -70,6 +104,7 @@ function cadastrar(req, res) {
 		// Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
 		usuarioModel.cadastrar(nome,
 			email,
+			cpf,
 			senha,
 			fk_empresa_parceira)
 			.then(
@@ -89,7 +124,7 @@ function cadastrar(req, res) {
 	}
 }
 
-function atualizar(req, res){
+function atualizar(req, res) {
 	// var id_usuario = req.body.id
 	var id = req.body.idServer;
 	var nome = req.body.nomeServer;
@@ -113,23 +148,24 @@ function atualizar(req, res){
 			email,
 			senha
 		).then(
-				function (resultado) {
-					res.json(resultado);
-				}
-			).catch(
-				function (erro) {
-					console.log(erro);
-					console.log(
-						"\nHouve um erro ao atualizar seu cadastro! Erro: ",
-						erro.sqlMessage
-					);
-					res.status(500).json(erro.sqlMessage);
-				}
-			);
+			function (resultado) {
+				res.json(resultado);
+			}
+		).catch(
+			function (erro) {
+				console.log(erro);
+				console.log(
+					"\nHouve um erro ao atualizar seu cadastro! Erro: ",
+					erro.sqlMessage
+				);
+				res.status(500).json(erro.sqlMessage);
+			}
+		);
 	}
 }
 
 module.exports = {
+	atribuirEmpresaPorCpf,
 	autenticar,
 	cadastrar,
 	atualizar
