@@ -41,10 +41,10 @@ function atualizarDadosGraficoLinha(idEmpresa) {
             ON sn.fk_ponto = pt.id_ponto_monitoramento
         JOIN dado_captado dc
             ON dc.fk_sensor = sn.id_sensor
-        WHERE emp.id_empresa = 1
+        WHERE emp.id_empresa = ${idEmpresa}
         GROUP BY
             emp.id_empresa,
-            DATE_FORMAT(dc.data_hora, '%H'
+            DATE_FORMAT(dc.data_hora, '%H')
         ORDER BY momento_grafico LIMIT 1;
         `;
 
@@ -281,6 +281,18 @@ function buscarKpiFluxoBaixo(idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function buscarKpiTotalESPC(idEmpresa, idpontoMonitoramento) {
+    var instrucaoSql = `
+        SELECT SUM(dc.fluxo) AS total_passagens
+        FROM ponto_monitoramento pm
+        JOIN sensor s ON s.fk_ponto = pm.id_ponto_monitoramento
+        JOIN dado_captado dc ON dc.fk_sensor = s.id_sensor
+        WHERE pm.fk_empresa = ${idEmpresa}
+        AND pm.nome = '${idpontoMonitoramento}'; 
+    `;
+    console.log("Executando a instrução SQL (KPI Total ESPC): \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 // SELECT
 //     dc.id_dado_captado AS id_captura,
 //     dc.fluxo AS quantidade_fluxo,
@@ -312,6 +324,8 @@ module.exports = {
     buscarKpiHorarioPico,
     buscarKpiLocalMaisAcessado,
     buscarKpiFluxoIntenso,
-    buscarKpiFluxoBaixo
+    buscarKpiFluxoBaixo,
+    // KPI especifica
+    buscarKpiTotalESPC
 }
 

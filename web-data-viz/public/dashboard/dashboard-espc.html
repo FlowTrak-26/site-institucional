@@ -26,7 +26,7 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina();">
+<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina(), exibirKpiTotalESPC();">
 
 	<header>
 		<div class="nav-container">
@@ -42,7 +42,7 @@
 					<div class="nav-link-txt">
 						<a href="../index.html">Home</a>
 					</div>
-				</div>
+				</d
 
 				<div class="nav-link ">
 					<div class="nav-link-img">
@@ -145,22 +145,17 @@
 						<i class="fa-solid fa-location-dot"></i>
 						<p>Local</p>
 					</div>
-					<div class="seletor-local">
-						<select name="Locais" id="select-local">
-							<option value="entrada-principal" selected>Entrada</option>
-							<option value="csaida">Saída</option>
-							<option value="caixa-1">Caixa 1</option>
-							<option value="Caixa-2">Caixa 2</option>
-							<option value="caixa-3">Caixa 3</option>
-							<option value="corredor-limpeza">Corredor Limpeza</option>
-							<option value="setor-hortifruti">Setor Hortifruti</option>
-							<option value="corredor-higiene">Corredor Higiene</option>
-							<option value="padaria">Padaria</option>
-							<option value="acogue">Açogue</option>
-							<option value="bebidas">Bebidas</option>
 
-						</select>
-					</div>
+					<!-- mudar esse setor de selecao  -->
+				<div class="seletor-local">
+    <select name="Locais" id="select-local" onchange="exibirKpiTotalESPC()">
+        <option value="Entrada Principal" selected>Entrada Principal</option>
+        <option value="Setor Hortifruti">Setor Hortifruti</option>
+        <option value="Caixas Rápidos">Caixas Rápidos</option>
+        <option value="Corredor Central">Corredor Central</option>
+        <option value="Área de Carga">Área de Carga</option>
+    </select>
+</div>
 				</div>
 				<div class="data">
 					<div class="content-data">
@@ -182,23 +177,23 @@
 			</div>
 		</div>
 		<div class="kpis-totais">
-			<div class="box-kpi">
-				<div class="kpi">
-					<div class="esquerda-kpi">
-						<i class="fa-solid fa-circle"></i>
-					</div>
-					<div class="direita-kpi">
-						<div class="texto-esquerda-kpi">
-							<p class="texto-kpi">Nome KPI</p>
-							<p class="numero-dado">0000</p>
-						</div>
-						<div class="texto-direita-kpi">
-							<p class="texto-kpi">Ideal</p>
-							<p class="texto-kpi">Máximo</p>
-						</div>
-					</div>
-				</div>
-			</div>
+			   <div class="box-kpi">
+                <div class="kpi">
+                    <div class="esquerda-kpi">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="direita-kpi">
+                        <div class="texto-esquerda-kpi">
+                            <p class="texto-kpi">Total de Passagens</p>
+                            <p class="numero-dado" id="kpi_total_passagens">0</p>
+                        </div>
+                        <div class="texto-direita-kpi">
+                            <p class="texto-kpi">Total</p>
+                            <p class="texto-kpi">Loja</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 			<div class="box-kpi">
 				<div class="kpi">
 					<div class="esquerda-kpi">
@@ -462,9 +457,9 @@
 
 		if (id_grafico == 'grafico-linha') {
 			if (idpontoMonitoramento == 'entrada-principal') {
-				idpontoMonitoramento = 'select-local'
+				idpontoMonitoramento = 1
 			} else if (idpontoMonitoramento == 'saida') {
-				idpontoMonitoramento = 'select-local'
+				idpontoMonitoramento = 2
 			} else if (idpontoMonitoramento == 'caixas-1') {
 				idpontoMonitoramento = 'select-local'
 			} else if (idpontoMonitoramento == 'caixa-2') {
@@ -641,4 +636,38 @@ function redirecionamento_bobIA(){
 	window.location = "http://localhost:3000";
 }
 autenticarN3();
+
+async function exibirKpiTotalESPC() { //kpi 1
+    
+    let idEmpresa = sessionStorage.ID_EMPRESA_ATUAL || sessionStorage.ID_EMPRESA;
+    
+  
+    let idpontoMonitoramento = document.getElementById('select-local').value;
+
+    if (!idEmpresa || !idpontoMonitoramento) {
+        console.warn('Nenhum idEmpresa ou Ponto definido para KPI total.');
+        return;
+    }
+
+    try {
+     
+        const resposta = await fetch(`/dash/kpi/total-ESPC/${idEmpresa}/${idpontoMonitoramento}`, { cache: 'no-store' });
+        
+        if (!resposta.ok) {
+            console.error('Erro ao buscar dados do KPI TOTAL ESPECIFICA.');
+            return;
+        }
+
+        const dados = await resposta.json();
+        console.log('KPI Total Passagens ESPC:', dados);
+
+        const kpiElement = document.getElementById('kpi_total_passagens');
+        if (kpiElement) {
+            
+            kpiElement.textContent = dados[0].total_passagens || 0;
+        }
+    } catch (erro) {
+        console.error('Erro ao buscar dados do KPI TOTAL ESPECIFICA.', erro);
+    }
+}
 </script>

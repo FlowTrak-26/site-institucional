@@ -7,7 +7,7 @@ function buscarDadosGraficoLinha(req, res) {
     var idEmpresa = req.params.idEmpresa;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
-
+    
     dashModel.buscarDadosGraficoLinha(idEmpresa, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -241,6 +241,28 @@ function atualizarDadosMapaCalorEsp(req, res) {
     });
 }
 
+function buscarKpiTotalESPC(req, res) {
+
+    var idpontoMonitoramento = req.params.idpontoMonitoramento;
+    var idEmpresa = req.params.idEmpresa;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    dashModel.atualizarDadosMapaCalor(idpontoMonitoramento, idEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
     module.exports = {
     buscarDadosGraficoLinha,
     atualizarDadosGraficoLinha,
@@ -256,4 +278,6 @@ function atualizarDadosMapaCalorEsp(req, res) {
     buscarKpiLocalMaisAcessado,
     buscarKpiFluxoIntenso,
     buscarKpiFluxoBaixo,
+    // KPI especificas 
+    buscarKpiTotalESPC
     }

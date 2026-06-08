@@ -16,7 +16,7 @@ router.get("/ultimas/grafico-linha/:idEmpresa/:idpontoMonitoramento", function (
 });
 
 router.get("/tempo-real/grafico-linha/:idEmpresa/:idpontoMonitoramento", function (req, res) {
-    dashController.atualizarDadosGraficoEsp(req, res);
+    dashController.atualizarDadosGraficoLinhaEsp(req, res);
 })
 
 router.get("/ultimas/grafico-calor/:idEmpresa", function (req, res) {
@@ -52,8 +52,13 @@ router.get("/kpi/fluxo-intenso/:idEmpresa", function (req, res) {
 });
 
 
-router.get("/kpi/fluxo-intenso/:idEmpresa", function (req, res) {
+router.get("/kpi/fluxo-baixo/:idEmpresa", function (req, res) {
     dashController.buscarKpiFluxoBaixo(req, res);
+});
+
+// KPI ESPECIFOCASSS
+router.get("/kpi/total-ESPC/:idEmpresa/:idpontoMonitoramento", function (req, res) {
+    dashController.buscarKpiTotalESPC(req, res);
 });
 
 module.exports = router;
