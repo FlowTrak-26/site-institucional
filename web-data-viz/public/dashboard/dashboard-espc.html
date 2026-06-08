@@ -20,13 +20,12 @@
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 	<!--FONT AWESOME-->
-	<script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
 		integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina(),  autenticarN3();">
+<body onload="exibirGraficoLinha(), iniciarpagina(),  autenticarN3();">
 
 	<header>
 		<div class="nav-container">
@@ -82,7 +81,7 @@
 				<!-- Abaixo vai ter a div do BobIa que só aparece para o N3 -->
 
 				<div class="nav-link" id="suporte">
-					
+
 				</div>
 			</div>
 			<div class="perfil-area">
@@ -153,17 +152,17 @@
 					</div>
 					<div class="seletor-local">
 						<select name="Locais" id="select-local">
-							<option value="" selected>Selecione</option>
-							<option value="Caixa1">Caixa1</option>
-							<option value="Caixa2">Caixa2</option>
-							<option value="Caixa3">Caixa3</option>
-							<option value="Corredor Limpeza">Limpeza</option>
-							<option value="Padaria">Padaria</option>
-							<option value="Corredor Higiene">Higiene</option>
-							<option value="Corredor Frutas">Hortifruti</option>
-							<option value="Corredor Frutas">Açogue</option>
-							<option value="Corredor Frutas">Bebidas</option>
-
+							<option value="entrada-principal" selected>Entrada Principal</option>
+							<option value="saida">Saída</option>
+							<option value="caixas-1">Caixas 1</option>
+							<option value="caixas-2">Caixas 2</option>
+							<option value="caixas-3">Caixas 3</option>
+							<option value="corredor-limpeza">Limpeza</option>
+							<option value="padaria">Padaria</option>
+							<option value="corredor-higiene">Higiene</option>
+							<option value="setor-hortifruti">Hortifruti</option>
+							<option value="acougue">Açogue</option>
+							<option value="bebidas">Bebidas</option>
 						</select>
 					</div>
 				</div>
@@ -174,7 +173,7 @@
 					</div>
 					<div class="seletor-data">
 						<select name="Locais" id="select-local">
-							<option value="" selected>Selecione</option>
+							<option value="selecionado" selected>Selecione</option>
 							<option value="11/02/2026">11/02/2026</option>
 							<option value="12/02/2026">12/02/2026</option>
 							<option value="13/02/2026">13/02/2026</option>
@@ -278,7 +277,7 @@
 				<div class="titulo-graf">
 					<p>Fluxo de pessoas ao longo do dia</p>
 				</div>
-				<canvas id="linha"></canvas>
+				<div id="linha"></div>
 			</div>
 			<div class="grafico">
 				<div class="titulo-graf-m">
@@ -286,15 +285,15 @@
 				</div>
 				<div class="graf-mapa">
 					<div class="tela-grafico">
-						
+
 						<div class="abs-grafico">
 							<div class="img-mercado">
-								
+
 							</div>
 							<canvas id="calor"></canvas>
-							
+
 						</div>
-						
+
 						<div class="horarios">
 							<ul>
 								<li class="selecionado">8h</li>
@@ -322,28 +321,9 @@
 
 </html>
 
-<script src="../js/dash.js"></script>
-<script src="../sessao.js"></script>
+
 
 <script>
-	var emailUsuario = sessionStorage.NOME_USUARIO;
-	var user_name = sessionStorage.NOME_USUARIO;
-	var permissao = sessionStorage.PERMISSAO;
-
-	function iniciarpagina() {
-		let nomeUsuario = document.getElementById('user_name');
-		let nome = sessionStorage.NOME_USUARIO;
-		// aqui o conteudo vira texto
-		nomeUsuario.textContent = nome;
-	}
-
-	function local_mercado(){
-		if(k){
-
-		}
-
-	}
-
 	function redirecionamento_perfil() {
 		if (permissao == "ADMIN") {
 			window.location.href = '../perfil/perfil-admin.html'
@@ -353,50 +333,230 @@
 		}
 	}
 
-	const Linha = document.getElementById('linha')
+	function iniciarpagina() {
+		let nomeUsuario = document.getElementById('user_nome');
+		let nome = sessionStorage.NOME_USUARIO;
+		// aqui o conteudo vira texto
+		nomeUsuario.textContent = nome;
 
-	new Chart(Linha, {
-		type: 'line',
-		data: {
-			labels: ['8h', '10h', '12h', '14h', '16h', '18h', '20h'],
-			datasets: [
-				{
-					label: 'Hoje',
-					data: [100, 650, 800, 2000, 3700, 4200, 5100],
-					borderColor: '#A14A00',
-					backgroundColor: '#A14A00',
-					tension: 0.5
-				},
-				{
-					label: 'Média',
-					data: [50, 200, 850, 2000, 3800, 4200, 5000],
-					borderColor: '#BDBDBD',
-					backgroundColor: '#BDBDBD',
-					tension: 0.5
-				}
-			]
-		},
-		options: {
-			plugins: {
-				title: {
-					display: true,
-					align: 'start',
-					color: '#000',
-					font: {
-						size: 28,
-						weight: 'bold'
-					}
-				},
-				legend: {
-					position: 'top',
-					align: 'end',
-					labels: {
-						padding: 15
-					}
-				}
+		let permUsuario = document.getElementById('user_permissao');
+		permUsuario.textContent = permissao;
+	}
+
+
+	async function exibirGraficoLinha() {
+
+		let idpontoMonitoramento = selected.value
+		let idEmpresa = sessionStorage.ID_EMPRESA;
+
+		const resposta = await fetch(
+			`/dash/ultimas/grafico-linha/${idEmpresa}/${idpontoMonitoramento}`
+		);
+
+		const dados = await resposta.json();
+
+		console.log(dados);
+
+
+		document.getElementById(`linha`).innerHTML =
+			`
+			<div class="graph">
+				<canvas id="myChartCanvas-linha"></canvas>
+			</div>
+    	`
+		plotarGrafico(dados, 'grafico-linha');
+	}
+
+	function plotarGrafico(resposta, id_grafico) {
+
+		console.log('iniciando plotagem do gráfico...');
+
+		// Criando estrutura para plotar gráfico - labels
+		let labels = [];
+
+		// Criando estrutura para plotar gráfico - dados
+		if (id_grafico == 'grafico-linha') {
+			let dados = {
+				labels: labels,
+				datasets: [{
+					label: 'Fluxo',
+					data: [],
+					backgroundColor: '#B11011',
+					borderColor: '#B11011',
+					borderWidth: 2,
+					minBarLength: 5,
+					borderRadius: 10
+				}]
+			};
+
+			console.log('----------------------------------------------')
+			console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+			console.log(resposta)
+
+			// Inserindo valores recebidos em estrutura para plotar o gráfico
+			for (i = 0; i < resposta.length; i++) {
+				var registro = resposta[i];
+				labels.push(registro.momento_grafico);
+				dados.datasets[0].data.push(registro.fluxo);
 			}
+
+			console.log('----------------------------------------------')
+			console.log('O gráfico será plotado com os respectivos valores:')
+			console.log('Labels:')
+			console.log(labels)
+			console.log('Dados:')
+			console.log(dados.datasets)
+			console.log('----------------------------------------------')
+
+			let config;
+
+			config = {
+				type: 'line',
+				data: dados,
+				options: {
+					plugins: {
+						title: {
+							display: true,
+							align: 'start',
+							color: '#000',
+							font: {
+								size: 28,
+								weight: 'bold'
+							}
+						},
+						legend: {
+							position: 'top',
+							align: 'end',
+							labels: {
+								padding: 15
+							}
+						}
+					},
+					scales: {
+						x: {
+							offset: true
+						},
+						y: {
+							min: 0,
+							max: 6000
+						}
+					},
+				}
+			};
+
+			// Adicionando gráfico criado em div na tela
+			let myChart = new Chart(
+				document.getElementById(`myChartCanvas-linha`),
+				config
+			);
+
+			proximaAtualizacao = setTimeout(() => {
+				atualizarGrafico(dados, myChart, id_grafico);
+			}, 60000);
+		} else if (id_grafico == 'grafico-calor') {
+
 		}
-	})
+	}
+
+	function atualizarDadosGrafico(dados, myChart, id_grafico) {
+
+		let idEmpresa = sessionStorage.ID_EMPRESA;
+		let idpontoMonitoramento = document.getElementById('select-local').value
+
+		fetch(`/dash/tempo-real/${id_grafico}/${idEmpresa}/${idpontoMonitoramento}`, { cache: 'no-store' }).then(function (response) {
+			if (response.ok) {
+				response.json().then(function (novoRegistro) {
+
+					console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+					console.log(`Dados atuais do gráfico:`);
+					console.log(dados);
+
+					if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+
+
+					} else {
+						// tirando e colocando valores no gráfico
+
+						if (id_grafico == 'grafico-linha') {
+
+							if(idpontoMonitoramento == 'entrada-principal'){
+								dados.datasets[0].data.shift();
+                            	dados.datasets[0].data.push(novoRegistro[0].fluxo_entrada);
+							}else if(idpontoMonitoramento == 'saida'){
+								dados.datasets[0].data.shift();
+                            	dados.datasets[0].data.push(novoRegistro[0].fluxo_saida);
+							}else if(idpontoMonitoramento == 'caixas-1'){
+								dados.datasets[0].data.shift();
+                            	dados.datasets[0].data.push(novoRegistro[0].fluxo_caixa1);
+							}else if(idpontoMonitoramento == 'caixa2'){
+								dados.datasets[0].data.shift();
+                            	dados.datasets[0].data.push(novoRegistro[0].fluxo_caixa2);
+							}else if(idpontoMonitoramento == 'caixa3'){
+								dados.datasets[0].data.shift();
+                            	dados.datasets[0].data.push(novoRegistro[0].fluxo_caixa3);
+							}else if(idpontoMonitoramento == 'corredor-limpeza'){
+								dados.datasets[0].data.shift();
+                            	dados.datasets[0].data.push(novoRegistro[0].fluxo_caixa3);
+						} else if{(idpontoMonitoramento)
+
+						}
+
+						// caixas-1">Caixas 1</option>
+						// 	<option value="caixas-2">Caixas 2</option>
+						// 	<option value="caixas-3">Caixas 3</option>
+						// 	<option value="corredor-limpeza">Limpeza</option>
+						// 	<option value="padaria">Padaria</option>
+						// 	<option value="corredor-higiene">Higiene</option>
+						// 	<option value="setor-hortifruti">Hortifruti</option>
+						// 	<option value="acougue">Açogue</option>
+						// 	<option value="bebidas
+
+						myChart.update();
+					}
+
+					// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+					proximaAtualizacao = setTimeout(() => {
+						atualizarGraficoLinhaEsp(dados, myChart, id_grafico); obterKPIs();
+					}, 1000);
+				});
+			} else {
+				console.error('Nenhum dado encontrado ou erro na API');
+				// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+				proximaAtualizacao = setTimeout(() => {
+					atualizarGraficoLinhaEsp(dados, myChart, id_grafico); obterKPIs();
+				}, 10000);
+			}
+		})
+			.catch(function (error) {
+				console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+			});
+
+	}
+	// 	function autenticarN3(){
+	// 		if (emailUsuario == 'suporte@flowtrak.com') {
+	// 			suporte.innerHTML = `<div class="nav-link-img">
+	// 						<img src="../assets/icon/robot-solid.png" alt="">
+	// 					</div>
+	// 					<div class="nav-link-txt">
+	// 						<a href="http://localhost:3000/">BoB Ai</a>
+	// 					</div>`
+	// 		}
+	// 	}
+	// // CÓDIGO NO FINAL DO dashboard-espc.html
+
+	// var permissao = sessionStorage.PERMISSAO;
+	// var nomeDaFilial = sessionStorage.NOME_EMPRESA_ATUAL;
+	// var enderecoDaFilial = sessionStorage.ENDERECO_EMPRESA_ATUAL;
+
+	// //  tiver um nome salvo, ele troca o texto do <h1>
+	// if (nomeDaFilial != undefined) {
+	//     document.getElementById('titulo_filial').innerHTML = `Dashboard - ${nomeDaFilial}`;
+	// }
+
+	// //  tivee um endereço guardado, altera o texto do <p>
+	// if (enderecoDaFilial != undefined) {
+	//     document.getElementById('endereco_filial').innerHTML = enderecoDaFilial;
+	// }
 
 	const fluxo_mapa_calor = document.getElementById('calor');
 
@@ -412,8 +572,8 @@
 	// dados do gráfico
 	const dados = [
 		{ x: 15, y: 50, r: 55 },
-        { x: 35, y: 65, r: 28 },
-        { x: 35, y: 65, r: 28 },
+		{ x: 35, y: 65, r: 28 },
+		{ x: 35, y: 65, r: 28 },
 	];
 
 	// gera as cores com base na intensidade
@@ -465,7 +625,8 @@
 		}
 	});
 
-	function autenticarN3(){
+	function autenticarN3() {
+		let emailUsuario = sessionStorage.EMAIL_USUARIO;
 		if (emailUsuario == 'suporte@flowtrak.com') {
 			suporte.innerHTML = `<div class="nav-link-img">
 						<img src="../assets/icon/robot-solid.png" alt="">
@@ -475,34 +636,34 @@
 					</div>`
 		}
 	}
-var nome = sessionStorage.NOME_USUARIO;
-var permissao = sessionStorage.PERMISSAO;
+	var nome = sessionStorage.NOME_USUARIO;
+	var permissao = sessionStorage.PERMISSAO;
 
-user_permissao.innerHTML = permissao;
-user_nome.innerHTML = nome;
-console.log(nome);
-console.log(permissao);
+	user_permissao.innerHTML = permissao;
+	user_nome.innerHTML = nome;
+	console.log(nome);
+	console.log(permissao);
 
 	// CÓDIGO NO FINAL DO dashboard-espc.html
 
-var permissao = sessionStorage.PERMISSAO;
-var nomeDaFilial = sessionStorage.NOME_EMPRESA_ATUAL;
-var enderecoDaFilial = sessionStorage.ENDERECO_EMPRESA_ATUAL;
+	var permissao = sessionStorage.PERMISSAO;
+	var nomeDaFilial = sessionStorage.NOME_EMPRESA_ATUAL;
+	var enderecoDaFilial = sessionStorage.ENDERECO_EMPRESA_ATUAL;
 
-//  tiver um nome salvo, ele troca o texto do <h1>
-if (nomeDaFilial != undefined) {
-    document.getElementById('titulo_filial').innerHTML = `Dashboard - ${nomeDaFilial}`;
-}
+	//  tiver um nome salvo, ele troca o texto do <h1>
+	if (nomeDaFilial != undefined) {
+		document.getElementById('titulo_filial').innerHTML = `Dashboard - ${nomeDaFilial}`;
+	}
 
-//  tivee um endereço guardado, altera o texto do <p>
-if (enderecoDaFilial != undefined) {
-    document.getElementById('endereco_filial').innerHTML = enderecoDaFilial;
-}
-function novaSessao(){
-	limparSessao();
-	window.location = "../main/login.html";
-}
+	//  tivee um endereço guardado, altera o texto do <p>
+	if (enderecoDaFilial != undefined) {
+		document.getElementById('endereco_filial').innerHTML = enderecoDaFilial;
+	}
+	function novaSessao() {
+		limparSessao();
+		window.location = "../main/login.html";
+	}
+
+
 
 </script>
-
-<script src="../js/dash.js"></script>
