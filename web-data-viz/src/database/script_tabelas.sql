@@ -66,7 +66,7 @@ CREATE TABLE dado_captado(
 INSERT INTO empresa_parceira
 	(nome, cnpj, endereco_sede, email, telefone, franqueadora)
 VALUES
-	('Carrefour', '45543915000181', 'Av. das Nações Unidas, 15187',
+	('FlowTrak', '00000000000000', 'Rua Hadock Lobo, 595',
 	'contato@carrefour.com', '11999990001', NULL),
 	('Extra', '06402330000129', 'Av. Brigadeiro Luís Antônio, 3172',
 	'contato@extra.com', '11999990002', NULL),
@@ -81,7 +81,7 @@ VALUES
 INSERT INTO usuario
 	(nome, email, cpf, senha, fk_empresa_parceira, nivel_acesso)
 VALUES
-	('N3', 'suporte@flowtrak.com', '11111111111', 'senha123', 1, 'COMUM');
+	('N3', 'suporte@flowtrak.com', '11111111111', 'senha123', 1, 'ADMIN');
 
 INSERT INTO usuario
 	(nome, email, cpf, senha, fk_empresa_parceira, nivel_acesso)
