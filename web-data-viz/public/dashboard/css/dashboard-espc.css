@@ -530,7 +530,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid rgba(165, 165, 165, 0.64) ;
     border-radius: 20px;
     flex-direction: column;
 }

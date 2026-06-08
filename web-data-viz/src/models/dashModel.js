@@ -52,10 +52,29 @@ function atualizarDadosGraficoLinha(idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
-function buscarDadosMapaCalor(limite_linhas, id_grafico) {
+function buscarDadosMapaCalor(idEmpresa) {
 
     var instrucaoSql = 
-    ``;
+    `
+        SELECT
+            emp.id_empresa,
+            DATE_FORMAT(dc.data_hora, '%H') AS momento_grafico,
+            COUNT(dc.fluxo) AS fluxo,
+            id_ponto_monitoramento
+        FROM empresa_parceira emp
+        JOIN ponto_monitoramento pt
+            ON pt.fk_empresa = emp.id_empresa
+        JOIN sensor sn
+            ON sn.fk_ponto = pt.id_ponto_monitoramento
+        JOIN dado_captado dc
+            ON dc.fk_sensor = sn.id_sensor
+        WHERE emp.id_empresa = ${idEmpresa}
+        GROUP BY
+            emp.id_empresa,
+            DATE_FORMAT(dc.data_hora, '%H'),
+            id_ponto_monitoramento
+        ORDER BY momento_grafico;
+    `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

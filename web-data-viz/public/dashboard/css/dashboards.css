@@ -474,16 +474,17 @@
     min-height: 38vh;
 }
 
+
 .tela-grafico{
     width: 70%;
     height: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid rgba(165, 165, 165, 0.64) ;
     border-radius: 20px;
     flex-direction: row;
     gap: 20px;
+    position: relative;
 }
 
 .portas{
@@ -526,7 +527,7 @@
 .caixas{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 77%;
     width: 15%;
     border: 2px dotted rgba(165, 165, 165, 0.64) ;
@@ -556,6 +557,9 @@
 }
 
 .corredor1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: bold;
     border: 2px dotted rgba(165, 165, 165, 0.64) ;
     height: 100%;
@@ -567,6 +571,9 @@
 }
 
 .corredor2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: bold;
     border: 2px dotted rgba(165, 165, 165, 0.64) ;
     height: 100%;
@@ -577,6 +584,9 @@
 }
 
 .corredor3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: bold;
     border: 2px dotted rgba(165, 165, 165, 0.64) ;
     height: 100%;
@@ -585,3 +595,32 @@
     padding-left: 7px;
     padding-top: 3px;
 }
+
+#mp-portas{
+    position: absolute;
+    left: 8%;
+    top: 3%;
+    opacity: 0.4;
+}
+
+#mp-caixas{
+    position: absolute;
+    left: 25%;
+    top: 3%;
+    opacity: 0.4;
+}
+
+#mp-corredores{
+    position: absolute;
+    right: 5%;
+    top: 3%;
+    opacity: 0.4;
+}
+
+.horarios{
+    position: absolute;
+    bottom: 0;
+    right: 17.8%;
+    width: 24%;
+}
+

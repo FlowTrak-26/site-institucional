@@ -7,6 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>FlowTrak</title>
 
+	<link rel="icon" href="../assets/imgs/logo.png" />
+
 	<link rel="stylesheet" href="./css/dashboard-espc.css">
 	<link rel="stylesheet" href="./css/dashboards.css" />
 	<link rel="stylesheet" href="../perfil/css/nav-bar.css">
@@ -21,8 +23,9 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="iniciarpagina(), autenticarN3(), exibirGraficoLinha(), exibirKpiTotal(), exibirKpiHorarioPico(), exibirKpiLocalMaisAcessado(), exibirKpiFluxoIntenso(), exibirKpiFluxoBaixo();">
-	
+<body
+	onload="iniciarpagina(), autenticarN3(), exibirGraficoLinha(), exibirGraficoCalor(), exibirKpiTotal(), exibirKpiHorarioPico(), exibirKpiLocalMaisAcessado(), exibirKpiFluxoIntenso(), exibirKpiFluxoBaixo();">
+
 	<header>
 		<div class="nav-container">
 			<div class="nav-logo">
@@ -82,31 +85,31 @@
 				<div class="nav-link" id="suporte">
 
 
-				<div class="nav-link" id="suporte_especifico">
-					
+					<div class="nav-link" id="suporte_especifico">
 
-				</div>
 
-			</div>
-			<div class="perfil-area">
-				<div class="perfil-img">
-					<button class="btn-pag-login" onclick="redirecionamento_perfil()">
-						<img src="../assets/icon/nav-icon-perfil.png" alt="">
-					</button>
-				</div>
-				<div class="text-perfil-area">
-					<div class="top-perfil">
-						<p id="user_name">Usuario</p>
 					</div>
-					<div class="bottom-perfil">
-						<button class="btn-sair" onclick="limparSessao()">
-							<p id="user_permissao">comum</p>
-							<img src="../assets/icon/nav-seta-baixo.png">
+
+				</div>
+				<div class="perfil-area">
+					<div class="perfil-img">
+						<button class="btn-pag-login" onclick="redirecionamento_perfil()">
+							<img src="../assets/icon/nav-icon-perfil.png" alt="">
 						</button>
 					</div>
+					<div class="text-perfil-area">
+						<div class="top-perfil">
+							<p id="user_name">Usuario</p>
+						</div>
+						<div class="bottom-perfil">
+							<button class="btn-sair" onclick="limparSessao()">
+								<p id="user_permissao">comum</p>
+								<img src="../assets/icon/nav-seta-baixo.png">
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
 	</header>
 
 	<div class="main-container">
@@ -188,76 +191,78 @@
 				</div>
 			</div>
 			<div class="box-kpi">
-    <div class="box-kpi">
-    <div class="kpi">
-        <div class="esquerda-kpi">
-            <i class="fa-solid fa-clock" id="icone_kpi_pico"></i> 
-        </div>
-        <div class="direita-kpi">
-            <div class="texto-esquerda-kpi">
-				
-                <p class="texto-kpi" id="kpi_qtd_pico"></p> 
-                <p class="numero-dado" id="kpi_hora_pico">0</p>
-            </div>
-            <div class="texto-direita-kpi">
-                <p class="texto-kpi">Status</p>
-                <p class="texto-kpi" id="status_kpi_pico" style="font-weight: bold;">Calculando...</p>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+				<div class="box-kpi">
+					<div class="kpi">
+						<div class="esquerda-kpi">
+							<i class="fa-solid fa-clock" id="icone_kpi_pico"></i>
+						</div>
+						<div class="direita-kpi">
+							<div class="texto-esquerda-kpi">
+
+								<p class="texto-kpi" id="kpi_qtd_pico"></p>
+								<p class="numero-dado" id="kpi_hora_pico">0</p>
+							</div>
+							<div class="texto-direita-kpi">
+								<p class="texto-kpi">Status</p>
+								<p class="texto-kpi" id="status_kpi_pico" style="font-weight: bold;">Calculando...</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="box-kpi"> <!-- exibirKpiLocalMaisAcessado -->
-    <div class="kpi">
-        <div class="esquerda-kpi">
-            <i class="fa-solid fa-map-location-dot" id="icone_kpi_local"></i> 
-        </div>
-        <div class="direita-kpi">
-            <div class="texto-esquerda-kpi">
-                <p class="texto-kpi" >Local mais Acessado</p>
-		
-                <p class="numero-dado" id="kpi_porcentagem_local">0%</p>
-            </div>
-            <div class="texto-direita-kpi">
-				<p class="texto-kpi">Status:</p>
-                <p class="texto-kpi" id="status_kpi_local"   style="font-weight: bold;">Status</p>
-                <p class="texto-kpi" id="kpi_nome_local">Acessado</p>
-            </div>
-        </div>
-    </div>
-</div>
-		<div class="box-kpi">
-    <div class="kpi">
-        <div class="esquerda-kpi">
-            <i class="fa-solid fa-triangle-exclamation" style="color: #A14A00;"></i> </div>
-        <div class="direita-kpi">
-            <div class="texto-esquerda-kpi">
-                <p class="texto-kpi" id="kpi_intenso_setor">Fluxo Intenso</p>
-                <p class="numero-dado" id="kpi_intenso_hora">--h</p>
-            </div>
-            <div class="texto-direita-kpi">
-                <p class="texto-kpi">Fluxo</p>
-                <p class="texto-kpi">Intenso</p>
-            </div>
-        </div>
-    </div>
-</div>
-	<div class="box-kpi">
-    <div class="kpi">
-        <div class="esquerda-kpi">
-            <i class="fa-solid fa-temperature-empty" style="color: #BDBDBD;"></i> </div>
-        <div class="direita-kpi">
-            <div class="texto-esquerda-kpi">
-                <p class="texto-kpi" id="kpi_baixo_setor">Setor</p>
-                <p class="numero-dado" id="kpi_baixo_qtd">0</p>
-            </div>
-            <div class="texto-direita-kpi">
-                <p class="texto-kpi">Fluxo</p>
-                <p class="texto-kpi">Muito Baixo</p>
-            </div>
-        </div>
-    </div>
-</div>
+				<div class="kpi">
+					<div class="esquerda-kpi">
+						<i class="fa-solid fa-map-location-dot" id="icone_kpi_local"></i>
+					</div>
+					<div class="direita-kpi">
+						<div class="texto-esquerda-kpi">
+							<p class="texto-kpi">Local mais Acessado</p>
+
+							<p class="numero-dado" id="kpi_porcentagem_local">0%</p>
+						</div>
+						<div class="texto-direita-kpi">
+							<p class="texto-kpi">Status:</p>
+							<p class="texto-kpi" id="status_kpi_local" style="font-weight: bold;">Status</p>
+							<p class="texto-kpi" id="kpi_nome_local">Acessado</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="box-kpi">
+				<div class="kpi">
+					<div class="esquerda-kpi">
+						<i class="fa-solid fa-triangle-exclamation" style="color: #A14A00;"></i>
+					</div>
+					<div class="direita-kpi">
+						<div class="texto-esquerda-kpi">
+							<p class="texto-kpi" id="kpi_intenso_setor">Fluxo Intenso</p>
+							<p class="numero-dado" id="kpi_intenso_hora">--h</p>
+						</div>
+						<div class="texto-direita-kpi">
+							<p class="texto-kpi">Fluxo</p>
+							<p class="texto-kpi">Intenso</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="box-kpi">
+				<div class="kpi">
+					<div class="esquerda-kpi">
+						<i class="fa-solid fa-temperature-empty" style="color: #BDBDBD;"></i>
+					</div>
+					<div class="direita-kpi">
+						<div class="texto-esquerda-kpi">
+							<p class="texto-kpi" id="kpi_baixo_setor">Setor</p>
+							<p class="numero-dado" id="kpi_baixo_qtd">0</p>
+						</div>
+						<div class="texto-direita-kpi">
+							<p class="texto-kpi">Fluxo</p>
+							<p class="texto-kpi">Muito Baixo</p>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="graficos-box">
 			<div class="grafico">
@@ -272,7 +277,10 @@
 				</div>
 				<div class="graf-mapa">
 					<div class="tela-grafico">
-						<div class="portas">
+						<div id="calor">
+
+						</div>
+						<div class="portas" id="mp-portas">
 							<div class="entrada">
 								<p class="titulo-portas">ENTRADA</p>
 							</div>
@@ -280,15 +288,10 @@
 								<p class="titulo-portas">SAÍDA</p>
 							</div>
 						</div>
-						<div class="caixas">
-							<p class="titulo-caixa">CAIXAS</p>
-							<div class="caixa">CAIXA 01</div>
-							<div class="caixa">CAIXA 02</div>
-							<div class="caixa">CAIXA 03</div>
-							<div class="caixa">CAIXA 04</div>
-							<div class="caixa">CAIXA 05</div>
+						<div class="caixas" id="mp-caixas">
+							<p class="titulo-caixa">CAIXAS</p>	
 						</div>
-						<div class="corredores">
+						<div class="corredores" id="mp-corredores">
 							<div class="corredor1">
 								<p class="titulo-corredor">CORREDOR 01</p>
 							</div>
@@ -301,6 +304,17 @@
 						</div>
 					</div>
 
+					<div class="horarios">
+						<ul>
+							<li class="selecionado">8h</li>
+							<li>10h</li>
+							<li>12h</li>
+							<li>14h</li>
+							<li>16h</li>
+							<li>18h</li>
+							<li>20h</li>
+						</ul>
+					</div>
 
 					<div class="intensidade">
 						<p>Fluxo Alto</p>
@@ -365,6 +379,27 @@
 			</div>
     	`
 		plotarGrafico(dados, 'grafico-linha');
+	}
+
+	async function exibirGraficoCalor() {
+
+
+		const resposta = await fetch(
+			`/dash/ultimas/grafico-calor/${idEmpresa}`
+		);
+
+		const dados = await resposta.json();
+
+		console.log(dados);
+
+
+		document.getElementById(`calor`).innerHTML =
+			`
+			<div class="graph">
+				<canvas id="myChartCanvas-calor" style="max-height: 38vh !important; min-height: 38vh !important; transform: translateY(-20%)"></canvas>
+			</div>
+    	`
+		plotarGrafico(dados, 'grafico-calor');
 	}
 
 	function plotarGrafico(resposta, id_grafico) {
@@ -454,163 +489,94 @@
 				atualizarGrafico(dados, myChart, id_grafico);
 			}, 60000);
 		} else if (id_grafico == 'grafico-calor') {
+			let dados = {
+				labels: labels,
+				datasets: [{
+					label: 'Fluxo',
+					data: [],
+					backgroundColor: '#B11011',
+					borderColor: '#B11011',
+					borderWidth: 2,
+					minBarLength: 5,
+					borderRadius: 10
+				}]
+			};
 
+			console.log('----------------------------------------------')
+			console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+			console.log(resposta)
+
+			// Inserindo valores recebidos em estrutura para plotar o gráfico
+			for (i = 0; i < resposta.length; i++) {
+				var registro = resposta[i];
+				labels.push(registro.momento_grafico);
+				dados.datasets[0].data.push(registro.fluxo);
+			}
+
+			console.log('----------------------------------------------')
+			console.log('O gráfico será plotado com os respectivos valores:')
+			console.log('Labels:')
+			console.log(labels)
+			console.log('Dados:')
+			console.log(dados.datasets)
+			console.log('----------------------------------------------')
+
+			let config;
+
+			config = {
+				type: 'bubble',
+				data: dados,
+				options: {
+					plugins: {
+						title: {
+							display: true,
+							align: 'start',
+							color: '#000',
+							font: {
+								size: 28,
+								weight: 'bold'
+							}
+						},
+						legend: {
+							position: 'top',
+							align: 'end',
+							labels: {
+								padding: 15
+							}
+						}
+					},
+					scales: {
+						x: {
+							grid: {
+								display: false,     // Remove linhas de grade
+								drawBorder: false   // Remove a borda do eixo
+							},
+							offset: true
+						},
+						y: {
+							grid: {
+								display: false,     // Remove linhas de grade
+								drawBorder: false   // Remove a borda do eixo
+							},
+							min: 0,
+							max: 6000
+						}
+					},
+				}
+			};
+
+			// Adicionando gráfico criado em div na tela
+			let myChart = new Chart(
+				document.getElementById(`myChartCanvas-calor`),
+				config
+			);
+
+			proximaAtualizacao = setTimeout(() => {
+				atualizarGrafico(dados, myChart, id_grafico);
+			}, 60000);
 		}
 	}
 
-	// function obterKPIs() {
-
-	// 	let data_att = new Date();
-	// 	let ult_att = data_att.toLocaleTimeString();
-
-	// 	// att gráfico
-	// 	let att_graficos_valor = document.getElementById('valor_att');
-	// 	att_graficos_valor.innerHTML = `${ult_att}`;
-
-	// 	fetch(`/dash/tempo-real/kpi`, { cache: 'no-store' }).then(function (response) {
-	// 		if (response.ok) {
-	// 			response.json().then(function (kpi) {
-
-	// 				// kpis valores
-	// 				let kpi_usuarios_semanal_usuarios = document.getElementById('kpi-1');
-	// 				kpi_usuarios_semanal_usuarios.innerHTML =
-	// 					`
-	//                     <div class="kpi-icon" id="kpi-icon-1">
-
-	//                     </div>
-
-	//                     <h1>${kpi[0].qtd_usuario}</h1>
-	//                     <span>Usuários cadastrados</span>
-	//                 `;
-
-	// 				let kpi_usuarios_semanal_quiz = document.getElementById('kpi-2');
-	// 				kpi_usuarios_semanal_quiz.innerHTML =
-	// 					`
-	//                 <div class="kpi-icon" id="kpi-icon-2">
-
-	//                 </div>
-	//                 <h1>${kpi[0].qtd_quiz}</h1>
-	//                 <span>Quiz feitos</span>
-	//                 `;
-	// 			});
-	// 		} else {
-	// 			console.error('Nenhuma kpi encontrada ou erro na API');
-	// 		}
-	// 	})
-	// 		.catch(function (error) {
-	// 			console.error(`Erro na obtenção das kpis p/ gráfico: ${error.message}`);
-	// 		});
-	// }
-
-	// function obterKPIQuiz() {
-	// 	fetch(`/dash/tempo-real/kpi/quiz`, { cache: 'no-store' }).then(function (response) {
-	// 		if (response.ok) {
-	// 			response.json().then(function (kpi) {
-	// 				console.log(kpi)
-
-	// 				let qtd_quiz_geral = kpi[0].qtd_quiz;
-	// 				let qtd_quiz_poderes = kpi[1].qtd_quiz;
-	// 				let qtd_quiz_personagens = kpi[2].qtd_quiz;
-
-	// 				let media_quiz_geral = kpi[0].media_quiz;
-	// 				let media_quiz_poderes = kpi[1].media_quiz;
-	// 				let media_quiz_personagens = kpi[2].media_quiz;
-
-	// 				if (qtd_quiz_geral > qtd_quiz_poderes && qtd_quiz_geral > qtd_quiz_personagens) {
-
-	// 					let kpi_quiz_mais_acessado = document.getElementById('kpi-3');
-	// 					kpi_quiz_mais_acessado.innerHTML =
-	// 						`
-	//                     <div class="kpi-icon" id="kpi-icon-3">
-	//                         GERAL
-	//                     </div>
-
-	//                     <h1>
-	//                         ${qtd_quiz_geral}
-	//                     </h1>
-	//                     <span>Quiz + jogados</span>
-	//                 `;
-	// 				} else if (qtd_quiz_poderes > qtd_quiz_geral && qtd_quiz_poderes > qtd_quiz_personagens) {
-
-	// 					let kpi_quiz_mais_acessado = document.getElementById('kpi-3');
-	// 					kpi_quiz_mais_acessado.innerHTML =
-	// 						`
-	//                     <div class="kpi-icon" id="kpi-icon-3">
-	//                         PODERES
-	//                     </div>
-
-	//                     <h1>
-	//                         ${qtd_quiz_poderes}
-	//                     </h1>
-	//                     <span>Quiz + jogados</span>
-	//                 `;
-	// 				} else if (qtd_quiz_personagens > qtd_quiz_geral && qtd_quiz_personagens > qtd_quiz_poderes) {
-	// 					let kpi_quiz_mais_acessado = document.getElementById('kpi-3');
-	// 					kpi_quiz_mais_acessado.innerHTML =
-	// 						`
-	//                     <div class="kpi-icon" id="kpi-icon-3">
-	//                         PERSONAGENS
-	//                     </div>
-
-	//                     <h1>
-	//                         ${qtd_quiz_personagens}
-	//                     </h1>
-	//                     <span>Quiz + jogados</span>
-	//                 `;
-	// 				}
-
-	// 				if (media_quiz_geral > media_quiz_poderes && media_quiz_geral > media_quiz_personagens) {
-
-	// 					let kpi_media_quiz = document.getElementById('kpi-4');
-	// 					kpi_media_quiz.innerHTML =
-	// 						`
-	//                     <div class="kpi-icon" id="kpi-icon-4">
-	//                             PERSONAGENS
-	//                     </div>
-
-	//                     <h1>
-	//                         ${media_quiz_geral}
-	//                     </h1>
-	//                     <span>Maior média de pontuação</span>
-	//                 `;
-	// 				} else if (media_quiz_poderes > media_quiz_geral && media_quiz_poderes > media_quiz_personagens) {
-
-	// 					let kpi_media_quiz = document.getElementById('kpi-4');
-	// 					kpi_media_quiz.innerHTML =
-	// 						`
-	//                     <div class="kpi-icon" id="kpi-icon-4">
-	//                             PODERES
-	//                     </div>
-
-	//                     <h1>
-	//                         ${media_quiz_poderes}
-	//                     </h1>
-	//                     <span>Maior média de pontuação</span>
-	//                 `;
-	// 				} else if (media_quiz_personagens > media_quiz_geral && media_quiz_personagens > media_quiz_poderes) {
-	// 					let kpi_media_quiz = document.getElementById('kpi-4');
-	// 					kpi_media_quiz.innerHTML =
-	// 						`
-	//                     <div class="kpi-icon" id="kpi-icon-4">
-	//                             PERSONAGENS
-	//                     </div>
-
-	//                     <h1>
-	//                         ${media_quiz_personagens}
-	//                     </h1>
-	//                     <span>Maior média de pontuação</span>
-	//                 `;
-	// 				}
-
-	// 			});
-	// 		} else {
-	// 			console.error('Nenhuma kpi encontrada ou erro na API');
-	// 		}
-	// 	})
-	// 		.catch(function (error) {
-	// 			console.error(`Erro na obtenção das kpis p/ gráfico: ${error.message}`);
-	// 		});
-	// }
 
 	// Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
 	// buscando a última medida inserida em tabela contendo as capturas, 
@@ -682,9 +648,9 @@
 						myChart.update();
 					}
 
-				// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-				proximaAtualizacao = setTimeout(() => {
-					atualizarGrafico(dados, myChart, id_grafico); obterKPIs();
+					// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+					proximaAtualizacao = setTimeout(() => {
+						atualizarGrafico(dados, myChart, id_grafico); obterKPIs();
 					}, 10000);
 				});
 			} else {
@@ -701,55 +667,8 @@
 
 	}
 
-	// const Linha = document.getElementById('linha')
-
-	// new Chart(Linha, {
-	// 	type: 'line',
-	// 	data: {
-	// 		labels: ['8h', '10h', '12h', '14h', '16h', '18h', '20h'],
-	// 		datasets: [
-	// 			{
-	// 				label: 'Hoje',
-	// 				data: [100, 650, 800, 2000, 3700, 4200, 5100],
-	// 				borderColor: '#A14A00',
-	// 				backgroundColor: '#A14A00',
-	// 				tension: 0.5
-	// 			},
-	// 			{
-	// 				label: 'Média',
-	// 				data: [50, 200, 850, 2000, 3800, 4200, 5000],
-	// 				borderColor: '#BDBDBD',
-	// 				backgroundColor: '#BDBDBD',
-	// 				tension: 0.5
-	// 			}
-	// 		]
-	// 	},
-	// 	options: {
-	// 		plugins: {
-	// 			title: {
-	// 				display: true,
-	// 				align: 'start',
-	// 				color: '#000',
-	// 				font: {
-	// 					size: 28,
-	// 					weight: 'bold'
-	// 				}
-	// 			},
-	// 			legend: {
-	// 				position: 'top',
-	// 				align: 'end',
-	// 				labels: {
-	// 					padding: 15
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// })
-
-
-	
 	async function exibirKpiTotal() { //kpi 1
-	
+
 		if (!idEmpresa) {
 			console.warn('Nenhum idEmpresa definido para KPI total.');
 			return;
@@ -774,155 +693,155 @@
 		}
 	}
 
-async function exibirKpiHorarioPico() {
-    if (!idEmpresa) return;
+	async function exibirKpiHorarioPico() {
+		if (!idEmpresa) return;
 
-    const resposta = await fetch(`/dash/kpi/horario-pico/${idEmpresa}`);
+		const resposta = await fetch(`/dash/kpi/horario-pico/${idEmpresa}`);
 
-    if (resposta.ok) {
-        const dados = await resposta.json();
-
-      
-        let txtHora = document.getElementById('kpi_hora_pico');
-        let txtQtd = document.getElementById('kpi_qtd_pico');
-        
-   
-        let iconeKpi = document.getElementById('icone_kpi_pico');
-        let statusKpi = document.getElementById('status_kpi_pico');
-        
-        if (txtHora && txtQtd && statusKpi) {
-            
-            
-            txtHora.innerHTML = `${dados.hora_pico}h`;
-            let totalPessoas = parseInt(dados.total_passagens);
-            txtQtd.innerHTML = `Passagens no Horario: ${totalPessoas}`;
-
-            
-            // capacidade máxima que a loja suporta em 1 hora
-            //isso pode vir do BD (ex: dados.capacidade_maxima) sla
-            const capacidadeMaximaHora = 100; // CAPACIDADE MAXIMA DE EXEMPLO
-            
-            // calcula qual a porcentagem de lotação no horário
-            let porcentagemLotacao = (totalPessoas / capacidadeMaximaHora) * 100;
-
-            if (porcentagemLotacao <= 60) {
-                // IDEAL (Verde) -  60% 
-                iconeKpi.style.color = "#00FF00"; 
-                statusKpi.innerHTML = "Ideal";
-                statusKpi.style.color = "#00FF00";
-                
-            } else if (porcentagemLotacao > 60 && porcentagemLotacao <= 85) {
-                // ALERTA (Amarelo) -  61% - 85%
-                iconeKpi.style.color = "#FFD700"; 
-                statusKpi.innerHTML = "Alerta";
-                statusKpi.style.color = "#FFD700";
-                
-            } else {
-                // PERIGO (Vermelho) > 85% 
-                iconeKpi.style.color = "#FF0000"; 
-                statusKpi.innerHTML = "Perigo";
-                statusKpi.style.color = "#FF0000";
-            }
-        }
-    } else {
-        console.error("Erro ao buscar dados do KPI Horário Pico.");
-    }
-}
-
-async function exibirKpiLocalMaisAcessado() {
-    if (!idEmpresa) return;
-
-    const resposta = await fetch(`/dash/kpi/local-mais-acessado/${idEmpresa}`);
-
-    if (resposta.ok) {
-        const dados = await resposta.json();
+		if (resposta.ok) {
+			const dados = await resposta.json();
 
 
-        let txtLocal = document.getElementById('kpi_nome_local');
-        let txtPorcentagem = document.getElementById('kpi_porcentagem_local');
-        
-    
-        let iconeKpi = document.getElementById('icone_kpi_local');
-        let statusKpi = document.getElementById('status_kpi_local');
-        
-        if (txtLocal && txtPorcentagem && iconeKpi && statusKpi) {
-            
-     
-            txtLocal.innerHTML = dados.setor || "Nenhum";
-            let valorPorcentagem = parseFloat(dados.porcentagem); // Transforma em número decimal
-            txtPorcentagem.innerHTML = `${valorPorcentagem}%`; 
-
-          
-            if (valorPorcentagem <= 40) {
-                // IDEAL (Verde)
-                iconeKpi.style.color = "#00FF00"; // ícone
-                statusKpi.innerHTML = "Ideal";    // texto
-                statusKpi.style.color = "#00FF00"; // ta dando certo assim n vou mudar
-                
-            } else if (valorPorcentagem > 40 && valorPorcentagem <= 75) {
-                // ALERTA (Amarelo)
-                iconeKpi.style.color = "#FFD700"; 
-                statusKpi.innerHTML = "Alerta";
-                statusKpi.style.color = "#FFD700";
-                
-            } else {
-                // PERIGO (Vermelho)
-                iconeKpi.style.color = "#FF0000"; 
-                statusKpi.innerHTML = "Perigo";
-                statusKpi.style.color = "#FF0000";
-
-				
-            }
-        }
-    } else {
-        console.error("Erro ao buscar dados do KPI Local Mais Acessado.");
-    }
-}
-
-async function exibirKpiFluxoIntenso() {
-    if (!idEmpresa) return;
-
-    const resposta = await fetch(`/dash/kpi/fluxo-intenso/${idEmpresa}`);
-
-    if (resposta.ok) {
-        const dados = await resposta.json();
-        console.log("KPI Fluxo Intenso (Alerta):", dados);
-
-        let txtSetor = document.getElementById('kpi_intenso_setor');
-        let txtHora = document.getElementById('kpi_intenso_hora');
-        
-        if (txtSetor && txtHora) {
-            txtSetor.innerHTML = dados.setor || "Nenhum";
-            txtHora.innerHTML = `às ${dados.hora_pico}h`; // Exibe algo como "às 9h"
-        }
-    } else {
-        console.error("Erro ao buscar dados do KPI Fluxo Intenso.");
-    }
-}
-
-async function exibirKpiFluxoBaixo() {
-    if (!idEmpresa) return;
-
-    const resposta = await fetch(`/dash/kpi/fluxo-baixo/${idEmpresa}`);
-
-    if (resposta.ok) {
-        const dados = await resposta.json();
-        console.log("KPI Fluxo Baixo (Alerta):", dados);
-
-        let txtSetor = document.getElementById('kpi_baixo_setor');
-        let txtQtd = document.getElementById('kpi_baixo_qtd');
-        
-        if (txtSetor && txtQtd) {
-            txtSetor.innerHTML = dados.setor || "Nenhum";
-            txtQtd.innerHTML = dados.min_fluxo || 0;
-        }
-    } else {
-        console.error("Erro ao buscar dados do KPI Fluxo Baixo.");
-    }
-}
+			let txtHora = document.getElementById('kpi_hora_pico');
+			let txtQtd = document.getElementById('kpi_qtd_pico');
 
 
-	function autenticarN3(){
+			let iconeKpi = document.getElementById('icone_kpi_pico');
+			let statusKpi = document.getElementById('status_kpi_pico');
+
+			if (txtHora && txtQtd && statusKpi) {
+
+
+				txtHora.innerHTML = `${dados.hora_pico}h`;
+				let totalPessoas = parseInt(dados.total_passagens);
+				txtQtd.innerHTML = `Passagens no Horario: ${totalPessoas}`;
+
+
+				// capacidade máxima que a loja suporta em 1 hora
+				//isso pode vir do BD (ex: dados.capacidade_maxima) sla
+				const capacidadeMaximaHora = 100; // CAPACIDADE MAXIMA DE EXEMPLO
+
+				// calcula qual a porcentagem de lotação no horário
+				let porcentagemLotacao = (totalPessoas / capacidadeMaximaHora) * 100;
+
+				if (porcentagemLotacao <= 60) {
+					// IDEAL (Verde) -  60% 
+					iconeKpi.style.color = "#00FF00";
+					statusKpi.innerHTML = "Ideal";
+					statusKpi.style.color = "#00FF00";
+
+				} else if (porcentagemLotacao > 60 && porcentagemLotacao <= 85) {
+					// ALERTA (Amarelo) -  61% - 85%
+					iconeKpi.style.color = "#FFD700";
+					statusKpi.innerHTML = "Alerta";
+					statusKpi.style.color = "#FFD700";
+
+				} else {
+					// PERIGO (Vermelho) > 85% 
+					iconeKpi.style.color = "#FF0000";
+					statusKpi.innerHTML = "Perigo";
+					statusKpi.style.color = "#FF0000";
+				}
+			}
+		} else {
+			console.error("Erro ao buscar dados do KPI Horário Pico.");
+		}
+	}
+
+	async function exibirKpiLocalMaisAcessado() {
+		if (!idEmpresa) return;
+
+		const resposta = await fetch(`/dash/kpi/local-mais-acessado/${idEmpresa}`);
+
+		if (resposta.ok) {
+			const dados = await resposta.json();
+
+
+			let txtLocal = document.getElementById('kpi_nome_local');
+			let txtPorcentagem = document.getElementById('kpi_porcentagem_local');
+
+
+			let iconeKpi = document.getElementById('icone_kpi_local');
+			let statusKpi = document.getElementById('status_kpi_local');
+
+			if (txtLocal && txtPorcentagem && iconeKpi && statusKpi) {
+
+
+				txtLocal.innerHTML = dados.setor || "Nenhum";
+				let valorPorcentagem = parseFloat(dados.porcentagem); // Transforma em número decimal
+				txtPorcentagem.innerHTML = `${valorPorcentagem}%`;
+
+
+				if (valorPorcentagem <= 40) {
+					// IDEAL (Verde)
+					iconeKpi.style.color = "#00FF00"; // ícone
+					statusKpi.innerHTML = "Ideal";    // texto
+					statusKpi.style.color = "#00FF00"; // ta dando certo assim n vou mudar
+
+				} else if (valorPorcentagem > 40 && valorPorcentagem <= 75) {
+					// ALERTA (Amarelo)
+					iconeKpi.style.color = "#FFD700";
+					statusKpi.innerHTML = "Alerta";
+					statusKpi.style.color = "#FFD700";
+
+				} else {
+					// PERIGO (Vermelho)
+					iconeKpi.style.color = "#FF0000";
+					statusKpi.innerHTML = "Perigo";
+					statusKpi.style.color = "#FF0000";
+
+
+				}
+			}
+		} else {
+			console.error("Erro ao buscar dados do KPI Local Mais Acessado.");
+		}
+	}
+
+	async function exibirKpiFluxoIntenso() {
+		if (!idEmpresa) return;
+
+		const resposta = await fetch(`/dash/kpi/fluxo-intenso/${idEmpresa}`);
+
+		if (resposta.ok) {
+			const dados = await resposta.json();
+			console.log("KPI Fluxo Intenso (Alerta):", dados);
+
+			let txtSetor = document.getElementById('kpi_intenso_setor');
+			let txtHora = document.getElementById('kpi_intenso_hora');
+
+			if (txtSetor && txtHora) {
+				txtSetor.innerHTML = dados.setor || "Nenhum";
+				txtHora.innerHTML = `às ${dados.hora_pico}h`; // Exibe algo como "às 9h"
+			}
+		} else {
+			console.error("Erro ao buscar dados do KPI Fluxo Intenso.");
+		}
+	}
+
+	async function exibirKpiFluxoBaixo() {
+		if (!idEmpresa) return;
+
+		const resposta = await fetch(`/dash/kpi/fluxo-baixo/${idEmpresa}`);
+
+		if (resposta.ok) {
+			const dados = await resposta.json();
+			console.log("KPI Fluxo Baixo (Alerta):", dados);
+
+			let txtSetor = document.getElementById('kpi_baixo_setor');
+			let txtQtd = document.getElementById('kpi_baixo_qtd');
+
+			if (txtSetor && txtQtd) {
+				txtSetor.innerHTML = dados.setor || "Nenhum";
+				txtQtd.innerHTML = dados.min_fluxo || 0;
+			}
+		} else {
+			console.error("Erro ao buscar dados do KPI Fluxo Baixo.");
+		}
+	}
+
+
+	function autenticarN3() {
 		let emailUsuario = sessionStorage.EMAIL_USUARIO;
 
 		if (emailUsuario == 'suporte@flowtrak.com') {
