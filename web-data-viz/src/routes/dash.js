@@ -57,4 +57,3 @@ router.get("/kpi/fluxo-intenso/:idEmpresa", function (req, res) {
 });
 
 module.exports = router;
-
