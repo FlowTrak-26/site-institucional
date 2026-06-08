@@ -682,9 +682,9 @@
 						myChart.update();
 					}
 
-					// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-					proximaAtualizacao = setTimeout(() => {
-						atualizarGrafico(dados, myChart, id_grafico); obterKPIs();
+				// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+				proximaAtualizacao = setTimeout(() => {
+					atualizarGrafico(dados, myChart, id_grafico); obterKPIs();
 					}, 10000);
 				});
 			} else {
@@ -773,7 +773,7 @@
 			console.error('Erro ao buscar dados do KPI Total.', erro);
 		}
 	}
-	
+
 async function exibirKpiHorarioPico() {
     if (!idEmpresa) return;
 
@@ -787,7 +787,7 @@ async function exibirKpiHorarioPico() {
         let txtQtd = document.getElementById('kpi_qtd_pico');
         
    
-        // let iconeKpi = document.getElementById('icone_kpi_pico');
+        let iconeKpi = document.getElementById('icone_kpi_pico');
         let statusKpi = document.getElementById('status_kpi_pico');
         
         if (txtHora && txtQtd && statusKpi) {
@@ -807,19 +807,19 @@ async function exibirKpiHorarioPico() {
 
             if (porcentagemLotacao <= 60) {
                 // IDEAL (Verde) -  60% 
-                // iconeKpi.style.color = "#00FF00"; 
+                iconeKpi.style.color = "#00FF00"; 
                 statusKpi.innerHTML = "Ideal";
                 statusKpi.style.color = "#00FF00";
                 
             } else if (porcentagemLotacao > 60 && porcentagemLotacao <= 85) {
                 // ALERTA (Amarelo) -  61% - 85%
-                // iconeKpi.style.color = "#FFD700"; 
+                iconeKpi.style.color = "#FFD700"; 
                 statusKpi.innerHTML = "Alerta";
                 statusKpi.style.color = "#FFD700";
                 
             } else {
                 // PERIGO (Vermelho) > 85% 
-                // iconeKpi.style.color = "#FF0000"; 
+                iconeKpi.style.color = "#FF0000"; 
                 statusKpi.innerHTML = "Perigo";
                 statusKpi.style.color = "#FF0000";
             }
