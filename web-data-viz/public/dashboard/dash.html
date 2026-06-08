@@ -21,7 +21,7 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="iniciarpagina(), autenticarN3(), exibirGraficoLinha(), exibirKpiTotal(), exibirKpiHorarioPico(), exibirKpiLocalMaisAcessado(), exibirKpiFluxoIntenso(), exibirKpiFluxoBaixo();">
+<body onload="iniciarpagina(), exibirGraficoLinha(), exibirKpiTotal(), exibirKpiHorarioPico(), exibirKpiLocalMaisAcessado(), exibirKpiFluxoIntenso(), exibirKpiFluxoBaixo();">
 	
 	<header>
 		<div class="nav-container">
@@ -75,19 +75,7 @@
 						<a href="https://flowtrak.atlassian.net/servicedesk/customer/portal/1">Suporte</a>
 					</div>
 				</div>
-
-				<!-- Abaixo vai ter a div do BobIa que só aparece para o N3 -->
-
-
-				<div class="nav-link" id="suporte">
-
-
-				<div class="nav-link" id="suporte_especifico">
-					
-
-				</div>
-
-			</div>
+		</div>
 			<div class="perfil-area">
 				<div class="perfil-img">
 					<button class="btn-pag-login" onclick="redirecionamento_perfil()">
@@ -99,16 +87,16 @@
 						<p id="user_name">Usuario</p>
 					</div>
 					<div class="bottom-perfil">
-						<button class="btn-sair" onclick="limparSessao()">
+						<button class="btn-sair" onclick="novaSessao()">
 							<p id="user_permissao">comum</p>
 							<img src="../assets/icon/nav-seta-baixo.png">
 						</button>
 					</div>
 				</div>
 			</div>
-		</div>
 	</header>
 
+	<div id="suporte_especifico"></div>
 	<div class="main-container">
 		<div class="content-dash">
 			<div class="infos-text">
@@ -971,6 +959,30 @@ async function exibirKpiFluxoBaixo() {
 	if (enderecoDaFilial != undefined) {
 		document.getElementById('endereco_filial').innerHTML = enderecoDaFilial;
 	}
+
+	function autenticarN3(){
+		let emailUsuario = sessionStorage.EMAIL_USUARIO;
+
+		console.log(emailUsuario)
+
+		if (emailUsuario == 'suporte@flowtrak.com') {
+			suporte_especifico.innerHTML = `
+					<button id="btn-bobIA" onclick="redirecionamento_bobIA()">
+						<img src="../assets/icon/bob_logo.png" alt="">
+					</button>
+			`
+		}
+	}
+
+function novaSessao(){
+	limparSessao();
+	window.location = "../main/login.html";
+}
+
+function redirecionamento_bobIA(){
+	window.location = "http://localhost:3000";
+}
+autenticarN3();
 </script>
 
 </html>
