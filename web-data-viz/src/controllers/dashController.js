@@ -83,10 +83,92 @@ function atualizarDadosMapaCalor(req, res) {
     });
 }
 
+function buscarKpiTotal(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    dashModel.buscarKpiTotal(idEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado[0]); //  apenas o primeiro objeto com a soma
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarKpiHorarioPico(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    dashModel.buscarKpiHorarioPico(idEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado[0]); // Envia o primeiro registro encontrado { hora_pico: X, total_passagens: Y }
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarKpiLocalMaisAcessado(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    dashModel.buscarKpiLocalMaisAcessado(idEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado[0]); 
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarKpiFluxoIntenso(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    dashModel.buscarKpiFluxoIntenso(idEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado[0]); 
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarKpiFluxoBaixo(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    dashModel.buscarKpiFluxoBaixo(idEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado[0]); 
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
     module.exports = {
     buscarDadosGraficoLinha,
     atualizarDadosGraficoLinha,
     buscarDadosMapaCalor,
-    atualizarDadosMapaCalor
+    atualizarDadosMapaCalor,
+    // KPI
+    buscarKpiTotal,
+    buscarKpiHorarioPico,
+    buscarKpiLocalMaisAcessado,
+    buscarKpiFluxoIntenso,
+    buscarKpiFluxoBaixo
+
 }
 

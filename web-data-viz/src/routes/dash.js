@@ -21,5 +21,26 @@ router.get("/tempo-real/grafico-calor/:idEmpresa", function (req, res) {
     dashController.atualizarDadosMapaCalor(req, res);
 })
 
+router.get("/kpi/total/:idEmpresa", function (req, res) {
+    dashController.buscarKpiTotal(req, res);
+});
+
+router.get("/kpi/horario-pico/:idEmpresa", function (req, res) {
+    dashController.buscarKpiHorarioPico(req, res);
+});
+
+router.get("/kpi/local-mais-acessado/:idEmpresa", function (req, res) {
+    dashController.buscarKpiLocalMaisAcessado(req, res);
+});
+
+router.get("/kpi/fluxo-intenso/:idEmpresa", function (req, res) {
+    dashController.buscarKpiFluxoIntenso(req, res);
+});
+
+
+router.get("/kpi/fluxo-intenso/:idEmpresa", function (req, res) {
+    dashController.buscarKpiFluxoBaixo(req, res);
+});
+
 module.exports = router;
 
