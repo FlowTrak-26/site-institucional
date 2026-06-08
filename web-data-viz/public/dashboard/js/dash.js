@@ -1,7 +1,6 @@
 let proximaAtualizacao;
-let proximaAtualizacao;
 
-window.onload = exibirGraficoLinha(), exibirGraficoCalor();
+
 window.onload = exibirGraficoLinha(), exibirGraficoCalor();
 
     function exibirGraficoLinha() {

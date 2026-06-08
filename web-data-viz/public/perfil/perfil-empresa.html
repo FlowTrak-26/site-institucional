@@ -154,8 +154,10 @@
 
 			return false;
 		} else {
+			console.log("Valores colocados pelo usuário", nomeVar,cnpjVar,telefoneVar,emailVar,enderecoVar)
 			//   setInterval(sumirMensagem, 5000);
 		}
+
 
 
 		// Enviando o valor da nova input
@@ -168,7 +170,7 @@
 				// crie um atributo que recebe o valor recuperado aqui
 				// Agora vá para o arquivo routes/usuario.js
 				nomeServer: nomeVar,
-				cpnjServer: cnpjVar,
+				cnpjServer: cnpjVar,
 				enderecoServer: enderecoVar,
 				telefoneServer: telefoneVar,
 				emailServer: emailVar

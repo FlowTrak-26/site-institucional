@@ -35,6 +35,9 @@ function buscarPorId(req, res) {
 }
 
 function cadastrar(req, res) {
+  console.log(req.body);
+  
+
   var telefone = req.body.telefoneServer;
   var cnpj = req.body.cnpjServer;
   var nome = req.body.nomeServer;
@@ -46,10 +49,23 @@ function cadastrar(req, res) {
   } else if (email == undefined) {
     res.status(400).send("Seu email está undefined!");
   } else if (cnpj == undefined) {
-    res.status(400).send("Sua senha está undefined!");
+    res.status(400).send("Seu CNPJ está undefined!");
   } else if (telefone == undefined) {
     res.status(400).send("Sua telefone está undefined!");
   } else {
+
+    if (nome.length > 45){
+      console.log("Nome com mais de 45 caracteres", nome)
+    }
+    if (cnpj.length != 14){
+      console.log("CNPJ inválido", cnpj)
+    }
+    if (telefone.length != 9){
+      console.log("Telefone inválido", telefone)
+    }
+    if (email.length > 45 || endereco_sede > 45){
+      console.log("Email ou endereço com mais de 45 caracteres", email);
+    }
 
     empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
       if (resultado.length > 0) {
