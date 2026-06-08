@@ -48,8 +48,11 @@ a{
 	width: 70%;
 	height: 100%;
 	gap: 50px;
+<<<<<<< HEAD
+	justify-content: center;	
+=======
 	justify-content: center;
-
+>>>>>>> 69050ccf378bcb82bb05288e85ce5685c70ea0f1
 }
 
 .nav-link{

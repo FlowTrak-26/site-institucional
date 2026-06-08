@@ -30,7 +30,7 @@
                 <div class="cadastro">
                     <div class="cadastro-title">
                         <h1>Cadastre-se</h1>
-                        <p>Registre sua empresa aqui!</p>
+                        <p>Registre-se aqui!</p>
                     </div>
                     <div class="cadastro-infos">
                         <div class="infos-left">
@@ -41,6 +41,10 @@
                             <div class="info-row">
                                 <p>E-mail:</p>
                                 <input class="ipt-infosL" placeholder="Digite seu E-mail" id="ipt_email" />
+                            </div>
+                            <div class="info-row">
+                                <p>CPF:</p>
+                                <input class="ipt-infosL" placeholder="Digite seu CPF" id="ipt_cpf" />
                             </div>
                             <!-- <div class="info-row">
                 <p>Telefone:</p>
@@ -143,6 +147,7 @@
 
         var nomeVar = ipt_nome.value;
         var emailVar = ipt_email.value;
+        var cpfVar = ipt_cpf.value;
         var senhaVar = ipt_senha.value;
         var empresaVar = 1;
         // var telefoneVar = ipt_telefone.value;
@@ -153,6 +158,7 @@
             nomeVar == "" ||
             emailVar == "" ||
             senhaVar == "" ||
+            cpfVar == "" ||
             confirmacaoSenhaVar == ""
             // telefone == ""
         ) {
@@ -167,26 +173,26 @@
 
             finalizarAguardar();
             return false;
-        }else if(!(emailVar.includes("@")) || !(emailVar.includes("."))){
+        } else if (!(emailVar.includes("@")) || !(emailVar.includes("."))) {
             cardErro.style.display = "block";
             mensagem_erro.innerHTML = "Seu email deve ter '@' e '.'";
 
             finalizarAguardar();
             return false;
-        }else if(emailVar.length <= 5){
+        } else if (emailVar.length <= 5) {
             cardErro.style.display = "block";
             mensagem_erro.innerHTML = "Seu email deve ter 6 ou mais caracteres!";
 
             finalizarAguardar();
             return false;
-        }else if(senhaVar.length <= 4){
+        } else if (senhaVar.length <= 4) {
             cardErro.style.display = "block";
             mensagem_erro.innerHTML = "Sua senha deve ter 5 ou mais caracteres!";
 
             finalizarAguardar();
             return false;
         }
-        else if(!(senhaVar == confirmacaoSenhaVar)){
+        else if (!(senhaVar == confirmacaoSenhaVar)) {
             cardErro.style.display = "block";
             mensagem_erro.innerHTML = "Suas senhas devem coincidir!";
 
@@ -208,6 +214,7 @@
                 // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nomeVar,
                 emailServer: emailVar,
+                cpfServer: cpfVar,
                 senhaServer: senhaVar,
                 empresaServer: empresaVar
 

@@ -52,10 +52,29 @@ function atualizarDadosGraficoLinha(idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
-function buscarDadosMapaCalor(limite_linhas, id_grafico) {
+function buscarDadosMapaCalor(idEmpresa) {
 
-    var instrucaoSql =
-        ``;
+    var instrucaoSql = 
+    `
+        SELECT
+            emp.id_empresa,
+            DATE_FORMAT(dc.data_hora, '%H') AS momento_grafico,
+            COUNT(dc.fluxo) AS fluxo,
+            id_ponto_monitoramento
+        FROM empresa_parceira emp
+        JOIN ponto_monitoramento pt
+            ON pt.fk_empresa = emp.id_empresa
+        JOIN sensor sn
+            ON sn.fk_ponto = pt.id_ponto_monitoramento
+        JOIN dado_captado dc
+            ON dc.fk_sensor = sn.id_sensor
+        WHERE emp.id_empresa = ${idEmpresa}
+        GROUP BY
+            emp.id_empresa,
+            DATE_FORMAT(dc.data_hora, '%H'),
+            id_ponto_monitoramento
+        ORDER BY momento_grafico;
+    `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -168,16 +187,6 @@ function atualizarDadosMapaCalorEsp(id_grafico) {
     return database.executar(instrucaoSql);
 }
 
-// function buscarKpiTotal(idEmpresa) { //kpi 1 total
-//     //  todo o fluxo da empresa selecionada
-//     var instrucaoSql = `
-//         SELECT SUM(fluxo) as total_passagens
-//         FROM dashGraficosLinha
-//         WHERE id_empresa = ${idEmpresa};
-//     `;
-//     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-//     return database.executar(instrucaoSql);
-// }
 
 function buscarKpiSetorPico(idEmpresa) {
     // Agrupa pelo nome do ponto e ordena do maior para o menor, pegando apenas o Top 1
@@ -205,7 +214,7 @@ function buscarKpiHorarioPico(idEmpresa) {
         WHERE pm.fk_empresa = ${idEmpresa}
         GROUP BY HOUR(dc.data_hora)
         ORDER BY total_passagens DESC
-        LIMIT 1;
+        LIMIT 2;
     `;
 
     console.log("Executando a instrução SQL (KPI Horário Pico): \n" + instrucaoSql);
@@ -256,22 +265,37 @@ function buscarKpiFluxoIntenso(idEmpresa) {
 }
 
 function buscarKpiFluxoBaixo(idEmpresa) {
-    //grupa pelo nome do ponto e ordena do menor pro maio
     var instrucaoSql = `
         SELECT 
             pm.nome AS setor, 
-            SUM(dc.fluxo) AS min_fluxo
+            SUM(dc.fluxo) AS total_passagens
         FROM ponto_monitoramento pm
         JOIN sensor s ON s.fk_ponto = pm.id_ponto_monitoramento
         JOIN dado_captado dc ON dc.fk_sensor = s.id_sensor
         WHERE pm.fk_empresa = ${idEmpresa}
         GROUP BY pm.nome
-        ORDER BY min_fluxo ASC
+        ORDER BY total_passagens ASC
         LIMIT 1;
     `;
     console.log("Executando a instrução SQL (KPI Fluxo Baixo): \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+// SELECT 
+//     dc.id_dado_captado AS id_captura,
+//     dc.fluxo AS quantidade_fluxo,
+//     dc.data_hora AS horario,
+//     pm.fk_empresa AS id_empresa,
+//     ep.nome AS nome_empresa,
+//     pm.nome AS setor
+// FROM dado_captado dc
+// JOIN sensor s 
+//     ON dc.fk_sensor = s.id_sensor
+// JOIN ponto_monitoramento pm 
+//     ON s.fk_ponto = pm.id_ponto_monitoramento
+// JOIN empresa_parceira ep 
+//     ON pm.fk_empresa = ep.id_empresa
+// ORDER BY dc.data_hora DESC;
 
 module.exports = {
     buscarDadosGraficoLinha,

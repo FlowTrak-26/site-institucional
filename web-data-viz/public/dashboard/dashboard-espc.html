@@ -7,6 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>FlowTrak</title>
 
+	<link rel="icon" href="../assets/imgs/logo.png" />
+
 	<link rel="stylesheet" href="./css/dashboard-espc.css" />
 	<link rel="stylesheet" href="../perfil/css/nav-bar.css">
 	<script src="../sessao.js"></script>
@@ -24,7 +26,7 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina(),  autenticarN3();">
+<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina();">
 
 	<header>
 		<div class="nav-container">
@@ -101,9 +103,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
 	</header>
 
+	<div id="suporte_especifico"></div>
 	<div class="main-container">
 		<div class="content-dash">
 			<div class="infos-text">
@@ -606,12 +608,11 @@
 		console.log(emailUsuario)
 
 		if (emailUsuario == 'suporte@flowtrak.com') {
-			suporte_especifico.innerHTML = `<div class="nav-link-img">
-						<img src="../assets/icon/robot-solid.png" alt="">
-					</div>
-					<div class="nav-link-txt">
-						<a href="http://localhost:3000/">BoB Ai</a>
-					</div>`
+			suporte_especifico.innerHTML = `
+					<button id="btn-bobIA" onclick="redirecionamento_bobIA()">
+						<img src="../assets/icon/bob_logo.png" alt="">
+					</button>
+			`
 		}
 	}
 	var nome = sessionStorage.NOME_USUARIO;
@@ -642,4 +643,8 @@
 		window.location = "../main/login.html";
 	}
 
+function redirecionamento_bobIA(){
+	window.location = "http://localhost:3000";
+}
+autenticarN3();
 </script>

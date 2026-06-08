@@ -44,14 +44,9 @@ function atualizarDadosGraficoLinha(req, res) {
 
 
 function buscarDadosMapaCalor(req, res) {
-
-    const limite_linhas = 7;
-
     var idEmpresa = req.params.idEmpresa;
 
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
-
-    dashModel.buscarDadosMapaCalor(idEmpresa, limite_linhas).then(function (resultado) {
+    dashModel.buscarDadosMapaCalor(idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -67,10 +62,9 @@ function buscarDadosMapaCalor(req, res) {
 function atualizarDadosMapaCalor(req, res) {
 
     var idEmpresa = req.params.idEmpresa;
-
     console.log(`Recuperando medidas em tempo real`);
 
-    dashModel.atualizarDadosMapaCalor(idEmpresa ).then(function (resultado) {
+    dashModel.atualizarDadosMapaCalor(idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

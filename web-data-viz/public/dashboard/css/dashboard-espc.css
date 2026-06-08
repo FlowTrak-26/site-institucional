@@ -530,7 +530,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid rgba(165, 165, 165, 0.64) ;
     border-radius: 20px;
     flex-direction: column;
 }
@@ -645,4 +644,18 @@
 
 #linha canvas{
     min-height: 38vh;
+}
+
+#btn-bobIA{
+	background: none;
+	border: none;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	cursor: pointer;
+}
+
+#btn-bobIA img{
+	width: 150px;
+	height: 150px;
 }
