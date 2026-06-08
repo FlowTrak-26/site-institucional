@@ -7,7 +7,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>FlowTrak</title>
 
-
 	<link rel="stylesheet" href="./css/dashboard-espc.css">
 	<link rel="stylesheet" href="./css/dashboards.css" />
 	<link rel="stylesheet" href="../perfil/css/nav-bar.css">
@@ -79,7 +78,7 @@
 
 				<!-- Abaixo vai ter a div do BobIa que só aparece para o N3 -->
 
-				<div class="nav-link" id="suporte">
+				<div class="nav-link" id="suporte_especifico">
 					
 				</div>
 
@@ -739,9 +738,9 @@
 	// })
 
 	function autenticarN3(){
-		let emailUsuario = sessionStorage.NOME_USUARIO || '';
+		let emailUsuario = sessionStorage.EMAIL_USUARIO;
 		if (emailUsuario == 'suporte@flowtrak.com') {
-			suporte.innerHTML = `<div class="nav-link-img">
+			suporte_especifico.innerHTML = `<div class="nav-link-img">
 						<img src="../assets/icon/robot-solid.png" alt="">
 					</div>
 					<div class="nav-link-txt">
