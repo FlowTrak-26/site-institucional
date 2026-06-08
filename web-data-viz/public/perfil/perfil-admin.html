@@ -1,140 +1,192 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Flowtrak</title>
-		<link href="./css/nav-bar.css" rel="stylesheet">
-		<link href="./css/perfil-admin.css" rel="stylesheet">
-	</head>
-	<body>
-		<div class="main-container">
-			<div class="nav-container">
-				<div class="nav-logo">
-					<h1>Flow <span>Trak</span></h1>
-					<img src="../assets/imgs/logo.png" alt="" />
-				</div>
-				<div class="nav-buttons">
-					<div class="nav-link">
-						<div class="nav-link-img">
-							<img src="../assets/icon/nav-icon-home.png" alt="">
-						</div>
-						<div class="nav-link-txt">
-							<a href="../index.html">Home</a>
-						</div>
-					</div>
 
-						<div class="nav-link " >
-							<div class="nav-link-img">
-								<img src="../assets/icon/nav-icon-geral.png" alt="">
-							</div>
-							<div class="nav-link-txt">
-								<a href="../dashboard/dash.html">Geral</a>
-							</div>
-						</div>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Flowtrak</title>
+	<link href="./css/nav-bar.css" rel="stylesheet">
+	<link href="./css/perfil-admin.css" rel="stylesheet">
+</head>
 
-						<div class="nav-link">
-							<div class="nav-link-img">
-								<img src="../assets/icon/nav-icon-especifico.png" alt="">
-							</div>
-							<div class="nav-link-txt">
-								<a href="../dashboard/dashboard-espc.html">Específica</a>
-							</div>
-						</div>
-
-				</div>
-				<div class="perfil-area">
-					<div class="perfil-img">
-						<button class="btn-pag-login" onclick="redirecionamento_perfil()">
-							<img src="../assets/icon/nav-icon-perfil.png" alt="">
-						</button>
-					</div>
-					<div class="text-perfil-area">
-						<div class="top-perfil">
-							<p id="user_name">Usuario</p>
-						</div>
-						<div class="bottom-perfil">
-							<button class="btn-sair" onclick="novaSessao()">
-								<p id="user_permissao">comum</p>
-								<img src="../assets/icon/nav-seta-baixo.png">
-							</button>
-						</div>
-					</div>
-				</div>
+<body>
+	<div class="main-container">
+		<div class="nav-container">
+			<div class="nav-logo">
+				<h1>Flow <span>Trak</span></h1>
+				<img src="../assets/imgs/logo.png" alt="" />
 			</div>
-
-			<div class="main-content">
-				<div class="banner-content">
-					<img src="../assets/imgs/banner-perfil.png" alt="">
-				</div>
-				<div class="container-icon-perfil">
-					<div class="btns-icons-perfil">
-						<button class="btn-inativo" onclick="pagina_empresa()">Informações Sensiveis</button>
-						<button class="btn-ativo">Adicionar Funcionarios</button>
+			<div class="nav-buttons">
+				<div class="nav-link">
+					<div class="nav-link-img">
+						<img src="../assets/icon/nav-icon-home.png" alt="">
 					</div>
-					<img src="../assets/icon/icon-perfil-main.png" alt="">
-				</div>
-				<div class="container-cadastro">
-					<div class="container-cadastrados">
-						<p>Funcionarios Cadastrados</p>
-						<div class="btns-emails">
-							<div class="emails-cadastrados">
-								<img src="../assets/icon/nav-icon-perfil.png" alt="">
-								<p>funcionarioA@empresaA.com.br</p>
-							</div>
-							<div class="emails-cadastrados">
-								<img src="../assets/icon/nav-icon-perfil.png" alt="">
-								<p>funcionarioA@empresaA.com.br</p>
-							</div>
-							<div class="emails-cadastrados">
-								<img src="../assets/icon/nav-icon-perfil.png" alt="">
-								<p>funcionarioA@empresaA.com.br</p>
-							</div>
-							<div class="emails-cadastrados">
-								<img src="../assets/icon/nav-icon-perfil.png" alt="">
-								<p>funcionarioA@empresaA.com.br</p>
-							</div>
-							<div class="emails-cadastrados">
-								<img src="../assets/icon/nav-icon-perfil.png" alt="">
-								<p>funcionarioA@empresaA.com.br</p>
-							</div>
-
-						</div>
+					<div class="nav-link-txt">
+						<a href="../index.html">Home</a>
 					</div>
-					<div class="content-inputs">
-						<p>Cadastrar</p>
-						<div class="ipts-container-cadastro">
-							<div class="ipt-cadastro">
-								<p>Nome Completo:</p>
-								<input placeholder="Nome">
-							</div>
-							<div class="ipt-cadastro">
-								<p>Email:</p>
-								<input placeholder="E-mail">
-							</div>
-							<div class="ipt-cadastro">
-								<p>Telefone:</p>
-								<input placeholder="Telefone">
-							</div>
-							<div class="ipt-cadastro">
-								<p>Cnpj:</p>
-								<input placeholder="Cnpj">
-							</div>
-							<div class="ipt-cadastro">
-								<p>Senha:</p>
-								<input placeholder="Senha">
-							</div>
-						</div>
-						<button class="btn-ipts-cadastro">Cadastrar</button>
-						
+				</div>
+
+				<div class="nav-link ">
+					<div class="nav-link-img">
+						<img src="../assets/icon/nav-icon-geral.png" alt="">
+					</div>
+					<div class="nav-link-txt">
+						<a href="../dashboard/dash.html">Geral</a>
+					</div>
+				</div>
+
+				<div class="nav-link">
+					<div class="nav-link-img">
+						<img src="../assets/icon/nav-icon-especifico.png" alt="">
+					</div>
+					<div class="nav-link-txt">
+						<a href="../dashboard/dashboard-espc.html">Específica</a>
+					</div>
+				</div>
+
+				<div class="nav-link">
+					<div class="nav-link-img">
+						<img src="../assets/icon/circle-question-regular.png" alt="">
+					</div>
+					<div class="nav-link-txt">
+						<a href="https://flowtrak.atlassian.net/servicedesk/customer/portal/1">Suporte</a>
+					</div>
+				</div>
+
+
+
+			</div>
+			<div class="perfil-area">
+				<div class="perfil-img">
+					<button class="btn-pag-login" onclick="redirecionamento_perfil()">
+						<img src="../assets/icon/nav-icon-perfil.png" alt="">
+					</button>
+				</div>
+				<div class="text-perfil-area">
+					<div class="top-perfil">
+						<p id="user_name">Usuario</p>
+					</div>
+					<div class="bottom-perfil">
+						<button class="btn-sair" onclick="novaSessao()">
+							<p id="user_permissao">comum</p>
+							<img src="../assets/icon/nav-seta-baixo.png">
+						</button>
 					</div>
 				</div>
 			</div>
 		</div>
-	</body>
-	<script src="../sessao.js"></script>
-	<script>
-	function pagina_empresa(){
+
+		<div class="main-content">
+			<div class="banner-content">
+				<img src="../assets/imgs/banner-perfil.png" alt="">
+			</div>
+			<div class="container-icon-perfil">
+				<div class="btns-icons-perfil">
+					<button class="btn-inativo" onclick="pagina_empresa()">Informações Sensiveis</button>
+					<button class="btn-ativo">Adicionar Funcionarios</button>
+				</div>
+				<img src="../assets/icon/icon-perfil-main.png" alt="">
+			</div>
+			<div class="container-cadastro">
+				<div class="container-cadastrados">
+					<p>Funcionarios Cadastrados</p>
+					<div class="btns-emails">
+						<div class="emails-cadastrados">
+							<img src="../assets/icon/nav-icon-perfil.png" alt="">
+							<p>funcionarioA@empresaA.com.br</p>
+						</div>
+						<div class="emails-cadastrados">
+							<img src="../assets/icon/nav-icon-perfil.png" alt="">
+							<p>funcionarioA@empresaA.com.br</p>
+						</div>
+						<div class="emails-cadastrados">
+							<img src="../assets/icon/nav-icon-perfil.png" alt="">
+							<p>funcionarioA@empresaA.com.br</p>
+						</div>
+						<div class="emails-cadastrados">
+							<img src="../assets/icon/nav-icon-perfil.png" alt="">
+							<p>funcionarioA@empresaA.com.br</p>
+						</div>
+						<div class="emails-cadastrados">
+							<img src="../assets/icon/nav-icon-perfil.png" alt="">
+							<p>funcionarioA@empresaA.com.br</p>
+						</div>
+
+					</div>
+				</div>
+				<div class="content-inputs">
+					<p>Cadastrar</p>
+					<div class="ipts-container-cadastro">
+						<div class="ipt-cadastro">
+							<p>Nome Completo:</p>
+							<input placeholder="Nome:">
+						</div>
+						<div class="ipt-cadastro">
+							<p>Email:</p>
+							<input placeholder="E-mail:">
+						</div>
+						<div class="ipt-cadastro">
+							<p>Telefone:</p>
+							<input placeholder="Telefone:">
+						</div>
+						<div class="ipt-cadastro">
+							<p>CPF:</p>
+							<input placeholder="CPF:" id="ipt_cpf">
+						</div>
+						<div class="ipt-cadastro">
+							<p>Senha:</p>
+							<input placeholder="Senha:">
+						</div>
+					</div>
+					<button class="btn-ipts-cadastro" onclick="atribuirEmpresa()">Cadastrar</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="../sessao.js"></script>
+<script>
+
+	function atribuirEmpresa() {
+		var cpfVar = ipt_cpf.value
+		var id_adminVar = sessionStorage.ID_EMPRESA
+
+		console.log("ID_ADMIN" + id_adminVar)
+
+		if (cpfVar == "") {
+			console.log("Campo do CPF vazio!")
+		}
+
+		fetch("/usuarios/atribuirEmpresa", {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				cpfServer: cpfVar,
+				idEmpresaServer: id_adminVar
+			}),
+		})
+			.then(function (resposta) {
+				console.log("resposta: ", resposta);
+				if (resposta.ok) {
+					console.log("ID atribuído com sucesso!...");
+					// window.location = "./perfil-empresa.html";
+				} else {
+					throw "Houve um erro ao atribuir o ID!";
+				}
+			})
+			.catch(function (resposta) {
+				console.log(`#ERRO: ${resposta}`);
+				// finalizarAguardar();
+			});
+
+		return false;
+	}
+
+	function pagina_empresa() {
 		window.location.href = './perfil-empresa.html';
 	}
 
@@ -147,9 +199,10 @@
 	console.log(nome);
 	console.log(permissao);
 
-	function novaSessao(){
+	function novaSessao() {
 		limparSessao();
 		window.location = "../main/login.html";
 	}
-	</script>
+</script>
+
 </html>
