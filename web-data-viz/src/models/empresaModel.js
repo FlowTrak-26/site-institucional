@@ -21,15 +21,22 @@ function buscarPorCnpj(cnpj) {
 	return database.executar(instrucaoSql);
 }
 
-function cadastrar(nome, cnpj, endereco_sede, telefone, email) {
+function atualizar(id_empresa, nome, cnpj, endereco_sede, telefone, email) {
+
+	console.log("Executando comando atualizar SQL das empresas parceiras: \n" + instrucaoSql);
+
 	var instrucaoSql = 
 		`
-			INSERT INTO 
-			empresa_parceira (nome, cnpj, endereco_sede, telefone, email, franqueadora)
-			VALUES 
-			('${nome}', '${cnpj}', '${endereco_sede}', '${telefone}', '${email}', null)`;
+			UPDATE empresa_parceira 
+			SET nome = '${nome}',
+					cnpj = '${cnpj}',
+					endereco_sede = '${endereco_sede}',
+					telefone = '${telefone}',
+					email = '${email}'
+			WHERE id_empresa = ${id_empresa};
+		`;
 
 	return database.executar(instrucaoSql);
 }
 
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar };
+module.exports = { buscarPorCnpj, buscarPorId, atualizar, listar };

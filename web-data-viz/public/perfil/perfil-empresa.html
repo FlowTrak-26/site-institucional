@@ -112,7 +112,7 @@
 								<p>Confirmar senha:</p>
 								<input id="ipt_senha_confirmacao" placeholder="Confirmar senha">
 							</div>
-							<button class="btn-salvar-empresa" onclick="cadastrar()">Salvar alterações</button>
+							<button class="btn-salvar-empresa" onclick="atualizar()">Salvar alterações</button>
 						</div>
 					</div>
 
@@ -126,22 +126,18 @@
 		window.location.href = './perfil-admin.html';
 	}
 
-
 	// Array para armazenar empresas cadastradas para validação de código de ativação 
 	let listaEmpresasCadastradas = [];
 
-	function cadastrar() {
-
-		//Recupere o valor da nova input pelo nome do id
-		// Agora vá para o método fetch logo abaixo
-
+	function atualizar() {
 		var nomeVar = ipt_nome.value;
 		var cnpjVar = ipt_cnpj.value;
 		var telefoneVar = ipt_telefone.value;
 		var emailVar = ipt_email.value;
 		var enderecoVar = ipt_endereco.value;
+		var idEmpresaVar = sessionStorage.ID_EMPRESA;
 
-		// Verificando se há algum campo em branco
+		console.log(idEmpresaVar)
 		if (
 			nomeVar == "" ||
 			cnpjVar == "" ||
@@ -155,20 +151,16 @@
 			return false;
 		} else {
 			console.log("Valores colocados pelo usuário", nomeVar,cnpjVar,telefoneVar,emailVar,enderecoVar)
-			//   setInterval(sumirMensagem, 5000);
 		}
 
-
-
 		// Enviando o valor da nova input
-		fetch("/empresas/cadastrar", {
-			method: "POST",
+		fetch("/empresas/atualizar", {
+			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				// crie um atributo que recebe o valor recuperado aqui
-				// Agora vá para o arquivo routes/usuario.js
+				idEmpresaServer: idEmpresaVar,
 				nomeServer: nomeVar,
 				cnpjServer: cnpjVar,
 				enderecoServer: enderecoVar,
@@ -178,20 +170,11 @@
 		})
 			.then(function (resposta) {
 				console.log("resposta: ", resposta);
-
 				if (resposta.ok) {
-					//   cardErro.style.display = "block";
-
-					console.log("Cadastro realizado com sucesso!...");		  
-
-
-					// setTimeout(() => {
-					// 	window.location = "../index.html";
-					// }, "2000");
-
-					//   limparFormulario();
+					console.log("Informações atualizadas com sucesso!...");		  
+					// window.location = "./perfil-empresa.html";
 				} else {
-					throw "Houve um erro ao tentar realizar o cadastro!";
+					throw "Houve um erro ao atualizar as informações!";
 				}
 			})
 			.catch(function (resposta) {
