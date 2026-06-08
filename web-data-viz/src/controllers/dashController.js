@@ -181,7 +181,7 @@ function buscarKpiLocalMaisAcessado(req, res) {
 
     dashModel.buscarKpiLocalMaisAcessado(idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
-            res.status(200).json(resultado[0]); 
+            res.status(200).json(resultado[0]);
         } else {
             res.status(204).send("Nenhum resultado encontrado!");
         }
@@ -196,7 +196,7 @@ function buscarKpiFluxoIntenso(req, res) {
 
     dashModel.buscarKpiFluxoIntenso(idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
-            res.status(200).json(resultado[0]); 
+            res.status(200).json(resultado[0]);
         } else {
             res.status(204).send("Nenhum resultado encontrado!");
         }
@@ -211,7 +211,7 @@ function buscarKpiFluxoBaixo(req, res) {
 
     dashModel.buscarKpiFluxoBaixo(idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
-            res.status(200).json(resultado[0]); 
+            res.status(200).json(resultado[0]);
         } else {
             res.status(204).send("Nenhum resultado encontrado!");
         }
@@ -257,4 +257,3 @@ function atualizarDadosMapaCalorEsp(req, res) {
     buscarKpiFluxoIntenso,
     buscarKpiFluxoBaixo,
     }
-
