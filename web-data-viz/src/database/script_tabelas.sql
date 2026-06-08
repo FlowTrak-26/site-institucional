@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS flowtrak;
+DROP DATABASE flowtrak;
 
 CREATE DATABASE flowtrak;
 USE flowtrak;
@@ -96,22 +96,26 @@ VALUES
 
 INSERT INTO ponto_monitoramento (nome, fk_empresa)
 VALUES
-	('Entrada Principal', 1),
-	('Setor Hortifruti', 1),
+	('Entrada', 1),
+	('Saida', 1),
+	('Caixas', 1),
+	('Corredor 1', 1),
+	('Corredor 2', 1),
+	('Corredor 3', 1),
 	('Caixas Rápidos', 2),
 	('Corredor Central', 3),
 	('Área de Carga', 4);
 
 
-INSERT INTO sensor (fk_ponto, status)
+INSERT INTO sensor (fk_ponto, nome, status)
 VALUES
-	(1, 'ATIVO'),
-	(2, 'ATIVO'),
-	(3, 'ATIVO'),
-	(4, 'DESATIVADO'),
-	(5, 'ATIVO');
+	(1, 'Sensor Entrada', 'ATIVO'),
+	(2, 'Sensor Saida', 'ATIVO'),
+	(3, 'Sensor Caixas', 'ATIVO'),
+	(4, 'Sensor Corredor 1', 'ATIVO'),
+	(5, 'Sensor Corredor 2', 'ATIVO'),
+	(6, 'Sensor Corredor 3', 'ATIVO');
 
-UPDATE sensor SET nome = 'Caixa1' WHERE id_sensor = 1;
 UPDATE sensor SET nome = 'Caixa2' WHERE id_sensor = 2;
 UPDATE sensor SET nome = 'Entrada' WHERE id_sensor = 3;
 UPDATE sensor SET nome = 'Saída' WHERE id_sensor = 4;

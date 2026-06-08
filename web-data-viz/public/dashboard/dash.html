@@ -1,804 +1,876 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlowTrak</title>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>FlowTrak</title>
 
-    <link rel="icon" href="../assets/imgs/logo.png" />
+		<link rel="icon" href="../assets/imgs/logo.png" />
 
-    <link rel="stylesheet" href="./css/dashboard-espc.css">
-    <link rel="stylesheet" href="./css/dashboards.css" />
-    <link rel="stylesheet" href="../perfil/css/nav-bar.css">
-    <script src="../sessao.js"></script>
+		<link rel="stylesheet" href="./css/dashboard-espc.css">
+		<link rel="stylesheet" href="./css/dashboards.css" />
+		<link rel="stylesheet" href="../perfil/css/nav-bar.css">
+		<script src="../sessao.js"></script>
 
-    <!-- scripts do Chart.js - 2022-1 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<!-- scripts do Chart.js - 2022-1 -->
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!--FONT AWESOME-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+		<!--FONT AWESOME-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+			integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+			crossorigin="anonymous" referrerpolicy="no-referrer" />
+	</head>
 
-<body
-    onload="iniciarpagina(), exibirGraficoLinha(), exibirGraficoCalor(), exibirKpiTotal(), exibirKpiHorarioPico(), exibirKpiLocalMaisAcessado(), exibirKpiFluxoIntenso(), exibirKpiFluxoBaixo();">
+	<body
+		onload="iniciarpagina(), exibirGraficoLinha(), exibirGraficoCalor(), exibirKpiTotal(), exibirKpiHorarioPico(), exibirKpiLocalMaisAcessado(), exibirKpiFluxoIntenso(), exibirKpiFluxoBaixo();">
 
-    <header>
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h1>Flow <span>Trak</span></h1>
-                <img src="../assets/imgs/logo.png" alt="" />
-            </div>
-            <div class="nav-buttons">
-                <div class="nav-link">
-                    <div class="nav-link-img">
-                        <img src="../assets/icon/nav-icon-home.png" alt="">
-                    </div>
-                    <div class="nav-link-txt">
-                        <a href="../index.html">Home</a>
-                    </div>
-                </div>
+		<header>
+			<div class="nav-container">
+				<div class="nav-logo">
+					<h1>Flow <span>Trak</span></h1>
+					<img src="../assets/imgs/logo.png" alt="" />
+				</div>
+				<div class="nav-buttons">
+					<div class="nav-link">
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-home.png" alt="">
+						</div>
+						<div class="nav-link-txt">
+							<a href="../index.html">Home</a>
+						</div>
+					</div>
 
 
-                <div class="nav-link pg-atual">
-                    <div class="nav-link-img">
-                        <img src="../assets/icon/nav-icon-geral.png" alt="">
-                    </div>
-                    <div class="nav-link-txt">
-                        <a href="../dashboard/dash.html">Geral</a>
-                    </div>
-                </div>
+					<div class="nav-link pg-atual">
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-geral.png" alt="">
+						</div>
+						<div class="nav-link-txt">
+							<a href="../dashboard/dash.html">Geral</a>
+						</div>
+					</div>
 
-                <div class="nav-link">
-                    <div class="nav-link-img">
-                        <img src="../assets/icon/nav-icon-especifico.png" alt="">
-                    </div>
-                    <div class="nav-link-txt">
-                        <a href="../dashboard/dashboard-espc.html">Específica</a>
-                    </div>
-                </div>
+					<div class="nav-link">
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-especifico.png" alt="">
+						</div>
+						<div class="nav-link-txt">
+							<a href="../dashboard/dashboard-espc.html">Específica</a>
+						</div>
+					</div>
 
-                <div class="nav-link">
-                    <div class="nav-link-img">
-                        <img src="../assets/icon/nav-icon-especifico.png" alt="">
-                    </div>
-                    <div class="nav-link-txt">
-                        <a href="../dashboard/dashboard-filiais.html">Filiais</a>
-                    </div>
-                </div>
+					<div class="nav-link">
+						<div class="nav-link-img">
+							<img src="../assets/icon/nav-icon-especifico.png" alt="">
+						</div>
+						<div class="nav-link-txt">
+							<a href="../dashboard/dashboard-filiais.html">Filiais</a>
+						</div>
+					</div>
 
-                <div class="nav-link">
-                    <div class="nav-link-img">
-                        <img src="../assets/icon/circle-question-regular.png" alt="">
-                    </div>
-                    <div class="nav-link-txt">
-                        <a href="https://flowtrak.atlassian.net/servicedesk/customer/portal/1">Suporte</a>
-                    </div>
-                </div>
+					<div class="nav-link">
+						<div class="nav-link-img">
+							<img src="../assets/icon/circle-question-regular.png" alt="">
+						</div>
+						<div class="nav-link-txt">
+							<a href="https://flowtrak.atlassian.net/servicedesk/customer/portal/1">Suporte</a>
+						</div>
+					</div>
 
-                </div>
-                <div class="perfil-area">
-                    <div class="perfil-img">
-                        <button class="btn-pag-login" onclick="redirecionamento_perfil()">
-                            <img src="../assets/icon/nav-icon-perfil.png" alt="">
-                        </button>
-                    </div>
-                    <div class="text-perfil-area">
-                        <div class="top-perfil">
-                            <p id="user_name">Usuario</p>
-                        </div>
-                        <div class="bottom-perfil">
-                            <button class="btn-sair" onclick="novaSessao()">
-                                <p id="user_permissao">comum</p>
-                                <img src="../assets/icon/nav-seta-baixo.png">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </header>
+				</div>
+				<div class="perfil-area">
+					<div class="perfil-img">
+						<button class="btn-pag-login" onclick="redirecionamento_perfil()">
+							<img src="../assets/icon/nav-icon-perfil.png" alt="">
+						</button>
+					</div>
+					<div class="text-perfil-area">
+						<div class="top-perfil">
+							<p id="user_name">Usuario</p>
+						</div>
+						<div class="bottom-perfil">
+							<button class="btn-sair" onclick="novaSessao()">
+								<p id="user_permissao">comum</p>
+								<img src="../assets/icon/nav-seta-baixo.png">
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
 		<div id="suporte_especifico"></div>
 
-    <div class="main-container">
-        <div class="content-dash">
-            <div class="infos-text">
-                <div class="icon-texto">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <a href="./dashboard-filiais.html">Voltar para filiais</a>
-                </div>
-                <div class="text-botao">
-                    <h1 id="titulo_filial">Dashboard - OXXO Minas Gerais (MG)</h1>
-                    <div class="ativar">
-                        <button onclick="ativar()" class="ativar">ATIVA</button>
-                    </div>
-                </div>
-                <div class="icon-texto">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <p id="endereco_filial">Av. Carapicuíba, 187 - CEP : 00000-000</p>
-                </div>
-            </div>
-            <div class="infos-box">
-                <div class="box-legenda">
-                    <div class="legenda-kpi">
-                        <h4>Legenda KPI:</h4>
-                    </div>
-                    <div class="ident-cores">
-                        <div class="perigo">
-                            <i class="fa-solid fa-circle"></i>
-                            <p>Perigo</p>
-                        </div>
-                        <div class="alerta">
-                            <i class="fa-solid fa-circle"></i>
-                            <p>Alerta</p>
-                        </div>
-                        <div class="ideal">
-                            <i class="fa-solid fa-circle"></i>
-                            <p>Ideal</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="opcoes-box">
-                <div class="data">
-                    <div class="content-data">
-                        <i class="fa-regular fa-calendar"></i>
-                        <p>Hoje, 24 de Março</p>
-                    </div>
-
-                    <div class="seletor-data">
-                        <select name="Locais" id="select-local">
-                            <option value="" selected>Selecione</option>
-                            <option value="11/02/2026">11/02/2026</option>
-                            <option value="12/02/2026">12/02/2026</option>
-                            <option value="13/02/2026">13/02/2026</option>
-                            <option value="14/02/2026">14/02/2026</option>
-                            <option value="15/02/2026">15/02/2026</option>
-                            <option value="16/02/2026">16/02/2026</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="kpis-totais">
-            <div class="box-kpi">
-                <div class="kpi">
-                    <div class="esquerda-kpi">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <div class="direita-kpi">
-                        <div class="texto-esquerda-kpi">
-                            <p class="texto-kpi">Total de Passagens</p>
-                            <p class="numero-dado" id="kpi_total_passagens">0</p>
-                        </div>
-                        <div class="texto-direita-kpi">
-                            <p class="texto-kpi">Total</p>
-                            <p class="texto-kpi">Loja</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-kpi">
-                <div class="box-kpi">
-                    <div class="kpi">
-                        <div class="esquerda-kpi">
-                            <i class="fa-solid fa-clock" id="icone_kpi_pico"></i>
-                        </div>
-                        <div class="direita-kpi">
-                            <div class="texto-esquerda-kpi">
-
-                                <p class="texto-kpi" id="kpi_qtd_pico"></p>
-                                <p class="numero-dado" id="kpi_hora_pico">0</p>
-                            </div>
-                            <div class="texto-direita-kpi">
-                                <p class="texto-kpi">Status</p>
-                                <p class="texto-kpi" id="status_kpi_pico" style="font-weight: bold;">Calculando...</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-kpi"> <!-- exibirKpiLocalMaisAcessado -->
-                <div class="kpi">
-                    <div class="esquerda-kpi">
-                        <i class="fa-solid fa-map-location-dot" id="icone_kpi_local"></i>
-                    </div>
-                    <div class="direita-kpi">
-                        <div class="texto-esquerda-kpi">
-                            <p class="texto-kpi">Local mais Acessado</p>
-
-                            <p class="numero-dado" id="kpi_porcentagem_local">0%</p>
-                        </div>
-                        <div class="texto-direita-kpi">
-                            <p class="texto-kpi">Status:</p>
-                            <p class="texto-kpi" id="status_kpi_local" style="font-weight: bold;">Status</p>
-                            <p class="texto-kpi" id="kpi_nome_local">Acessado</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="box-kpi">
-                <div class="kpi">
-                    <div class="esquerda-kpi">
-                        <i class="fa-solid fa-triangle-exclamation" style="color: #A14A00;"></i>
-                    </div>
-                    <div class="direita-kpi">
-                        <div class="texto-esquerda-kpi">
-                            <p class="texto-kpi" id="kpi_intenso_setor">Fluxo Intenso</p>
-                            <p class="numero-dado" id="kpi_intenso_hora">--h</p>
-                        </div>
-                        <div class="texto-direita-kpi">
-                            <p class="texto-kpi">Fluxo</p>
-                            <p class="texto-kpi">Intenso</p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <div class="box-kpi">
-                <div class="kpi">
-                    <div class="esquerda-kpi">
-                        <i class="fa-solid fa-temperature-empty" style="color: #BDBDBD;"></i>
-                    </div>
-                    <div class="direita-kpi">
-                        <div class="texto-esquerda-kpi">
-                            <p class="texto-kpi" id="kpi_baixo_setor">Setor</p>
-                            <p class="numero-dado" id="kpi_baixo_qtd">0</p>
-                        </div>
-                        <div class="texto-direita-kpi">
-                            <p class="texto-kpi">Fluxo</p>
-                            <p class="texto-kpi">Muito Baixo</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="graficos-box">
-            <div class="grafico">
-                <div class="titulo-graf">
-                    <p>Fluxo de pessoas ao longo do dia</p>
-                </div>
-                <div id="linha"></div>
-            </div>
-            <div class="grafico">
-                <div class="titulo-graf-m">
-                    <p>Mapa de calor - Fluxo por local</p>
-                </div>
-                <div class="graf-mapa">
-                    <div class="tela-grafico">
-                        <div id="calor">
-
-                        </div>
-                        <div class="portas" id="mp-portas">
-                            <div class="entrada">
-                                <p class="titulo-portas">ENTRADA</p>
-                            </div>
-                            <div class="saida">
-                                <p class="titulo-portas">SAÍDA</p>
-                            </div>
-                        </div>
-                        <div class="caixas" id="mp-caixas">
-                            <p class="titulo-caixa">CAIXAS</p>
-                        </div>
-                        <div class="corredores" id="mp-corredores">
-                            <div class="corredor1">
-                                <p class="titulo-corredor">CORREDOR 01</p>
-                            </div>
-                            <div class="corredor2">
-                                <p class="titulo-corredor">CORREDOR 02</p>
-                            </div>
-                            <div class="corredor3">
-                                <p class="titulo-corredor">CORREDOR 03</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="horarios">
-                        <ul>
-                            <li class="selecionado">8h</li>
-                            <li>10h</li>
-                            <li>12h</li>
-                            <li>14h</li>
-                            <li>16h</li>
-                            <li>18h</li>
-                            <li>20h</li>
-                        </ul>
-                    </div>
-
-                    <div class="intensidade">
-                        <p>Fluxo Alto</p>
-                        <div class="bloco">
-
-                        </div>
-                        <p>Fluxo Baixo</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-<script>
-
-
-    function redirecionamento_perfil() {
-        if (permissao == "ADMIN") {
-            window.location.href = '../perfil/perfil-admin.html'
-        }
-        else {
-            window.location.href = '../perfil/perfil-u-comum.html'
-        }
-    }
-
-    function iniciarpagina() {
-        let nomeUsuario = document.getElementById('user_name');
-        let nome = sessionStorage.NOME_USUARIO;
-        // aqui o conteudo vira texto
-        nomeUsuario.textContent = nome;
-
-        let permUsuario = document.getElementById('user_permissao');
-        permUsuario.textContent = permissao;
-    }
-    //
-    let empresaAtual = sessionStorage.ID_EMPRESA_ATUAL;
-    let idEmpresa = sessionStorage.ID_EMPRESA;
-    console.log(idEmpresa, empresaAtual)
-
-    if (empresaAtual != undefined) {
-        idEmpresa = empresaAtual;
-    }
-
-    console.log(idEmpresa, empresaAtual)
-
-    async function exibirGraficoLinha() {
-
-
-        const resposta = await fetch(
-            `/dash/ultimas/grafico-linha/${idEmpresa}`
-        );
-
-        const dados = await resposta.json();
-
-        console.log(dados);
-
-
-        document.getElementById(`linha`).innerHTML =
-            `
-            <div class="graph">
-                <canvas id="myChartCanvas-linha"></canvas>
-            </div>
-        `
-        plotarGrafico(dados, 'grafico-linha');
-    }
-
-    async function exibirGraficoCalor() {
-
-
-        const resposta = await fetch(
-            `/dash/ultimas/grafico-calor/${idEmpresa}`
-        );
-
-        const dados = await resposta.json();
-
-        console.log(dados);
-
-
-        document.getElementById(`calor`).innerHTML =
-            `
-            <div class="graph">
-                <canvas id="myChartCanvas-calor" style="max-height: 38vh !important; min-height: 38vh !important; transform: translateY(-20%)"></canvas>
-            </div>
-        `
-        plotarGrafico(dados, 'grafico-calor');
-    }
-
-    function plotarGrafico(resposta, id_grafico) {
-
-        console.log('iniciando plotagem do gráfico...');
-
-        // Criando estrutura para plotar gráfico - labels
-        let labels = [];
-
-        // Criando estrutura para plotar gráfico - dados
-        if (id_grafico == 'grafico-linha') {
-            let dados = {
-                labels: labels,
-                datasets: [{
-                    label: 'Fluxo',
-                    data: [],
-                    backgroundColor: '#B11011',
-                    borderColor: '#B11011',
-                    borderWidth: 2,
-                    minBarLength: 5,
-                    borderRadius: 10
-                }]
-            };
-
-            console.log('----------------------------------------------')
-            console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-            console.log(resposta)
-
-            // Inserindo valores recebidos em estrutura para plotar o gráfico
-            for (i = 0; i < resposta.length; i++) {
-                var registro = resposta[i];
-                labels.push(registro.momento_grafico);
-                dados.datasets[0].data.push(registro.fluxo);
-            }
-
-            console.log('----------------------------------------------')
-            console.log('O gráfico será plotado com os respectivos valores:')
-            console.log('Labels:')
-            console.log(labels)
-            console.log('Dados:')
-            console.log(dados.datasets)
-            console.log('----------------------------------------------')
-
-            let config;
-
-            config = {
-                type: 'line',
-                data: dados,
-                options: {
-                    plugins: {
-                        title: {
-                            display: true,
-                            align: 'start',
-                            color: '#000',
-                            font: {
-                                size: 28,
-                                weight: 'bold'
-                            }
-                        },
-                        legend: {
-                            position: 'top',
-                            align: 'end',
-                            labels: {
-                                padding: 15
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            offset: true
-                        },
-                        y: {
-                            min: 0,
-                            max: 6000
-                        }
-                    },
-                }
-            };
-
-            // Adicionando gráfico criado em div na tela
-            let myChart = new Chart(
-                document.getElementById(`myChartCanvas-linha`),
-                config
-            );
-
-            proximaAtualizacao = setTimeout(() => {
-                atualizarGrafico(dados, myChart, id_grafico);
-            }, 60000);
-        } else if (id_grafico == 'grafico-calor') {
-            let dados = {
-                labels: labels,
-                datasets: [{
-                    label: 'Fluxo',
-                    data: [],
-                    backgroundColor: '#B11011',
-                    borderColor: '#B11011',
-                    borderWidth: 2,
-                    minBarLength: 5,
-                    borderRadius: 10
-                }]
-            };
-
-            console.log('----------------------------------------------')
-            console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-            console.log(resposta)
-
-            // Inserindo valores recebidos em estrutura para plotar o gráfico
-            for (i = 0; i < resposta.length; i++) {
-                var registro = resposta[i];
-                labels.push(registro.momento_grafico);
-                dados.datasets[0].data.push(registro.fluxo);
-            }
-
-            console.log('----------------------------------------------')
-            console.log('O gráfico será plotado com os respectivos valores:')
-            console.log('Labels:')
-            console.log(labels)
-            console.log('Dados:')
-            console.log(dados.datasets)
-            console.log('----------------------------------------------')
-
-            let config;
-
-            config = {
-                type: 'bubble',
-                data: dados,
-                options: {
-                    plugins: {
-                        title: {
-                            display: true,
-                            align: 'start',
-                            color: '#000',
-                            font: {
-                                size: 28,
-                                weight: 'bold'
-                            }
-                        },
-                        legend: {
-                            position: 'top',
-                            align: 'end',
-                            labels: {
-                                padding: 15
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            grid: {
-                                display: false,     // Remove linhas de grade
-                                drawBorder: false   // Remove a borda do eixo
-                            },
-                            offset: true
-                        },
-                        y: {
-                            grid: {
-                                display: false,     // Remove linhas de grade
-                                drawBorder: false   // Remove a borda do eixo
-                            },
-                            min: 0,
-                            max: 6000
-                        }
-                    },
-                }
-            };
-
-            // Adicionando gráfico criado em div na tela
-            let myChart = new Chart(
-                document.getElementById(`myChartCanvas-calor`),
-                config
-            );
-
-            proximaAtualizacao = setTimeout(() => {
-                atualizarGrafico(dados, myChart, id_grafico);
-            }, 60000);
-        }
-    }
-
-
-    // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas,
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-
-    function atualizarGrafico(dados, myChart, id_grafico) {
-
-        fetch(`/dash/tempo-real/${id_grafico}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
-
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                        // console.log("---------------------------------------------------------------")
-                        // console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        // console.log("Horário do novo dado capturado:")
-                        // console.log(novoRegistro[0].momento_grafico)
-                        // console.log("Horário do último dado capturado:")
-                        // console.log(dados.labels[dados.labels.length - 1])
-                        // console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-
-                        if (id_grafico == 'usuario-semanal' || id_grafico == 'usuario-mensal') {
-
-                            dados.labels.shift();
-                            dados.labels.push(novoRegistro[0].momento_grafico);
-
-                            dados.datasets[0].data.shift();  // apagar o primeiro usuario
-                            dados.datasets[0].data.push(novoRegistro[0].qtd_usuarios); // incluir um novo usuario
-
-                        } else if (id_grafico == 'quiz-semanal' || id_grafico == 'quiz-mensal') {
-
-                            dados.labels.shift();
-                            dados.labels.push(novoRegistro[0].momento_grafico);
-
-                            dados.datasets[0].data.shift();  // apagar o primeiro quiz
-                            dados.datasets[0].data.push(novoRegistro[0].qtd_quiz);  // incluir um novo quiz
-
-                        } else if (id_grafico == 'quiz-principal') {
-                            dados.labels.shift();
-                            dados.labels.push(novoRegistro[0].momento_grafico);
-
-                            dados.datasets[0].data.shift();
-                            dados.datasets[0].data.push(novoRegistro[0].qtd_quiz_geral);
-                            dados.datasets[1].data.shift();
-                            dados.datasets[1].data.push(novoRegistro[0].qtd_quiz_poderes);
-                            dados.datasets[2].data.shift();
-                            dados.datasets[2].data.push(novoRegistro[0].qtd_quiz_personagens);
-
-                        } else if (id_grafico == 'quiz-media') {
-                            dados.labels.shift();
-                            dados.labels.push(novoRegistro[0].momento_grafico);
-
-                            dados.datasets[0].data.shift();
-                            dados.datasets[0].data.push(novoRegistro[0].media_quiz_geral);
-                            dados.datasets[1].data.shift();
-                            dados.datasets[1].data.push(novoRegistro[0].media_quiz_poderes);
-                            dados.datasets[2].data.shift();
-                            dados.datasets[2].data.push(novoRegistro[0].media_quiz_personagens);
-                        }
-
-                        myChart.update();
-                    }
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => {
-                        atualizarGrafico(dados, myChart, id_grafico); obterKPIs();
-                    }, 10000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => {
-                    atualizarGrafico(dados, myChart, id_grafico); obterKPIs();
-                }, 10000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-
-    }
-
-    async function exibirKpiTotal() { //kpi 1
-
-        if (!idEmpresa) {
-            console.warn('Nenhum idEmpresa definido para KPI total.');
-            return;
-        }
-
-        try {
-            const resposta = await fetch(`/dash/kpi/total/${idEmpresa}`, { cache: 'no-store' });
-            if (!resposta.ok) {
-                console.error('Erro ao buscar dados do KPI Total.');
-                return;
-            }
-
-            const dados = await resposta.json();
-            console.log('KPI Total Passagens:', dados);
-
-            const kpiElement = document.getElementById('kpi_total_passagens');
-            if (kpiElement) {
-                kpiElement.textContent = dados.total_passagens ?? 0;
-            }
-        } catch (erro) {
-            console.error('Erro ao buscar dados do KPI Total.', erro);
-        }
-    }
-
-    async function exibirKpiHorarioPico() {
-        if (!idEmpresa) return;
-
-        const resposta = await fetch(`/dash/kpi/horario-pico/${idEmpresa}`);
-
-        if (resposta.ok) {
-            const dados = await resposta.json();
-
-
-            let txtHora = document.getElementById('kpi_hora_pico');
-            let txtQtd = document.getElementById('kpi_qtd_pico');
-
-
-            let iconeKpi = document.getElementById('icone_kpi_pico');
-            let statusKpi = document.getElementById('status_kpi_pico');
-
-            if (txtHora && txtQtd && statusKpi) {
-
-
-                txtHora.innerHTML = `${dados.hora_pico}h`;
-                let totalPessoas = parseInt(dados.total_passagens);
-                txtQtd.innerHTML = `Passagens no Horario: ${totalPessoas}`;
-
-
-                // capacidade máxima que a loja suporta em 1 hora
-                //isso pode vir do BD (ex: dados.capacidade_maxima) sla
-                const capacidadeMaximaHora = 100; // CAPACIDADE MAXIMA DE EXEMPLO
-
-                // calcula qual a porcentagem de lotação no horário
-                let porcentagemLotacao = (totalPessoas / capacidadeMaximaHora) * 100;
-
-                if (porcentagemLotacao <= 60) {
-                    // IDEAL (Verde) -  60%
-                    iconeKpi.style.color = "#00FF00";
-                    statusKpi.innerHTML = "Ideal";
-                    statusKpi.style.color = "#00FF00";
-
-                } else if (porcentagemLotacao > 60 && porcentagemLotacao <= 85) {
-                    // ALERTA (Amarelo) -  61% - 85%
-                    iconeKpi.style.color = "#FFD700";
-                    statusKpi.innerHTML = "Alerta";
-                    statusKpi.style.color = "#FFD700";
-
-                } else {
-                    // PERIGO (Vermelho) > 85%
-                    iconeKpi.style.color = "#FF0000";
-                    statusKpi.innerHTML = "Perigo";
-                    statusKpi.style.color = "#FF0000";
-                }
-            }
-        } else {
-            console.error("Erro ao buscar dados do KPI Horário Pico.");
-        }
-    }
-
-    async function exibirKpiLocalMaisAcessado() {
-        if (!idEmpresa) return;
-
-        const resposta = await fetch(`/dash/kpi/local-mais-acessado/${idEmpresa}`);
-
-        if (resposta.ok) {
-            const dados = await resposta.json();
-
-
-            let txtLocal = document.getElementById('kpi_nome_local');
-            let txtPorcentagem = document.getElementById('kpi_porcentagem_local');
-
-
-            let iconeKpi = document.getElementById('icone_kpi_local');
-            let statusKpi = document.getElementById('status_kpi_local');
-
-            if (txtLocal && txtPorcentagem && iconeKpi && statusKpi) {
-
-
-                txtLocal.innerHTML = dados.setor || "Nenhum";
-                let valorPorcentagem = parseFloat(dados.porcentagem); // Transforma em número decimal
-                txtPorcentagem.innerHTML = `${valorPorcentagem}%`;
-
-
-                if (valorPorcentagem <= 40) {
-                    // IDEAL (Verde)
-                    iconeKpi.style.color = "#00FF00"; // ícone
-                    statusKpi.innerHTML = "Ideal";    // texto
-                    statusKpi.style.color = "#00FF00"; // ta dando certo assim n vou mudar
-
-                } else if (valorPorcentagem > 40 && valorPorcentagem <= 75) {
-                    // ALERTA (Amarelo)
-                    iconeKpi.style.color = "#FFD700";
-                    statusKpi.innerHTML = "Alerta";
-                    statusKpi.style.color = "#FFD700";
-
-                } else {
-                    // PERIGO (Vermelho)
-                    iconeKpi.style.color = "#FF0000";
-                    statusKpi.innerHTML = "Perigo";
-                    statusKpi.style.color = "#FF0000";
-
-
-                }
-            }
-        } else {
-            console.error("Erro ao buscar dados do KPI Local Mais Acessado.");
-        }
-    }
-
-    async function exibirKpiFluxoIntenso() {
-        if (!idEmpresa) return;
-
-        const resposta = await fetch(`/dash/kpi/fluxo-intenso/${idEmpresa}`);
-
-        if (resposta.ok) {
-            const dados = await resposta.json();
-            console.log("KPI Fluxo Intenso (Alerta):", dados);
-
-            let txtSetor = document.getElementById('kpi_intenso_setor');
-            let txtHora = document.getElementById('kpi_intenso_hora');
+		<div class="main-container">
+			<div class="content-dash">
+				<div class="infos-text">
+					<div class="icon-texto">
+						<i class="fa-solid fa-arrow-left"></i>
+						<a href="./dashboard-filiais.html">Voltar para filiais</a>
+					</div>
+					<div class="text-botao">
+						<h1 id="titulo_filial">Dashboard - OXXO Minas Gerais (MG)</h1>
+						<div class="ativar">
+							<button onclick="ativar()" class="ativar">ATIVA</button>
+						</div>
+					</div>
+					<div class="icon-texto">
+						<i class="fa-solid fa-location-dot"></i>
+						<p id="endereco_filial">Av. Carapicuíba, 187 - CEP : 00000-000</p>
+					</div>
+				</div>
+				<div class="infos-box">
+					<div class="box-legenda">
+						<div class="legenda-kpi">
+							<h4>Legenda KPI:</h4>
+						</div>
+						<div class="ident-cores">
+							<div class="perigo">
+								<i class="fa-solid fa-circle"></i>
+								<p>Perigo</p>
+							</div>
+							<div class="alerta">
+								<i class="fa-solid fa-circle"></i>
+								<p>Alerta</p>
+							</div>
+							<div class="ideal">
+								<i class="fa-solid fa-circle"></i>
+								<p>Ideal</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="opcoes-box">
+					<div class="data">
+						<div class="content-data">
+							<i class="fa-regular fa-calendar"></i>
+							<p>Hoje, 24 de Março</p>
+						</div>
+
+						<div class="seletor-data">
+							<select name="Locais" id="select-local">
+								<option value="" selected>Selecione</option>
+								<option value="11/02/2026">11/02/2026</option>
+								<option value="12/02/2026">12/02/2026</option>
+								<option value="13/02/2026">13/02/2026</option>
+								<option value="14/02/2026">14/02/2026</option>
+								<option value="15/02/2026">15/02/2026</option>
+								<option value="16/02/2026">16/02/2026</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="kpis-totais">
+				<div class="box-kpi">
+					<div class="kpi">
+						<div class="esquerda-kpi">
+							<i class="fa-solid fa-users"></i>
+						</div>
+						<div class="direita-kpi">
+							<div class="texto-esquerda-kpi">
+								<p class="texto-kpi">Total de Passagens</p>
+								<p class="numero-dado" id="kpi_total_passagens">0</p>
+							</div>
+							<div class="texto-direita-kpi">
+								<p class="texto-kpi">Total</p>
+								<p class="texto-kpi">Loja</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-kpi">
+					<div class="box-kpi">
+						<div class="kpi">
+							<div class="esquerda-kpi">
+								<i class="fa-solid fa-clock" id="icone_kpi_pico"></i>
+							</div>
+							<div class="direita-kpi">
+								<div class="texto-esquerda-kpi">
+
+									<p class="texto-kpi" id="kpi_qtd_pico"></p>
+									<p class="numero-dado" id="kpi_hora_pico">0</p>
+								</div>
+								<div class="texto-direita-kpi">
+									<p class="texto-kpi">Status</p>
+									<p class="texto-kpi" id="status_kpi_pico" style="font-weight: bold;">Calculando...</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-kpi"> <!-- exibirKpiLocalMaisAcessado -->
+					<div class="kpi">
+						<div class="esquerda-kpi">
+							<i class="fa-solid fa-map-location-dot" id="icone_kpi_local"></i>
+						</div>
+						<div class="direita-kpi">
+							<div class="texto-esquerda-kpi">
+								<p class="texto-kpi">Local mais Acessado</p>
+
+								<p class="numero-dado" id="kpi_porcentagem_local">0%</p>
+							</div>
+							<div class="texto-direita-kpi">
+								<p class="texto-kpi">Status:</p>
+								<p class="texto-kpi" id="status_kpi_local" style="font-weight: bold;">Status</p>
+								<p class="texto-kpi" id="kpi_nome_local">Acessado</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-kpi">
+					<div class="kpi">
+						<div class="esquerda-kpi">
+							<i class="fa-solid fa-triangle-exclamation" style="color: #A14A00;"></i>
+						</div>
+						<div class="direita-kpi">
+							<div class="texto-esquerda-kpi">
+								<p class="texto-kpi" id="kpi_intenso_setor">Fluxo Intenso</p>
+								<p class="numero-dado" id="kpi_intenso_hora">--h</p>
+							</div>
+							<div class="texto-direita-kpi">
+								<p class="texto-kpi">Fluxo</p>
+								<p class="texto-kpi">Intenso</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-kpi">
+					<div class="kpi">
+						<div class="esquerda-kpi">
+							<i class="fa-solid fa-temperature-empty" style="color: #BDBDBD;"></i>
+						</div>
+						<div class="direita-kpi">
+							<div class="texto-esquerda-kpi">
+								<p class="texto-kpi" id="kpi_baixo_setor">Setor</p>
+								<p class="numero-dado" id="kpi_baixo_qtd">0</p>
+							</div>
+							<div class="texto-direita-kpi">
+								<p class="texto-kpi">Fluxo</p>
+								<p class="texto-kpi">Muito Baixo</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="graficos-box">
+				<div class="grafico">
+					<div class="titulo-graf">
+						<p>Fluxo de pessoas ao longo do dia</p>
+					</div>
+					<div id="linha"></div>
+				</div>
+				<div class="grafico">
+					<div class="titulo-graf-m">
+						<p>Mapa de calor - Fluxo por local</p>
+					</div>
+					<div class="graf-mapa">
+						<div class="tela-grafico">
+							<div id="calor">
+
+							</div>
+							<div class="portas" id="mp-portas">
+								<div class="entrada">
+									<p class="titulo-portas">ENTRADA</p>
+								</div>
+								<div class="saida">
+									<p class="titulo-portas">SAÍDA</p>
+								</div>
+							</div>
+							<div class="caixas" id="mp-caixas">
+								<p class="titulo-caixa">CAIXAS</p>
+							</div>
+							<div class="corredores" id="mp-corredores">
+								<div class="corredor1">
+									<p class="titulo-corredor">CORREDOR 01</p>
+								</div>
+								<div class="corredor2">
+									<p class="titulo-corredor">CORREDOR 02</p>
+								</div>
+								<div class="corredor3">
+									<p class="titulo-corredor">CORREDOR 03</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- <div class="horarios" style="cursor: pointer;"> -->
+						<!-- 	<ul> -->
+						<!-- 		<li class="selecionado">8h</li> -->
+						<!-- 		<li>10h</li> -->
+						<!-- 		<li>12h</li> -->
+						<!-- 		<li>14h</li> -->
+						<!-- 		<li>16h</li> -->
+						<!-- 		<li>18h</li> -->
+						<!-- 		<li>20h</li> -->
+						<!-- 	</ul> -->
+						<!-- </div> -->
+
+						<div class="intensidade">
+							<p>Fluxo Alto</p>
+							<div class="bloco">
+
+							</div>
+							<p>Fluxo Baixo</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+
+
+	function redirecionamento_perfil() {
+		if (permissao == "ADMIN") {
+			window.location.href = '../perfil/perfil-admin.html'
+		}
+		else {
+			window.location.href = '../perfil/perfil-u-comum.html'
+		}
+	}
+
+	function iniciarpagina() {
+		let nomeUsuario = document.getElementById('user_name');
+		let nome = sessionStorage.NOME_USUARIO;
+		// aqui o conteudo vira texto
+		nomeUsuario.textContent = nome;
+
+		let permUsuario = document.getElementById('user_permissao');
+		permUsuario.textContent = permissao;
+	}
+	//
+	let empresaAtual = sessionStorage.ID_EMPRESA_ATUAL;
+	let idEmpresa = sessionStorage.ID_EMPRESA;
+	console.log(idEmpresa, empresaAtual)
+
+	if (empresaAtual != undefined) {
+		idEmpresa = empresaAtual;
+	}
+
+	console.log(idEmpresa, empresaAtual)
+
+	async function exibirGraficoLinha() {
+
+
+		const resposta = await fetch(
+			`/dash/ultimas/grafico-linha/${idEmpresa}`
+		);
+
+		const dados = await resposta.json();
+
+		console.log(dados);
+
+
+		document.getElementById(`linha`).innerHTML =
+			`
+<div class="graph">
+	<canvas id="myChartCanvas-linha"></canvas>
+</div>
+`
+		plotarGrafico(dados, 'grafico-linha');
+	}
+
+	async function exibirGraficoCalor() {
+
+		const resposta = await fetch(
+			`/dash/ultimas/grafico-calor/${idEmpresa}`
+		);
+
+		const dados = await resposta.json();
+
+		atualizarMapaCalor(dados, "08");
+
+		document
+			.querySelectorAll(".horarios li")
+			.forEach(item => {
+				item.addEventListener("click", () => {
+					document
+						.querySelectorAll(".horarios li")
+						.forEach(li => li.classList.remove("selecionado"));
+					item.classList.add("selecionado");
+					let hora =
+					atualizarMapaCalor(dados, hora);
+				});
+
+			});
+	}
+
+	function pegarCorPorFluxo(fluxo) {
+
+		if (fluxo <= 20)
+			return "rgba(255,0,0,0.2)";
+
+		if (fluxo <= 50)
+			return "rgba(255,0,0,0.4)";
+
+		if (fluxo <= 100)
+			return "rgba(255,0,0,0.6)";
+
+		if (fluxo <= 150)
+			return "rgba(255,0,0,0.8)";
+
+		return "rgba(255,0,0,1)";
+	}
+
+	function atualizarMapaCalor(dados, hora) {
+
+		const dadosHora = dados.filter(
+			d => d.momento_grafico == hora
+		);
+
+		dadosHora.forEach(registro => {
+
+			let cor =
+			pegarCorPorFluxo(registro.fluxo);
+
+			switch (
+				Number(registro.id_ponto_monitoramento)
+			) {
+
+				case 1:
+					document.querySelector(".entrada")
+						.style.backgroundColor = cor;
+					break;
+
+				case 2:
+					document.querySelector(".saida")
+						.style.backgroundColor = cor;
+					break;
+
+				case 3:
+					document.querySelector(".caixas")
+						.style.backgroundColor = cor;
+					break;
+
+				case 4:
+					document.querySelector(".corredor1")
+						.style.backgroundColor = cor;
+					break;
+
+				case 5:
+					document.querySelector(".corredor2")
+						.style.backgroundColor = cor;
+					break;
+
+				case 6:
+					document.querySelector(".corredor3")
+						.style.backgroundColor = cor;
+					break;
+			}
+		});
+	}
+
+	function plotarGrafico(resposta, id_grafico) {
+
+		console.log('iniciando plotagem do gráfico...');
+
+		// Criando estrutura para plotar gráfico - labels
+		let labels = [];
+
+		// Criando estrutura para plotar gráfico - dados
+		if (id_grafico == 'grafico-linha') {
+			let dados = {
+				labels: labels,
+				datasets: [{
+					label: 'Fluxo',
+					data: [],
+					backgroundColor: '#B11011',
+					borderColor: '#B11011',
+					borderWidth: 2,
+					minBarLength: 5,
+					borderRadius: 10
+				}]
+			};
+
+			console.log('----------------------------------------------')
+			console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+			console.log(resposta)
+
+			// Inserindo valores recebidos em estrutura para plotar o gráfico
+			for (i = 0; i < resposta.length; i++) {
+				var registro = resposta[i];
+				labels.push(registro.momento_grafico);
+				dados.datasets[0].data.push(registro.fluxo);
+			}
+
+			console.log('----------------------------------------------')
+			console.log('O gráfico será plotado com os respectivos valores:')
+			console.log('Labels:')
+			console.log(labels)
+			console.log('Dados:')
+			console.log(dados.datasets)
+			console.log('----------------------------------------------')
+
+			let config;
+
+			config = {
+				type: 'line',
+				data: dados,
+				options: {
+					plugins: {
+						title: {
+							display: true,
+							align: 'start',
+							color: '#000',
+							font: {
+								size: 28,
+								weight: 'bold'
+							}
+						},
+						legend: {
+							position: 'top',
+							align: 'end',
+							labels: {
+								padding: 15
+							}
+						}
+					},
+					scales: {
+						x: {
+							offset: true
+						},
+						y: {
+							min: 0,
+							max: 6000
+						}
+					},
+				}
+			};
+
+			// Adicionando gráfico criado em div na tela
+			let myChart = new Chart(
+				document.getElementById(`myChartCanvas-linha`),
+				config
+			);
+
+			proximaAtualizacao = setTimeout(() => {
+				atualizarGrafico(dados, myChart, id_grafico);
+			}, 60000);
+		} else if (id_grafico == 'grafico-calor') {
+			let dados = {
+				labels: labels,
+				datasets: [{
+					label: 'Fluxo',
+					data: [],
+					backgroundColor: '#B11011',
+					borderColor: '#B11011',
+					borderWidth: 2,
+					minBarLength: 5,
+					borderRadius: 10
+				}]
+			};
+
+			console.log('----------------------------------------------')
+			console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+			console.log(resposta)
+
+			// Inserindo valores recebidos em estrutura para plotar o gráfico
+			for (let i = 0; i < resposta.length; i++) {
+				let registro = resposta[i];
+
+				dados.datasets[0].data.push({
+					x: Number(registro.momento_grafico),
+					y: Number(registro.id_ponto_monitoramento),
+					r: Math.max(registro.fluxo / 2, 5)
+				});
+			}
+			console.log('----------------------------------------------')
+			console.log('O gráfico de bolha será plotado com os respectivos valores:')
+			console.log('Labels:')
+			console.log(labels)
+			console.log('Dados:')
+			console.log(dados.datasets)
+			console.log('----------------------------------------------')
+			let config;
+			// aqui ta a config do grafico
+			config = {
+				type: 'bubble',
+				data: dados,
+				options: {
+					plugins: {
+						title: {
+							display: true,
+							align: 'start',
+							color: '#000',
+							font: {
+								size: 28,
+								weight: 'bold'
+							}
+						},
+						legend: {
+							position: 'top',
+							align: 'end',
+							labels: {
+								padding: 15
+							}
+						}
+					},
+					scales: {
+						x: {
+							grid: {
+								display: false,     // Remove linhas de grade
+								drawBorder: false   // Remove a borda do eixo
+							},
+							offset: true
+						},
+						y: {
+							grid: {
+								display: false,     // Remove linhas de grade
+								drawBorder: false   // Remove a borda do eixo
+							},
+							min: 0,
+							max: 6000
+						}
+					},
+				}
+			};
+
+			// Adicionando gráfico criado em div na tela
+			let myChart = new Chart(
+				document.getElementById(`myChartCanvas-calor`),
+				config
+			);
+
+			proximaAtualizacao = setTimeout(() => {
+				atualizarGrafico(dados, myChart, id_grafico);
+			}, 60000);
+		}
+	}
+
+
+	// Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+	// buscando a última medida inserida em tabela contendo as capturas,
+
+	//     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+	//     Para ajustar o "select", ajuste o comando sql em src/models
+
+	function atualizarGrafico(dados, myChart, id_grafico) {
+
+		fetch(`/dash/tempo-real/${id_grafico}`, { cache: 'no-store' }).then(function (response) {
+			if (response.ok) {
+				response.json().then(function (novoRegistro) {
+
+					console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+					console.log(`Dados atuais do gráfico:`);
+					console.log(dados);
+
+					if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+						// console.log("---------------------------------------------------------------")
+						// console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+						// avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+						// console.log("Horário do novo dado capturado:")
+						// console.log(novoRegistro[0].momento_grafico)
+						// console.log("Horário do último dado capturado:")
+						// console.log(dados.labels[dados.labels.length - 1])
+						// console.log("---------------------------------------------------------------")
+					} else {
+						// tirando e colocando valores no gráfico
+
+						if (id_grafico == 'usuario-semanal' || id_grafico == 'usuario-mensal') {
+
+							dados.labels.shift();
+							dados.labels.push(novoRegistro[0].momento_grafico);
+
+							dados.datasets[0].data.shift();  // apagar o primeiro usuario
+							dados.datasets[0].data.push(novoRegistro[0].qtd_usuarios); // incluir um novo usuario
+
+						} else if (id_grafico == 'quiz-semanal' || id_grafico == 'quiz-mensal') {
+
+							dados.labels.shift();
+							dados.labels.push(novoRegistro[0].momento_grafico);
+
+							dados.datasets[0].data.shift();  // apagar o primeiro quiz
+							dados.datasets[0].data.push(novoRegistro[0].qtd_quiz);  // incluir um novo quiz
+
+						} else if (id_grafico == 'quiz-principal') {
+							dados.labels.shift();
+							dados.labels.push(novoRegistro[0].momento_grafico);
+
+							dados.datasets[0].data.shift();
+							dados.datasets[0].data.push(novoRegistro[0].qtd_quiz_geral);
+							dados.datasets[1].data.shift();
+							dados.datasets[1].data.push(novoRegistro[0].qtd_quiz_poderes);
+							dados.datasets[2].data.shift();
+							dados.datasets[2].data.push(novoRegistro[0].qtd_quiz_personagens);
+
+						} else if (id_grafico == 'quiz-media') {
+							dados.labels.shift();
+							dados.labels.push(novoRegistro[0].momento_grafico);
+
+							dados.datasets[0].data.shift();
+							dados.datasets[0].data.push(novoRegistro[0].media_quiz_geral);
+							dados.datasets[1].data.shift();
+							dados.datasets[1].data.push(novoRegistro[0].media_quiz_poderes);
+							dados.datasets[2].data.shift();
+							dados.datasets[2].data.push(novoRegistro[0].media_quiz_personagens);
+						}
+
+						myChart.update();
+					}
+
+					// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+					proximaAtualizacao = setTimeout(() => {
+						atualizarGrafico(dados, myChart, id_grafico); obterKPIs();
+					}, 10000);
+				});
+			} else {
+				console.error('Nenhum dado encontrado ou erro na API');
+				// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+				proximaAtualizacao = setTimeout(() => {
+					atualizarGrafico(dados, myChart, id_grafico); obterKPIs();
+				}, 10000);
+			}
+		})
+			.catch(function (error) {
+				console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+			});
+>>>>>>> 313bc43c6f0c7699eff48f51ae8e63dcf8ff14f9
+
+	}
+
+	async function exibirKpiTotal() { //kpi 1
+
+		if (!idEmpresa) {
+			console.warn('Nenhum idEmpresa definido para KPI total.');
+			return;
+		}
+
+		try {
+			const resposta = await fetch(`/dash/kpi/total/${idEmpresa}`, { cache: 'no-store' });
+			if (!resposta.ok) {
+				console.error('Erro ao buscar dados do KPI Total.');
+				return;
+			}
+
+			const dados = await resposta.json();
+			console.log('KPI Total Passagens:', dados);
+
+			const kpiElement = document.getElementById('kpi_total_passagens');
+			if (kpiElement) {
+				kpiElement.textContent = dados.total_passagens ?? 0;
+			}
+		} catch (erro) {
+			console.error('Erro ao buscar dados do KPI Total.', erro);
+		}
+	}
+
+	async function exibirKpiHorarioPico() {
+		if (!idEmpresa) return;
+
+		const resposta = await fetch(`/dash/kpi/horario-pico/${idEmpresa}`);
+
+		if (resposta.ok) {
+			const dados = await resposta.json();
+
+
+			let txtHora = document.getElementById('kpi_hora_pico');
+			let txtQtd = document.getElementById('kpi_qtd_pico');
+
+
+			let iconeKpi = document.getElementById('icone_kpi_pico');
+			let statusKpi = document.getElementById('status_kpi_pico');
+
+			if (txtHora && txtQtd && statusKpi) {
+
+
+				txtHora.innerHTML = `${dados.hora_pico}h`;
+				let totalPessoas = parseInt(dados.total_passagens);
+				txtQtd.innerHTML = `Passagens no Horario: ${totalPessoas}`;
+
+
+				// capacidade máxima que a loja suporta em 1 hora
+				//isso pode vir do BD (ex: dados.capacidade_maxima) sla
+				const capacidadeMaximaHora = 100; // CAPACIDADE MAXIMA DE EXEMPLO
+
+				// calcula qual a porcentagem de lotação no horário
+				let porcentagemLotacao = (totalPessoas / capacidadeMaximaHora) * 100;
+
+				if (porcentagemLotacao <= 60) {
+					// IDEAL (Verde) -  60%
+					iconeKpi.style.color = "#00FF00";
+					statusKpi.innerHTML = "Ideal";
+					statusKpi.style.color = "#00FF00";
+
+				} else if (porcentagemLotacao > 60 && porcentagemLotacao <= 85) {
+					// ALERTA (Amarelo) -  61% - 85%
+					iconeKpi.style.color = "#FFD700";
+					statusKpi.innerHTML = "Alerta";
+					statusKpi.style.color = "#FFD700";
+
+				} else {
+					// PERIGO (Vermelho) > 85%
+					iconeKpi.style.color = "#FF0000";
+					statusKpi.innerHTML = "Perigo";
+					statusKpi.style.color = "#FF0000";
+				}
+			}
+		} else {
+			console.error("Erro ao buscar dados do KPI Horário Pico.");
+		}
+	}
+
+	async function exibirKpiLocalMaisAcessado() {
+		if (!idEmpresa) return;
+
+		const resposta = await fetch(`/dash/kpi/local-mais-acessado/${idEmpresa}`);
+
+		if (resposta.ok) {
+			const dados = await resposta.json();
+
+
+			let txtLocal = document.getElementById('kpi_nome_local');
+			let txtPorcentagem = document.getElementById('kpi_porcentagem_local');
+
+
+			let iconeKpi = document.getElementById('icone_kpi_local');
+			let statusKpi = document.getElementById('status_kpi_local');
+
+			if (txtLocal && txtPorcentagem && iconeKpi && statusKpi) {
+
+
+				txtLocal.innerHTML = dados.setor || "Nenhum";
+				let valorPorcentagem = parseFloat(dados.porcentagem); // Transforma em número decimal
+				txtPorcentagem.innerHTML = `${valorPorcentagem}%`;
+
+
+				if (valorPorcentagem <= 40) {
+					// IDEAL (Verde)
+					iconeKpi.style.color = "#00FF00"; // ícone
+					statusKpi.innerHTML = "Ideal";    // texto
+					statusKpi.style.color = "#00FF00"; // ta dando certo assim n vou mudar
+
+				} else if (valorPorcentagem > 40 && valorPorcentagem <= 75) {
+					// ALERTA (Amarelo)
+					iconeKpi.style.color = "#FFD700";
+					statusKpi.innerHTML = "Alerta";
+					statusKpi.style.color = "#FFD700";
+
+				} else {
+					// PERIGO (Vermelho)
+					iconeKpi.style.color = "#FF0000";
+					statusKpi.innerHTML = "Perigo";
+					statusKpi.style.color = "#FF0000";
+
+
+				}
+			}
+		} else {
+			console.error("Erro ao buscar dados do KPI Local Mais Acessado.");
+		}
+	}
+
+	async function exibirKpiFluxoIntenso() {
+		if (!idEmpresa) return;
+
+		const resposta = await fetch(`/dash/kpi/fluxo-intenso/${idEmpresa}`);
+
+		if (resposta.ok) {
+			const dados = await resposta.json();
+			console.log("KPI Fluxo Intenso (Alerta):", dados);
+
+			let txtSetor = document.getElementById('kpi_intenso_setor');
+			let txtHora = document.getElementById('kpi_intenso_hora');
 
             if (txtSetor && txtHora) {
                 txtSetor.innerHTML = dados.setor || "Nenhum";
@@ -831,33 +903,33 @@
     }
 
 
-    function autenticarN3() {
-        let emailUsuario = sessionStorage.EMAIL_USUARIO;
+	function autenticarN3() {
+		let emailUsuario = sessionStorage.EMAIL_USUARIO;
 
-        if (emailUsuario == 'suporte@flowtrak.com') {
-            suporte_especifico.innerHTML = `<div class="nav-link-img">
-                        <img src="../assets/icon/robot-solid.png" alt="">
-                    </div>
-                    <div class="nav-link-txt">
-                        <a href="http://localhost:3000/">BoB Ai</a>
-                    </div>`
-        }
-    }
-    // CÓDIGO NO FINAL DO dashboard-espc.html
+		if (emailUsuario == 'suporte@flowtrak.com') {
+			suporte_especifico.innerHTML = `<div class="nav-link-img">
+				<img src="../assets/icon/robot-solid.png" alt="">
+			</div>
+			<div class="nav-link-txt">
+				<a href="http://localhost:3000/">BoB Ai</a>
+			</div>`
+		}
+	}
+	// CÓDIGO NO FINAL DO dashboard-espc.html
 
-    var permissao = sessionStorage.PERMISSAO;
-    var nomeDaFilial = sessionStorage.NOME_EMPRESA_ATUAL;
-    var enderecoDaFilial = sessionStorage.ENDERECO_EMPRESA_ATUAL;
+	var permissao = sessionStorage.PERMISSAO;
+	var nomeDaFilial = sessionStorage.NOME_EMPRESA_ATUAL;
+	var enderecoDaFilial = sessionStorage.ENDERECO_EMPRESA_ATUAL;
 
-    //  tiver um nome salvo, ele troca o texto do <h1>
-    if (nomeDaFilial != undefined) {
-        document.getElementById('titulo_filial').innerHTML = `Dashboard - ${nomeDaFilial}`;
-    }
+	//  tiver um nome salvo, ele troca o texto do <h1>
+	if (nomeDaFilial != undefined) {
+		document.getElementById('titulo_filial').innerHTML = `Dashboard - ${nomeDaFilial}`;
+	}
 
-    //  tivee um endereço guardado, altera o texto do <p>
-    if (enderecoDaFilial != undefined) {
-        document.getElementById('endereco_filial').innerHTML = enderecoDaFilial;
-    }
+	//  tivee um endereço guardado, altera o texto do <p>
+	if (enderecoDaFilial != undefined) {
+		document.getElementById('endereco_filial').innerHTML = enderecoDaFilial;
+	}
 	function autenticarN3() {
 		let emailUsuario = sessionStorage.EMAIL_USUARIO;
 
@@ -865,10 +937,10 @@
 
 		if (emailUsuario == 'suporte@flowtrak.com') {
 			suporte_especifico.innerHTML = `
-					<button id="btn-bobIA" onclick="redirecionamento_bobIA()">
-						<img src="../assets/icon/bob_logo.png" alt="">
-					</button>
-			`
+<button id="btn-bobIA" onclick="redirecionamento_bobIA()">
+	<img src="../assets/icon/bob_logo.png" alt="">
+</button>
+`
 		}
 	}
 
@@ -881,8 +953,6 @@
 		window.location = "http://localhost:3000";
 	}
 	autenticarN3();
-
-
 
 
 </script>
