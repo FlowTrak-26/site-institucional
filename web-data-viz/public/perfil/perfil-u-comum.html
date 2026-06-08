@@ -75,28 +75,24 @@
 					<div class="inputs-area">
 						<div class="input-perfil">
 							<p>Nome Completo:</p>
-							<input placeholder="Nome">
+							<input placeholder="Nome" id="ipt_nome">
 						</div>
 						<div class="input-perfil">
 							<p>Email:</p>
-							<input placeholder="Email">
-						</div>
-						<div class="input-perfil">
-							<p>Telefone:</p>
-							<input placeholder="Telefone">
+							<input placeholder="Email" id="ipt_email">
 						</div>
 					</div>
 
 					<div class="inputs-area area-border-left">
 						<div class="input-perfil">
 							<p>Senha:</p>
-							<input placeholder="senha">
+							<input placeholder="senha" id="ipt_senha">
 						</div>
 						<div class="input-perfil">
 							<p>Confirmar senha:</p>
 							<input placeholder="confirme senha">
 						</div>
-						<button class="btn-salvar-alteracoes">Salvar Alterações</button>
+						<button class="btn-salvar-alteracoes" onclick="atualizarDados()">Salvar Alterações</button>
 					</div>
 				</div>
 			</div>
@@ -110,6 +106,80 @@
 var nome = sessionStorage.NOME_USUARIO;
 var permissao = sessionStorage.PERMISSAO;
 
+
+function atualizarDados() {
+
+	//Recupere o valor da nova input pelo nome do id
+	// Agora vá para o método fetch logo abaixo
+
+
+	var idVar = sessionStorage.ID_USUARIO;
+	console.log(idVar)
+	var nomeVar = ipt_nome.value;
+	var senhaVar = ipt_senha.value;
+	var emailVar = ipt_email.value;
+
+	// Verificando se há algum campo em branco
+	if (
+		idVar == "" ||
+		nomeVar == "" ||
+		senhaVar == "" ||
+		emailVar == "" 
+	) {
+
+		console.log("Algum campo não foi preenchido");
+		console.log("Ou deu pau no id")
+
+		return false;
+	} else {
+		//   setInterval(sumirMensagem, 5000);
+	}
+
+
+	// Enviando o valor da nova input
+	fetch("/usuarios/atualizar", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			// crie um atributo que recebe o valor recuperado aqui
+			// Agora vá para o arquivo routes/usuario.js
+			idServer: idVar,
+			nomeServer: nomeVar,
+			emailServer: emailVar,
+			senhaServer: senhaVar
+		}),
+	})
+		.then(function (resposta) {
+			console.log("resposta: ", resposta);
+
+			if (resposta.ok) {
+				//   cardErro.style.display = "block";
+				sessionStorage.NOME_USUARIO = nomeVar;
+				sessionStorage.EMAIL_USUARIO = emailVar;
+				sessionStorage.SENHA_USUARIO = senhaVar;
+				window.location = "./perfil-u-comum.html";
+
+				console.log("Cadastro realizado com sucesso!...");		  
+
+				// setTimeout(() => {
+				// 	window.location = "../index.html";
+				// }, "2000");
+
+				//   limparFormulario();
+			} else {
+				throw "Houve um erro ao tentar realizar o cadastro!";
+			}
+		})
+		.catch(function (resposta) {
+			console.log(`#ERRO: ${resposta}`);
+			// finalizarAguardar();
+		});
+
+	return false;
+}
+
 user_permissao.innerHTML = permissao;
 user_name.innerHTML = nome;
 console.log(nome);
@@ -119,5 +189,5 @@ function novaSessao(){
 	limparSessao();
 	window.location = "../main/login.html";
 }
-	
+
 </script>
