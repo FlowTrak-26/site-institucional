@@ -98,6 +98,7 @@ function buscarKpiTotal(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
 function buscarDadosGraficoLinhaEsp(req, res) {
 
     var idEmpresa = req.params.idEmpresa;

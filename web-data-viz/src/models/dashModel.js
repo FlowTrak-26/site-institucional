@@ -70,15 +70,18 @@ function atualizarDadosMapaCalor(id_grafico) {
     return database.executar(instrucaoSql);
 }
 
-<<<<<<< HEAD
-function buscarKpiTotal(idEmpresa) { //kpi 1 total
-    //  todo o fluxo da empresa selecionada
+
+function buscarKpiTotal(idEmpresa) {
     var instrucaoSql = `
-        SELECT SUM(fluxo) as total_passagens
-        FROM dashGraficosLinha
-        WHERE id_empresa = ${idEmpresa};
+        SELECT SUM(dc.fluxo) AS total_passagens
+        FROM ponto_monitoramento pm
+        JOIN sensor s ON s.fk_ponto = pm.id_ponto_monitoramento
+        JOIN dado_captado dc ON dc.fk_sensor = s.id_sensor
+        WHERE pm.fk_empresa = ${idEmpresa};
     `;
-=======
+    console.log("Executando a instrução SQL (KPI Total): \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 function buscarDadosGraficoLinhaEsp(idpontoMonitoramento, idEmpresa, limite_linhas){
      var instrucaoSql = 
     `SELECT
@@ -126,12 +129,39 @@ function atualizarDadosGraficoLinhaEsp(idpontoMonitoramento) {
         ORDER BY momento_grafico LIMIT 1;
         `;
 
->>>>>>> c09261ba72b409c3a33063c21c880d879298152d
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-<<<<<<< HEAD
+function buscarDadosMapaCalorEsp(limite_linhas, id_grafico) {
+
+    var instrucaoSql = 
+    ``;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function atualizarDadosMapaCalorEsp(id_grafico) {
+
+    var instrucaoSql = 
+    ``;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+// function buscarKpiTotal(idEmpresa) { //kpi 1 total
+//     //  todo o fluxo da empresa selecionada
+//     var instrucaoSql = `
+//         SELECT SUM(fluxo) as total_passagens
+//         FROM dashGraficosLinha
+//         WHERE id_empresa = ${idEmpresa};
+//     `;
+//     console.log("Executando a instrução SQL: \n" + instrucaoSql);
+//     return database.executar(instrucaoSql);
+// }
+
 function buscarKpiSetorPico(idEmpresa) {
     // Agrupa pelo nome do ponto e ordena do maior para o menor, pegando apenas o Top 1
     var instrucaoSql = `
@@ -223,23 +253,6 @@ function buscarKpiFluxoBaixo(idEmpresa) {
         LIMIT 1;
     `;
     console.log("Executando a instrução SQL (KPI Fluxo Baixo): \n" + instrucaoSql);
-=======
-function buscarDadosMapaCalorEsp(limite_linhas, id_grafico) {
-
-    var instrucaoSql = 
-    ``;
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-function atualizarDadosMapaCalorEsp(id_grafico) {
-
-    var instrucaoSql = 
-    ``;
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
->>>>>>> c09261ba72b409c3a33063c21c880d879298152d
     return database.executar(instrucaoSql);
 }
 
@@ -248,17 +261,12 @@ module.exports = {
     atualizarDadosGraficoLinha,
     buscarDadosMapaCalor,
     atualizarDadosMapaCalor,
-<<<<<<< HEAD
-//  KPIS
+
+     // KPI
     buscarKpiTotal,
     buscarKpiHorarioPico,
     buscarKpiLocalMaisAcessado,
     buscarKpiFluxoIntenso,
     buscarKpiFluxoBaixo
-=======
-    buscarDadosGraficoLinhaEsp,
-    atualizarDadosGraficoLinhaEsp,
-    buscarDadosMapaCalorEsp,
-    atualizarDadosMapaCalorEsp
->>>>>>> c09261ba72b409c3a33063c21c880d879298152d
+
 }
