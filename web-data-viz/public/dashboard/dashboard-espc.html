@@ -24,7 +24,7 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina(),  autenticarN3();">
+<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina();">
 
 	<header>
 		<div class="nav-container">
@@ -77,12 +77,7 @@
 					</div>
 				</div>
 
-				<!-- Abaixo vai ter a div do BobIa que só aparece para o N3 -->
-
-				<div class="nav-link" id="suporte_especifico">
-					
-				</div>
-			</div>
+		</div>
 			<div class="perfil-area">
 				<div class="perfil-img">
 					<button class="btn-pag-login" onclick="redirecionamento_perfil()">
@@ -101,9 +96,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
 	</header>
 
+	<div id="suporte_especifico"></div>
 	<div class="main-container">
 		<div class="content-dash">
 			<div class="infos-text">
@@ -470,12 +465,11 @@
 		console.log(emailUsuario)
 
 		if (emailUsuario == 'suporte@flowtrak.com') {
-			suporte_especifico.innerHTML = `<div class="nav-link-img">
-						<img src="../assets/icon/robot-solid.png" alt="">
-					</div>
-					<div class="nav-link-txt">
-						<a href="http://localhost:3000/">BoB Ai</a>
-					</div>`
+			suporte_especifico.innerHTML = `
+					<button id="btn-bobIA" onclick="redirecionamento_bobIA()">
+						<img src="../assets/icon/bob_logo.png" alt="">
+					</button>
+			`
 		}
 	}
 var nome = sessionStorage.NOME_USUARIO;
@@ -506,4 +500,8 @@ function novaSessao(){
 	window.location = "../main/login.html";
 }
 
+function redirecionamento_bobIA(){
+	window.location = "http://localhost:3000";
+}
+autenticarN3();
 </script>
