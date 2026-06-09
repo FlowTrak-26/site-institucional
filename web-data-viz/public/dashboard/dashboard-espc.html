@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>FlowTrak</title>
+	<title>©2026 FlowTrak - Dashboard Específica</title>
 
 	<link rel="icon" href="../assets/imgs/logo.png" />
 
@@ -26,7 +26,7 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="exibirGraficoLinha(), exibirGraficoCalor(), iniciarpagina(), exibirKpiTotalESPC();">
+<body onload="iniciarpagina(), exibirKpiTotalESPC(), exibirKpiHoraPicoESPC(), exibirKpiConversaoESPC(), exibirKpiFluxoBaixoESPC(), pegarDadosEmpresa();">
 
 	<header>
 		<div class="nav-container">
@@ -42,7 +42,7 @@
 					<div class="nav-link-txt">
 						<a href="../index.html">Home</a>
 					</div>
-				</d
+				</div>
 
 				<div class="nav-link ">
 					<div class="nav-link-img">
@@ -147,15 +147,17 @@
 					</div>
 
 					<!-- mudar esse setor de selecao  -->
-				<div class="seletor-local">
-    <select name="Locais" id="select-local" onchange="exibirKpiTotalESPC()">
-        <option value="Entrada Principal" selected>Entrada Principal</option>
-        <option value="Setor Hortifruti">Setor Hortifruti</option>
-        <option value="Caixas Rápidos">Caixas Rápidos</option>
-        <option value="Corredor Central">Corredor Central</option>
-        <option value="Área de Carga">Área de Carga</option>
-    </select>
-</div>
+					<div class="seletor-local">
+						<select name="Locais" id="select-local"
+							onchange="exibirKpiTotalESPC(); exibirKpiHoraPicoESPC(); exibirKpiConversaoESPC(); exibirKpiFluxoBaixoESPC();">
+							<option value="Entrada" selected>Entrada Principal</option>
+							<option value="Saida">Saída</option>
+							<option value="Caixas">Caixas</option>
+							<option value="Corredor 1">Corredor 01</option>
+							<option value="Corredor 2">Corredor 02</option>
+							<option value="Corredor 3">Corredor 03</option>
+						</select>
+					</div>
 				</div>
 				<div class="data">
 					<div class="content-data">
@@ -177,36 +179,19 @@
 			</div>
 		</div>
 		<div class="kpis-totais">
-			   <div class="box-kpi">
-                <div class="kpi">
-                    <div class="esquerda-kpi">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <div class="direita-kpi">
-                        <div class="texto-esquerda-kpi">
-                            <p class="texto-kpi">Total de Passagens</p>
-                            <p class="numero-dado" id="kpi_total_passagens">0</p>
-                        </div>
-                        <div class="texto-direita-kpi">
-                            <p class="texto-kpi">Total</p>
-                            <p class="texto-kpi">Loja</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 			<div class="box-kpi">
 				<div class="kpi">
 					<div class="esquerda-kpi">
-						<i class="fa-solid fa-circle"></i>
+						<i class="fa-solid fa-users" id="icone_kpi_total_esp"></i>
 					</div>
 					<div class="direita-kpi">
 						<div class="texto-esquerda-kpi">
-							<p class="texto-kpi">Nome KPI</p>
-							<p class="numero-dado">0000</p>
+							<p class="texto-kpi">Total de Passagens</p>
+							<p class="numero-dado" id="kpi_total_passagens">0</p>
 						</div>
 						<div class="texto-direita-kpi">
-							<p class="texto-kpi">Ideal</p>
-							<p class="texto-kpi">Máximo</p>
+							<p class="texto-kpi">Status</p>
+							<p class="texto-kpi" id="status_kpi_total_esp" style="font-weight: bold;">Calculando...</p>
 						</div>
 					</div>
 				</div>
@@ -214,16 +199,16 @@
 			<div class="box-kpi">
 				<div class="kpi">
 					<div class="esquerda-kpi">
-						<i class="fa-solid fa-circle"></i>
+						<i class="fa-solid fa-clock" id="icone_kpi_pico_esp"></i>
 					</div>
 					<div class="direita-kpi">
 						<div class="texto-esquerda-kpi">
-							<p class="texto-kpi">Nome KPI</p>
-							<p class="numero-dado">0000</p>
+							<p class="texto-kpi" id="kpi_titulo_pico_esp">Horário de Pico</p>
+							<p class="numero-dado" id="kpi_valor_pico_esp">--h</p>
 						</div>
 						<div class="texto-direita-kpi">
-							<p class="texto-kpi">Ideal</p>
-							<p class="texto-kpi">Máximo</p>
+							<p class="texto-kpi">Status</p>
+							<p class="texto-kpi" id="status_kpi_pico_esp" style="font-weight: bold;">Calculando...</p>
 						</div>
 					</div>
 				</div>
@@ -231,33 +216,35 @@
 			<div class="box-kpi">
 				<div class="kpi">
 					<div class="esquerda-kpi">
-						<i class="fa-solid fa-circle"></i>
+						<i class="fa-solid fa-chart-pie" id="icone_kpi_conversao_esp"></i>
 					</div>
 					<div class="direita-kpi">
 						<div class="texto-esquerda-kpi">
-							<p class="texto-kpi">Nome KPI</p>
-							<p class="numero-dado">0000</p>
+							<p class="texto-kpi">Retenção da Loja</p>
+							<p class="numero-dado" id="kpi_valor_conversao_esp">0%</p>
 						</div>
 						<div class="texto-direita-kpi">
-							<p class="texto-kpi">Ideal</p>
-							<p class="texto-kpi">Máximo</p>
+							<p class="texto-kpi">Status</p>
+							<p class="texto-kpi" id="status_kpi_conversao_esp" style="font-weight: bold;">Calculando...
+							</p>
 						</div>
 					</div>
 				</div>
 			</div>
+
 			<div class="box-kpi">
 				<div class="kpi">
 					<div class="esquerda-kpi">
-						<i class="fa-solid fa-circle"></i>
+						<i class="fa-solid fa-temperature-empty" id="icone_kpi_baixo_esp"></i>
 					</div>
 					<div class="direita-kpi">
 						<div class="texto-esquerda-kpi">
-							<p class="texto-kpi">Nome KPI</p>
-							<p class="numero-dado">0000</p>
+							<p class="texto-kpi">Volume de Visitas</p>
+							<p class="numero-dado" id="kpi_valor_baixo_esp">0</p>
 						</div>
 						<div class="texto-direita-kpi">
-							<p class="texto-kpi">Ideal</p>
-							<p class="texto-kpi">Máximo</p>
+							<p class="texto-kpi">Status</p>
+							<p class="texto-kpi" id="status_kpi_baixo_esp" style="font-weight: bold;">Calculando...</p>
 						</div>
 					</div>
 				</div>
@@ -334,6 +321,16 @@
 			window.location.href = '../perfil/perfil-u-comum.html'
 		}
 	}
+
+	let empresaAtual = sessionStorage.ID_EMPRESA_ATUAL;
+	let idEmpresa = sessionStorage.ID_EMPRESA;
+	console.log(idEmpresa, empresaAtual)
+
+	if (empresaAtual != undefined) {
+		idEmpresa = empresaAtual;
+	}
+
+	console.log(idEmpresa, empresaAtual)
 
 	async function exibirGraficoLinha() {
 
@@ -519,73 +516,40 @@
 					}, 10000);
 				}
 			})
+		} 
+	}
 
+	var permissao = sessionStorage.PERMISSAO;
+	var nomeDaFilial = sessionStorage.NOME_EMPRESA_ATUAL;
+	var enderecoDaFilial = sessionStorage.ENDERECO_EMPRESA_ATUAL;
 
-		} else if (id_grafico == 'grafico-calor') {
-			if (idpontoMonitoramento == 'entrada-principal') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'saida') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'caixas-1') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'caixa-2') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'caixa-3') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'corredor-limpeza') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'setor-hortifruti') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'corredor-higiene') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'padaria') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'acogue') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'bebidas') {
-				idpontoMonitoramento = 'select-local'
-			}
+	async function pegarDadosEmpresa() {
 
-			fetch(`/dash/tempo-real/${id_grafico}/${idEmpresa}/${idpontoMonitoramento}`, { cache: 'no-store' }).then(function (response) {
-				if (response.ok) {
-					response.json().then(function (novoRegistro) {
+		const resposta = await fetch(`/dash/dadosEmpresa/${idEmpresa}`);
 
-						console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-						console.log(`Dados atuais do gráfico:`);
-						console.log(dados);
+		let nomeEmpresa;
+		let enderecoEmpresa;
 
-						if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-							console.log("---------------------------------------------------------------")
-							console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-							avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-							console.log("Horário do novo dado capturado:")
-							console.log(novoRegistro[0].momento_grafico)
-							console.log("Horário do último dado capturado:")
-							console.log(dados.labels[dados.labels.length - 1])
-							console.log("---------------------------------------------------------------")
-						} else {
-							dados.labels.shift();
-							dados.labels.push(novoRegistro[0].momento_grafico);
+		if (resposta.ok) {
+			const dados = await resposta.json();
 
-							dados.datasets[0].data.shift();
-							dados.datasets[0].data.push(novoRegistro[0].fluxo);
+			nomeEmpresa = dados[0].nome;
+			enderecoEmpresa = dados[0].endereco_sede;
 
-							myChart.update();
+		} else {
+			console.error("Erro ao buscar dados da empresa.");
+		}
 
-						}
-						// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-						proximaAtualizacao = setTimeout(() => {
-							atualizarGrafico(dados, myChart, id_grafico); obterKPIs();
-						}, 1000);
-					});
-				} else {
-					console.error('Nenhum dado encontrado ou erro na API');
-					// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-					proximaAtualizacao = setTimeout(() => {
-						atualizarGrafico(dados, myChart, id_grafico); obterKPIs();
-					}, 10000);
-				}
-			})
+		if (nomeDaFilial != undefined) {
+			document.getElementById('titulo_filial').innerHTML = `Dashboard - ${nomeDaFilial}`;
+		} else if (idEmpresa != undefined) {
+			document.getElementById('titulo_filial').innerHTML = `Dashboard - ${nomeEmpresa}`;
+		}
+
+		if (enderecoDaFilial != undefined) {
+			document.getElementById('endereco_filial').innerHTML = enderecoDaFilial;
+		} else if (idEmpresa != undefined) {
+			document.getElementById('endereco_filial').innerHTML = enderecoEmpresa
 		}
 
 	}
@@ -596,77 +560,225 @@
 		console.log(emailUsuario)
 
 		if (emailUsuario == 'suporte@flowtrak.com') {
-			suporte_especifico.innerHTML = `
-					<button id="btn-bobIA" onclick="redirecionamento_bobIA()">
-						<img src="../assets/icon/bob_logo.png" alt="">
-					</button>
+			suporte_especifico.innerHTML =
+				`
+				<button id="btn-bobIA" onclick="redirecionamento_bobIA()">
+					<img src="../assets/icon/bob_logo.png" alt="">
+				</button>
 			`
 		}
 	}
-	var nome = sessionStorage.NOME_USUARIO;
-	var permissao = sessionStorage.PERMISSAO;
 
-	user_permissao.innerHTML = permissao;
-	user_nome.innerHTML = nome;
-	console.log(nome);
-	console.log(permissao);
-
-	// CÓDIGO NO FINAL DO dashboard-espc.html
-
-	var permissao = sessionStorage.PERMISSAO;
-	var nomeDaFilial = sessionStorage.NOME_EMPRESA_ATUAL;
-	var enderecoDaFilial = sessionStorage.ENDERECO_EMPRESA_ATUAL;
-
-	//  tiver um nome salvo, ele troca o texto do <h1>
-	if (nomeDaFilial != undefined) {
-		document.getElementById('titulo_filial').innerHTML = `Dashboard - ${nomeDaFilial}`;
-	}
-
-	//  tivee um endereço guardado, altera o texto do <p>
-	if (enderecoDaFilial != undefined) {
-		document.getElementById('endereco_filial').innerHTML = enderecoDaFilial;
-	}
 	function novaSessao() {
 		limparSessao();
 		window.location = "../main/login.html";
 	}
 
-function redirecionamento_bobIA(){
-	window.location = "http://localhost:3000";
-}
-autenticarN3();
+	function redirecionamento_bobIA() {
+		window.location = "http://localhost:3000";
+	}
 
-async function exibirKpiTotalESPC() { //kpi 1
-    
-    let idEmpresa = sessionStorage.ID_EMPRESA_ATUAL || sessionStorage.ID_EMPRESA;
-    
-  
-    let idpontoMonitoramento = document.getElementById('select-local').value;
+	autenticarN3();
 
-    if (!idEmpresa || !idpontoMonitoramento) {
-        console.warn('Nenhum idEmpresa ou Ponto definido para KPI total.');
-        return;
-    }
+	async function exibirKpiTotalESPC() { // KPI ESPECIFICA 1
+		let idEmpresa = sessionStorage.ID_EMPRESA_ATUAL || sessionStorage.ID_EMPRESA;
+		let idpontoMonitoramento = document.getElementById('select-local').value; // Ex: 'Entrada'
 
-    try {
-     
-        const resposta = await fetch(`/dash/kpi/total-ESPC/${idEmpresa}/${idpontoMonitoramento}`, { cache: 'no-store' });
-        
-        if (!resposta.ok) {
-            console.error('Erro ao buscar dados do KPI TOTAL ESPECIFICA.');
-            return;
-        }
+		if (!idEmpresa || !idpontoMonitoramento) {
+			console.warn('Nenhum idEmpresa ou Ponto definido para KPI total.');
+			return;
+		}
 
-        const dados = await resposta.json();
-        console.log('KPI Total Passagens ESPC:', dados);
+		try {
+			const resposta = await fetch(`/dash/kpi/total-ESPC/${idEmpresa}/${idpontoMonitoramento}`, { cache: 'no-store' });
 
-        const kpiElement = document.getElementById('kpi_total_passagens');
-        if (kpiElement) {
-            
-            kpiElement.textContent = dados[0].total_passagens || 0;
-        }
-    } catch (erro) {
-        console.error('Erro ao buscar dados do KPI TOTAL ESPECIFICA.', erro);
-    }
-}
+			if (!resposta.ok) {
+				console.error('Erro ao buscar dados do KPI TOTAL ESPECIFICA.');
+				return;
+			}
+
+			const dados = await resposta.json();
+			console.log('KPI Total Passagens ESPC recebido:', dados);
+
+			const kpiElement = document.getElementById('kpi_total_passagens');
+			const iconeKpi = document.getElementById('icone_kpi_total_esp');
+			const statusKpi = document.getElementById('status_kpi_total_esp');
+
+			if (kpiElement && iconeKpi && statusKpi && dados.length > 0) {
+				let totalPassagens = parseInt(dados[0].total_passagens) || 0;
+				kpiElement.textContent = totalPassagens;
+
+				// Regra do Semáforo para um Setor Específico (Capacidade: 80 passagens)
+				const capacidadePonto = 80;
+				let porcentagemLotacao = (totalPassagens / capacidadePonto) * 100;
+
+				if (porcentagemLotacao <= 60) {
+					// iconeKpi.style.color = "#00FF00"; // Verde
+					statusKpi.innerHTML = "Ideal";
+					statusKpi.style.color = "#00FF00";
+				} else if (porcentagemLotacao > 60 && porcentagemLotacao <= 85) {
+					// iconeKpi.style.color = "#FFD700"; // Amarelo
+					statusKpi.innerHTML = "Alerta";
+					statusKpi.style.color = "#FFD700";
+				} else {
+					// iconeKpi.style.color = "#FF0000"; // Vermelho
+					statusKpi.innerHTML = "Perigo";
+					statusKpi.style.color = "#FF0000";
+				}
+			}
+		} catch (erro) {
+			console.error('Erro ao buscar dados do KPI TOTAL ESPECIFICA.', erro);
+		}
+	}
+
+	async function exibirKpiHoraPicoESPC() { // KPI ESPECIFICA 2
+		let idEmpresa = sessionStorage.ID_EMPRESA_ATUAL || sessionStorage.ID_EMPRESA;
+		let idpontoMonitoramento = document.getElementById('select-local').value;
+
+		if (!idEmpresa || !idpontoMonitoramento) return;
+
+		try {
+			const resposta = await fetch(`/dash/kpi/hora-pico-ESPC/${idEmpresa}/${idpontoMonitoramento}`, { cache: 'no-store' });
+
+			if (!resposta.ok) {
+				console.error('Erro ao buscar horário de pico específico.');
+				return;
+			}
+
+			const dados = await resposta.json();
+			console.log('KPI Hora Pico ESPC recebido:', dados);
+
+			let txtHora = document.getElementById('kpi_valor_pico_esp');
+			let txtTitulo = document.getElementById('kpi_titulo_pico_esp');
+			let iconeKpi = document.getElementById('icone_kpi_pico_esp');
+			let statusKpi = document.getElementById('status_kpi_pico_esp');
+
+			if (txtHora && iconeKpi && statusKpi && dados) {
+				//
+				txtHora.innerHTML = `${dados.hora_pico}h`;
+
+				let totalPassagensHora = parseInt(dados.total_passagens) || 0;
+				txtTitulo.innerHTML = `Pico (${totalPassagensHora} pass.)`;
+
+				// LÓGICA DO SEMÁFORO (Capacidade limite crítica em 1 hora para 1 setor: 30 pessoas)
+				const capacidadeCriticaHora = 30;
+				let porcentagemLotacao = (totalPassagensHora / capacidadeCriticaHora) * 100;
+
+				if (porcentagemLotacao <= 60) {
+					// iconeKpi.style.color = "#00FF00"; // Verde - Fluxo calmo
+					statusKpi.innerHTML = "Ideal";
+					statusKpi.style.color = "#00FF00";
+				} else if (porcentagemLotacao > 60 && porcentagemLotacao <= 85) {
+					// iconeKpi.style.color = "#FFD700"; // Amarelo - Moderado
+					statusKpi.innerHTML = "Alerta";
+					statusKpi.style.color = "#FFD700";
+				} else {
+					// iconeKpi.style.color = "#FF0000"; // Vermelho - Concentração alta
+					statusKpi.innerHTML = "Perigo";
+					statusKpi.style.color = "#FF0000";
+				}
+			}
+		} catch (erro) {
+			console.error('Erro ao buscar dados da KPI 2 específica.', erro);
+		}
+	}
+
+	async function exibirKpiConversaoESPC() { // KPI ESPECIFICA 3
+		let idEmpresa = sessionStorage.ID_EMPRESA_ATUAL || sessionStorage.ID_EMPRESA;
+		let idpontoMonitoramento = document.getElementById('select-local').value;
+
+		if (!idEmpresa || !idpontoMonitoramento) return;
+
+		try {
+			const resposta = await fetch(`/dash/kpi/conversao-ESPC/${idEmpresa}/${idpontoMonitoramento}`, { cache: 'no-store' });
+
+			if (!resposta.ok) {
+				console.error('Erro ao buscar dados de conversão de ponto.');
+				return;
+			}
+
+			const dados = await resposta.json();
+			console.log('KPI Conversão ESPC recebido:', dados);
+
+			let txtPorcentagem = document.getElementById('kpi_valor_conversao_esp');
+			let iconeKpi = document.getElementById('icone_kpi_conversao_esp');
+			let statusKpi = document.getElementById('status_kpi_conversao_esp');
+
+			if (txtPorcentagem && iconeKpi && statusKpi && dados) {
+
+				let valorPorcentagem = parseFloat(dados.porcentagem_conversao) || 0;
+				txtPorcentagem.innerHTML = `${valorPorcentagem}%`;
+
+
+				// Se um corredor retém mais de 30% de todo o fluxo do mercado, ele é crucial.
+				if (valorPorcentagem >= 25) {
+					// ALTA RELEVÂNCIA (Verde) - O setor é uma âncora de vendas (Ex: Açougue ou Bebidas)
+					// iconeKpi.style.color = "#00FF00";
+					statusKpi.innerHTML = "Âncora";
+					statusKpi.style.color = "#00FF00";
+				} else if (valorPorcentagem >= 10 && valorPorcentagem < 25) {
+					// RELEVÂNCIA SAUDÁVEL (Amarelo) - Fluxo padrão distribuído
+					// iconeKpi.style.color = "#FFD700";
+					statusKpi.innerHTML = "Alerta";
+					statusKpi.style.color = "#FFD700";
+				} else {
+					// BAIXA RETENÇÃO (Vermelho) - Setor frio. Pouca gente para ali. O marketing precisa agir.
+					// iconeKpi.style.color = "#FF0000";
+					statusKpi.innerHTML = "Z. Fria"; // Zona Fria de gôndolas
+					statusKpi.style.color = "#FF0000";
+				}
+			}
+		} catch (erro) {
+			console.error('Erro ao buscar dados da KPI 3 específica.', erro);
+		}
+	}
+
+	async function exibirKpiFluxoBaixoESPC() { // KPI ESPECIFICA 4
+		let idEmpresa = sessionStorage.ID_EMPRESA_ATUAL || sessionStorage.ID_EMPRESA;
+		let idpontoMonitoramento = document.getElementById('select-local').value;
+
+		if (!idEmpresa || !idpontoMonitoramento) return;
+
+		try {
+			const resposta = await fetch(`/dash/kpi/fluxo-baixo-ESPC/${idEmpresa}/${idpontoMonitoramento}`, { cache: 'no-store' });
+
+			if (!resposta.ok) {
+				console.error('Erro ao buscar dados de fluxo baixo específico.');
+				return;
+			}
+
+			const dados = await resposta.json();
+			console.log('KPI Fluxo Baixo ESPC recebido:', dados);
+
+			let txtQtd = document.getElementById('kpi_valor_baixo_esp');
+			let iconeKpi = document.getElementById('icone_kpi_baixo_esp');
+			let statusKpi = document.getElementById('status_kpi_baixo_esp');
+
+			if (txtQtd && iconeKpi && statusKpi && dados) {
+
+				let totalPassagens = parseInt(dados.total_passagens) || 0;
+				txtQtd.innerHTML = totalPassagens;
+
+
+				if (totalPassagens <= 15) {
+					// CRÍTICO (Vermelho) -menos de 15 passagens acumuladas. O setor está esquecido!
+					// iconeKpi.style.color = "#FF0000";
+					statusKpi.innerHTML = "Perigo";
+					statusKpi.style.color = "#FF0000";
+				} else if (totalPassagens > 15 && totalPassagens <= 40) {
+					// ATENÇÃO (Amarelo) - movimentação morna, abaixo da média ideal de gôndola.
+					// iconeKpi.style.color = "#FFD700";
+					statusKpi.innerHTML = "Alerta";
+					statusKpi.style.color = "#FFD700";
+				} else {
+					// SAUDÁVEL (Verde) - acima de 40 passagens. Movimentação ativa e excelente para o ponto.
+					// iconeKpi.style.color = "#00FF00";
+					statusKpi.innerHTML = "Ideal";
+					statusKpi.style.color = "#00FF00";
+				}
+			}
+		} catch (erro) {
+			console.error('Erro ao buscar dados da KPI 4 específica.', erro);
+		}
+	}
 </script>

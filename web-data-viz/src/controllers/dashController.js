@@ -2,13 +2,12 @@ var dashModel = require("../models/dashModel");
 
 function buscarDadosGraficoLinha(req, res) {
 
-    const limite_linhas = 7;
-
     var idEmpresa = req.params.idEmpresa;
+    var dataHora = req.query.dataHora;
 
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+    console.log(`Recuperando as ultimas medidas`);
     
-    dashModel.buscarDadosGraficoLinha(idEmpresa, limite_linhas).then(function (resultado) {
+    dashModel.buscarDadosGraficoLinha(idEmpresa, dataHora).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -21,14 +20,14 @@ function buscarDadosGraficoLinha(req, res) {
     });
 }
 
-
 function atualizarDadosGraficoLinha(req, res) {
 
     var idEmpresa = req.params.idEmpresa;
+    var dataHora = req.query.dataHora;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    dashModel.atualizarDadosGraficoLinha(idEmpresa).then(function (resultado) {
+    dashModel.atualizarDadosGraficoLinha(idEmpresa, dataHora).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -41,12 +40,11 @@ function atualizarDadosGraficoLinha(req, res) {
     });
 }
 
-
-
 function buscarDadosMapaCalor(req, res) {
     var idEmpresa = req.params.idEmpresa;
+    var dataHora = req.query.dataHora;
 
-    dashModel.buscarDadosMapaCalor(idEmpresa).then(function (resultado) {
+    dashModel.buscarDadosMapaCalor(idEmpresa, dataHora).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -60,11 +58,10 @@ function buscarDadosMapaCalor(req, res) {
 }
 
 function atualizarDadosMapaCalor(req, res) {
-
     var idEmpresa = req.params.idEmpresa;
-    console.log(`Recuperando medidas em tempo real`);
+    var dataHora = req.query.dataHora;
 
-    dashModel.atualizarDadosMapaCalor(idEmpresa).then(function (resultado) {
+    dashModel.atualizarDadosMapaCalor(idEmpresa, dataHora).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -77,11 +74,11 @@ function atualizarDadosMapaCalor(req, res) {
     });
 }
 
-
 function buscarKpiTotal(req, res) {
     var idEmpresa = req.params.idEmpresa;
+    var dataHora = req.query.dataHora;
 
-    dashModel.buscarKpiTotal(idEmpresa).then(function (resultado) {
+    dashModel.buscarKpiTotal(idEmpresa, dataHora).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado[0]); //  apenas o primeiro objeto com a soma
         } else {
@@ -93,54 +90,27 @@ function buscarKpiTotal(req, res) {
     });
 }
 
-function buscarDadosGraficoLinhaEsp(req, res) {
-
+function buscarKpiLocalMaisAcessado(req, res) {
     var idEmpresa = req.params.idEmpresa;
-    var idpontoMonitoramento = req.params.idpontoMonitoramento;
+    var dataHora = req.query.dataHora;
 
-
-    console.log(`Recuperando medidas em tempo real`);
-
-    dashModel.atualizarDadosMapaCalorEsp(idpontoMonitoramento, idEmpresa).then(function (resultado) {
+    dashModel.buscarKpiLocalMaisAcessado(idEmpresa, dataHora).then(function (resultado) {
         if (resultado.length > 0) {
-            res.status(200).json(resultado);
+            res.status(200).json(resultado[0]);
         } else {
-            res.status(204).send("Nenhum resultado encontrado!")
+            res.status(204).send("Nenhum resultado encontrado!");
         }
     }).catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-
-     
-}
-
-function atualizarDadosGraficoLinhaEsp(req, res) {
-
-    var idEmpresa = req.params.idEmpresa;
-    var idpontoMonitoramento = req.params.idpontoMonitoramento;
-
-    console.log(`Recuperando medidas em tempo real`);
-
-    dashModel.atualizarDadosGraficoLinhaEsp(idpontoMonitoramento, idEmpresa).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
-
 
 function buscarKpiHorarioPico(req, res) {
     var idEmpresa = req.params.idEmpresa;
+    var dataHora = req.query.dataHora;
 
-    dashModel.buscarKpiHorarioPico(idEmpresa).then(function (resultado) {
+    dashModel.buscarKpiHorarioPico(idEmpresa, dataHora).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado[0]); // Envia o primeiro registro encontrado { hora_pico: X, total_passagens: Y }
         } else {
@@ -152,64 +122,11 @@ function buscarKpiHorarioPico(req, res) {
     });
 }
 
-function buscarDadosMapaCalorEsp(req, res) {
-
-    const limite_linhas = 7;
-
-    var idEmpresa = req.params.idEmpresa;
-    var idpontoMonitoramento = req.params.idpontoMonitoramento;
-
-
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
-
-    dashModel.buscarDadosMapaCalor(idpontoMonitoramento, idEmpresa, limite_linhas).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-
-function buscarKpiLocalMaisAcessado(req, res) {
-    var idEmpresa = req.params.idEmpresa;
-
-    dashModel.buscarKpiLocalMaisAcessado(idEmpresa).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado[0]);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!");
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-function buscarKpiFluxoIntenso(req, res) {
-    var idEmpresa = req.params.idEmpresa;
-
-    dashModel.buscarKpiFluxoIntenso(idEmpresa).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado[0]);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!");
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
 function buscarKpiFluxoBaixo(req, res) {
     var idEmpresa = req.params.idEmpresa;
+    var dataHora = req.query.dataHora;
 
-    dashModel.buscarKpiFluxoBaixo(idEmpresa).then(function (resultado) {
+    dashModel.buscarKpiFluxoBaixo(idEmpresa, dataHora).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado[0]);
         } else {
@@ -220,14 +137,86 @@ function buscarKpiFluxoBaixo(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
-function atualizarDadosMapaCalorEsp(req, res) {
 
+function buscarKpiTotalESPC(req, res) { // KPI ESPECIFICA 1
     var idpontoMonitoramento = req.params.idpontoMonitoramento;
     var idEmpresa = req.params.idEmpresa;
 
-    console.log(`Recuperando medidas em tempo real`);
+    console.log(`[KPI ESPC] Buscando total do ponto de monitoramento: ${idpontoMonitoramento} para a empresa ${idEmpresa}`);
 
-    dashModel.atualizarDadosMapaCalor(idpontoMonitoramento, idEmpresa).then(function (resultado) {
+   
+    dashModel.buscarKpiTotalESPC(idEmpresa, idpontoMonitoramento).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar o KPI Total Específico.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarKpiHoraPicoESPC(req, res) { //KPI ESPECIFICA 2
+    var idpontoMonitoramento = req.params.idpontoMonitoramento;
+    var idEmpresa = req.params.idEmpresa;
+
+    console.log(`[KPI ESPC] Buscando horário de pico do ponto: ${idpontoMonitoramento}`);
+
+    dashModel.buscarKpiHoraPicoESPC(idEmpresa, idpontoMonitoramento).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado[0]); 
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarKpiConversaoESPC(req, res) { //KPI ESPECIFICA 3
+    var idpontoMonitoramento = req.params.idpontoMonitoramento;
+    var idEmpresa = req.params.idEmpresa;
+
+    console.log(`[KPI 3 ESPC] Calculando taxa de conversão do setor: ${idpontoMonitoramento}`);
+
+    dashModel.buscarKpiConversaoESPC(idEmpresa, idpontoMonitoramento).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado[0]); 
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarKpiFluxoBaixoESPC(req, res) { //KPI ESPECIFICA 4
+    var idpontoMonitoramento = req.params.idpontoMonitoramento;
+    var idEmpresa = req.params.idEmpresa;
+
+    console.log(`[KPI 4 ESPC] Verificando nível de abandono do setor: ${idpontoMonitoramento}`);
+
+    dashModel.buscarKpiFluxoBaixoESPC(idEmpresa, idpontoMonitoramento).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado[0]);
+        } else {
+            // 
+            res.status(200).json({ setor: idpontoMonitoramento, total_passagens: 0 });
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function selectDias(req, res){
+    var idEmpresa = req.params.idEmpresa;
+
+     dashModel.selectDias(idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -241,14 +230,10 @@ function atualizarDadosMapaCalorEsp(req, res) {
     });
 }
 
-function buscarKpiTotalESPC(req, res) {
-
-    var idpontoMonitoramento = req.params.idpontoMonitoramento;
+function dadosEmpresa(req, res){
     var idEmpresa = req.params.idEmpresa;
 
-    console.log(`Recuperando medidas em tempo real`);
-
-    dashModel.atualizarDadosMapaCalor(idpontoMonitoramento, idEmpresa).then(function (resultado) {
+     dashModel.dadosEmpresa(idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -263,21 +248,24 @@ function buscarKpiTotalESPC(req, res) {
 }
 
 
-    module.exports = {
+
+module.exports = {
     buscarDadosGraficoLinha,
     atualizarDadosGraficoLinha,
     buscarDadosMapaCalor,
     atualizarDadosMapaCalor,
-    buscarDadosGraficoLinhaEsp,
-    atualizarDadosGraficoLinhaEsp,
-    buscarDadosMapaCalorEsp,
-    atualizarDadosGraficoLinhaEsp,
-     // KPI
+    // KPI
     buscarKpiTotal,
     buscarKpiHorarioPico,
     buscarKpiLocalMaisAcessado,
-    buscarKpiFluxoIntenso,
     buscarKpiFluxoBaixo,
     // KPI especificas 
-    buscarKpiTotalESPC
-    }
+    buscarKpiTotalESPC,
+    buscarKpiHoraPicoESPC,
+    buscarKpiFluxoBaixoESPC,
+    buscarKpiConversaoESPC,
+    // select dias
+    selectDias,
+    // dados empresa
+    dadosEmpresa
+}

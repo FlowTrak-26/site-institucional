@@ -11,28 +11,12 @@ router.get("/tempo-real/grafico-linha/:idEmpresa", function (req, res) {
     dashController.atualizarDadosGraficoLinha(req, res);
 })
 
-router.get("/ultimas/grafico-linha/:idEmpresa/:idpontoMonitoramento", function (req, res) {
-    dashController.buscarDadosGraficoLinhaEsp(req, res);
-});
-
-router.get("/tempo-real/grafico-linha/:idEmpresa/:idpontoMonitoramento", function (req, res) {
-    dashController.atualizarDadosGraficoLinhaEsp(req, res);
-})
-
 router.get("/ultimas/grafico-calor/:idEmpresa", function (req, res) {
     dashController.buscarDadosMapaCalor(req, res);
 });
 
 router.get("/tempo-real/grafico-calor/:idEmpresa", function (req, res) {
     dashController.atualizarDadosMapaCalor(req, res);
-})
-
-router.get("/ultimas/grafico-calor/:idEmpresa/:idpontoMonitoramento", function (req, res) {
-    dashController.buscarDadosMapaCalorEsp(req, res);
-});
-
-router.get("/tempo-real/grafico-calor/:idEmpresa/:idpontoMonitoramento", function (req, res) {
-    dashController.atualizarDadosMapaCalorEsp(req, res);
 })
 
 router.get("/kpi/total/:idEmpresa", function (req, res) {
@@ -47,18 +31,32 @@ router.get("/kpi/local-mais-acessado/:idEmpresa", function (req, res) {
     dashController.buscarKpiLocalMaisAcessado(req, res);
 });
 
-router.get("/kpi/fluxo-intenso/:idEmpresa", function (req, res) {
-    dashController.buscarKpiFluxoIntenso(req, res);
-});
-
-
 router.get("/kpi/fluxo-baixo/:idEmpresa", function (req, res) {
     dashController.buscarKpiFluxoBaixo(req, res);
 });
 
-// KPI ESPECIFOCASSS
-router.get("/kpi/total-ESPC/:idEmpresa/:idpontoMonitoramento", function (req, res) {
+router.get("/kpi/total-ESPC/:idEmpresa/:idpontoMonitoramento", function (req, res) { // KPI ESPECIFICA 1
     dashController.buscarKpiTotalESPC(req, res);
+});
+
+router.get("/kpi/hora-pico-ESPC/:idEmpresa/:idpontoMonitoramento", function (req, res) { // KPI ESPECIFICA 2
+    dashController.buscarKpiHoraPicoESPC(req, res);
+});
+
+router.get("/kpi/conversao-ESPC/:idEmpresa/:idpontoMonitoramento", function (req, res) { // KPI ESPECIFICA 3
+    dashController.buscarKpiConversaoESPC(req, res);
+});
+
+router.get("/kpi/fluxo-baixo-ESPC/:idEmpresa/:idpontoMonitoramento", function (req, res) { // KPI ESPECIFICA 4
+    dashController.buscarKpiFluxoBaixoESPC(req, res);
+});
+
+router.get("/select-dias/:idEmpresa", function (req, res) {
+    dashController.selectDias(req, res);
+});
+
+router.get("/dadosEmpresa/:idEmpresa", function (req, res) {
+    dashController.dadosEmpresa(req, res);
 });
 
 module.exports = router;
