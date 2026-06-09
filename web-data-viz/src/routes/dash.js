@@ -59,4 +59,32 @@ router.get("/dadosEmpresa/:idEmpresa", function (req, res) {
     dashController.dadosEmpresa(req, res);
 });
 
+router.get("/pontos/:idEmpresa", function(req,res){
+    dashController.buscarPontos(req,res);
+});
+
+router.get("/dias/:idEmpresa", function(req,res){
+    dashController.buscarDias(req,res);
+});
+
+router.get("/dias/:idEmpresa", function(req,res){
+    dashController.buscarDias(req,res);
+});
+
+router.get("/ultimas/grafico-linha-espc/:idEmpresa", function(req,res){
+    dashController.buscarDadosGraficoLinhaESPC(req,res);
+});
+
+router.get("/tempo-real/grafico-linha-espc/:idEmpresa", function(req,res){
+    dashController.atualizarDadosGraficoLinhaESPC(req,res);
+});
+
+router.get("/ultimas/grafico-calor-espc/:idEmpresa", function(req,res){
+    dashController.buscarDadosMapaCalorESPC(req,res);
+});
+
+router.get("/tempo-real/grafico-calor-espc/:idEmpresa", function(req,res){
+    dashController.atualizarDadosMapaCalorESPC(req,res);
+});
+
 module.exports = router;

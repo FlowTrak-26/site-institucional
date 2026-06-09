@@ -26,7 +26,7 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="iniciarpagina(), exibirKpiTotalESPC(), exibirKpiHoraPicoESPC(), exibirKpiConversaoESPC(), exibirKpiFluxoBaixoESPC(), pegarDadosEmpresa();">
+<body onload=" iniciarpagina(), iniciarDashboard(), pegarDadosEmpresa();">
 
 	<header>
 		<div class="nav-container">
@@ -108,14 +108,14 @@
 					<p>Voltar para filiais</p>
 				</div>
 				<div class="text-botao">
-					<h1 id="titulo_filial">Dashboard - OXXO Minas Gerais (MG)</h1>
+					<h1 id="titulo_filial"></h1>
 					<div class="ativar">
 						<button onclick="ativar()" class="ativar">ATIVA</button>
 					</div>
 				</div>
 				<div class="icon-texto">
 					<i class="fa-solid fa-location-dot"></i>
-					<p id="endereco_filial">Av. Carapicuíba, 187 - CEP: 00000-000</p>
+					<p id="endereco_filial"></p>
 				</div>
 			</div>
 			<div class="infos-box">
@@ -148,14 +148,8 @@
 
 					<!-- mudar esse setor de selecao  -->
 					<div class="seletor-local">
-						<select name="Locais" id="select-local"
-							onchange="exibirKpiTotalESPC(); exibirKpiHoraPicoESPC(); exibirKpiConversaoESPC(); exibirKpiFluxoBaixoESPC();">
-							<option value="Entrada" selected>Entrada Principal</option>
-							<option value="Saida">Saída</option>
-							<option value="Caixas">Caixas</option>
-							<option value="Corredor 1">Corredor 01</option>
-							<option value="Corredor 2">Corredor 02</option>
-							<option value="Corredor 3">Corredor 03</option>
+						<select name="Locais" id="select-ponto">
+
 						</select>
 					</div>
 				</div>
@@ -165,14 +159,8 @@
 						<p>Hoje, 24 de Março</p>
 					</div>
 					<div class="seletor-data">
-						<select name="Locais" id="select-local">
-							<option value="" selected>Selecione</option>
-							<option value="11/02/2026">11/02/2026</option>
-							<option value="12/02/2026">12/02/2026</option>
-							<option value="13/02/2026">13/02/2026</option>
-							<option value="14/02/2026">14/02/2026</option>
-							<option value="15/02/2026">15/02/2026</option>
-							<option value="16/02/2026">16/02/2026</option>
+						<select name="Datas" id="select-data">
+
 						</select>
 					</div>
 				</div>
@@ -255,35 +243,41 @@
 				<div class="titulo-graf">
 					<p>Fluxo de pessoas ao longo do dia</p>
 				</div>
-				<canvas id="linha"></canvas>
+				<div id="linha"></div>
 			</div>
 			<div class="grafico">
 				<div class="titulo-graf-m">
-					<p>Mapa Calor</p>
+					<p>Mapa de calor - Fluxo por local</p>
 				</div>
 				<div class="graf-mapa">
 					<div class="tela-grafico">
-
-						<div class="abs-grafico">
-							<div class="img-mercado">
-
-							</div>
-							<canvas id="calor"></canvas>
-
+						<div id="calor">
+							<img src="../assets/imgs/mapa_planta.jpeg" alt="">
 						</div>
-
-						<div class="horarios">
-							<ul>
-								<li class="selecionado">8h</li>
-								<li>10h</li>
-								<li>12h</li>
-								<li>14h</li>
-								<li>16h</li>
-								<li>18h</li>
-								<li>20h</li>
-							</ul>
+						<div class="portas" id="mp-portas">
+							<div class="entrada" data-id="1">
+								<p class="titulo-portas">ENTRADA</p>
+							</div>
+							<div class="saida" data-id="2">
+								<p class="titulo-portas">SAÍDA</p>
+							</div>
+						</div>
+						<div class="caixas" id="mp-caixas" data-id="3">
+							<p class="titulo-caixa">CAIXAS</p>
+						</div>
+						<div class="corredores" id="mp-corredores">
+							<div class="corredor1" data-id="4">
+								<p class="titulo-corredor">CORREDOR 01</p>
+							</div>
+							<div class="corredor2" data-id="5">
+								<p class="titulo-corredor">CORREDOR 02</p>
+							</div>
+							<div class="corredor3" data-id="6">
+								<p class="titulo-corredor">CORREDOR 03</p>
+							</div>
 						</div>
 					</div>
+
 					<div class="intensidade">
 						<p>Fluxo Alto</p>
 						<div class="bloco">
@@ -332,192 +326,373 @@
 
 	console.log(idEmpresa, empresaAtual)
 
+	let myChart = null;
+	let proximaAtualizacao;
+	let ponto_monitoramento;
+	let data_grafico;
+
+	async function gerarSelectPontos() {
+
+		const resposta =
+			await fetch(`/dash/pontos/${idEmpresa}`);
+
+		const pontos =
+			await resposta.json();
+
+		const select =
+			document.getElementById('select-ponto');
+
+		select.innerHTML = '';
+
+		pontos.forEach(ponto => {
+
+			select.innerHTML += `
+            <option value="${ponto.id}">
+                ${ponto.nome}
+            </option>
+        `;
+
+		});
+	}
+
+	async function gerarSelectDias() {
+
+		const resposta =
+			await fetch(`/dash/dias/${idEmpresa}`);
+
+		const dias =
+			await resposta.json();
+
+		const select =
+			document.getElementById('select-data');
+
+		select.innerHTML = '';
+
+		dias.forEach(dia => {
+
+			select.innerHTML += `
+            <option value="${dia.dataHora}">
+                ${dia.dataFormatada}
+            </option>
+        `;
+
+		});
+	}
+
+	async function iniciarDashboard() {
+
+		await gerarSelectPontos();
+		await gerarSelectDias();
+
+		document.getElementById('select-ponto')
+			.addEventListener('change', atualizarDashboard);
+
+		document.getElementById('select-data')
+			.addEventListener('change', atualizarDashboard);
+
+		await atualizarDashboard();
+	}
+
+	async function atualizarDashboard() {
+
+		ponto_monitoramento =
+			document.getElementById('select-ponto').value;
+
+		data_grafico =
+			document.getElementById('select-data').value;
+
+		clearTimeout(proximaAtualizacao);
+
+		if (myChart) {
+			myChart.destroy();
+		}
+
+		await exibirGraficoLinha();
+		await exibirGraficoCalor();
+
+		await exibirKpiTotalESPC();
+		await exibirKpiHoraPicoESPC();
+		await exibirKpiConversaoESPC();
+		await exibirKpiFluxoBaixoESPC();
+	}
+
 	async function exibirGraficoLinha() {
 
-		let idEmpresa = sessionStorage.ID_EMPRESA;
-		let idpontoMonitoramento = document.getElementById('select-local').value
-
-
-		const resposta = await fetch(
-			`/dash/ultimas/grafico-linha/${idEmpresa}/${idpontoMonitoramento}`
-		);
-
+		const resposta = await fetch(`/dash/ultimas/grafico-linha-espc/${idEmpresa}?dataHora=${data_grafico}&ponto=${ponto_monitoramento}`);
 		const dados = await resposta.json();
 
-		console.log(dados);
-
-
-		document.getElementById(`linha`).innerHTML =
+		document.getElementById('linha').innerHTML =
 			`
 			<div class="graph">
 				<canvas id="myChartCanvas-linha"></canvas>
 			</div>
-    	`
-		plotarGrafico(dados, 'grafico-linha');
+    	`;
+
+		plotarGrafico(dados);
 	}
 
-	function plotarGrafico(resposta, id_grafico) {
+	function atualizarGrafico(dados, myChart, id_grafico) {
+
+		fetch(`/dash/tempo-real/grafico-linha-espc/${idEmpresa}?dataHora=${data_grafico}&ponto=${ponto_monitoramento}`, { cache: 'no-store' })
+			.then(res => res.json())
+			.then(novoRegistro => {
+
+				let hora =
+					`${novoRegistro[0].momento_grafico.split('/')[2]}h`;
+
+				if (
+					hora !==
+					dados.labels[dados.labels.length - 1]
+				) {
+
+					dados.labels.shift();
+					dados.labels.push(hora);
+
+					dados.datasets[0].data.shift();
+					dados.datasets[0].data.push(
+						novoRegistro[0].fluxo
+					);
+
+					myChart.update();
+				}
+
+				proximaAtualizacao = setTimeout(() => {
+
+					atualizarGrafico(
+						dados,
+						myChart,
+						id_grafico
+					);
+
+					atualizarMapaCalor();
+
+					exibirKpiTotalESPC();
+					exibirKpiHoraPicoESPC();
+					exibirKpiConversaoESPC();
+					exibirKpiFluxoBaixoESPC();
+
+				}, 2000);
+
+			});
+	}
+
+	async function exibirGraficoCalor() {
+
+		const resposta = await fetch(`/dash/ultimas/grafico-calor-espc/${idEmpresa}?dataHora=${data_grafico}&ponto=${ponto_monitoramento}`);
+		const dados = await resposta.json();
+
+		plotarMapaCalor(dados);
+	}
+
+	function plotarGrafico(resposta) {
 
 		console.log('iniciando plotagem do gráfico...');
 
 		// Criando estrutura para plotar gráfico - labels
 		let labels = [];
 
-		// Criando estrutura para plotar gráfico - dados
-		if (id_grafico == 'grafico-linha') {
-			let dados = {
-				labels: labels,
-				datasets: [{
-					label: 'Fluxo',
-					data: [],
-					backgroundColor: '#B11011',
-					borderColor: '#B11011',
-					borderWidth: 2,
-					minBarLength: 5,
-					borderRadius: 10
-				}]
-			};
+		let dados = {
+			labels: labels,
+			datasets: [{
+				label: 'Fluxo',
+				data: [],
+				backgroundColor: '#B11011',
+				borderColor: '#B11011',
+				borderWidth: 2,
+				minBarLength: 5,
+				borderRadius: 10
+			}]
+		};
 
-			console.log('----------------------------------------------')
-			console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-			console.log(resposta)
+		console.log('----------------------------------------------')
+		console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+		console.log(resposta)
 
-			// Inserindo valores recebidos em estrutura para plotar o gráfico
-			for (i = 0; i < resposta.length; i++) {
-				var registro = resposta[i];
-				labels.push(registro.momento_grafico);
-				dados.datasets[0].data.push(registro.fluxo);
+		// Inserindo valores recebidos em estrutura para plotar o gráfico
+		for (i = 0; i < resposta.length; i++) {
+			var registro = resposta[i];
+			labels.push(registro.momento_grafico);
+			dados.datasets[0].data.push(registro.fluxo);
+		}
+
+		console.log('----------------------------------------------')
+		console.log('O gráfico será plotado com os respectivos valores:')
+		console.log('Labels:')
+		console.log(labels)
+		console.log('Dados:')
+		console.log(dados.datasets)
+		console.log('----------------------------------------------')
+
+		let config;
+		config = {
+			type: 'line',
+			data: dados,
+			options: {
+				plugins: {
+					title: {
+						display: true,
+						align: 'start',
+						color: '#000',
+						font: {
+							size: 28,
+							weight: 'bold'
+						}
+					},
+					legend: {
+						position: 'top',
+						align: 'end',
+						labels: {
+							padding: 15
+						}
+					}
+				},
+				scales: {
+					x: {
+						offset: true
+					},
+					y: {
+						min: 0,
+						max: 6000
+					}
+				},
 			}
+		};
 
-			console.log('----------------------------------------------')
-			console.log('O gráfico será plotado com os respectivos valores:')
-			console.log('Labels:')
-			console.log(labels)
-			console.log('Dados:')
-			console.log(dados.datasets)
-			console.log('----------------------------------------------')
+		// Adicionando gráfico criado em div na tela
+		myChart = new Chart(
+			document.getElementById(`myChartCanvas-linha`),
+			config
+		);
 
-			let config;
-			config = {
-				type: 'line',
-				data: dados,
-				options: {
-					plugins: {
-						title: {
-							display: true,
-							align: 'start',
-							color: '#000',
-							font: {
-								size: 28,
-								weight: 'bold'
-							}
-						},
-						legend: {
-							position: 'top',
-							align: 'end',
-							labels: {
-								padding: 15
-							}
-						}
-					},
-					scales: {
-						x: {
-							offset: true
-						},
-						y: {
-							min: 0,
-							max: 6000
-						}
-					},
-				}
-			};
+		proximaAtualizacao = setTimeout(() => {
+			atualizarGrafico(dados, myChart);
+		}, 2000);
+	}
 
-			// Adicionando gráfico criado em div na tela
-			let myChart = new Chart(
-				document.getElementById(`myChartCanvas-linha`),
-				config
+	function plotarMapaCalor(dados) {
+
+		document.querySelectorAll('[data-id]')
+			.forEach(div => {
+
+				div.style.backgroundColor = '';
+			});
+
+		dados.forEach(registro => {
+
+			let cor;
+
+			if (registro.fluxo <= 1200)
+				cor = "#ffe5e5";
+			else if (registro.fluxo <= 2400)
+				cor = "#ffb3b3";
+			else if (registro.fluxo <= 3600)
+				cor = "#ff8080";
+			else if (registro.fluxo <= 4800)
+				cor = "#ff4d4d";
+			else
+				cor = "#cc0000";
+
+			const div = document.querySelector(
+				`[data-id="${registro.id_ponto_monitoramento}"]`
 			);
 
-			proximaAtualizacao = setTimeout(() => {
-				atualizarGrafico(dados, myChart, id_grafico);
-			}, 60000);
-		} else if (id_grafico == 'grafico-calor') {
-
-		}
-	}
-
-	function atualizarGrafico(dados, myChart, id_grafico) {
-
-		let idEmpresa = sessionStorage.ID_EMPRESA;
-		let idpontoMonitoramento = document.getElementById('select-local').value
-
-		if (id_grafico == 'grafico-linha') {
-			if (idpontoMonitoramento == 'entrada-principal') {
-				idpontoMonitoramento = 1
-			} else if (idpontoMonitoramento == 'saida') {
-				idpontoMonitoramento = 2
-			} else if (idpontoMonitoramento == 'caixas-1') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'caixa-2') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'caixa-3') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'corredor-limpeza') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'setor-hortifruti') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'corredor-higiene') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'padaria') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'acogue') {
-				idpontoMonitoramento = 'select-local'
-			} else if (idpontoMonitoramento == 'bebidas') {
-				idpontoMonitoramento = 'select-local'
+			if (div) {
+				div.style.backgroundColor = cor;
 			}
 
-			fetch(`/dash/tempo-real/${id_grafico}/${idEmpresa}/${idpontoMonitoramento}`, { cache: 'no-store' }).then(function (response) {
-				if (response.ok) {
-					response.json().then(function (novoRegistro) {
-
-						console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-						console.log(`Dados atuais do gráfico:`);
-						console.log(dados);
-
-						if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-							console.log("---------------------------------------------------------------")
-							console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-							avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-							console.log("Horário do novo dado capturado:")
-							console.log(novoRegistro[0].momento_grafico)
-							console.log("Horário do último dado capturado:")
-							console.log(dados.labels[dados.labels.length - 1])
-							console.log("---------------------------------------------------------------")
-						} else {
-							dados.labels.shift();
-							dados.labels.push(novoRegistro[0].momento_grafico);
-
-							dados.datasets[0].data.shift();
-							dados.datasets[0].data.push(novoRegistro[0].fluxo);
-
-							myChart.update();
-
-						}
-						// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-						proximaAtualizacao = setTimeout(() => {
-							atualizarGrafico(dados, myChart, id_grafico); obterKPIs();
-						}, 1000);
-					});
-				} else {
-					console.error('Nenhum dado encontrado ou erro na API');
-					// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-					proximaAtualizacao = setTimeout(() => {
-						atualizarGrafico(dados, myChart, id_grafico); obterKPIs();
-					}, 10000);
-				}
-			})
-		} 
+		});
 	}
+
+	function atualizarMapaCalor() {
+
+		fetch(`/dash/tempo-real/grafico-calor-espc/${idEmpresa}?dataHora=${data_grafico}&ponto=${ponto_monitoramento}`, { cache: 'no-store' })
+			.then(res => res.json())
+			.then(dados => {
+
+				plotarMapaCalor(dados);
+
+			})
+			.catch(erro => {
+
+				console.error(
+					'Erro ao atualizar mapa:',
+					erro
+				);
+
+			});
+	}
+	// function atualizarGrafico(dados, myChart, id_grafico) {
+
+	// 	let idEmpresa = sessionStorage.ID_EMPRESA;
+	// 	let idpontoMonitoramento = document.getElementById('select-local').value
+
+	// 	if (id_grafico == 'grafico-linha') {
+	// 		if (idpontoMonitoramento == 'entrada-principal') {
+	// 			idpontoMonitoramento = 1
+	// 		} else if (idpontoMonitoramento == 'saida') {
+	// 			idpontoMonitoramento = 2
+	// 		} else if (idpontoMonitoramento == 'caixas-1') {
+	// 			idpontoMonitoramento = 'select-local'
+	// 		} else if (idpontoMonitoramento == 'caixa-2') {
+	// 			idpontoMonitoramento = 'select-local'
+	// 		} else if (idpontoMonitoramento == 'caixa-3') {
+	// 			idpontoMonitoramento = 'select-local'
+	// 		} else if (idpontoMonitoramento == 'corredor-limpeza') {
+	// 			idpontoMonitoramento = 'select-local'
+	// 		} else if (idpontoMonitoramento == 'setor-hortifruti') {
+	// 			idpontoMonitoramento = 'select-local'
+	// 		} else if (idpontoMonitoramento == 'corredor-higiene') {
+	// 			idpontoMonitoramento = 'select-local'
+	// 		} else if (idpontoMonitoramento == 'padaria') {
+	// 			idpontoMonitoramento = 'select-local'
+	// 		} else if (idpontoMonitoramento == 'acogue') {
+	// 			idpontoMonitoramento = 'select-local'
+	// 		} else if (idpontoMonitoramento == 'bebidas') {
+	// 			idpontoMonitoramento = 'select-local'
+	// 		}
+
+	// 		fetch(`/dash/tempo-real/${id_grafico}/${idEmpresa}/${idpontoMonitoramento}`, { cache: 'no-store' }).then(function (response) {
+	// 			if (response.ok) {
+	// 				response.json().then(function (novoRegistro) {
+
+	// 					console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+	// 					console.log(`Dados atuais do gráfico:`);
+	// 					console.log(dados);
+
+	// 					if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+	// 						console.log("---------------------------------------------------------------")
+	// 						console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+	// 						avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+	// 						console.log("Horário do novo dado capturado:")
+	// 						console.log(novoRegistro[0].momento_grafico)
+	// 						console.log("Horário do último dado capturado:")
+	// 						console.log(dados.labels[dados.labels.length - 1])
+	// 						console.log("---------------------------------------------------------------")
+	// 					} else {
+	// 						dados.labels.shift();
+	// 						dados.labels.push(novoRegistro[0].momento_grafico);
+
+	// 						dados.datasets[0].data.shift();
+	// 						dados.datasets[0].data.push(novoRegistro[0].fluxo);
+
+	// 						myChart.update();
+
+	// 					}
+	// 					// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+	// 					proximaAtualizacao = setTimeout(() => {
+	// 						atualizarGrafico(dados, myChart, id_grafico); obterKPIs();
+	// 					}, 1000);
+	// 				});
+	// 			} else {
+	// 				console.error('Nenhum dado encontrado ou erro na API');
+	// 				// Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+	// 				proximaAtualizacao = setTimeout(() => {
+	// 					atualizarGrafico(dados, myChart, id_grafico); obterKPIs();
+	// 				}, 10000);
+	// 			}
+	// 		})
+	// 	}
+	// }
 
 	var permissao = sessionStorage.PERMISSAO;
 	var nomeDaFilial = sessionStorage.NOME_EMPRESA_ATUAL;
@@ -582,7 +757,7 @@
 
 	async function exibirKpiTotalESPC() { // KPI ESPECIFICA 1
 		let idEmpresa = sessionStorage.ID_EMPRESA_ATUAL || sessionStorage.ID_EMPRESA;
-		let idpontoMonitoramento = document.getElementById('select-local').value; // Ex: 'Entrada'
+		let idpontoMonitoramento = document.getElementById('select-ponto').value; // Ex: 'Entrada'
 
 		if (!idEmpresa || !idpontoMonitoramento) {
 			console.warn('Nenhum idEmpresa ou Ponto definido para KPI total.');
@@ -633,7 +808,7 @@
 
 	async function exibirKpiHoraPicoESPC() { // KPI ESPECIFICA 2
 		let idEmpresa = sessionStorage.ID_EMPRESA_ATUAL || sessionStorage.ID_EMPRESA;
-		let idpontoMonitoramento = document.getElementById('select-local').value;
+		let idpontoMonitoramento = document.getElementById('select-ponto').value;
 
 		if (!idEmpresa || !idpontoMonitoramento) return;
 
@@ -685,7 +860,7 @@
 
 	async function exibirKpiConversaoESPC() { // KPI ESPECIFICA 3
 		let idEmpresa = sessionStorage.ID_EMPRESA_ATUAL || sessionStorage.ID_EMPRESA;
-		let idpontoMonitoramento = document.getElementById('select-local').value;
+		let idpontoMonitoramento = document.getElementById('select-ponto').value;
 
 		if (!idEmpresa || !idpontoMonitoramento) return;
 
@@ -735,7 +910,7 @@
 
 	async function exibirKpiFluxoBaixoESPC() { // KPI ESPECIFICA 4
 		let idEmpresa = sessionStorage.ID_EMPRESA_ATUAL || sessionStorage.ID_EMPRESA;
-		let idpontoMonitoramento = document.getElementById('select-local').value;
+		let idpontoMonitoramento = document.getElementById('select-ponto').value;
 
 		if (!idEmpresa || !idpontoMonitoramento) return;
 

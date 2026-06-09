@@ -247,6 +247,121 @@ function dadosEmpresa(req, res){
     });
 }
 
+function buscarPontos(req,res){
+
+    var idEmpresa = req.params.idEmpresa;
+
+    dashModel.buscarPontos(idEmpresa)
+    .then(resultado => {
+
+        res.status(200).json(resultado);
+
+    }).catch(erro => {
+
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+
+    });
+
+}
+
+function buscarDias(req,res){
+
+    var idEmpresa = req.params.idEmpresa;
+
+    dashModel.buscarDias(idEmpresa)
+    .then(resultado => {
+
+        res.status(200).json(resultado);
+
+    }).catch(erro => {
+
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+
+    });
+
+}
+
+function buscarDadosGraficoLinhaESPC(req, res) {
+
+    var idEmpresa = req.params.idEmpresa;
+    var dataHora = req.query.dataHora;
+    var ponto = req.query.ponto;
+
+    dashModel.buscarDadosGraficoLinhaESPC(
+        idEmpresa,
+        dataHora,
+        ponto
+    )
+    .then(resultado => {
+        res.status(200).json(resultado);
+    })
+    .catch(erro => {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function atualizarDadosGraficoLinhaESPC(req, res) {
+
+    var idEmpresa = req.params.idEmpresa;
+    var dataHora = req.query.dataHora;
+    var ponto = req.query.ponto;
+
+    dashModel.atualizarDadosGraficoLinhaESPC(
+        idEmpresa,
+        dataHora,
+        ponto
+    )
+    .then(resultado => {
+        res.status(200).json(resultado);
+    })
+    .catch(erro => {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarDadosMapaCalorESPC(req, res) {
+
+    var idEmpresa = req.params.idEmpresa;
+    var dataHora = req.query.dataHora;
+    var ponto = req.query.ponto;
+
+    dashModel.buscarDadosMapaCalorESPC(
+        idEmpresa,
+        dataHora,
+        ponto
+    )
+    .then(resultado => {
+        res.status(200).json(resultado);
+    })
+    .catch(erro => {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function atualizarDadosMapaCalorESPC(req, res) {
+
+    var idEmpresa = req.params.idEmpresa;
+    var dataHora = req.query.dataHora;
+    var ponto = req.query.ponto;
+
+    dashModel.atualizarDadosMapaCalorESPC(
+        idEmpresa,
+        dataHora,
+        ponto
+    )
+    .then(resultado => {
+        res.status(200).json(resultado);
+    })
+    .catch(erro => {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
 
 module.exports = {
@@ -267,5 +382,12 @@ module.exports = {
     // select dias
     selectDias,
     // dados empresa
-    dadosEmpresa
+    dadosEmpresa,
+    // esp
+    buscarPontos,
+    buscarDias,
+    buscarDadosGraficoLinhaESPC,
+    atualizarDadosGraficoLinhaESPC,
+    buscarDadosMapaCalorESPC,
+    atualizarDadosMapaCalorESPC
 }

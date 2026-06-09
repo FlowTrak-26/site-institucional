@@ -201,7 +201,7 @@ function buscarKpiTotalESPC(idEmpresa, idpontoMonitoramento) { //KPI ESPECIFICA 
         JOIN sensor s ON s.fk_ponto = pm.id_ponto_monitoramento
         JOIN dado_captado dc ON dc.fk_sensor = s.id_sensor
         WHERE pm.fk_empresa = ${idEmpresa}
-        AND pm.nome = '${idpontoMonitoramento}'; 
+        AND pm.id_ponto_monitoramento = ${idpontoMonitoramento}
     `;
     console.log("Executando a instrução SQL (KPI Total ESPC por Nome): \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -216,7 +216,7 @@ function buscarKpiHoraPicoESPC(idEmpresa, idpontoMonitoramento) { //KPI ESPECIFI
         JOIN sensor s ON s.fk_ponto = pm.id_ponto_monitoramento
         JOIN dado_captado dc ON dc.fk_sensor = s.id_sensor
         WHERE pm.fk_empresa = ${idEmpresa}
-        AND pm.nome = '${idpontoMonitoramento}'
+        AND pm.id_ponto_monitoramento = ${idpontoMonitoramento}
         GROUP BY HOUR(dc.data_hora)
         ORDER BY total_passagens DESC
         LIMIT 1;
@@ -240,7 +240,7 @@ function buscarKpiConversaoESPC(idEmpresa, idpontoMonitoramento) { //KPI ESPECIF
         FROM ponto_monitoramento pm
         JOIN sensor s ON s.fk_ponto = pm.id_ponto_monitoramento
         JOIN dado_captado dc ON dc.fk_sensor = s.id_sensor
-        WHERE pm.fk_empresa = ${idEmpresa} AND pm.nome = '${idpontoMonitoramento}'
+        WHERE pm.fk_empresa = ${idEmpresa} AND pm.id_ponto_monitoramento = ${idpontoMonitoramento}
         GROUP BY pm.nome;
     `;
     console.log("Executando a instrução SQL (KPI 3 - Conversão ESPC): \n" + instrucaoSql);
@@ -256,7 +256,7 @@ function buscarKpiFluxoBaixoESPC(idEmpresa, idpontoMonitoramento) {//KPI ESPECIF
         JOIN sensor s ON s.fk_ponto = pm.id_ponto_monitoramento
         JOIN dado_captado dc ON dc.fk_sensor = s.id_sensor
         WHERE pm.fk_empresa = ${idEmpresa} 
-        AND pm.nome = '${idpontoMonitoramento}'
+        AND pm.id_ponto_monitoramento = ${idpontoMonitoramento}
         GROUP BY pm.nome;
     `;
     console.log("Executando a instrução SQL (KPI 4 - Baixo Fluxo ESPC): \n" + instrucaoSql);
@@ -300,25 +300,167 @@ function dadosEmpresa(idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function buscarPontos(idEmpresa){
+
+    var instrucaoSql = `
+        SELECT
+            id_ponto_monitoramento AS id,
+            nome
+        FROM ponto_monitoramento
+        WHERE fk_empresa = ${idEmpresa}
+        ORDER BY nome;
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarDias(idEmpresa){
+
+    var instrucaoSql = 
+    `
+        SELECT DISTINCT
+            DATE_FORMAT(dc.data_hora,'%d/%m') AS dataFormatada,
+            DATE_FORMAT(dc.data_hora,'%d/%m') AS dataHora
+        FROM dado_captado dc
+        JOIN sensor s
+            ON s.id_sensor = dc.fk_sensor
+        JOIN ponto_monitoramento pm
+            ON pm.id_ponto_monitoramento = s.fk_ponto
+        WHERE pm.fk_empresa = ${idEmpresa}
+        ORDER BY DATE_FORMAT(dc.data_hora,'%d/%m') DESC;
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarDadosGraficoLinhaESPC(idEmpresa, dataHora, ponto) {
+    var instrucaoSql = `
+        SELECT
+            emp.id_empresa,
+            DATE_FORMAT(dc.data_hora, '%m/%d/%H') AS momento_grafico,
+            COUNT(dc.fluxo) AS fluxo
+        FROM empresa_parceira emp
+        JOIN ponto_monitoramento pt
+            ON pt.fk_empresa = emp.id_empresa
+        JOIN sensor sn
+            ON sn.fk_ponto = pt.id_ponto_monitoramento
+        JOIN dado_captado dc
+            ON dc.fk_sensor = sn.id_sensor
+        WHERE emp.id_empresa = ${idEmpresa}
+          AND pt.id_ponto_monitoramento = ${ponto}
+          AND DATE_FORMAT(dc.data_hora,'%d/%m') = '${dataHora}'
+        GROUP BY DATE_FORMAT(dc.data_hora,'%m/%d/%H')
+        ORDER BY momento_grafico;
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarDadosMapaCalorESPC(idEmpresa, dataHora, ponto) {
+
+    var instrucaoSql = `
+        SELECT
+            emp.id_empresa,
+            DATE_FORMAT(dc.data_hora, '%m/%d/%H') AS momento_grafico,
+            COUNT(dc.fluxo) AS fluxo,
+            pt.id_ponto_monitoramento
+        FROM empresa_parceira emp
+        JOIN ponto_monitoramento pt
+            ON pt.fk_empresa = emp.id_empresa
+        JOIN sensor sn
+            ON sn.fk_ponto = pt.id_ponto_monitoramento
+        JOIN dado_captado dc
+            ON dc.fk_sensor = sn.id_sensor
+        WHERE emp.id_empresa = ${idEmpresa}
+          AND DATE_FORMAT(dc.data_hora,'%d/%m') = '${dataHora}' AND pt.id_ponto_monitoramento = ${ponto}
+        GROUP BY
+            pt.id_ponto_monitoramento,
+            DATE_FORMAT(dc.data_hora,'%m/%d/%H')
+        ORDER BY momento_grafico;
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function atualizarDadosGraficoLinhaESPC(idEmpresa, dataHora, ponto) {
+
+    var instrucaoSql = `
+        SELECT
+            emp.id_empresa,
+            DATE_FORMAT(dc.data_hora, '%m/%d/%H') AS momento_grafico,
+            COUNT(dc.fluxo) AS fluxo
+        FROM empresa_parceira emp
+        JOIN ponto_monitoramento pt
+            ON pt.fk_empresa = emp.id_empresa
+        JOIN sensor sn
+            ON sn.fk_ponto = pt.id_ponto_monitoramento
+        JOIN dado_captado dc
+            ON dc.fk_sensor = sn.id_sensor
+        WHERE emp.id_empresa = ${idEmpresa}
+          AND pt.id_ponto_monitoramento = ${ponto}
+          AND DATE_FORMAT(dc.data_hora,'%d/%m') = '${dataHora}'
+        GROUP BY
+            DATE_FORMAT(dc.data_hora,'%m/%d/%H')
+        ORDER BY momento_grafico DESC
+        LIMIT 1;
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function atualizarDadosMapaCalorESPC(idEmpresa, dataHora, ponto) {
+
+    var instrucaoSql = `
+        SELECT
+            emp.id_empresa,
+            DATE_FORMAT(dc.data_hora, '%m/%d/%H') AS momento_grafico,
+            COUNT(dc.fluxo) AS fluxo,
+            pt.id_ponto_monitoramento
+        FROM empresa_parceira emp
+        JOIN ponto_monitoramento pt
+            ON pt.fk_empresa = emp.id_empresa
+        JOIN sensor sn
+            ON sn.fk_ponto = pt.id_ponto_monitoramento
+        JOIN dado_captado dc
+            ON dc.fk_sensor = sn.id_sensor
+        WHERE emp.id_empresa = ${idEmpresa}
+          AND DATE_FORMAT(dc.data_hora,'%d/%m') = '${dataHora}' AND pt.id_ponto_monitoramento = ${ponto}
+        GROUP BY
+            pt.id_ponto_monitoramento,
+            DATE_FORMAT(dc.data_hora,'%m/%d/%H')
+        ORDER BY momento_grafico DESC
+        LIMIT 1;
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarDadosGraficoLinha,
     atualizarDadosGraficoLinha,
     buscarDadosMapaCalor,
     atualizarDadosMapaCalor,
-    // KPI
+
     buscarKpiTotal,
     buscarKpiSetorPico,
     buscarKpiHorarioPico,
     buscarKpiLocalMaisAcessado,
     buscarKpiFluxoBaixo,
-    // KPI especifica
+
     buscarKpiTotalESPC,
     buscarKpiHoraPicoESPC,
     buscarKpiConversaoESPC,
     buscarKpiFluxoBaixoESPC,
-    //select
+
     selectDias,
-    // dados empresa
-    dadosEmpresa
+    dadosEmpresa,
+
+    buscarPontos,
+    buscarDias,
+
+    buscarDadosGraficoLinhaESPC,
+    atualizarDadosGraficoLinhaESPC,
+    buscarDadosMapaCalorESPC,
+    atualizarDadosMapaCalorESPC
 }
 

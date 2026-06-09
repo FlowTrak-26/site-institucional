@@ -532,6 +532,7 @@
     align-items: center;
     border-radius: 20px;
     flex-direction: column;
+        position: relative;
 }
 
 .abs-grafico{
@@ -658,4 +659,169 @@
 #btn-bobIA img{
 	width: 90px;
 	height: 90px;
+}
+
+#calor{
+    position: relative;
+}
+
+#calor img{
+    position: absolute;
+
+    height: 90%;
+    width: 100%;
+
+    opacity: 0.1;
+}
+
+#mp-portas{
+    position: absolute;
+    left: 8%;
+    top: 3%;
+    opacity: 1;
+}
+
+#mp-caixas{
+    position: absolute;
+    left: 25%;
+    top: 3%;
+    opacity: 1;
+}
+
+#mp-corredores{
+    position: absolute;
+    right: 5%;
+    top: 3%;
+    opacity: 1;
+}
+
+
+.portas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+    width: 15%;
+    gap: 15px;
+}
+
+.entrada{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    height: 50%;
+    width: 100%;
+    border: 2px dotted rgba(165, 165, 165, 0.64) ;
+    border-radius: 10px;
+    padding-top: 10px;
+
+}
+
+.saida{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    height: 50%;
+    width: 100%;
+    border: 2px dotted rgba(165, 165, 165, 0.64) ;
+    border-radius: 10px;
+    padding-top: 10px;
+}
+
+.titulo-portas{
+    font-weight: bold;
+}
+
+.caixas{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 77%;
+    width: 15%;
+    border: 2px dotted rgba(165, 165, 165, 0.64) ;
+    border-radius: 10px;
+    padding-top: 10px;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.titulo-caixa{
+    font-weight: bold;
+}
+
+.caixa{
+    color: rgba(119, 118, 118, 0.58) ;
+    font-weight: bold;
+}
+
+.corredores{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 50%;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.corredor1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px dotted rgba(165, 165, 165, 0.64) ;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    gap: 5px;
+    padding-left: 7px;
+    padding-top: 3px;
+}
+
+.corredor2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px dotted rgba(165, 165, 165, 0.64) ;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    padding-left: 7px;
+    padding-top: 3px;
+}
+
+.corredor3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px dotted rgba(165, 165, 165, 0.64) ;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    padding-left: 7px;
+    padding-top: 3px;
+}
+
+#mp-portas{
+    position: absolute;
+    left: 8%;
+    top: 3%;
+    opacity: 1;
+}
+
+#mp-caixas{
+    position: absolute;
+    left: 25%;
+    top: 3%;
+    opacity: 1;
+}
+
+#mp-corredores{
+    position: absolute;
+    right: 5%;
+    top: 3%;
+    opacity: 1;
 }
